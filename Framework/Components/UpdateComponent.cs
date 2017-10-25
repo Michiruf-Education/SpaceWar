@@ -1,8 +1,8 @@
 ﻿namespace SpaceWar.Framework.Components {
 
-	public interface UpdateComponent : Component {
+	public abstract class UpdateComponent : Component {
 
-		void Update();
+		public abstract void Update();
 	}
 
 }

@@ -1,6 +1,6 @@
 ﻿using SpaceWar.Framework.Components;
 
-namespace SpaceWar.Framework.Collider {
+namespace SpaceWar.Framework.Collision {
 
 	public class CircleCollider : CollisionComponent {
 

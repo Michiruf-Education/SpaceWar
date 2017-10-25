@@ -9,6 +9,10 @@ namespace SpaceWar.Framework {
 		public GameWindow Window { get; private set; }
 		public Scene ActiveScene { get; private set; }
 
+		public Game() {
+			GameContainer.SetGame(this);
+		}
+
 		public void CreatePrimitiveWindow() {
 			Window = new GameWindow();
 			RegisterWindowSceneIndirections(Window);

@@ -1,8 +1,8 @@
 ﻿namespace SpaceWar.Framework.Components {
 
-	public interface RenderComponent {
+	public abstract class RenderComponent : Component {
 
-		void Render();
+		public abstract void Render();
 	}
 
 }
