@@ -76,7 +76,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Framework\Colliders\CircleCollider.cs" />
+    <Compile Include="Framework\Component.cs" />
+    <Compile Include="Framework\Components\CollisionComponent.cs" />
+    <Compile Include="Framework\Components\RenderComponent.cs" />
+    <Compile Include="Framework\Components\UpdateComponent.cs" />
+    <Compile Include="Framework\Game.cs" />
+    <Compile Include="Framework\GameContainer.cs" />
+    <Compile Include="Framework\GameObject.cs" />
+    <Compile Include="Framework\Scene.cs" />
+    <Compile Include="Framework\Widgets\Button.cs" />
+    <Compile Include="Game\Dummy\DummyComponent.cs" />
+    <Compile Include="Game\Dummy\DummyGameObject.cs" />
+    <Compile Include="Game\Dummy\DummyScene.cs" />
+    <Compile Include="Game\SpaceWar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +98,14 @@
     <None Include="Packages.config">
       <SubType>Designer</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Framework\Algorithms\.gitkeep" />
+    <Content Include="Framework\Input\.gitkeep" />
+    <Content Include="Framework\Widgets\.gitkeep" />
+    <Content Include="Game\Controllers\.gitkeep" />
+    <Content Include="Game\Models\.gitkeep" />
+    <Content Include="Game\Views\.gitkeep" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
