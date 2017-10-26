@@ -4,10 +4,10 @@ using SpaceWar.Framework.Components;
 
 namespace SpaceWar.Game {
 
-	public class DummyComponent : UpdateComponent {
+	public class DummyUpdateComponent : UpdateComponent {
 
 		public override void Update() {
-			Console.WriteLine("DummyComponent.Update() called!");
+			Console.WriteLine("DummyUpdateComponent.Update() called!");
 		}
 	}
 

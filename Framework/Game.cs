@@ -1,6 +1,7 @@
 ﻿using System;
 using OpenTK;
 using OpenTK.Platform;
+using Zenseless.ShaderDebugging;
 
 namespace SpaceWar.Framework {
 
@@ -15,6 +16,7 @@ namespace SpaceWar.Framework {
 
 		public void CreatePrimitiveWindow() {
 			Window = new GameWindow();
+			LoadLayoutAndRegisterSaveHook(Window);
 			RegisterWindowSceneIndirections(Window);
 		}
 
@@ -24,6 +26,12 @@ namespace SpaceWar.Framework {
 
 		public void Run() {
 			Window.Run();
+		}
+
+		static void LoadLayoutAndRegisterSaveHook(GameWindow gameWindow) {
+			// TODO Inform Daniel Scherzer that this is able to do with IGameWindow instead of GameWindow
+			gameWindow.LoadLayout();
+			gameWindow.Closing += (sender, args) => gameWindow.SaveLayout();
 		}
 
 		void RegisterWindowSceneIndirections(IGameWindow gameWindow) {

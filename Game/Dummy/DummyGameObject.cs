@@ -5,7 +5,8 @@ namespace SpaceWar.Game {
 	public class DummyGameObject : GameObject {
 
 		public DummyGameObject() {
-			AddComponent(new DummyComponent());
+			AddComponent(new DummyUpdateComponent());
+			AddComponent(new DummyRenderComponent());
 		}
 	}
 
