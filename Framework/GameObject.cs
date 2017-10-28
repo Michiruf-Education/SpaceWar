@@ -1,30 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using SpaceWar.Framework.Object;
-using Zenseless.Geometry;
 
 namespace SpaceWar.Framework {
 
 	public class GameObject {
 
+		public Lifecycle Lifecycle { get; } = new Lifecycle();
+
 		public bool IsEnabled { get; set; } = true;
-
 		public Transform Transform { get; set; }
-
-		// TODO Should be readyonly
-		public List<Component> Components { get; private set; } = new List<Component>();
+		private readonly List<Component> components = new List<Component>();
+		public ReadOnlyCollection<Component> Components { get; }
 
 		public GameObject() : this(new Transform()) {
 		}
 
 		public GameObject(Transform transform) {
+			Components = new ReadOnlyCollection<Component>(components);
 			Transform = transform;
-		}
 
-		public void AddComponent(Component component) {
-			component.GameObject = this;
-			Components.Add(component);
+			// Register lifecycle delegation for components
+			Lifecycle.onDestroy += () => components.ForEach(c => c.Lifecycle?.onDestroy?.Invoke());
 		}
 
 		public TComponentType GetComponent<TComponentType>() {
@@ -41,18 +40,23 @@ namespace SpaceWar.Framework {
 			return castedComponents;
 		}
 
-		public virtual void Update() {
-			// Do not update anything if the gameobject is not enabled
-			if (!IsEnabled) {
-				return;
-			}
+		public void AddComponent(Component component) {
+			component.GameObject = this;
+			component.Lifecycle?.onCreate?.Invoke();
+			components.Add(component);
+		}
 
-			Components.ForEach(c => {
+		public void RemoveComponent(Component component) {
+			component.Lifecycle?.onDestroy?.Invoke();
+			components.Remove(component);
+		}
+
+		public virtual void Update() {
+			components.ForEach(c => {
 				// Skip disabled components
 				if (!c.IsEnabled) {
 					return;
 				}
-
 				if (c is UpdateComponent updateComponent) {
 					updateComponent.Update();
 				}
@@ -60,17 +64,11 @@ namespace SpaceWar.Framework {
 		}
 
 		public virtual void Render() {
-			// Do not draw anything if the gameobject is not enabled
-			if (!IsEnabled) {
-				return;
-			}
-
-			Components.ForEach(c => {
+			components.ForEach(c => {
 				// Skip disabled components
 				if (!c.IsEnabled) {
 					return;
 				}
-
 				if (c is RenderComponent renderComponent) {
 					renderComponent.Render();
 				}

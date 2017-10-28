@@ -5,7 +5,7 @@ namespace SpaceWar.Game {
 	public class DummyScene : Scene {
 
 		public DummyScene() {
-			GameObjects.Add(new DummyGameObject());
+			Spawn(new DummyGameObject());
 		}
 	}
 

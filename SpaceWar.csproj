@@ -89,9 +89,11 @@
     <Compile Include="Framework\Game.cs" />
     <Compile Include="Framework\GameObject.cs" />
     <Compile Include="Framework\Object\GameConfig.cs" />
+    <Compile Include="Framework\Object\Lifecycle.cs" />
     <Compile Include="Framework\Object\RenderComponent.cs" />
     <Compile Include="Framework\Object\Transform.cs" />
     <Compile Include="Framework\Object\UpdateComponent.cs" />
+    <Compile Include="Framework\Render\AnimatedSprite.cs" />
     <Compile Include="Framework\Render\RenderLineComponent.cs" />
     <Compile Include="Framework\Render\RenderTextureComponent.cs" />
     <Compile Include="Framework\Scene.cs" />

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Drawing;
 using OpenTK.Graphics.OpenGL;
 using SpaceWar.Framework.Debug;
@@ -21,28 +20,28 @@ namespace SpaceWar.Framework.Render {
 			if (texture == null) {
 				throw new ArgumentException("Texture is not a 2dGL texture!");
 			}
+
+			Lifecycle.onDestroy += () => texture?.Dispose();
 		}
 
 		public RenderTextureComponent(string file, Box2D rect) : this(file) {
 			Rect = rect;
 		}
 
-		public RenderTextureComponent(string file, int width, int height) : this(file) {
-			// ReSharper disable PossibleLossOfFraction
-			// Fraction loss is okay here because we also have the sizes in there
-			Rect = new Box2D(-width / 2, -height / 2, width, height);
+		public RenderTextureComponent(string file, float width, float height) :
+			this(file, new Box2D(-width / 2, -height / 2, width, height)) {
 		}
 
 		public virtual void Render() {
+			texture.Activate();
+			GL.Begin(PrimitiveType.Quads);
+
 			// Color is multiplied with the texture color
 			// White means no color change in the texture will be applied
 			GL.Color3(Color.White);
 			if (FrameworkDebugMode.IsEnabled) {
 				GL.Color3(Color.Gray);
 			}
-
-			texture.Activate();
-			GL.Begin(PrimitiveType.Quads);
 
 			GL.TexCoord2(0.0f, 0.0f);
 			GL.Vertex2(Rect.MinX, Rect.MinY);
@@ -55,13 +54,6 @@ namespace SpaceWar.Framework.Render {
 
 			GL.End();
 			texture.Deactivate();
-		}
-
-		// TODO Ensure this deconstructor is called
-		// @see: https://andrewlock.net/deconstructors-for-non-tuple-types-in-c-7-0/
-		// Method drafted to not forget about resource cleanups!
-		public void Deconstruct() {
-			texture?.Dispose();
 		}
 	}
 
