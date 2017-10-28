@@ -87,7 +87,6 @@
     <Compile Include="Framework\Component.cs" />
     <Compile Include="Framework\Debug\FrameworkDebugMode.cs" />
     <Compile Include="Framework\Game.cs" />
-    <Compile Include="Framework\GameContainer.cs" />
     <Compile Include="Framework\GameObject.cs" />
     <Compile Include="Framework\Object\GameConfig.cs" />
     <Compile Include="Framework\Object\RenderComponent.cs" />

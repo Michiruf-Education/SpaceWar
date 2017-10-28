@@ -7,11 +7,14 @@ namespace SpaceWar.Framework {
 
 	public class Game {
 
+		public static Game Instance { get; private set; }
+		public static Scene ActiveScene => Instance.ActiveSceneInstance;
+
 		public GameWindow Window { get; private set; }
-		public Scene ActiveScene { get; private set; }
+		public Scene ActiveSceneInstance { get; private set; }
 
 		public Game() {
-			GameContainer.SetGame(this);
+			Instance = this;
 		}
 
 		public void CreatePrimitiveWindow() {
@@ -21,7 +24,7 @@ namespace SpaceWar.Framework {
 		}
 
 		public void ShowScene(Scene newScene) {
-			ActiveScene = newScene;
+			ActiveSceneInstance = newScene;
 		}
 
 		public void Run() {
@@ -39,9 +42,9 @@ namespace SpaceWar.Framework {
 				throw new ArgumentNullException(nameof(gameWindow));
 			}
 
-			gameWindow.UpdateFrame += (e1, e2) => ActiveScene?.Update();
+			gameWindow.UpdateFrame += (e1, e2) => ActiveSceneInstance?.Update();
 			gameWindow.RenderFrame += (e1, e2) => {
-				ActiveScene?.Render();
+				ActiveSceneInstance?.Render();
 				// Swapping buffers shows the rendered stuff
 				// Without we will not see any affects by our GL drawings
 				Window.SwapBuffers();
