@@ -1,6 +1,5 @@
 ﻿using System;
 using SpaceWar.Framework;
-using SpaceWar.Framework.Components;
 
 namespace SpaceWar.Game {
 

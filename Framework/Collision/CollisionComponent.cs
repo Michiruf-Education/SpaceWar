@@ -1,6 +1,4 @@
-﻿using SpaceWar.Framework.Components;
-
-namespace SpaceWar.Framework.Collision {
+﻿namespace SpaceWar.Framework.Collision {
 
 	public class CollisionComponent : UpdateComponent {
 

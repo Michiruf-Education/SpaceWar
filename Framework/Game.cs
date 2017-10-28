@@ -39,8 +39,12 @@ namespace SpaceWar.Framework {
 				throw new ArgumentNullException(nameof(gameWindow));
 			}
 
-			gameWindow.UpdateFrame += (e1, e2) => { ActiveScene?.Update(); };
-			gameWindow.RenderFrame += (e1, e2) => { ActiveScene?.Render(); };
+			gameWindow.UpdateFrame += (e1, e2) => ActiveScene?.Update();
+			gameWindow.RenderFrame += (e1, e2) => {
+				ActiveScene?.Render();
+				// Swapping buffers shows the rendered stuff
+				Window.SwapBuffers();
+			};
 		}
 	}
 

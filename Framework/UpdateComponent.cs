@@ -1,4 +1,4 @@
-﻿namespace SpaceWar.Framework.Components {
+﻿namespace SpaceWar.Framework {
 
 	public abstract class UpdateComponent : Component {
 

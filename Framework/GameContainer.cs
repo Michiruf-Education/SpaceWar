@@ -6,15 +6,15 @@ namespace SpaceWar.Framework {
 
 		// TODO Static indirections for the game class!
 		// TODO May be for the active scene class?
-		
-		private static Game game;
-		
+
+		private static Game GAME;
+
 		public static void SetGame(Game game) {
-			GameContainer.game = game;
+			GAME = game;
 		}
 
-		private void Validate() {
-			if (game == null) {
+		private static void Validate() {
+			if (GAME == null) {
 				throw new InvalidOperationException("GameContainer does not container a game instance!");
 			}
 		}
