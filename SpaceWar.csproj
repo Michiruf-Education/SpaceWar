@@ -91,6 +91,7 @@
     <Compile Include="Framework\Object\GameConfig.cs" />
     <Compile Include="Framework\Object\Lifecycle.cs" />
     <Compile Include="Framework\Object\RenderComponent.cs" />
+    <Compile Include="Framework\Object\Space.cs" />
     <Compile Include="Framework\Object\Transform.cs" />
     <Compile Include="Framework\Object\UpdateComponent.cs" />
     <Compile Include="Framework\Render\AnimatedSprite.cs" />

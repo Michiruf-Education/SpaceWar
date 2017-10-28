@@ -14,8 +14,9 @@ namespace SpaceWar.Framework {
 
 		public Game() {
 			if (Instance != null) {
-				// For now we throw a exception, but later we may implement a destroy
-				// call to tear down the current game and start over
+				// For now we throw a exception, but later we may implement a destroy call to tear 
+				// down the current game and start over
+				// Eventual use-case: graphic changes that need a restart of the game
 				throw new Exception("Only one game may exist!");
 			}
 			Instance = this;
