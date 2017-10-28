@@ -19,8 +19,8 @@ namespace SpaceWar.Framework {
 		}
 
 		public GameObject(Transform transform) {
-			Components = new ReadOnlyCollection<Component>(components);
 			Transform = transform;
+			Components = new ReadOnlyCollection<Component>(components);
 
 			// Register lifecycle delegation for components
 			Lifecycle.onDestroy += () => components.ForEach(c => c.Lifecycle?.onDestroy?.Invoke());

@@ -4,7 +4,7 @@ namespace SpaceWar.Framework.Object {
 
 	public class Lifecycle {
 
-		public Action onCreate;
+		public Action onCreate; // TODO Maybe: onAttached?
 
 		public Action onDestroy;
 	}

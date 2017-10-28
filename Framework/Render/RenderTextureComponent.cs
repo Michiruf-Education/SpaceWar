@@ -15,7 +15,7 @@ namespace SpaceWar.Framework.Render {
 		public Box2D Rect { get; set; }
 
 		[Obsolete("May be obsolete because we always need bounds (rect)?")]
-		public RenderTextureComponent(string file) {
+		private RenderTextureComponent(string file) {
 			texture = TextureLoader.FromFile(file) as Texture2dGL;
 			if (texture == null) {
 				throw new ArgumentException("Texture is not a 2dGL texture!");
@@ -33,6 +33,16 @@ namespace SpaceWar.Framework.Render {
 		}
 
 		public virtual void Render() {
+			// @see: https://github.com/danielscherzer/Framework/blob/72fec5c85e6f21b868c41141ed1c8105f5252e5e/CG/Examples/TextureExample/TextureExample.cs
+			//GL.Clear(ClearBufferMask.ColorBufferBit);
+			//GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
+			//GL.Enable(EnableCap.Blend); // for transparency in textures we use blending
+
+			// TODO Currently we don't know why we need this?
+			// Got from:
+			// @see: https://github.com/danielscherzer/Framework/blob/72fec5c85e6f21b868c41141ed1c8105f5252e5e/CG/Examples/TextureExample/TextureExample.cs
+			GL.Enable(EnableCap.Texture2D); //todo: only for non shader pipeline relevant -> remove at some point
+			
 			texture.Activate();
 			GL.Begin(PrimitiveType.Quads);
 
@@ -40,7 +50,7 @@ namespace SpaceWar.Framework.Render {
 			// White means no color change in the texture will be applied
 			GL.Color3(Color.White);
 			if (FrameworkDebugMode.IsEnabled) {
-				GL.Color3(Color.Gray);
+				GL.Color3(Color.LightGray);
 			}
 
 			GL.TexCoord2(0.0f, 0.0f);

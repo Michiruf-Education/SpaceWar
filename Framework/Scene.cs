@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using SpaceWar.Framework.Object;
 
@@ -26,6 +27,9 @@ namespace SpaceWar.Framework {
 		}
 
 		public void Destroy(GameObject gameObject) {
+			if (!gameObjects.Contains(gameObject)) {
+				throw new Exception("Scene does not contain this GameObject!");
+			}
 			gameObject.Lifecycle?.onDestroy?.Invoke();
 			gameObjects.Remove(gameObject);
 		}
