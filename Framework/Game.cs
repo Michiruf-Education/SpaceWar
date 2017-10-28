@@ -1,5 +1,6 @@
 ﻿using System;
 using OpenTK;
+using OpenTK.Graphics.OpenGL;
 using OpenTK.Platform;
 using Zenseless.ShaderDebugging;
 
@@ -56,6 +57,9 @@ namespace SpaceWar.Framework {
 
 			gameWindow.UpdateFrame += (e1, e2) => ActiveScene?.Update();
 			gameWindow.RenderFrame += (e1, e2) => {
+				// Clear last frames drawings
+				GL.Clear(ClearBufferMask.ColorBufferBit);
+				// Render current frame
 				ActiveScene?.Render();
 				// Swapping buffers shows the rendered stuff
 				// Without we will not see any affects by our GL drawings

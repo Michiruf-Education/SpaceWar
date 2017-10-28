@@ -5,7 +5,7 @@ namespace SpaceWar.Framework.Object {
 	public class Transform {
 
 		// TODO Implement a transform that holds the position of the GO, ...
-		
+
 		public GameObject GameObject { get; internal set; }
 
 		public Vector2 Position { get; set; }
@@ -13,7 +13,7 @@ namespace SpaceWar.Framework.Object {
 		public Vector2 Scaling { get; set; }
 
 		public void Translate(Vector2 translation, Space space = Space.Local) {
-			Translate(translation.X, translation.Y);
+			Translate(translation.X, translation.Y, space);
 		}
 
 		public void Translate(float x, float y, Space space = Space.Local) {
@@ -22,6 +22,7 @@ namespace SpaceWar.Framework.Object {
 				var position = Position;
 				position.X += x;
 				position.Y += y;
+				Position = position; // TODO Might be useless?
 				return;
 			}
 			// TODO
@@ -48,8 +49,15 @@ namespace SpaceWar.Framework.Object {
 		}
 
 		public Vector2 CalculatePointPosition(float x, float y) {
-			return Vector2.Zero;
+			//return Vector2.Zero;
 			// TODO!!!
+			// This solution is just here to show that this would may work
+			// We need to "inherit" the data from parent GO's and calculate the data including rotation and scaling
+			
+			return new Vector2 {
+				X = x + Position.X,
+				Y = y + Position.Y
+			};
 		}
 	}
 

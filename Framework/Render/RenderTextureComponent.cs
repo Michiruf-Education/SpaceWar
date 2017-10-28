@@ -53,14 +53,19 @@ namespace SpaceWar.Framework.Render {
 				GL.Color3(Color.LightGray);
 			}
 
+			var minXminY = GameObject.Transform.CalculatePointPosition(Rect.MinX, Rect.MinY);
+			var maxXminY = GameObject.Transform.CalculatePointPosition(Rect.MaxX, Rect.MinY);
+			var maxXmaxY = GameObject.Transform.CalculatePointPosition(Rect.MaxX, Rect.MaxY);
+			var minXmaxY = GameObject.Transform.CalculatePointPosition(Rect.MinX, Rect.MaxY);
+
 			GL.TexCoord2(0.0f, 0.0f);
-			GL.Vertex2(Rect.MinX, Rect.MinY);
+			GL.Vertex2(minXminY.X, minXminY.Y);
 			GL.TexCoord2(1.0f, 0.0f);
-			GL.Vertex2(Rect.MaxX, Rect.MinY);
+			GL.Vertex2(maxXminY.X, maxXminY.Y);
 			GL.TexCoord2(1.0f, 1.0f);
-			GL.Vertex2(Rect.MaxX, Rect.MaxY);
+			GL.Vertex2(maxXmaxY.X, maxXmaxY.Y);
 			GL.TexCoord2(0.0f, 1.0f);
-			GL.Vertex2(Rect.MinX, Rect.MaxY);
+			GL.Vertex2(minXmaxY.X, minXmaxY.Y);
 
 			GL.End();
 			texture.Deactivate();

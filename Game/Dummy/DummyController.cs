@@ -11,7 +11,7 @@ namespace SpaceWar.Game {
 			Console.WriteLine("DummyController.Update() called!");
 
 			// TODO
-			//GameObject.Transform.TranslateLocal(1, 1);
+			GameObject.Transform.Translate(0.001f, 0.001f);
 		}
 
 		public void OnCollide(GameObject other) {
