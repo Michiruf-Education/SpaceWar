@@ -1,4 +1,4 @@
-﻿namespace SpaceWar.Framework {
+﻿namespace SpaceWar.Framework.Object {
 
 	public class GameConfig {
 		

@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using OpenTK.Graphics.OpenGL;
+using SpaceWar.Framework.Debug;
+using SpaceWar.Framework.Object;
 using Zenseless.Geometry;
 using Zenseless.OpenGL;
 
 namespace SpaceWar.Framework.Render {
 
-	public class RenderTextureComponent : RenderComponent {
+	public class RenderTextureComponent : Component, RenderComponent {
 
 		private readonly Texture2dGL texture;
 
@@ -30,10 +33,13 @@ namespace SpaceWar.Framework.Render {
 			Rect = new Box2D(-width / 2, -height / 2, width, height);
 		}
 
-		public override void Render() {
+		public virtual void Render() {
 			// Color is multiplied with the texture color
 			// White means no color change in the texture will be applied
 			GL.Color3(Color.White);
+			if (FrameworkDebugMode.IsEnabled) {
+				GL.Color3(Color.Gray);
+			}
 
 			texture.Activate();
 			GL.Begin(PrimitiveType.Quads);

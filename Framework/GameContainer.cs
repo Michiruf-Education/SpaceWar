@@ -9,13 +9,13 @@ namespace SpaceWar.Framework {
 
 		private static Game GAME;
 
-		public static void SetGame(Game game) {
+		internal static void SetGame(Game game) {
 			GAME = game;
 		}
 
 		private static void Validate() {
 			if (GAME == null) {
-				throw new InvalidOperationException("GameContainer does not container a game instance!");
+				throw new InvalidOperationException("GameContainer does not have a game instance!");
 			}
 		}
 	}

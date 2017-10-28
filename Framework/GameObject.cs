@@ -1,23 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SpaceWar.Framework.Object;
 using Zenseless.Geometry;
 
 namespace SpaceWar.Framework {
 
 	public class GameObject {
 
-		public Transformation2D Transform { get; set; }
+		public bool IsEnabled { get; set; } = true;
 
-		public bool IsVisible { get; set; } = true;
+		public Transform Transform { get; set; }
 
 		// TODO Should be readyonly
 		public List<Component> Components { get; private set; } = new List<Component>();
 
-		public GameObject() : this(new Transformation2D()) {
+		public GameObject() : this(new Transform()) {
 		}
 
-		public GameObject(Transformation2D transform) {
+		public GameObject(Transform transform) {
 			Transform = transform;
 		}
 
@@ -41,7 +42,17 @@ namespace SpaceWar.Framework {
 		}
 
 		public virtual void Update() {
+			// Do not update anything if the gameobject is not enabled
+			if (!IsEnabled) {
+				return;
+			}
+
 			Components.ForEach(c => {
+				// Skip disabled components
+				if (!c.IsEnabled) {
+					return;
+				}
+
 				if (c is UpdateComponent updateComponent) {
 					updateComponent.Update();
 				}
@@ -49,7 +60,17 @@ namespace SpaceWar.Framework {
 		}
 
 		public virtual void Render() {
+			// Do not draw anything if the gameobject is not enabled
+			if (!IsEnabled) {
+				return;
+			}
+
 			Components.ForEach(c => {
+				// Skip disabled components
+				if (!c.IsEnabled) {
+					return;
+				}
+
 				if (c is RenderComponent renderComponent) {
 					renderComponent.Render();
 				}

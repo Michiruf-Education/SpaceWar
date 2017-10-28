@@ -1,9 +1,11 @@
 ﻿using System.Drawing;
 using OpenTK.Graphics.OpenGL;
+using SpaceWar.Framework.Debug;
+using SpaceWar.Framework.Object;
 
 namespace SpaceWar.Framework.Render {
 
-	public class RenderLineComponent : RenderComponent {
+	public class RenderLineComponent : Component, RenderComponent {
 
 		private readonly Point from;
 		private readonly Point to;
@@ -17,7 +19,7 @@ namespace SpaceWar.Framework.Render {
 			this.lineWidth = lineWidth;
 		}
 
-		public override void Render() {
+		public void Render() {
 			GL.Color4(color);
 			GL.LineWidth(lineWidth);
 
@@ -25,6 +27,15 @@ namespace SpaceWar.Framework.Render {
 			GL.Vertex2(from.X, from.Y);
 			GL.Vertex2(to.X, to.Y);
 			GL.End();
+
+			if (FrameworkDebugMode.IsEnabled) {
+				GL.Color4(Color.Red);
+				GL.PointSize(lineWidth);
+				GL.Begin(PrimitiveType.Points);
+				GL.Vertex2(from.X, from.Y);
+				GL.Vertex2(to.X, to.Y);
+				GL.End();
+			}
 		}
 	}
 

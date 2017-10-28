@@ -43,6 +43,7 @@ namespace SpaceWar.Framework {
 			gameWindow.RenderFrame += (e1, e2) => {
 				ActiveScene?.Render();
 				// Swapping buffers shows the rendered stuff
+				// Without we will not see any affects by our GL drawings
 				Window.SwapBuffers();
 			};
 		}

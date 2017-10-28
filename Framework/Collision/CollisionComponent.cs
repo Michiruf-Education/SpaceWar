@@ -1,10 +1,8 @@
 ﻿namespace SpaceWar.Framework.Collision {
 
-	public class CollisionComponent : UpdateComponent {
+	public interface CollisionComponent {
 
-		public override void Update() {
-			throw new System.NotImplementedException();
-		}
+		void OnCollide(GameObject other);
 	}
 
 }

@@ -82,20 +82,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Framework\Collision\CircleCollider.cs" />
+    <Compile Include="Framework\Collision\ColliderComponent.cs" />
     <Compile Include="Framework\Collision\CollisionComponent.cs" />
     <Compile Include="Framework\Component.cs" />
+    <Compile Include="Framework\Debug\FrameworkDebugMode.cs" />
     <Compile Include="Framework\Game.cs" />
-    <Compile Include="Framework\GameConfig.cs" />
     <Compile Include="Framework\GameContainer.cs" />
     <Compile Include="Framework\GameObject.cs" />
-    <Compile Include="Framework\RenderComponent.cs" />
+    <Compile Include="Framework\Object\GameConfig.cs" />
+    <Compile Include="Framework\Object\RenderComponent.cs" />
+    <Compile Include="Framework\Object\Transform.cs" />
+    <Compile Include="Framework\Object\UpdateComponent.cs" />
     <Compile Include="Framework\Render\RenderLineComponent.cs" />
     <Compile Include="Framework\Render\RenderTextureComponent.cs" />
     <Compile Include="Framework\Scene.cs" />
-    <Compile Include="Framework\UpdateComponent.cs" />
     <Compile Include="Framework\Widgets\Button.cs" />
-    <Compile Include="Game\Dummy\DummyRenderComponent.cs" />
-    <Compile Include="Game\Dummy\DummyUpdateComponent.cs" />
+    <Compile Include="Game\Dummy\DummyController.cs" />
     <Compile Include="Game\Dummy\DummyGameObject.cs" />
     <Compile Include="Game\Dummy\DummyScene.cs" />
     <Compile Include="Game\Resources.cs" />
@@ -116,9 +118,6 @@
     <Content Include="Game\Controllers\.gitkeep" />
     <Content Include="Game\Models\.gitkeep" />
     <Content Include="Game\Views\.gitkeep" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

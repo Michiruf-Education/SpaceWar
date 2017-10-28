@@ -6,12 +6,14 @@ namespace SpaceWar.Framework {
 
 		public GameObject GameObject { get; internal set; }
 
-		public ComponentType GetComponent<ComponentType>() {
-			return GameObject.GetComponent<ComponentType>();
+		public bool IsEnabled { get; set; } = true;
+
+		public TComponentType GetComponent<TComponentType>() {
+			return GameObject.GetComponent<TComponentType>();
 		}
 
-		public List<ComponentType> GetComponents<ComponentType>() {
-			return GameObject.GetComponents<ComponentType>();
+		public List<TComponentType> GetComponents<TComponentType>() {
+			return GameObject.GetComponents<TComponentType>();
 		}
 	}
 

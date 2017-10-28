@@ -1,7 +1,8 @@
 ﻿namespace SpaceWar.Framework.Collision {
 
-	public class CircleCollider : CollisionComponent {
+	public class CircleCollider : ColliderComponent {
 
+		// TODO
 	}
 
 }
