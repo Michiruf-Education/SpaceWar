@@ -43,13 +43,13 @@ namespace SpaceWar.Framework {
 		}
 
 		public TComponentType GetComponent<TComponentType>() {
-			var component = Components.FirstOrDefault(c => c is TComponentType);
+			var component = components.FirstOrDefault(c => c is TComponentType);
 			return (TComponentType) Convert.ChangeType(component, typeof(TComponentType));
 		}
 
 		public List<TComponentTypes> GetComponents<TComponentTypes>() {
 			var castedComponents = new List<TComponentTypes>();
-			Components.Select(c => c is TComponentTypes)
+			components.Select(c => c is TComponentTypes)
 				.ToList()
 				.ForEach(c => castedComponents.Add(
 					(TComponentTypes) Convert.ChangeType(c, typeof(TComponentTypes))));
