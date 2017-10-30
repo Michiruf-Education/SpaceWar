@@ -8,6 +8,7 @@ namespace SpaceWar.Game {
 			FrameworkDebugMode.IsEnabled = true;
 
 			var game = new Framework.Game();
+			game.RegisterInputProvider(new Keymap());
 			game.CreatePrimitiveWindow();
 			game.ShowScene(new DummyScene());
 			game.Run();

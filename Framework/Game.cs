@@ -2,6 +2,7 @@
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Platform;
+using SpaceWar.Framework.Input;
 using Zenseless.ShaderDebugging;
 
 namespace SpaceWar.Framework {
@@ -23,8 +24,15 @@ namespace SpaceWar.Framework {
 			Instance = this;
 		}
 
+		public void RegisterInputProvider(InputProvider inputProvider) {
+			var inputs = inputProvider.LoadInputs();
+			InputHandler.Init();
+			InputHandler.RegisterInputs(inputs);
+		}
+
 		public void CreatePrimitiveWindow() {
 			Window = new GameWindow();
+			SetupInputHandler();
 			LoadLayoutAndRegisterSaveHook(Window);
 			RegisterWindowSceneIndirections(Window);
 		}
@@ -41,6 +49,10 @@ namespace SpaceWar.Framework {
 			Window.Run();
 		}
 
+		void SetupInputHandler() {
+			InputHandler.RegisterWindow(Window);
+		}
+
 		void LoadLayoutAndRegisterSaveHook(GameWindow gameWindow) {
 			// TODO Inform Daniel Scherzer that this is able to do with IGameWindow instead of GameWindow
 			gameWindow.LoadLayout();
@@ -55,7 +67,10 @@ namespace SpaceWar.Framework {
 				throw new ArgumentNullException(nameof(gameWindow));
 			}
 
-			gameWindow.UpdateFrame += (e1, e2) => ActiveScene?.Update();
+			gameWindow.UpdateFrame += (e1, e2) => {
+				// TODO Detect inputs
+				ActiveScene?.Update();
+			};
 			gameWindow.RenderFrame += (e1, e2) => {
 				// Clear last frames drawings
 				GL.Clear(ClearBufferMask.ColorBufferBit);

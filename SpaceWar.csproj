@@ -88,6 +88,8 @@
     <Compile Include="Framework\Debug\FrameworkDebugMode.cs" />
     <Compile Include="Framework\Game.cs" />
     <Compile Include="Framework\GameObject.cs" />
+    <Compile Include="Framework\Input\InputHandler.cs" />
+    <Compile Include="Framework\Input\InputProvider.cs" />
     <Compile Include="Framework\Object\GameConfig.cs" />
     <Compile Include="Framework\Object\Lifecycle.cs" />
     <Compile Include="Framework\Object\RenderComponent.cs" />
@@ -102,6 +104,8 @@
     <Compile Include="Game\Dummy\DummyController.cs" />
     <Compile Include="Game\Dummy\DummyGameObject.cs" />
     <Compile Include="Game\Dummy\DummyScene.cs" />
+    <Compile Include="Game\InputActions.cs" />
+    <Compile Include="Game\Keymap.cs" />
     <Compile Include="Game\Resources.cs" />
     <Compile Include="Game\SpaceWar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -115,7 +119,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Framework\Algorithms\.gitkeep" />
-    <Content Include="Framework\Input\.gitkeep" />
     <Content Include="Framework\Widgets\.gitkeep" />
     <Content Include="Game\Controllers\.gitkeep" />
     <Content Include="Game\Models\.gitkeep" />
