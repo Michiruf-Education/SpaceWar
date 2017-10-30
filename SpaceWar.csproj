@@ -119,6 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Framework\Algorithms\.gitkeep" />
+    <Content Include="Framework\Camera\.gitkeep" />
     <Content Include="Framework\Widgets\.gitkeep" />
     <Content Include="Game\Controllers\.gitkeep" />
     <Content Include="Game\Models\.gitkeep" />
