@@ -23,39 +23,42 @@ namespace SpaceWar.Framework.Input {
 
 		public static void RegisterInputs(Dictionary<Enum, object> inputs) {
 			foreach (var input in inputs) {
-				if (input.Key is Key key) {
-					RegisterInput(key, input.Value);
-				} else if (input.Key is Buttons button) {
-					RegisterInput(button, input.Value);
-				} else if (input.Key is MouseButton mouseButton) {
-					RegisterInput(mouseButton, input.Value);
+				switch (input.Key) {
+					case Key key:
+						KEYBOARD_MAP.Add(key, input.Value);
+						break;
+					case Buttons button:
+						CONTROLLER_MAP.Add(button, input.Value);
+						break;
+					case MouseButton mouseButton:
+						MOUSE_MAP.Add(mouseButton, input.Value);
+						break;
 				}
 			}
 		}
 
-		static void RegisterInput(Key key, object action) {
-			KEYBOARD_MAP.Add(key, action);
-		}
-
-		static void RegisterInput(Buttons button, object action) {
-			CONTROLLER_MAP.Add(button, action);
-		}
-
-		static void RegisterInput(MouseButton button, object action) {
-			MOUSE_MAP.Add(button, action);
-		}
-
 		public static void RegisterWindow(GameWindow gameWindow) {
-			gameWindow.KeyDown += (sender, args) => {
-				if (KEYBOARD_MAP.TryGetValue(args.Key, out var key)) {
-					ACTIVE_ACTIONS.Add(key);
+			gameWindow.KeyDown += (sender, args) => HandleKeyEvent(KEYBOARD_MAP, args.Key, true);
+			gameWindow.KeyUp += (sender, args) => HandleKeyEvent(KEYBOARD_MAP, args.Key, false);
+			gameWindow.MouseDown += (sender, args) => HandleKeyEvent(MOUSE_MAP, args.Button, true);
+			gameWindow.MouseUp += (sender, args) => HandleKeyEvent(MOUSE_MAP, args.Button, true);
+		}
+
+		static void HandleKeyEvent<T>(IReadOnlyDictionary<T, object> map, T control, bool press) {
+			if (press) {
+				if (!map.TryGetValue(control, out var key)) {
+					return;
 				}
-			};
-			gameWindow.KeyUp += (sender, args) => {
-				if (KEYBOARD_MAP.TryGetValue(args.Key, out var key)) {
-					ACTIVE_ACTIONS.Remove(key);
+				if (ACTIVE_ACTIONS.Contains(key)) {
+					return;
 				}
-			};
+				ACTIVE_ACTIONS.Add(key);
+			} else {
+				if (!map.TryGetValue(control, out var key)) {
+					return;
+				}
+				ACTIVE_ACTIONS.Remove(key);
+			}
 		}
 
 		public static bool KeyDown(object action) {
