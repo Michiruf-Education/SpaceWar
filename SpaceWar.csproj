@@ -43,6 +43,7 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <!-- Reference includes -->
@@ -81,11 +82,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Framework\Camera\CameraComponent.cs" />
     <Compile Include="Framework\Collision\CircleCollider.cs" />
     <Compile Include="Framework\Collision\ColliderComponent.cs" />
     <Compile Include="Framework\Collision\CollisionComponent.cs" />
     <Compile Include="Framework\Component.cs" />
     <Compile Include="Framework\Debug\FrameworkDebugMode.cs" />
+    <Compile Include="Framework\Extensions\MatrixConversionExtension.cs" />
+    <Compile Include="Framework\Extensions\MatrixVectorMultiplication.cs" />
+    <Compile Include="Framework\Extensions\VectorConversionExtension.cs" />
     <Compile Include="Framework\Game.cs" />
     <Compile Include="Framework\GameObject.cs" />
     <Compile Include="Framework\Input\InputHandler.cs" />
@@ -94,6 +99,7 @@
     <Compile Include="Framework\Object\Lifecycle.cs" />
     <Compile Include="Framework\Object\RenderComponent.cs" />
     <Compile Include="Framework\Object\Space.cs" />
+    <Compile Include="Framework\Object\Time.cs" />
     <Compile Include="Framework\Object\Transform.cs" />
     <Compile Include="Framework\Object\UpdateComponent.cs" />
     <Compile Include="Framework\Render\AnimatedSprite.cs" />
@@ -101,6 +107,7 @@
     <Compile Include="Framework\Render\RenderTextureComponent.cs" />
     <Compile Include="Framework\Scene.cs" />
     <Compile Include="Framework\Widgets\Button.cs" />
+    <Compile Include="Game\Dummy\CameraGameObject.cs" />
     <Compile Include="Game\Dummy\DummyController.cs" />
     <Compile Include="Game\Dummy\DummyGameObject.cs" />
     <Compile Include="Game\Dummy\DummyScene.cs" />

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using OpenTK;
 using OpenTK.Input;
+using OpenTK.Platform;
 
 namespace SpaceWar.Framework.Input {
 
@@ -37,7 +38,7 @@ namespace SpaceWar.Framework.Input {
 			}
 		}
 
-		public static void RegisterWindow(GameWindow gameWindow) {
+		public static void RegisterWindow(IGameWindow gameWindow) {
 			gameWindow.KeyDown += (sender, args) => HandleKeyEvent(KEYBOARD_MAP, args.Key, true);
 			gameWindow.KeyUp += (sender, args) => HandleKeyEvent(KEYBOARD_MAP, args.Key, false);
 			gameWindow.MouseDown += (sender, args) => HandleKeyEvent(MOUSE_MAP, args.Button, true);

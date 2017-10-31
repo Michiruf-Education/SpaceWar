@@ -2,7 +2,9 @@
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Platform;
+using SpaceWar.Framework.Camera;
 using SpaceWar.Framework.Input;
+using SpaceWar.Framework.Object;
 using Zenseless.ShaderDebugging;
 
 namespace SpaceWar.Framework {
@@ -33,8 +35,8 @@ namespace SpaceWar.Framework {
 		public void CreatePrimitiveWindow() {
 			Window = new GameWindow();
 			SetupInputHandler();
-			LoadLayoutAndRegisterSaveHook(Window);
-			RegisterWindowSceneIndirections(Window);
+			LoadLayoutAndRegisterSaveHook();
+			RegisterWindowSceneIndirections();
 		}
 
 		public void ShowScene(Scene newScene) {
@@ -53,25 +55,22 @@ namespace SpaceWar.Framework {
 			InputHandler.RegisterWindow(Window);
 		}
 
-		void LoadLayoutAndRegisterSaveHook(GameWindow gameWindow) {
+		void LoadLayoutAndRegisterSaveHook() {
 			// TODO Inform Daniel Scherzer that this is able to do with IGameWindow instead of GameWindow
-			gameWindow.LoadLayout();
-			gameWindow.Closing += (sender, args) => {
+			// -> The LoadLayout extension
+			Window.LoadLayout();
+			Window.Closing += (sender, args) => {
 				ActiveScene?.Lifecycle?.onDestroy?.Invoke();
-				gameWindow.SaveLayout();
+				Window.SaveLayout();
 			};
 		}
 
-		void RegisterWindowSceneIndirections(IGameWindow gameWindow) {
-			if (gameWindow == null) {
-				throw new ArgumentNullException(nameof(gameWindow));
-			}
-
-			gameWindow.UpdateFrame += (e1, e2) => {
-				// TODO Detect inputs
+		void RegisterWindowSceneIndirections() {
+			Window.UpdateFrame += (e1, e2) => {
+				Time.DeltaTime = e2.Time;
 				ActiveScene?.Update();
 			};
-			gameWindow.RenderFrame += (e1, e2) => {
+			Window.RenderFrame += (e1, e2) => {
 				// Clear last frames drawings
 				GL.Clear(ClearBufferMask.ColorBufferBit);
 				// Render current frame

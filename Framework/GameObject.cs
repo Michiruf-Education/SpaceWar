@@ -87,6 +87,10 @@ namespace SpaceWar.Framework {
 		}
 
 		public virtual void Render() {
+			// Invalidate the transforms caches to not draw the same stuff like the last frame
+			// and so be able to have a cache
+			Transform.Invalidate();
+			
 			children.ForEach(go => {
 				// Skip disabled gameobjects
 				if (!go.IsEnabled) {

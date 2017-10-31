@@ -44,7 +44,7 @@ namespace SpaceWar.Framework {
 			return (TGameObjectType) Convert.ChangeType(component, typeof(TGameObjectType));
 		}
 
-		public List<TGameObjectType> GetComponents<TGameObjectType>() {
+		public List<TGameObjectType> GetGameObjects<TGameObjectType>() {
 			// NOTE See comment in GetGameObject!
 			var castedGameObjects = new List<TGameObjectType>();
 			gameObjects.Select(c => c is TGameObjectType)
@@ -53,6 +53,8 @@ namespace SpaceWar.Framework {
 					(TGameObjectType) Convert.ChangeType(c, typeof(TGameObjectType))));
 			return castedGameObjects;
 		}
+		
+		// TODO Maybe GetComponentsInScene?
 
 		public virtual void Update() {
 			gameObjects.ForEach(go => {

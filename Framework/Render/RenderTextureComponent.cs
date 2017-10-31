@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Numerics;
 using OpenTK.Graphics.OpenGL;
 using SpaceWar.Framework.Debug;
 using SpaceWar.Framework.Object;
@@ -53,10 +54,16 @@ namespace SpaceWar.Framework.Render {
 				GL.Color3(Color.LightGray);
 			}
 
-			var minXminY = GameObject.Transform.CalculatePointPosition(Rect.MinX, Rect.MinY);
-			var maxXminY = GameObject.Transform.CalculatePointPosition(Rect.MaxX, Rect.MinY);
-			var maxXmaxY = GameObject.Transform.CalculatePointPosition(Rect.MaxX, Rect.MaxY);
-			var minXmaxY = GameObject.Transform.CalculatePointPosition(Rect.MinX, Rect.MaxY);
+			//var minXminY = GameObject.Transform.CalculatePointPosition(Rect.MinX, Rect.MinY);
+			//var maxXminY = GameObject.Transform.CalculatePointPosition(Rect.MaxX, Rect.MinY);
+			//var maxXmaxY = GameObject.Transform.CalculatePointPosition(Rect.MaxX, Rect.MaxY);
+			//var minXmaxY = GameObject.Transform.CalculatePointPosition(Rect.MinX, Rect.MaxY);
+
+			var matrix = GameObject.Transform.G();
+			var minXminY = Vector2.Transform(new Vector2(Rect.MinX, Rect.MinY), matrix);
+			var maxXminY = Vector2.Transform(new Vector2(Rect.MaxX, Rect.MinY), matrix);
+			var maxXmaxY = Vector2.Transform(new Vector2(Rect.MaxX, Rect.MaxY), matrix);
+			var minXmaxY = Vector2.Transform(new Vector2(Rect.MinX, Rect.MaxY), matrix);
 
 			GL.TexCoord2(0.0f, 0.0f);
 			GL.Vertex2(minXminY.X, minXminY.Y);
@@ -66,7 +73,7 @@ namespace SpaceWar.Framework.Render {
 			GL.Vertex2(maxXmaxY.X, maxXmaxY.Y);
 			GL.TexCoord2(0.0f, 1.0f);
 			GL.Vertex2(minXmaxY.X, minXmaxY.Y);
-
+			
 			GL.End();
 			texture.Deactivate();
 		}
