@@ -12,7 +12,10 @@ namespace SpaceWar.Game {
 			Console.WriteLine("DummyController.Update() called!");
 
 			// TODO
-			GameObject.Transform.Translate(0.001f, 0.001f);
+			GameObject.Transform.Translate(0.001f, 0.001f, Space.World);
+			GameObject.Transform.Rotate(0.5f);
+			
+			
 			if (InputHandler.KeyDown(InputActions.MoveUp)) {
 				GameObject.Transform.Translate(0, 0.01f);
 			}
