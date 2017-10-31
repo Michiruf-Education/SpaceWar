@@ -60,7 +60,7 @@ namespace SpaceWar.Framework.Render {
 			//var maxXmaxY = GameObject.Transform.CalculatePointPosition(Rect.MaxX, Rect.MaxY);
 			//var minXmaxY = GameObject.Transform.CalculatePointPosition(Rect.MinX, Rect.MaxY);
 
-			var matrix = GameObject.Transform.GetTransformMatrixCached();
+			var matrix = GameObject.Transform.GetTransformationMatrixCached();
 			//var minXminY = Vector2.Transform(new Vector2(Rect.MinX, Rect.MinY), matrix);
 			//var maxXminY = Vector2.Transform(new Vector2(Rect.MaxX, Rect.MinY), matrix);
 			//var maxXmaxY = Vector2.Transform(new Vector2(Rect.MaxX, Rect.MaxY), matrix);
@@ -70,14 +70,23 @@ namespace SpaceWar.Framework.Render {
 			var maxXmaxY = FastVector2Transform.Transform(Rect.MaxX, Rect.MaxY, matrix);
 			var minXmaxY = FastVector2Transform.Transform(Rect.MinX, Rect.MaxY, matrix);
 
+			//GL.TexCoord2(0.0f, 0.0f);
+			//GL.Vertex2(minXminY.X, minXminY.Y);
+			//GL.TexCoord2(1.0f, 0.0f);
+			//GL.Vertex2(maxXminY.X, maxXminY.Y);
+			//GL.TexCoord2(1.0f, 1.0f);
+			//GL.Vertex2(maxXmaxY.X, maxXmaxY.Y);
+			//GL.TexCoord2(0.0f, 1.0f);
+			//GL.Vertex2(minXmaxY.X, minXmaxY.Y);
+			
 			GL.TexCoord2(0.0f, 0.0f);
-			GL.Vertex2(minXminY.X, minXminY.Y);
+			GL.Vertex2(minXminY);
 			GL.TexCoord2(1.0f, 0.0f);
-			GL.Vertex2(maxXminY.X, maxXminY.Y);
+			GL.Vertex2(maxXminY);
 			GL.TexCoord2(1.0f, 1.0f);
-			GL.Vertex2(maxXmaxY.X, maxXmaxY.Y);
+			GL.Vertex2(maxXmaxY);
 			GL.TexCoord2(0.0f, 1.0f);
-			GL.Vertex2(minXmaxY.X, minXmaxY.Y);
+			GL.Vertex2(minXmaxY);
 			
 			GL.End();
 			texture.Deactivate();

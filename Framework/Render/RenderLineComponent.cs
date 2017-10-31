@@ -1,5 +1,6 @@
 ﻿using System.Drawing;
 using OpenTK.Graphics.OpenGL;
+using SpaceWar.Framework.Algorithms;
 using SpaceWar.Framework.Debug;
 using SpaceWar.Framework.Object;
 
@@ -22,18 +23,22 @@ namespace SpaceWar.Framework.Render {
 		public void Render() {
 			GL.Color4(color);
 			GL.LineWidth(lineWidth);
+			
+			var matrix = GameObject.Transform.GetTransformationMatrixCached();
+			var fromPoint = FastVector2Transform.Transform(from.X, from.X, matrix);
+			var toPoint = FastVector2Transform.Transform(to.X, to.X, matrix);
 
 			GL.Begin(PrimitiveType.Lines);
-			GL.Vertex2(from.X, from.Y);
-			GL.Vertex2(to.X, to.Y);
+			GL.Vertex2(fromPoint);
+			GL.Vertex2(toPoint);
 			GL.End();
 
 			if (FrameworkDebugMode.IsEnabled) {
 				GL.Color4(Color.Red);
 				GL.PointSize(lineWidth);
 				GL.Begin(PrimitiveType.Points);
-				GL.Vertex2(from.X, from.Y);
-				GL.Vertex2(to.X, to.Y);
+				GL.Vertex2(fromPoint);
+				GL.Vertex2(toPoint);
 				GL.End();
 			}
 		}

@@ -7,8 +7,18 @@ namespace SpaceWar.Game {
 	public class CameraGameObject : GameObject {
 
 		public CameraGameObject() {
-			Transform.Rotate(90); // TODO Does not change anything yet!
-			AddComponent(new CameraComponent(new Vector2(10, 10)));
+			var c = new CameraComponent(new Vector2(1f, 1f));
+			AddComponent(c);
+			
+			// Must be after adding (for now -> TODO?)
+//			c.ViewportScaling = new Vector2(0.1f, 0.1f);
+//			c.Position = new Vector2(0.05f, 0.05f);
+			
+			c.ViewportScaling = new Vector2(10f, 10f);
+			c.Position = new Vector2(5f, 1f);
+			
+//			c.ViewportScaling = new Vector2(1f, 1f);
+//			c.Position = new Vector2(1f, 1f);
 		}
 	}
 

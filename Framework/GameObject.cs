@@ -12,7 +12,7 @@ namespace SpaceWar.Framework {
 
 		public bool IsEnabled { get; set; } = true;
 		public Transform Transform { get; }
-		public GameObject Parent { get; internal set; }
+		public GameObject Parent { get; private set; }
 		private readonly List<GameObject> children = new List<GameObject>();
 		public ReadOnlyCollection<GameObject> Children { get; }
 		private readonly List<Component> components = new List<Component>();
@@ -26,6 +26,7 @@ namespace SpaceWar.Framework {
 			Transform = transform;
 			Transform.GameObject = this;
 			Components = new ReadOnlyCollection<Component>(components);
+			Children = new ReadOnlyCollection<GameObject>(children);
 
 			// Register lifecycle delegation for components
 			Lifecycle.onDestroy += () => components.ForEach(c => c.Lifecycle?.onDestroy?.Invoke());

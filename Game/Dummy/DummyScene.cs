@@ -7,6 +7,7 @@ namespace SpaceWar.Game {
 		public DummyScene() {
 			Spawn(new CameraGameObject());
 			Spawn(new DummyGameObject());
+			Spawn(new StaticGameObject());
 		}
 	}
 

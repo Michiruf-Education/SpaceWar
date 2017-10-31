@@ -8,7 +8,7 @@ namespace SpaceWar.Framework.Camera {
 
 		public Vector2 Position { get => GameObject.Transform.Position; set => GameObject.Transform.Position = value; }
 		public float Rotation { get => GameObject.Transform.Rotation; set => GameObject.Transform.Rotation = value; }
-		public Vector2 Viewport { get; set; }
+		public Vector2 ViewportScaling { get => GameObject.Transform.Scaling; set => GameObject.Transform.Scaling = value; }
 
 		public CameraComponent() :
 			this(Active == null) {
@@ -23,7 +23,9 @@ namespace SpaceWar.Framework.Camera {
 		}
 
 		public CameraComponent(Vector2 viewport, bool activeCamera = false) {
-			Viewport = viewport;
+			//ViewportScaling = viewport;
+			// We cannot set this since this component is not immediately attached to a gameobject
+			// (when calling the constructor)
 
 			if (activeCamera) {
 				Activate();
@@ -34,7 +36,6 @@ namespace SpaceWar.Framework.Camera {
 			Active = this;
 		}
 
-		// TODO Use this values in rendering positions!!
 		// TODO Validate anyhow if a active camera is present?
 	}
 

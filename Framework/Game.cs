@@ -67,7 +67,7 @@ namespace SpaceWar.Framework {
 
 		void RegisterWindowSceneIndirections() {
 			Window.UpdateFrame += (e1, e2) => {
-				Time.DeltaTime = e2.Time;
+				Time.DeltaTime = (float) e2.Time;
 				ActiveScene?.Update();
 			};
 			Window.RenderFrame += (e1, e2) => {
