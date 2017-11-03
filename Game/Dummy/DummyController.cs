@@ -15,6 +15,9 @@ namespace SpaceWar.Game {
 			GameObject.Transform.Translate(0.001f, 0.001f);
 			GameObject.Transform.Rotate(0.5f);
 
+			if (InputHandler.KeyDown(InputActions.Fire)) {
+				Console.WriteLine("FIRE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			}
 
 			if (InputHandler.KeyDown(InputActions.MoveUp)) {
 				GameObject.Transform.Translate(0, 0.6f * Time.DeltaTime, Space.World);

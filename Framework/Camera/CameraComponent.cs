@@ -37,6 +37,8 @@ namespace SpaceWar.Framework.Camera {
 		}
 
 		// TODO Validate anyhow if a active camera is present?
+		
+		// TODO Check Zenseless.Geometry.CameraOrbit as possible base class for the camera?
 	}
 
 }

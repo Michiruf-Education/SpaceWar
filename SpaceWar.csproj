@@ -95,6 +95,9 @@
     <Compile Include="Framework\Extensions\VectorConversionExtension.cs" />
     <Compile Include="Framework\Game.cs" />
     <Compile Include="Framework\GameObject.cs" />
+    <Compile Include="Framework\Input\GamePadHandler.cs" />
+    <Compile Include="Framework\Input\GamePadHandlers\GamePadButtonEventArgs.cs" />
+    <Compile Include="Framework\Input\GamePadHandlers\GamePadButtonsHelper.cs" />
     <Compile Include="Framework\Input\InputHandler.cs" />
     <Compile Include="Framework\Input\InputProvider.cs" />
     <Compile Include="Framework\Object\GameConfig.cs" />
@@ -104,6 +107,7 @@
     <Compile Include="Framework\Object\Time.cs" />
     <Compile Include="Framework\Object\Transform.cs" />
     <Compile Include="Framework\Object\UpdateComponent.cs" />
+    <Compile Include="Framework\Player\Player.cs" />
     <Compile Include="Framework\Render\AnimatedSprite.cs" />
     <Compile Include="Framework\Render\RenderBoxComponent.cs" />
     <Compile Include="Framework\Render\RenderLineComponent.cs" />
