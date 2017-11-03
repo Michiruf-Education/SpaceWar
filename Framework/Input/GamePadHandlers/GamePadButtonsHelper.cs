@@ -24,6 +24,19 @@ namespace SpaceWar.Framework.Input.GamePadHandlers {
 			if (state.Buttons.RightStick == ButtonState.Pressed) r.Add(Buttons.RightStick);
 			return r;
 		}
+
+		public static List<Buttons> GetPressedDPadButtons(int controllerIndex) {
+			return GetPressedDPadButtons(GamePad.GetState(controllerIndex));
+		}
+
+		public static List<Buttons> GetPressedDPadButtons(GamePadState state) {
+			var r = new List<Buttons>();
+			if (state.DPad.IsUp) r.Add(Buttons.DPadUp);
+			if (state.DPad.IsDown) r.Add(Buttons.DPadDown);
+			if (state.DPad.IsLeft) r.Add(Buttons.DPadLeft);
+			if (state.DPad.IsRight) r.Add(Buttons.DPadRight);
+			return r;
+		}
 	}
 
 }
