@@ -1,7 +1,7 @@
 ﻿using System;
 using OpenTK.Input;
 
-namespace SpaceWar.Framework.Input.GamePadHandlers {
+namespace SpaceWar.Framework.Input.GamePad {
 
 	public class GamePadButtonEventArgs : EventArgs {
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using OpenTK.Input;
-using SpaceWar.Framework.Input.GamePadHandlers;
+using SpaceWar.Framework.Input.GamePad;
 
 namespace SpaceWar.Framework.Input {
 

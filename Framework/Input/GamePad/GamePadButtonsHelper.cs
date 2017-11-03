@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using OpenTK.Input;
+using OTKGamePad = OpenTK.Input.GamePad;
 
-namespace SpaceWar.Framework.Input.GamePadHandlers {
+namespace SpaceWar.Framework.Input.GamePad {
 
 	public static class GamePadButtonsHelper {
 
 		public static List<Buttons> GetPressedButtons(int controllerIndex) {
-			return GetPressedButtons(GamePad.GetState(controllerIndex));
+			return GetPressedButtons(OTKGamePad.GetState(controllerIndex));
 		}
 
 		public static List<Buttons> GetPressedButtons(GamePadState state) {
@@ -26,7 +27,7 @@ namespace SpaceWar.Framework.Input.GamePadHandlers {
 		}
 
 		public static List<Buttons> GetPressedDPadButtons(int controllerIndex) {
-			return GetPressedDPadButtons(GamePad.GetState(controllerIndex));
+			return GetPressedDPadButtons(OTKGamePad.GetState(controllerIndex));
 		}
 
 		public static List<Buttons> GetPressedDPadButtons(GamePadState state) {

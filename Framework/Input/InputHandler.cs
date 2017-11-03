@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using OpenTK.Input;
 using OpenTK.Platform;
-using SpaceWar.Framework.Input.GamePadHandlers;
 
 namespace SpaceWar.Framework.Input {
 
@@ -72,6 +70,11 @@ namespace SpaceWar.Framework.Input {
 		// TODO Implement playerId check to have multiple players!
 		public static bool KeyDown(object action, int playerId = -1) {
 			return ACTIVE_ACTIONS.Contains(action);
+		}
+
+		// TODO Implement this to have controlls not only in 8 directions! (topleft, top, topright, ...)
+		public static float GetAxis() {
+			return 0;
 		}
 	}
 

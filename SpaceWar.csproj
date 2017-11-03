@@ -96,8 +96,8 @@
     <Compile Include="Framework\Game.cs" />
     <Compile Include="Framework\GameObject.cs" />
     <Compile Include="Framework\Input\GamePadHandler.cs" />
-    <Compile Include="Framework\Input\GamePadHandlers\GamePadButtonEventArgs.cs" />
-    <Compile Include="Framework\Input\GamePadHandlers\GamePadButtonsHelper.cs" />
+    <Compile Include="Framework\Input\GamePad\GamePadButtonEventArgs.cs" />
+    <Compile Include="Framework\Input\GamePad\GamePadButtonsHelper.cs" />
     <Compile Include="Framework\Input\InputHandler.cs" />
     <Compile Include="Framework\Input\InputProvider.cs" />
     <Compile Include="Framework\Object\GameConfig.cs" />
