@@ -5,7 +5,6 @@ namespace SpaceWar.Framework.Input {
 
 	public abstract class InputProvider {
 
-
 		protected abstract void GetDefaultInputs(Dictionary<Enum, object> inputs);
 
 		public Dictionary<Enum, object> LoadInputs() {

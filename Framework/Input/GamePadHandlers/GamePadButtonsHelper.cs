@@ -1,40 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using OpenTK.Input;
 
 namespace SpaceWar.Framework.Input.GamePadHandlers {
 
 	public static class GamePadButtonsHelper {
-
-		[Obsolete]
-		private static readonly List<Buttons> PREVIOUS_BUTTONS = new List<Buttons>();
-
-		[Obsolete]
-		public static List<Buttons> GetAllButtons() {
-			var r = new List<Buttons>();
-			r.Add(Buttons.A);
-			r.Add(Buttons.B);
-			r.Add(Buttons.X);
-			r.Add(Buttons.Y);
-			r.Add(Buttons.Back);
-			r.Add(Buttons.Start);
-			r.Add(Buttons.BigButton);
-			r.Add(Buttons.LeftShoulder);
-			r.Add(Buttons.RightShoulder);
-			r.Add(Buttons.LeftStick);
-			r.Add(Buttons.RightStick);
-			return r;
-		}
-
-		[Obsolete]
-		internal static void SetPreviousPressedButton(Buttons button) {
-			PREVIOUS_BUTTONS.Add(button);
-		}
-
-		[Obsolete]
-		internal static List<Buttons> GetPreviousPressedButtons() {
-			return PREVIOUS_BUTTONS;
-		}
 
 		public static List<Buttons> GetPressedButtons(int controllerIndex) {
 			return GetPressedButtons(GamePad.GetState(controllerIndex));
