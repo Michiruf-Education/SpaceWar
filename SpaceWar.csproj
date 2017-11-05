@@ -90,6 +90,7 @@
     <Compile Include="Framework\Collision\ColliderComponent.cs" />
     <Compile Include="Framework\Collision\CollisionComponent.cs" />
     <Compile Include="Framework\Component.cs" />
+    <Compile Include="Framework\Debug\DrawGridComponent.cs" />
     <Compile Include="Framework\Debug\FrameworkDebugMode.cs" />
     <Compile Include="Framework\Extensions\MatrixPrintExtension.cs" />
     <Compile Include="Framework\Extensions\VectorConversionExtension.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="Framework\Scene.cs" />
     <Compile Include="Framework\Widgets\Button.cs" />
     <Compile Include="Game\Dummy\CameraGameObject.cs" />
+    <Compile Include="Game\Dummy\DummFieldGameObject.cs" />
     <Compile Include="Game\Dummy\DummyController.cs" />
     <Compile Include="Game\Dummy\DummyGameObject.cs" />
     <Compile Include="Game\Dummy\DummyScene.cs" />

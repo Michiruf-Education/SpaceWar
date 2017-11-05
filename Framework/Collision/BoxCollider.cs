@@ -1,7 +1,12 @@
-﻿namespace SpaceWar.Framework.Collision {
+﻿using SpaceWar.Framework.Object;
 
-	public class BoxCollider {
-		
+namespace SpaceWar.Framework.Collision {
+
+	public class BoxCollider : Component, UpdateComponent {
+
+		public void Update() {
+			// TODO
+		}
 	}
 
 }

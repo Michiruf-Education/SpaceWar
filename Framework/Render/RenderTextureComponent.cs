@@ -50,6 +50,7 @@ namespace SpaceWar.Framework.Render {
 
 			// Color is multiplied with the texture color
 			// White means no color change in the texture will be applied
+			// TODO Draw lines threw the texture (Borders and an "X"!)
 			GL.Color3(Color.White);
 			if (FrameworkDebugMode.IsEnabled) {
 				GL.Color3(Color.LightGray);

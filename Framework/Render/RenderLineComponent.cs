@@ -25,8 +25,8 @@ namespace SpaceWar.Framework.Render {
 			GL.LineWidth(lineWidth);
 			
 			var matrix = GameObject.Transform.GetTransformationMatrixCached();
-			var fromPoint = FastVector2Transform.Transform(from.X, from.X, matrix);
-			var toPoint = FastVector2Transform.Transform(to.X, to.X, matrix);
+			var fromPoint = FastVector2Transform.Transform(from.X, from.Y, matrix);
+			var toPoint = FastVector2Transform.Transform(to.X, to.Y, matrix);
 
 			GL.Begin(PrimitiveType.Lines);
 			GL.Vertex2(fromPoint);
