@@ -7,18 +7,19 @@ using SpaceWar.Framework.Debug;
 using SpaceWar.Framework.Object;
 using Zenseless.Geometry;
 using Zenseless.OpenGL;
+using Zenseless.HLGL;
 
 namespace SpaceWar.Framework.Render {
 
 	public class RenderTextureComponent : Component, RenderComponent {
 
-		private readonly Texture2dGL texture;
+		private readonly ITexture texture;
 
 		public Box2D Rect { get; set; }
 
 		[Obsolete("May be obsolete because we always need bounds (rect)?")]
-		private RenderTextureComponent(string file) {
-			texture = TextureLoader.FromFile(file) as Texture2dGL;
+		private RenderTextureComponent(Bitmap image) {
+			texture = TextureLoader.FromBitmap(image);
 			if (texture == null) {
 				throw new ArgumentException("Texture is not a 2dGL texture!");
 			}
@@ -26,15 +27,15 @@ namespace SpaceWar.Framework.Render {
 			Lifecycle.onDestroy += () => texture?.Dispose();
 		}
 
-		public RenderTextureComponent(string file, Box2D rect) : this(file) {
+		public RenderTextureComponent(Bitmap image, Box2D rect) : this(image) {
 			Rect = rect;
 		}
 
-		public RenderTextureComponent(string file, float width, float height) :
-			this(file, new Box2D(-width / 2, -height / 2, width, height)) {
+		public RenderTextureComponent(Bitmap image, float width, float height) :
+			this(image, new Box2D(-width / 2, -height / 2, width, height)) {
 		}
 
-		public virtual void Render() {
+		public void Render() {
 			// @see: https://github.com/danielscherzer/Framework/blob/72fec5c85e6f21b868c41141ed1c8105f5252e5e/CG/Examples/TextureExample/TextureExample.cs
 			//GL.Clear(ClearBufferMask.ColorBufferBit);
 			//GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
