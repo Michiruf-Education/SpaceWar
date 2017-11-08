@@ -36,6 +36,7 @@ namespace SpaceWar.Framework {
 			Window = new GameWindow();
 			SetupInputHandler();
 			LoadLayoutAndRegisterSaveHook();
+			InitializeResizeHandler();
 			RegisterWindowSceneIndirections();
 		}
 
@@ -62,6 +63,15 @@ namespace SpaceWar.Framework {
 			Window.Closing += (sender, args) => {
 				ActiveScene?.Lifecycle?.onDestroy?.Invoke();
 				Window.SaveLayout();
+			};
+		}
+
+		void InitializeResizeHandler() {
+			Window.Resize += (sender, args) => {
+				GL.Viewport(0, 0, Window.Width, Window.Height);
+				var aspect = Window.Width / (float) Window.Height;
+				GL.LoadIdentity();
+				GL.Scale(1, aspect, 1);
 			};
 		}
 
