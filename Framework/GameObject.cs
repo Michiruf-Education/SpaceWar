@@ -32,6 +32,8 @@ namespace SpaceWar.Framework {
 			Lifecycle.onDestroy += () => components.ForEach(c => c.Lifecycle?.onDestroy?.Invoke());
 		}
 
+		// TODO GetChild<Type> ?
+
 		public void AddChild(GameObject child) {
 			child.Parent = this;
 			child.Lifecycle?.onCreate?.Invoke();
@@ -44,16 +46,21 @@ namespace SpaceWar.Framework {
 		}
 
 		public TComponentType GetComponent<TComponentType>() {
-			var component = components.FirstOrDefault(c => c is TComponentType);
-			return (TComponentType) Convert.ChangeType(component, typeof(TComponentType));
+			try {
+				var component = components.First(c => c is TComponentType);
+				return (TComponentType) (object) component;
+			} catch (InvalidOperationException) {
+				return default(TComponentType);
+			}
 		}
 
-		public List<TComponentTypes> GetComponents<TComponentTypes>() {
-			var castedComponents = new List<TComponentTypes>();
-			components.Select(c => c is TComponentTypes)
-				.ToList()
-				.ForEach(c => castedComponents.Add(
-					(TComponentTypes) Convert.ChangeType(c, typeof(TComponentTypes))));
+		public List<TComponentType> GetComponents<TComponentType>() {
+			var castedComponents = new List<TComponentType>();
+			components.ForEach(c => {
+				if (c is TComponentType) {
+					castedComponents.Add((TComponentType) (object) c);
+				}
+			});
 			return castedComponents;
 		}
 
@@ -91,7 +98,7 @@ namespace SpaceWar.Framework {
 			// Invalidate the transforms caches to not draw the same stuff like the last frame
 			// and so be able to have a cache
 			Transform.Invalidate();
-			
+
 			children.ForEach(go => {
 				// Skip disabled gameobjects
 				if (!go.IsEnabled) {

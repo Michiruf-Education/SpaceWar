@@ -82,13 +82,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Framework\Algorithms\MatrixHelper.cs" />
-    <Compile Include="Framework\Algorithms\FastVector2Transform.cs" />
+    <Compile Include="Framework\Algorithms\CollisionDetection\CollisionDetection.cs" />
+    <Compile Include="Framework\Algorithms\CollisionDetection\SimpleBox2DCollisionDetection.cs" />
     <Compile Include="Framework\Camera\CameraComponent.cs" />
     <Compile Include="Framework\Collision\BoxCollider.cs" />
     <Compile Include="Framework\Collision\CircleCollider.cs" />
     <Compile Include="Framework\Collision\ColliderComponent.cs" />
     <Compile Include="Framework\Collision\CollisionComponent.cs" />
+    <Compile Include="Framework\Collision\UnrotateableBoxCollider.cs" />
     <Compile Include="Framework\Component.cs" />
     <Compile Include="Framework\Debug\DrawGridComponent.cs" />
     <Compile Include="Framework\Debug\FrameworkDebugMode.cs" />
@@ -96,12 +97,14 @@
     <Compile Include="Framework\Extensions\VectorConversionExtension.cs" />
     <Compile Include="Framework\Game.cs" />
     <Compile Include="Framework\GameObject.cs" />
+    <Compile Include="Framework\Helper\FastVector2Transform.cs" />
+    <Compile Include="Framework\Helper\MatrixHelper.cs" />
     <Compile Include="Framework\Input\GamePadHandler.cs" />
     <Compile Include="Framework\Input\GamePad\GamePadButtonEventArgs.cs" />
     <Compile Include="Framework\Input\GamePad\GamePadButtonsHelper.cs" />
     <Compile Include="Framework\Input\InputHandler.cs" />
     <Compile Include="Framework\Input\InputProvider.cs" />
-    <Compile Include="Framework\Object\GameConfig.cs" />
+    <Compile Include="Framework\Object\FrameworkGameObject.cs" />
     <Compile Include="Framework\Object\Lifecycle.cs" />
     <Compile Include="Framework\Object\RenderComponent.cs" />
     <Compile Include="Framework\Object\Space.cs" />
@@ -116,7 +119,9 @@
     <Compile Include="Framework\Scene.cs" />
     <Compile Include="Framework\Widgets\Button.cs" />
     <Compile Include="Game\Dummy\CameraGameObject.cs" />
-    <Compile Include="Game\Dummy\DummFieldGameObject.cs" />
+    <Compile Include="Game\Dummy\DummyColliderGameObject.cs" />
+    <Compile Include="Game\Dummy\DummyCollisionPlayer.cs" />
+    <Compile Include="Game\Dummy\DummyFieldGameObject.cs" />
     <Compile Include="Game\Dummy\DummyController.cs" />
     <Compile Include="Game\Dummy\DummyGameObject.cs" />
     <Compile Include="Game\Dummy\DummyScene.cs" />
@@ -139,7 +144,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Framework\Algorithms\.gitkeep" />
     <Content Include="Framework\Camera\.gitkeep" />
     <Content Include="Framework\Widgets\.gitkeep" />
     <Content Include="Game\Controllers\.gitkeep" />

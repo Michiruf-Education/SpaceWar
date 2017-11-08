@@ -1,23 +1,26 @@
 ﻿using System.Drawing;
 using OpenTK.Graphics.OpenGL;
-using SpaceWar.Framework.Algorithms;
 using SpaceWar.Framework.Debug;
+using SpaceWar.Framework.Helper;
 using SpaceWar.Framework.Object;
 
 namespace SpaceWar.Framework.Render {
 
 	public class RenderLineComponent : Component, RenderComponent {
 
-		private readonly Point from;
-		private readonly Point to;
+		private readonly PointF from;
+		private readonly PointF to;
 		private readonly Color color;
 		private readonly float lineWidth;
 
-		public RenderLineComponent(Point from, Point to, Color color, float lineWidth = 1f) {
+		public RenderLineComponent(PointF from, PointF to, Color color, float lineWidth = 1f) {
 			this.from = from;
 			this.to = to;
 			this.color = color;
 			this.lineWidth = lineWidth;
+			// TODO Calculate the line width with the scaling?
+			// TODO Recommendation Daniel Scherzer: we should not use lines with a width because its hardware dependent
+			// how they get rendered
 		}
 
 		public void Render() {

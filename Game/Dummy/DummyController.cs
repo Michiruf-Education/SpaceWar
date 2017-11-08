@@ -34,7 +34,7 @@ namespace SpaceWar.Game {
 		}
 
 		public void OnCollide(GameObject other) {
-			throw new NotImplementedException();
+			Console.WriteLine("Collision with " + other.GetType().Name);
 		}
 	}
 

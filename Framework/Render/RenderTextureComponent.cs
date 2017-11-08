@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Drawing;
-using System.Numerics;
 using OpenTK.Graphics.OpenGL;
-using SpaceWar.Framework.Algorithms;
 using SpaceWar.Framework.Debug;
+using SpaceWar.Framework.Helper;
 using SpaceWar.Framework.Object;
 using Zenseless.Geometry;
-using Zenseless.OpenGL;
 using Zenseless.HLGL;
+using Zenseless.OpenGL;
 
 namespace SpaceWar.Framework.Render {
 

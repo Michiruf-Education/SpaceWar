@@ -1,4 +1,4 @@
-﻿namespace SpaceWar.Framework.Algorithms {
+﻿namespace SpaceWar.Framework.Helper {
 
 	public static class MatrixHelper {
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using OpenTK.Graphics.OpenGL;
-using SpaceWar.Framework.Algorithms;
+using SpaceWar.Framework.Helper;
 using SpaceWar.Framework.Object;
 using Zenseless.Geometry;
 

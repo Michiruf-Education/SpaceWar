@@ -6,9 +6,9 @@ using SpaceWar.Framework.Render;
 
 namespace SpaceWar.Game {
 
-	public class DummFieldGameObject : GameObject {
+	public class DummyFieldGameObject : GameObject {
 
-		public DummFieldGameObject() {
+		public DummyFieldGameObject() {
 			AddComponent(new RenderBoxComponent(3f, 3f).Fill(Color.Red).Stroke(Color.GreenYellow, 1f));
 			AddComponent(new BoxCollider());
 		}

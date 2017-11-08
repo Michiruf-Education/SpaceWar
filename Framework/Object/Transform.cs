@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Numerics;
-using SpaceWar.Framework.Algorithms;
 using SpaceWar.Framework.Camera;
 using SpaceWar.Framework.Extensions;
+using SpaceWar.Framework.Helper;
 using Zenseless.Geometry;
 using Vector2 = OpenTK.Vector2;
 

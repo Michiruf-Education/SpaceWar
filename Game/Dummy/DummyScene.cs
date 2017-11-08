@@ -1,4 +1,5 @@
 ﻿using SpaceWar.Framework;
+using SpaceWar.Framework.Object;
 using SpaceWar.Framework.Render;
 
 namespace SpaceWar.Game {
@@ -10,10 +11,15 @@ namespace SpaceWar.Game {
 			grid.AddComponent(new DrawGridComponent());
 			Spawn(grid);
 
+			Spawn(new FrameworkGameObject());
+
 			Spawn(new CameraGameObject());
-			Spawn(new DummyGameObject());
-			Spawn(new StaticGameObject());
-			Spawn(new DummFieldGameObject());
+			//Spawn(new DummyGameObject());
+			//Spawn(new StaticGameObject());
+			//Spawn(new DummFieldGameObject());
+			
+			Spawn(new DummyCollisionPlayer());
+			Spawn(new DummyColliderGameObject());
 		}
 	}
 

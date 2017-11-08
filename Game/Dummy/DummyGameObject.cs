@@ -9,9 +9,9 @@ namespace SpaceWar.Game {
 
 		public DummyGameObject() {
 			AddComponent(new DummyController());
-			AddComponent(new RenderTextureComponent(Resources.background, 1f, 1f));
-			AddComponent(new RenderLineComponent(new Point(-1, -1), new Point(1, 1), Color.White, 10f));
-			AddComponent(new RenderLineComponent(new Point(1, -1), new Point(0, 0), Color.GreenYellow, 10f));
+			AddComponent(new RenderTextureComponent(Resources.background, 0.2f, 0.2f));
+			AddComponent(new RenderLineComponent(new PointF(-0.2f, -0.2f), new PointF(0.2f, 0.2f), Color.White, 2f));
+			AddComponent(new RenderLineComponent(new PointF(0.2f, -0.2f), new PointF(0f, 0f), Color.GreenYellow, 2f));
 		}
 	}
 

@@ -34,27 +34,36 @@ namespace SpaceWar.Framework {
 			gameObject.Lifecycle?.onDestroy?.Invoke();
 			gameObjects.Remove(gameObject);
 		}
-		
+
 		public TGameObjectType GetGameObject<TGameObjectType>() {
 			// NOTE This would be a "FindByName" method later, because we will
 			// not need to extend GameObject's in order to add components, but have
 			// a file that will descript those and we instantiate them by name and look
 			// them up also by name!
-			var component = gameObjects.FirstOrDefault(c => c is TGameObjectType);
-			return (TGameObjectType) Convert.ChangeType(component, typeof(TGameObjectType));
+			try {
+				var gameObject = gameObjects.First(go => go is TGameObjectType);
+				return (TGameObjectType) (object) gameObject;
+			} catch (InvalidOperationException) {
+				return default(TGameObjectType);
+			}
 		}
 
 		public List<TGameObjectType> GetGameObjects<TGameObjectType>() {
 			// NOTE See comment in GetGameObject!
 			var castedGameObjects = new List<TGameObjectType>();
-			gameObjects.Select(c => c is TGameObjectType)
-				.ToList()
-				.ForEach(c => castedGameObjects.Add(
-					(TGameObjectType) Convert.ChangeType(c, typeof(TGameObjectType))));
+			gameObjects.ForEach(c => {
+				if (c is TGameObjectType) {
+					castedGameObjects.Add((TGameObjectType) (object) c);
+				}
+			});
 			return castedGameObjects;
 		}
-		
-		// TODO Maybe GetComponentsInScene?
+
+		public List<TComponentType> GetAllComponentsInScene<TComponentType>() {
+			var components = new List<TComponentType>();
+			gameObjects.ForEach(go => components.AddRange(go.GetComponents<TComponentType>()));
+			return components;
+		}
 
 		public virtual void Update() {
 			gameObjects.ForEach(go => {
