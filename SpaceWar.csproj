@@ -80,14 +80,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Game\Dummy\CameraGameObject.cs" />
-    <Compile Include="Game\Dummy\DummyColliderGameObject.cs" />
-    <Compile Include="Game\Dummy\DummyCollisionPlayer.cs" />
-    <Compile Include="Game\Dummy\DummyFieldGameObject.cs" />
-    <Compile Include="Game\Dummy\DummyController.cs" />
-    <Compile Include="Game\Dummy\DummyGameObject.cs" />
-    <Compile Include="Game\Dummy\DummyScene.cs" />
-    <Compile Include="Game\Dummy\StaticGameObject.cs" />
+    <Compile Include="Dummy\CameraGameObject.cs" />
+    <Compile Include="Dummy\DummyColliderGameObject.cs" />
+    <Compile Include="Dummy\DummyCollisionPlayer.cs" />
+    <Compile Include="Dummy\DummyController.cs" />
+    <Compile Include="Dummy\DummyFieldGameObject.cs" />
+    <Compile Include="Dummy\DummyGameObject.cs" />
+    <Compile Include="Dummy\DummyScene.cs" />
+    <Compile Include="Dummy\StaticGameObject.cs" />
     <Compile Include="Game\InputActions.cs" />
     <Compile Include="Game\Keymap.cs" />
     <Compile Include="Game\Player\Player.cs" />
