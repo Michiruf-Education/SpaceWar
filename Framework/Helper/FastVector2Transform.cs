@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace SpaceWar.Framework.Helper {
+namespace Framework.Helper {
 
 	public static class FastVector2Transform {
 

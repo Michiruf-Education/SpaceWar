@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using OpenTK.Input;
-using SpaceWar.Framework.Input.GamePad;
+using Framework.Input.GamePad;
 
-namespace SpaceWar.Framework.Input {
+namespace Framework.Input {
 
 	public class GamePadHandler {
 

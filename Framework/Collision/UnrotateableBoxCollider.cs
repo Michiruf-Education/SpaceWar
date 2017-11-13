@@ -1,11 +1,11 @@
 ﻿using System.Drawing;
 using OpenTK.Graphics.OpenGL;
-using SpaceWar.Framework.Debug;
-using SpaceWar.Framework.Helper;
-using SpaceWar.Framework.Object;
+using Framework.Debug;
+using Framework.Helper;
+using Framework.Object;
 using Zenseless.Geometry;
 
-namespace SpaceWar.Framework.Collision {
+namespace Framework.Collision {
 
 	public class UnrotateableBoxCollider : ColliderComponent, RenderComponent {
 

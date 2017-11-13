@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Drawing;
 using OpenTK.Graphics.OpenGL;
-using SpaceWar.Framework.Helper;
-using SpaceWar.Framework.Object;
+using Framework.Helper;
+using Framework.Object;
 using Zenseless.Geometry;
 
-namespace SpaceWar.Framework.Render {
+namespace Framework.Render {
 
 	public class RenderBoxComponent : Component, RenderComponent {
 

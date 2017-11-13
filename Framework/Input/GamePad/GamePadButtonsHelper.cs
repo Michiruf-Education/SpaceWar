@@ -2,7 +2,7 @@
 using OpenTK.Input;
 using OTKGamePad = OpenTK.Input.GamePad;
 
-namespace SpaceWar.Framework.Input.GamePad {
+namespace Framework.Input.GamePad {
 
 	public static class GamePadButtonsHelper {
 

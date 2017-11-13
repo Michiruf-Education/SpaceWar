@@ -1,6 +1,6 @@
-﻿using SpaceWar.Framework.Collision;
+﻿using Framework.Collision;
 
-namespace SpaceWar.Framework.Algorithms.CollisionDetection {
+namespace Framework.Algorithms.CollisionDetection {
 
 	public class SimpleBox2DCollisionDetection : CollisionDetection {
 

@@ -1,6 +1,6 @@
 ﻿using OpenTK;
 
-namespace SpaceWar.Framework.Camera {
+namespace Framework.Camera {
 
 	public class CameraComponent : Component {
 

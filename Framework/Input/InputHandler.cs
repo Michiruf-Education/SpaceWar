@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using OpenTK.Input;
 using OpenTK.Platform;
 
-namespace SpaceWar.Framework.Input {
+namespace Framework.Input {
 
 	public static class InputHandler {
 

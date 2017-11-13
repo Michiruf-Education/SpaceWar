@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using SpaceWar.Framework.Object;
+using Framework.Object;
 
-namespace SpaceWar.Framework {
+namespace Framework {
 
 	public abstract class Component {
 

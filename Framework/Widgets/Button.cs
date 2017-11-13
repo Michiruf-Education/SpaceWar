@@ -1,4 +1,4 @@
-﻿namespace SpaceWar.Framework.Widget {
+﻿namespace Framework.Widget {
 
 	public class Button {
 		

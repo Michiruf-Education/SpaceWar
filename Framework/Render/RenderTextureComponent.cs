@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Drawing;
 using OpenTK.Graphics.OpenGL;
-using SpaceWar.Framework.Debug;
-using SpaceWar.Framework.Helper;
-using SpaceWar.Framework.Object;
+using Framework.Debug;
+using Framework.Helper;
+using Framework.Object;
 using Zenseless.Geometry;
 using Zenseless.HLGL;
 using Zenseless.OpenGL;
 
-namespace SpaceWar.Framework.Render {
+namespace Framework.Render {
 
 	public class RenderTextureComponent : Component, RenderComponent {
 

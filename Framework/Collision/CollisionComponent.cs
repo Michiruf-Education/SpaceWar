@@ -1,4 +1,4 @@
-﻿namespace SpaceWar.Framework.Collision {
+﻿namespace Framework.Collision {
 
 	public interface CollisionComponent {
 

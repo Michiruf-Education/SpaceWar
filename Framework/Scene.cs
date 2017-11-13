@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using SpaceWar.Framework.Object;
+using Framework.Object;
 
-namespace SpaceWar.Framework {
+namespace Framework {
 
 	public class Scene {
 

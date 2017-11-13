@@ -1,4 +1,4 @@
-﻿namespace SpaceWar.Framework.Extensions {
+﻿namespace Framework.Extensions {
 
 	public static class MatrixPrintExtension {
 

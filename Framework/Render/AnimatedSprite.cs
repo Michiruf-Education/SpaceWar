@@ -1,4 +1,4 @@
-﻿namespace SpaceWar.Framework.Render {
+﻿namespace Framework.Render {
 
 	public class AnimatedSprite {
 		

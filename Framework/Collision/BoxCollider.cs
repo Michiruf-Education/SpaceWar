@@ -1,6 +1,6 @@
-﻿using SpaceWar.Framework.Object;
+﻿using Framework.Object;
 
-namespace SpaceWar.Framework.Collision {
+namespace Framework.Collision {
 
 	public class BoxCollider : Component, UpdateComponent {
 

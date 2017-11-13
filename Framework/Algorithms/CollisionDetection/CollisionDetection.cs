@@ -1,4 +1,4 @@
-﻿namespace SpaceWar.Framework.Algorithms.CollisionDetection {
+﻿namespace Framework.Algorithms.CollisionDetection {
 
 	public interface CollisionDetection {
 

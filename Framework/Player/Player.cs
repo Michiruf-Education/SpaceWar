@@ -1,4 +1,4 @@
-﻿namespace SpaceWar.Framework.Player {
+﻿namespace Framework.Player {
 
 	public interface Player {
 		

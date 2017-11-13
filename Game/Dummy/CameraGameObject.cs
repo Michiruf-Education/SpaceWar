@@ -1,6 +1,6 @@
 ﻿using OpenTK;
-using SpaceWar.Framework;
-using SpaceWar.Framework.Camera;
+using Framework;
+using Framework.Camera;
 
 namespace SpaceWar.Game {
 

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Numerics;
-using SpaceWar.Framework.Camera;
-using SpaceWar.Framework.Extensions;
-using SpaceWar.Framework.Helper;
+using Framework.Camera;
+using Framework.Extensions;
+using Framework.Helper;
 using Zenseless.Geometry;
 using Vector2 = OpenTK.Vector2;
 
-namespace SpaceWar.Framework.Object {
+namespace Framework.Object {
 
 	public class Transform {
 

@@ -1,4 +1,4 @@
-﻿namespace SpaceWar.Framework.Debug {
+﻿namespace Framework.Debug {
 
 	public static class FrameworkDebugMode {
 

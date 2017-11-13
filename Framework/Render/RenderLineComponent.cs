@@ -1,10 +1,10 @@
 ﻿using System.Drawing;
 using OpenTK.Graphics.OpenGL;
-using SpaceWar.Framework.Debug;
-using SpaceWar.Framework.Helper;
-using SpaceWar.Framework.Object;
+using Framework.Debug;
+using Framework.Helper;
+using Framework.Object;
 
-namespace SpaceWar.Framework.Render {
+namespace Framework.Render {
 
 	public class RenderLineComponent : Component, RenderComponent {
 

@@ -1,6 +1,6 @@
-﻿using SpaceWar.Framework.Algorithms.CollisionDetection;
+﻿using Framework.Algorithms.CollisionDetection;
 
-namespace SpaceWar.Framework.Object {
+namespace Framework.Object {
 
 	public class FrameworkGameObject : GameObject {
 		

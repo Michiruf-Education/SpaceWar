@@ -1,4 +1,4 @@
-﻿using SpaceWar.Framework.Debug;
+﻿using Framework.Debug;
 
 namespace SpaceWar.Game {
 

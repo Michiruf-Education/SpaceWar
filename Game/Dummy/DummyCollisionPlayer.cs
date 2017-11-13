@@ -1,9 +1,9 @@
 ﻿using System;
-using SpaceWar.Framework;
-using SpaceWar.Framework.Collision;
-using SpaceWar.Framework.Input;
-using SpaceWar.Framework.Object;
-using SpaceWar.Framework.Render;
+using Framework;
+using Framework.Collision;
+using Framework.Input;
+using Framework.Object;
+using Framework.Render;
 using Zenseless.Geometry;
 
 namespace SpaceWar.Game {

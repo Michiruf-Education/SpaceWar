@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SpaceWar.Framework.Input {
+namespace Framework.Input {
 
 	public abstract class InputProvider {
 

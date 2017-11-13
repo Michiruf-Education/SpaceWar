@@ -1,5 +1,5 @@
-﻿using SpaceWar.Framework;
-using SpaceWar.Framework.Collision;
+﻿using Framework;
+using Framework.Collision;
 using Zenseless.Geometry;
 
 namespace SpaceWar.Game {

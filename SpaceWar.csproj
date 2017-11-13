@@ -47,77 +47,19 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <!-- Reference includes -->
-    <Reference Include="System.Collections.Immutable, Version=1.2.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-      <HintPath>packages\System.Collections.Immutable.1.4.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
-    </Reference>
-    <Reference Include="OpenTK, Version=3.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4">
-      <HintPath>packages\OpenTK.3.0.0-pre\lib\net20\OpenTK.dll</HintPath>
-    </Reference>
-    <Reference Include="NAudio, Version=1.8.3.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>packages\NAudio.1.8.3\lib\net35\NAudio.dll</HintPath>
-    </Reference>
-    <Reference Include="Zenseless.Application, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>packages\Zenseless.0.3.5\lib\net46\Zenseless.Application.dll</HintPath>
-    </Reference>
-    <Reference Include="Zenseless.Base, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>packages\Zenseless.0.3.5\lib\net46\Zenseless.Base.dll</HintPath>
-    </Reference>
-    <Reference Include="Zenseless.Geometry, Version=0.2.0.17727, Culture=neutral, PublicKeyToken=null">
-      <HintPath>packages\Zenseless.0.3.5\lib\net46\Zenseless.Geometry.dll</HintPath>
-    </Reference>
-    <Reference Include="Zenseless.HLGL, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>packages\Zenseless.0.3.5\lib\net46\Zenseless.HLGL.dll</HintPath>
-    </Reference>
-    <Reference Include="Zenseless.OpenGL, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>packages\Zenseless.0.3.5\lib\net46\Zenseless.OpenGL.dll</HintPath>
-    </Reference>
-    <Reference Include="Zenseless.ShaderDebugging, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>packages\Zenseless.0.3.5\lib\net46\Zenseless.ShaderDebugging.dll</HintPath>
-    </Reference>
-    <Reference Include="Zenseless.Sound, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>packages\Zenseless.0.3.5\lib\net46\Zenseless.Sound.dll</HintPath>
-    </Reference>
-    <Reference Include="Zenseless.TimeTools, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>packages\Zenseless.0.3.5\lib\net46\Zenseless.TimeTools.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="Framework\Framework.csproj" />
+    <Reference Include="OpenTK" />
+    <Reference Include="NAudio" />
+    <Reference Include="Zenseless.Application" />
+    <Reference Include="Zenseless.Base" />
+    <Reference Include="Zenseless.Geometry" />
+    <Reference Include="Zenseless.HLGL" />
+    <Reference Include="Zenseless.OpenGL" />
+    <Reference Include="Zenseless.ShaderDebugging" />
+    <Reference Include="Zenseless.Sound" />
+    <Reference Include="Zenseless.TimeTools" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Framework\Algorithms\CollisionDetection\CollisionDetection.cs" />
-    <Compile Include="Framework\Algorithms\CollisionDetection\SimpleBox2DCollisionDetection.cs" />
-    <Compile Include="Framework\Camera\CameraComponent.cs" />
-    <Compile Include="Framework\Collision\BoxCollider.cs" />
-    <Compile Include="Framework\Collision\CircleCollider.cs" />
-    <Compile Include="Framework\Collision\ColliderComponent.cs" />
-    <Compile Include="Framework\Collision\CollisionComponent.cs" />
-    <Compile Include="Framework\Collision\UnrotateableBoxCollider.cs" />
-    <Compile Include="Framework\Component.cs" />
-    <Compile Include="Framework\Debug\DrawGridComponent.cs" />
-    <Compile Include="Framework\Debug\FrameworkDebugMode.cs" />
-    <Compile Include="Framework\Extensions\MatrixPrintExtension.cs" />
-    <Compile Include="Framework\Extensions\VectorConversionExtension.cs" />
-    <Compile Include="Framework\Game.cs" />
-    <Compile Include="Framework\GameObject.cs" />
-    <Compile Include="Framework\Helper\FastVector2Transform.cs" />
-    <Compile Include="Framework\Helper\MatrixHelper.cs" />
-    <Compile Include="Framework\Input\GamePadHandler.cs" />
-    <Compile Include="Framework\Input\GamePad\GamePadButtonEventArgs.cs" />
-    <Compile Include="Framework\Input\GamePad\GamePadButtonsHelper.cs" />
-    <Compile Include="Framework\Input\InputHandler.cs" />
-    <Compile Include="Framework\Input\InputProvider.cs" />
-    <Compile Include="Framework\Object\FrameworkGameObject.cs" />
-    <Compile Include="Framework\Object\Lifecycle.cs" />
-    <Compile Include="Framework\Object\RenderComponent.cs" />
-    <Compile Include="Framework\Object\Space.cs" />
-    <Compile Include="Framework\Object\Time.cs" />
-    <Compile Include="Framework\Object\Transform.cs" />
-    <Compile Include="Framework\Object\UpdateComponent.cs" />
-    <Compile Include="Framework\Player\Player.cs" />
-    <Compile Include="Framework\Render\AnimatedSprite.cs" />
-    <Compile Include="Framework\Render\RenderBoxComponent.cs" />
-    <Compile Include="Framework\Render\RenderLineComponent.cs" />
-    <Compile Include="Framework\Render\RenderTextureComponent.cs" />
-    <Compile Include="Framework\Scene.cs" />
-    <Compile Include="Framework\Widgets\Button.cs" />
     <Compile Include="Game\Dummy\CameraGameObject.cs" />
     <Compile Include="Game\Dummy\DummyColliderGameObject.cs" />
     <Compile Include="Game\Dummy\DummyCollisionPlayer.cs" />
@@ -128,11 +70,15 @@
     <Compile Include="Game\Dummy\StaticGameObject.cs" />
     <Compile Include="Game\InputActions.cs" />
     <Compile Include="Game\Keymap.cs" />
+    <Compile Include="Game\Player\Player.cs" />
+    <Compile Include="Game\Player\PlayerFollowingCameraController.cs" />
+    <Compile Include="Game\Player\PlayerController.cs" />
     <Compile Include="Game\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Game\Scene\PlayScene.cs" />
     <Compile Include="Game\SpaceWar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -144,11 +90,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Framework\Camera\.gitkeep" />
-    <Content Include="Framework\Widgets\.gitkeep" />
-    <Content Include="Game\Controllers\.gitkeep" />
-    <Content Include="Game\Models\.gitkeep" />
-    <Content Include="Game\Views\.gitkeep" />
     <None Include="Resources\Texture\background.png" />
   </ItemGroup>
   <ItemGroup>
@@ -158,4 +99,11 @@
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
 </Project>

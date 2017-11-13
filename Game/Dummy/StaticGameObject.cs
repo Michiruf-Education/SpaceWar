@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
-using SpaceWar.Framework;
-using SpaceWar.Framework.Render;
+using Framework;
+using Framework.Render;
 
 namespace SpaceWar.Game {
 

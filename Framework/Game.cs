@@ -2,12 +2,12 @@
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Platform;
-using SpaceWar.Framework.Camera;
-using SpaceWar.Framework.Input;
-using SpaceWar.Framework.Object;
+using Framework.Camera;
+using Framework.Input;
+using Framework.Object;
 using Zenseless.ShaderDebugging;
 
-namespace SpaceWar.Framework {
+namespace Framework {
 
 	public class Game {
 

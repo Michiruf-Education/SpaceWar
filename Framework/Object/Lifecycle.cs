@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SpaceWar.Framework.Object {
+namespace Framework.Object {
 
 	public class Lifecycle {
 

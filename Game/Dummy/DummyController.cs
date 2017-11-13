@@ -1,8 +1,8 @@
 ﻿using System;
-using SpaceWar.Framework;
-using SpaceWar.Framework.Collision;
-using SpaceWar.Framework.Input;
-using SpaceWar.Framework.Object;
+using Framework;
+using Framework.Collision;
+using Framework.Input;
+using Framework.Object;
 
 namespace SpaceWar.Game {
 

@@ -1,4 +1,4 @@
-﻿namespace SpaceWar.Framework.Object {
+﻿namespace Framework.Object {
 
 	public static class Time {
 

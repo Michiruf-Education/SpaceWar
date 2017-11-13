@@ -1,8 +1,8 @@
 ﻿using System.Drawing;
-using SpaceWar.Framework;
-using SpaceWar.Framework.Collision;
-using SpaceWar.Framework.Object;
-using SpaceWar.Framework.Render;
+using Framework;
+using Framework.Collision;
+using Framework.Object;
+using Framework.Render;
 
 namespace SpaceWar.Game {
 

@@ -1,6 +1,6 @@
-﻿using SpaceWar.Framework.Object;
+﻿using Framework.Object;
 
-namespace SpaceWar.Framework.Render {
+namespace Framework.Render {
 
 	public class DrawGridComponent : Component, RenderComponent {
 
