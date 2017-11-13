@@ -46,18 +46,38 @@
     <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <!-- Reference includes -->
+    <!-- Reference includes including framework project include -->
     <ProjectReference Include="Framework\Framework.csproj" />
-    <Reference Include="OpenTK" />
-    <Reference Include="NAudio" />
-    <Reference Include="Zenseless.Application" />
-    <Reference Include="Zenseless.Base" />
-    <Reference Include="Zenseless.Geometry" />
-    <Reference Include="Zenseless.HLGL" />
-    <Reference Include="Zenseless.OpenGL" />
-    <Reference Include="Zenseless.ShaderDebugging" />
-    <Reference Include="Zenseless.Sound" />
-    <Reference Include="Zenseless.TimeTools" />
+    <Reference Include="OpenTK, Version=3.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4">
+      <HintPath>$(SolutionDir)\packages\OpenTK.3.0.0-pre\lib\net20\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="NAudio, Version=1.8.3.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>$(SolutionDir)\packages\NAudio.1.8.3\lib\net35\NAudio.dll</HintPath>
+    </Reference>
+    <Reference Include="Zenseless.Application, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>$(SolutionDir)\packages\Zenseless.0.3.10\lib\net46\Zenseless.Application.dll</HintPath>
+    </Reference>
+    <Reference Include="Zenseless.Base, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>$(SolutionDir)\packages\Zenseless.0.3.10\lib\net46\Zenseless.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Zenseless.Geometry, Version=0.2.0.21041, Culture=neutral, PublicKeyToken=null">
+      <HintPath>$(SolutionDir)\packages\Zenseless.0.3.10\lib\net46\Zenseless.Geometry.dll</HintPath>
+    </Reference>
+    <Reference Include="Zenseless.HLGL, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>$(SolutionDir)\packages\Zenseless.0.3.10\lib\net46\Zenseless.HLGL.dll</HintPath>
+    </Reference>
+    <Reference Include="Zenseless.OpenGL, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>$(SolutionDir)\packages\Zenseless.0.3.10\lib\net46\Zenseless.OpenGL.dll</HintPath>
+    </Reference>
+    <Reference Include="Zenseless.ShaderDebugging, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>$(SolutionDir)\packages\Zenseless.0.3.10\lib\net46\Zenseless.ShaderDebugging.dll</HintPath>
+    </Reference>
+    <Reference Include="Zenseless.Sound, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>$(SolutionDir)\packages\Zenseless.0.3.10\lib\net46\Zenseless.Sound.dll</HintPath>
+    </Reference>
+    <Reference Include="Zenseless.TimeTools, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>$(SolutionDir)\packages\Zenseless.0.3.10\lib\net46\Zenseless.TimeTools.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game\Dummy\CameraGameObject.cs" />
