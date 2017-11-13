@@ -91,7 +91,7 @@
     <Compile Include="Game\InputActions.cs" />
     <Compile Include="Game\Keymap.cs" />
     <Compile Include="Game\Player\Player.cs" />
-    <Compile Include="Game\Player\PlayerFollowingCameraController.cs" />
+    <Compile Include="Game\Player\FollowingCameraController.cs" />
     <Compile Include="Game\Player\PlayerController.cs" />
     <Compile Include="Game\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

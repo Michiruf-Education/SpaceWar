@@ -3,7 +3,7 @@ using Framework.Object;
 
 namespace SpaceWar.Game.Player {
 
-	public class PlayerFollowingCameraController : Component, UpdateComponent {
+	public class FollowingCameraController : Component, UpdateComponent {
 
 		public void Update() {
 		}
