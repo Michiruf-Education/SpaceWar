@@ -1,7 +1,10 @@
-﻿using Framework;
+﻿using System;
+using Framework;
 using Framework.Collision;
 using Framework.Input;
 using Framework.Object;
+using SpaceWar.Game.Play;
+using Zenseless.Geometry;
 
 namespace SpaceWar.Game.Player {
 
@@ -27,6 +30,23 @@ namespace SpaceWar.Game.Player {
 		}
 
 		public void OnCollide(GameObject other) {
+			Console.WriteLine(DateTime.Now + ":" + DateTime.Now.Millisecond + " Player collision with " + other.GetType().Name);
+
+			// Deny going threw border
+			if (other is Border border) {
+				var previousBox = GetComponent<UnrotateableBoxCollider>().GetBounds();
+				var thisBox = new Box2D(previousBox);
+				var otherBox = border.GetComponent<UnrotateableBoxCollider>().GetBounds();
+
+				thisBox.UndoOverlap(otherBox);
+				var diffX = thisBox.MinX - previousBox.MinX;
+				var diffY = thisBox.MinY - previousBox.MinY;
+				// TODO Currently causes the cube to "lag" agains the borders, because it may get not moved inside the 
+				// borders. Why is currently unknown
+				// It also happens if the directions to
+
+				GameObject.Transform.Translate(diffX, diffY);
+			}
 			// TODO
 		}
 	}

@@ -1,5 +1,7 @@
 ﻿using Framework.Camera;
+using Framework.Object;
 using OpenTK;
+using SpaceWar.Game.Play;
 
 namespace SpaceWar.Game.Scene {
 
@@ -11,7 +13,13 @@ namespace SpaceWar.Game.Scene {
 			camera.GetComponent<CameraComponent>().Position = new Vector2(0f, 0f);
 			Spawn(camera);
 
+			Spawn(new Border(-1, 0, 0.02f, 1f));
+			Spawn(new Border(1, 0, 0.02f, 1f));
+			Spawn(new Border(0, 0.5f, 2f, 0.02f));
+			Spawn(new Border(0, -0.5f, 2f, 0.02f));
 			Spawn(new Player.Player());
+			
+			Spawn(new FrameworkGameObject());
 		}
 	}
 

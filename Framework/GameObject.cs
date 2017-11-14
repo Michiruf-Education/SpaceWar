@@ -6,6 +6,10 @@ using Framework.Object;
 
 namespace Framework {
 
+	// TODO Add static caches in a list with specific types (collision components, ...)
+	// to improve performance
+	// To achieve this add a IsAlive property
+
 	public class GameObject {
 
 		public Lifecycle Lifecycle { get; } = new Lifecycle();

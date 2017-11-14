@@ -123,6 +123,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Camera\.gitkeep" />
+    <Content Include="TODO.txt" />
     <Content Include="Widgets\.gitkeep" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
