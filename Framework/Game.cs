@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using OpenTK;
 using OpenTK.Graphics.OpenGL;
 using OpenTK.Platform;
@@ -32,8 +33,8 @@ namespace Framework {
 			InputHandler.RegisterInputs(inputs);
 		}
 
-		public void CreatePrimitiveWindow() {
-			Window = new GameWindow();
+		public void CreatePrimitiveWindow(string title = null) {
+			Window = new GameWindow {Title = title};
 			SetupInputHandler();
 			LoadLayoutAndRegisterSaveHook();
 			InitializeResizeHandler();

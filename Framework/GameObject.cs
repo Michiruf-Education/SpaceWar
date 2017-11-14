@@ -37,6 +37,7 @@ namespace Framework {
 		}
 
 		// TODO GetChild<Type> ?
+		// TODO GetChildAt(int index)
 
 		public void AddChild(GameObject child) {
 			child.Parent = this;

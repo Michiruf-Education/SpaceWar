@@ -4,7 +4,7 @@ using Framework.Collision;
 using Framework.Render;
 using Zenseless.Geometry;
 
-namespace SpaceWar.Game.Play {
+namespace SpaceWar.Game.Play.Field {
 
 	public class Border : GameObject {
 

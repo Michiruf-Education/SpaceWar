@@ -3,10 +3,10 @@ using Framework;
 using Framework.Collision;
 using Framework.Input;
 using Framework.Object;
-using SpaceWar.Game.Play;
+using SpaceWar.Game.Play.Field;
 using Zenseless.Geometry;
 
-namespace SpaceWar.Game.Player {
+namespace SpaceWar.Game.Play.Player {
 
 	public class PlayerController : Component, UpdateComponent, CollisionComponent {
 
@@ -32,7 +32,7 @@ namespace SpaceWar.Game.Player {
 		public void OnCollide(GameObject other) {
 			Console.WriteLine(DateTime.Now + ":" + DateTime.Now.Millisecond + " Player collision with " + other.GetType().Name);
 
-			// Deny going threw border
+			// Deny going threw borders
 			if (other is Border border) {
 				var previousBox = GetComponent<UnrotateableBoxCollider>().GetBounds();
 				var thisBox = new Box2D(previousBox);
@@ -47,7 +47,11 @@ namespace SpaceWar.Game.Player {
 
 				GameObject.Transform.Translate(diffX, diffY);
 			}
-			// TODO
+
+			// Damage the player if it hits an enemy
+			if (other is Enemy.Enemy enemy) {
+				Console.WriteLine("COLLISION WITH ENEMY!!!");
+			}
 		}
 	}
 
