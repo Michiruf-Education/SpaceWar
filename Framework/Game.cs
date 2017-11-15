@@ -50,6 +50,7 @@ namespace Framework {
 		}
 
 		public void Run() {
+			Time.SetStartTimeIfNotSetYet();
 			Window.Run();
 		}
 

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Framework;
-using Framework.Object;
 using PlayerT = SpaceWar.Game.Play.Player.Player;
 
 namespace SpaceWar.Game.Play.UI {
@@ -18,7 +17,7 @@ namespace SpaceWar.Game.Play.UI {
 		}
 
 		private void Init() {
-			Transform.Translate(-0.9f, -0.4f);
+			Transform.Translate(-0.95f, -0.45f);
 
 			for (var i = 0; i < PlayerT.MAX_LIFES; i++) {
 				var item = new HealthBarItem();
@@ -38,7 +37,7 @@ namespace SpaceWar.Game.Play.UI {
 				player = Scene.Current.GetGameObject<PlayerT>();
 
 			for (var i = 0; i < PlayerT.MAX_LIFES; i++) {
-				items[i].IsEnabled = player.Lifes >= i;
+				items[i].IsEnabled = player.Attributes.Lifes >= i;
 			}
 		}
 	}
