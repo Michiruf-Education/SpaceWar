@@ -18,11 +18,11 @@ namespace SpaceWar.Game.Play {
 			Spawn(camera);
 
 			// World
+			Spawn(new Background());
 			Spawn(new Border(-1f, 0f, 0.02f, 1f));
 			Spawn(new Border(1f, 0f, 0.02f, 1f));
 			Spawn(new Border(0f, 0.5f, 2f, 0.02f));
 			Spawn(new Border(0f, -0.5f, 2f, 0.02f));
-			//Spawn(new Background());
 
 			// Player
 			Spawn(new Player.Player());

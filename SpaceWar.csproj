@@ -94,6 +94,7 @@
     <Compile Include="Game\Play\Enemy\Enemy.cs" />
     <Compile Include="Game\Play\Enemy\EnemyInstanceFactory.cs" />
     <Compile Include="Game\Play\Enemy\EnemySpawnBehaviour.cs" />
+    <Compile Include="Game\Play\Field\Background.cs" />
     <Compile Include="Game\Play\Field\Border.cs" />
     <Compile Include="Game\Play\Player\FollowingCameraController.cs" />
     <Compile Include="Game\Play\Player\Player.cs" />
@@ -129,8 +130,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Texture\background.png" />
     <None Include="Resources\Texture\heart-128.png" />
+    <None Include="Resources\Texture\background.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

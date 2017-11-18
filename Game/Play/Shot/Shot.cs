@@ -10,7 +10,7 @@ namespace SpaceWar.Game.Play.Shot {
 	public class Shot : GameObject {
 
 		// Logic constants
-		public const float SHOT_SPEED = 0.5f;
+		public const float SHOT_SPEED = 0.7f;
 
 		// Visual constants
 		public const float SHOT_SIZE = 0.01f;

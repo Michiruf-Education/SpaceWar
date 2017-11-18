@@ -143,19 +143,11 @@ namespace Framework.Object {
 					transformationMatrixCacheWithCamera = CameraComponent.ActiveCameraMatrix *
 					                                      GetTransformationMatrixCached(false);
 				}
-				if (GameObject.GetType().Name.Equals("Player")) {
-					Console.WriteLine("WITH");
-					Console.WriteLine(transformationMatrixCacheWithCamera.NumericsMatrixPrettyPrint());
-				}
 				return transformationMatrixCacheWithCamera;
 			}
 
 			if (transformationMatrixCache == Matrix3x2Helper.NUMERICS_ZERO) {
 				transformationMatrixCache = GetTransformationMatrix();
-			}
-			if (GameObject.GetType().Name.Equals("Player")) {
-				Console.WriteLine("WITH-OUT");
-				Console.WriteLine(transformationMatrixCache.NumericsMatrixPrettyPrint());
 			}
 			return transformationMatrixCache;
 		}
