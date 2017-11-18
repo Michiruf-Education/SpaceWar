@@ -16,7 +16,7 @@ namespace SpaceWar.Game.Play.Player {
 				Player.CAMERA_SPEED,
 				Player.CAMERA_MIN_SPEED);
 			//CameraComponent.Active.Position = GameObject.Transform.WorldPosition;
-			
+
 			// @Marc
 			// Du kannst ja statt die Geschwindigkeit fest zu machen (also was wie DISTANZ² / 10 Pixel pro Sekunde) 
 			// die Geschwindigkeit erhöhen oder verringern um nen Betrag. Also wenn im Frame zuvor die Distanz größer
@@ -25,14 +25,12 @@ namespace SpaceWar.Game.Play.Player {
 		}
 
 		private static Vector2 CameraLerp(Vector2 a, Vector2 b, float lerpPercentage, float minLerpRate) {
-			var a1 = a.ToNumericsVector2();
-			var b1 = b.ToNumericsVector2();
 			var lerpRate = (b - a).Length * lerpPercentage;
 			if (lerpRate < minLerpRate) {
 				lerpRate = minLerpRate;
 			}
-			var result = NVector2.Lerp(a1, b1, lerpRate);
-			return result.ToOpenTKVector2();
+			var result = Vector2.Lerp(a, b, lerpRate);
+			return result;
 		}
 	}
 

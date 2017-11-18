@@ -13,7 +13,7 @@ namespace SpaceWar.Game.Play.Player {
 		public const float INITIAL_SHOT_RATE = 0.2f;
 		public const float INITIAL_SPEED = 0.45f;
 		public const float CAMERA_SPEED = 0.5f;
-		public const float CAMERA_MIN_SPEED = 0.1f;
+		public const float CAMERA_MIN_SPEED = 0.05f;
 
 		// Visual constants
 		public const float PLAYER_SIZE = 0.05f;
