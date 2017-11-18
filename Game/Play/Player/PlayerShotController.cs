@@ -8,13 +8,9 @@ namespace SpaceWar.Game.Play.Player {
 
 	public class PlayerShotController : Component, UpdateComponent {
 
-		private readonly LimitedRateTimer shotTimer;
+		private readonly LimitedRateTimer shotTimer = new LimitedRateTimer();
 
 		public float ShotRate { get; private set; } = Player.INITIAL_SHOT_RATE;
-
-		public PlayerShotController() {
-			shotTimer = new LimitedRateTimer();
-		}
 
 		public void Update() {
 			shotTimer.DoOnlyEvery(ShotRate, Shoot);

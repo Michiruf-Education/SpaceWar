@@ -108,6 +108,7 @@
     <Compile Include="Render\RenderLineComponent.cs" />
     <Compile Include="Render\RenderTextureComponent.cs" />
     <Compile Include="Scene.cs" />
+    <Compile Include="Utilities\DelayTimer.cs" />
     <Compile Include="Utilities\LimitedRateTimer.cs" />
     <Compile Include="Utilities\Matrix3x2DataExtension.cs" />
     <Compile Include="Utilities\Matrix3x2Helper.cs" />
