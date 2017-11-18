@@ -1,14 +1,34 @@
 ﻿using OpenTK;
+using Matrix3x2 = System.Numerics.Matrix3x2;
 
 namespace Framework.Camera {
 
 	public class CameraComponent : Component {
 
-		public static CameraComponent Active { get; set; }
+		public static CameraComponent Active { get; private set; }
+		public static Matrix3x2 ActiveCameraMatrix {
+			get {
+				Matrix3x2.Invert(Active.GameObject.Transform.Transformation, out var cameraMatrix);
+				return cameraMatrix;
+			}
+		}
 
-		public Vector2 Position { get => GameObject.Transform.Position; set => GameObject.Transform.Position = value; }
-		public float Rotation { get => GameObject.Transform.Rotation; set => GameObject.Transform.Rotation = value; }
-		public Vector2 ViewportScaling { get => GameObject.Transform.Scaling; set => GameObject.Transform.Scaling = value; }
+		// TODO World or Local Stuff?!?!
+		public Vector2 Position {
+			// NoFormat
+			get => GameObject.Transform.LocalPosition;
+			set => GameObject.Transform.LocalPosition = value;
+		}
+		public float Rotation {
+			// NoFormat
+			get => GameObject.Transform.LocalRotation;
+			set => GameObject.Transform.LocalRotation = value;
+		}
+		public Vector2 ViewportScaling {
+			// NoFormat
+			get => GameObject.Transform.LocalScaling;
+			set => GameObject.Transform.LocalScaling = value;
+		}
 
 		public CameraComponent() :
 			this(Active == null) {
@@ -35,10 +55,6 @@ namespace Framework.Camera {
 		public void Activate() {
 			Active = this;
 		}
-
-		// TODO Validate anyhow if a active camera is present?
-		
-		// TODO Check Zenseless.Geometry.CameraOrbit as possible base class for the camera?
 	}
 
 }

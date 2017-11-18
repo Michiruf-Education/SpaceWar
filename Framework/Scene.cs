@@ -29,7 +29,7 @@ namespace Framework {
 
 		public void Destroy(GameObject gameObject) {
 			if (!gameObjects.Contains(gameObject)) {
-				throw new Exception("Scene does not contain this GameObject!");
+				return;
 			}
 			gameObject.Lifecycle?.onDestroy?.Invoke();
 			gameObjects.Remove(gameObject);

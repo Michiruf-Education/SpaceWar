@@ -10,10 +10,13 @@ namespace SpaceWar.Game.Play.Player {
 
 		// Logic constants
 		public const int MAX_LIFES = 5;
-		public const float SHOT_RATE = 1f;
+		public const float INITIAL_SHOT_RATE = 0.2f;
+		public const float INITIAL_SPEED = 0.6f;
+		public const float CAMERA_SPEED = 0.5f;
+		public const float CAMERA_MIN_SPEED = 0.1f;
 
 		// Visual constants
-		public const float PLAYER_SIZE = 0.1f;
+		public const float PLAYER_SIZE = 0.05f;
 
 		// Containers
 		public PlayerAttributes Attributes { get; }

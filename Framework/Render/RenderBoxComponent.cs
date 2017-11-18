@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using Framework.Algorithms;
 using OpenTK.Graphics.OpenGL;
-using Framework.Helper;
 using Framework.Object;
 using Zenseless.Geometry;
 
@@ -48,7 +48,7 @@ namespace Framework.Render {
 		}
 
 		public void Render() {
-			var matrix = GameObject.Transform.GetTransformationMatrixCached();
+			var matrix = GameObject.Transform.GetTransformationMatrixCached(true);
 			var p1Fill = FastVector2Transform.Transform(p1.X, p1.Y, matrix);
 			var p2Fill = FastVector2Transform.Transform(p2.X, p2.Y, matrix);
 			var p3Fill = FastVector2Transform.Transform(p3.X, p3.Y, matrix);

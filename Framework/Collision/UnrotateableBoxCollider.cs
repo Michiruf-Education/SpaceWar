@@ -1,7 +1,6 @@
 ﻿using System.Drawing;
 using OpenTK.Graphics.OpenGL;
 using Framework.Debug;
-using Framework.Helper;
 using Framework.Object;
 using OpenTK;
 using Zenseless.Geometry;
@@ -18,7 +17,7 @@ namespace Framework.Collision {
 
 		public Box2D GetBounds() {
 			var boundsRect = new Box2D(rect);
-			boundsRect.TransformCenter(GameObject.Transform.GetTransformationMatrixCached());
+			boundsRect.TransformCenter(GameObject.Transform.GetTransformationMatrixCached(false));
 			return boundsRect;
 		}
 

@@ -10,8 +10,8 @@ namespace SpaceWar.Game.Play.Shot {
 		private readonly float y;
 
 		public ShotMovementController(float direction) {
-			x = (float) Math.Sin(direction) * Shot.SHOT_SPEED;
-			y = (float) Math.Cos(direction) * Shot.SHOT_SPEED;
+			x = (float) Math.Cos(direction) * Shot.SHOT_SPEED;
+			y = (float) Math.Sin(direction) * Shot.SHOT_SPEED;
 		}
 
 		public void Update() {

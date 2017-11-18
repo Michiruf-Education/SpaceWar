@@ -4,20 +4,22 @@ namespace Framework.Camera {
 
 	public class DefaultCameraGameObject : GameObject {
 
+		public CameraComponent Component { get; }
+
 		public DefaultCameraGameObject() {
-			AddComponent(new CameraComponent());
+			AddComponent(Component = new CameraComponent());
 		}
 
 		public DefaultCameraGameObject(bool activeCamera) {
-			AddComponent(new CameraComponent(activeCamera));
+			AddComponent(Component = new CameraComponent(activeCamera));
 		}
 
 		public DefaultCameraGameObject(Vector2 viewport) {
-			AddComponent(new CameraComponent(viewport));
+			AddComponent(Component = new CameraComponent(viewport));
 		}
 
 		public DefaultCameraGameObject(Vector2 viewport, bool activeCamera = false) {
-			AddComponent(new CameraComponent(viewport, activeCamera));
+			AddComponent(Component = new CameraComponent(viewport, activeCamera));
 		}
 	}
 
