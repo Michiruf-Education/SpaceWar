@@ -14,6 +14,11 @@ namespace SpaceWar.Game {
 			inputs.Add(Key.A, InputActions.MoveLeft);
 			inputs.Add(Key.D, InputActions.MoveRight);
 			inputs.Add(Key.Space, InputActions.Fire);
+			// Temporary keyboard
+			inputs.Add(Key.Up, InputActions.SimpleFireUp);
+			inputs.Add(Key.Down, InputActions.SimpleFireDown);
+			inputs.Add(Key.Left, InputActions.SimpleFireLeft);
+			inputs.Add(Key.Right, InputActions.SimpleFireRight);
 			
 			// Controller
 			inputs.Add(Buttons.DPadUp, InputActions.MoveUp);
