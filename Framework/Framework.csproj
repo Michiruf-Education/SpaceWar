@@ -106,6 +106,7 @@
     <Compile Include="Render\AnimatedSprite.cs" />
     <Compile Include="Render\RenderBoxComponent.cs" />
     <Compile Include="Render\RenderLineComponent.cs" />
+    <Compile Include="Render\RenderTextComponent.cs" />
     <Compile Include="Render\RenderTextureComponent.cs" />
     <Compile Include="Scene.cs" />
     <Compile Include="Utilities\DelayTimer.cs" />

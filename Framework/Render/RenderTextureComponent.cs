@@ -55,7 +55,7 @@ namespace Framework.Render {
 				GL.Color3(Color.LightGray);
 			}
 
-			var matrix = GameObject.Transform.GetTransformationMatrixCached(true);
+			var matrix = GameObject.Transform.GetTransformationMatrixCached(!GameObject.IsUiElement);
 			var minXminY = FastVector2Transform.Transform(Rect.MinX, Rect.MinY, matrix);
 			var maxXminY = FastVector2Transform.Transform(Rect.MaxX, Rect.MinY, matrix);
 			var maxXmaxY = FastVector2Transform.Transform(Rect.MaxX, Rect.MaxY, matrix);
@@ -72,6 +72,8 @@ namespace Framework.Render {
 
 			GL.End();
 			texture.Deactivate();
+			
+			GL.Disable(EnableCap.Texture2D);
 		}
 	}
 

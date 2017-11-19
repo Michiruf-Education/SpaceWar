@@ -26,6 +26,7 @@ namespace SpaceWar.Game.Play {
 
 			// Player
 			Spawn(new Player.Player());
+			Spawn(new PointDisplay());
 			Spawn(new HealthBar());
 
 			// Enemies

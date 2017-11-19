@@ -6,7 +6,7 @@ namespace SpaceWar.Game {
 	internal static class SpaceWar {
 
 		static void Main(string[] args) {
-			FrameworkDebugMode.IsEnabled = true;
+//			FrameworkDebugMode.IsEnabled = true;
 
 			var game = new Framework.Game();
 			game.RegisterInputProvider(new Keymap());

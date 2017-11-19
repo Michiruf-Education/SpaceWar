@@ -15,7 +15,7 @@ namespace SpaceWar.Game.Play.UI {
 		public HealthBar() {
 			items = new List<HealthBarItem>();
 			Init();
-			
+
 //			// TODO: This does not work yet. Implement a list of objects that were just attached and the call the onCreate
 //			Lifecycle.onCreate += () => {
 //				player = Scene.Current.GetGameObject<PlayerT>();
