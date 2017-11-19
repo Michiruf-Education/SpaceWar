@@ -92,6 +92,7 @@
     <Compile Include="Game\Keymap.cs" />
     <Compile Include="Game\Options.cs" />
     <Compile Include="Game\Play\Enemy\Enemy.cs" />
+    <Compile Include="Game\Play\Enemy\EnemyCollisionController.cs" />
     <Compile Include="Game\Play\Enemy\EnemyMovementController.cs" />
     <Compile Include="Game\Play\Enemy\EnemySpawnBehaviour.cs" />
     <Compile Include="Game\Play\Field\Background.cs" />

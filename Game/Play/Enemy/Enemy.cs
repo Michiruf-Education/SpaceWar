@@ -17,6 +17,7 @@ namespace SpaceWar.Game.Play.Enemy {
 
 		public Enemy() {
 			AddComponent(new EnemyMovementController());
+			AddComponent(new EnemyCollisionController());
 			AddComponent(new RenderBoxComponent(ENEMY_SIZE, ENEMY_SIZE).Fill(Color.DarkOrange));
 			AddComponent(new UnrotateableBoxCollider(new Box2D(-ENEMY_SIZE / 2, -ENEMY_SIZE / 2,
 				ENEMY_SIZE, ENEMY_SIZE)));

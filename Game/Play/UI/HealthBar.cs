@@ -6,7 +6,8 @@ namespace SpaceWar.Game.Play.UI {
 
 	public class HealthBar : GameObject {
 
-		private const float SPACE_BETWEEN_ITEMS = 0.05f;
+		public const float SPACE_BETWEEN_ITEMS = 0.05f;
+		public const float ITEM_SIZE = 0.05f;
 
 		private readonly List<HealthBarItem> items;
 		private PlayerT player;
