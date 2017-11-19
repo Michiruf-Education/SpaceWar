@@ -34,40 +34,46 @@ namespace SpaceWar.Game.Play.Enemy {
 			for (var i = 0; i < enemyCount; i++) {
 				var enemy1 = new Enemy();
 				enemy1.Transform.WorldPosition = new Vector2(
-					1f - (float) random.NextDouble() / 4f - 0.05f,
-					0.5f - (float) random.NextDouble() / 4f - 0.05f
+					1f - (float) random.NextDouble()/ 1.5f - 0.05f,
+					0.5f - (float) random.NextDouble()/ 1.5f - 0.05f
 				);
 				Scene.Current.Spawn(enemy1);
 
 				var enemy2 = new Enemy();
 				enemy2.Transform.WorldPosition = new Vector2(
-					1f - (float) random.NextDouble() / 4f - 0.05f,
-					-0.5f + (float) random.NextDouble() / 4f + 0.05f
+					1f - (float) random.NextDouble()/ 1.5f - 0.05f,
+					-0.5f + (float) random.NextDouble()/ 1.5f + 0.05f
 				);
 				Scene.Current.Spawn(enemy2);
 
 				var enemy3 = new Enemy();
 				enemy3.Transform.WorldPosition = new Vector2(
-					-1f + (float) random.NextDouble() / 4f + 0.05f,
-					-0.5f + (float) random.NextDouble() / 4f + 0.05f
+					-1f + (float) random.NextDouble()/ 1.5f + 0.05f,
+					-0.5f + (float) random.NextDouble()/ 1.5f + 0.05f
 				);
 				Scene.Current.Spawn(enemy3);
 
 				var enemy4 = new Enemy();
 				enemy4.Transform.WorldPosition = new Vector2(
-					-1f + (float) random.NextDouble() / 4f + 0.05f,
-					0.5f - (float) random.NextDouble() / 4f - 0.05f
+					-1f + (float) random.NextDouble()/ 1.5f + 0.05f,
+					0.5f - (float) random.NextDouble()/ 1.5f - 0.05f
 				);
 				Scene.Current.Spawn(enemy4);
 			}
 		}
 
 		static int SpawnEnemyCountFunction(int p) {
+			if (p > 1000) {
+				return 22;
+			}
+			if (p > 700) {
+				return 17;
+			}
 			if (p > 500) {
-				return 10;
+				return 13;
 			}
 			if (p > 300) {
-				return 8;
+				return 9;
 			}
 			if (p > 100) {
 				return 6;

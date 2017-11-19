@@ -10,7 +10,7 @@ namespace SpaceWar.Game.Play.Enemy {
 
 		// Logic constants
 		public const float ENEMY_SPAWN_INTERVAL = 10f;
-		public const float ENEMY_SPEED = 0.4f;
+		public const float ENEMY_SPEED = 0.35f;
 
 		// Visual constants
 		public const float ENEMY_SIZE = 0.035f;
