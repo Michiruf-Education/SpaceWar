@@ -1,4 +1,4 @@
-﻿namespace Framework.Extensions {
+﻿namespace Framework.Utilities {
 
 	public static class VectorConversionExtension {
 

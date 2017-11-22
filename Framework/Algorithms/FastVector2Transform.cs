@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace Framework.Helper {
+namespace Framework.Algorithms {
 
 	public static class FastVector2Transform {
 

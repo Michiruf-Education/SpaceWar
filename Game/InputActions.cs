@@ -7,6 +7,10 @@
 		MoveLeft,
 		MoveRight,
 		Fire,
+		SimpleFireUp,
+		SimpleFireDown,
+		SimpleFireLeft,
+		SimpleFireRight,
 		UseSpecialAbility
 	}
 

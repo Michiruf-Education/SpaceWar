@@ -74,7 +74,7 @@ namespace Framework.Input {
 
 		// TODO Implement this to have controlls not only in 8 directions! (topleft, top, topright, ...)
 		public static float GetAxis() {
-			return 0;
+			return 1f;
 		}
 	}
 

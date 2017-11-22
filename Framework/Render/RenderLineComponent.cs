@@ -1,8 +1,8 @@
 ﻿using System.Drawing;
-using OpenTK.Graphics.OpenGL;
+using Framework.Algorithms;
 using Framework.Debug;
-using Framework.Helper;
 using Framework.Object;
+using OpenTK.Graphics.OpenGL;
 
 namespace Framework.Render {
 
@@ -27,7 +27,7 @@ namespace Framework.Render {
 			GL.Color4(color);
 			GL.LineWidth(lineWidth);
 			
-			var matrix = GameObject.Transform.GetTransformationMatrixCached();
+			var matrix = GameObject.Transform.GetTransformationMatrixCached(!GameObject.IsUiElement);
 			var fromPoint = FastVector2Transform.Transform(from.X, from.Y, matrix);
 			var toPoint = FastVector2Transform.Transform(to.X, to.Y, matrix);
 

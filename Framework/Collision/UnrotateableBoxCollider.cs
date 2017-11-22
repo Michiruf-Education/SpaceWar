@@ -1,8 +1,8 @@
 ﻿using System.Drawing;
 using OpenTK.Graphics.OpenGL;
 using Framework.Debug;
-using Framework.Helper;
 using Framework.Object;
+using OpenTK;
 using Zenseless.Geometry;
 
 namespace Framework.Collision {
@@ -16,26 +16,31 @@ namespace Framework.Collision {
 		}
 
 		public Box2D GetBounds() {
-			var matrix = GameObject.Transform.GetTransformationMatrixCached();
-			var p1 = FastVector2Transform.Transform(rect.MinX, rect.MinX, matrix);
-			var p3 = FastVector2Transform.Transform(rect.MaxY, rect.MaxY, matrix);
-			return new Box2D(p1.X, p1.Y, p3.X - p1.X, p3.Y - p1.Y);
+			var boundsRect = new Box2D(rect);
+			boundsRect.TransformCenter(GameObject.Transform.GetTransformationMatrixCached(false));
+			return boundsRect;
 		}
 
 		public void Render() {
 			if (FrameworkDebugMode.IsEnabled) {
-				var matrix = GameObject.Transform.GetTransformationMatrixCached();
-				var p1 = FastVector2Transform.Transform(rect.MinX, rect.MinX, matrix);
-				var p2 = FastVector2Transform.Transform(rect.MinX, rect.MaxY, matrix);
-				var p3 = FastVector2Transform.Transform(rect.MaxY, rect.MaxY, matrix);
-				var p4 = FastVector2Transform.Transform(rect.MaxY, rect.MinY, matrix);
-				
+				var bounds = GetBounds();
+				var p1 = new Vector2(bounds.MinX, bounds.MinY);
+				var p2 = new Vector2(bounds.MinX, bounds.MaxY);
+				var p3 = new Vector2(bounds.MaxX, bounds.MaxY);
+				var p4 = new Vector2(bounds.MaxX, bounds.MinY);
+
 				GL.LineWidth(1f);
 				GL.Color4(Color.Red);
 				GL.Begin(PrimitiveType.LineLoop);
 				GL.Vertex2(p1);
 				GL.Vertex2(p2);
 				GL.Vertex2(p3);
+				GL.Vertex2(p4);
+				GL.End();
+				GL.Begin(PrimitiveType.Lines);
+				GL.Vertex2(p1);
+				GL.Vertex2(p3);
+				GL.Vertex2(p2);
 				GL.Vertex2(p4);
 				GL.End();
 			}

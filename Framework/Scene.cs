@@ -29,7 +29,7 @@ namespace Framework {
 
 		public void Destroy(GameObject gameObject) {
 			if (!gameObjects.Contains(gameObject)) {
-				throw new Exception("Scene does not contain this GameObject!");
+				return;
 			}
 			gameObject.Lifecycle?.onDestroy?.Invoke();
 			gameObjects.Remove(gameObject);
@@ -66,7 +66,11 @@ namespace Framework {
 		}
 
 		public virtual void Update() {
-			gameObjects.ForEach(go => {
+			// NOTE The ToList()-call is required to modify the list (by spawning or destroying) while updating, 
+			// because it clones the list.
+			// Else: System.InvalidOperationException: Collection was modified; enumeration operation may not execute.
+			// We might need to use Immutables?
+			gameObjects.ToList().ForEach(go => {
 				// Skip disabled gameobjects
 				if (!go.IsEnabled) {
 					return;
@@ -76,7 +80,11 @@ namespace Framework {
 		}
 
 		public virtual void Render() {
-			gameObjects.ForEach(go => {
+			// NOTE The ToList()-call is required to modify the list (by spawning or destroying) while updating, 
+			// because it clones the list.
+			// Else: System.InvalidOperationException: Collection was modified; enumeration operation may not execute.
+			// We might need to use Immutables?
+			gameObjects.ToList().ForEach(go => {
 				// Skip disabled gameobjects
 				if (!go.IsEnabled) {
 					return;

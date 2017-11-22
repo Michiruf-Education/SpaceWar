@@ -6,33 +6,42 @@ using Framework.Object;
 
 namespace Framework {
 
+	// TODO Add static caches in a list with specific types (collision components, ...)
+	// to improve performance
+	// To achieve this add a IsAlive property
+
 	public class GameObject {
 
 		public Lifecycle Lifecycle { get; } = new Lifecycle();
 
-		public bool IsEnabled { get; set; } = true;
 		public Transform Transform { get; }
+
+		// General properties
+		public bool IsEnabled { get; set; } = true;
+		public bool IsUiElement { get; set; }
+
+		// Parent and children
 		public GameObject Parent { get; private set; }
 		private readonly List<GameObject> children = new List<GameObject>();
 		public ReadOnlyCollection<GameObject> Children { get; }
+
+		// Components
 		private readonly List<Component> components = new List<Component>();
 		public ReadOnlyCollection<Component> Components { get; }
 
 
-		public GameObject() : this(new Transform()) {
-		}
-
-		public GameObject(Transform transform) {
-			Transform = transform;
-			Transform.GameObject = this;
-			Components = new ReadOnlyCollection<Component>(components);
+		public GameObject(bool isUiElement = false) {
+			Transform = new Transform {GameObject = this};
 			Children = new ReadOnlyCollection<GameObject>(children);
+			Components = new ReadOnlyCollection<Component>(components);
+			IsUiElement = isUiElement;
 
 			// Register lifecycle delegation for components
 			Lifecycle.onDestroy += () => components.ForEach(c => c.Lifecycle?.onDestroy?.Invoke());
 		}
 
 		// TODO GetChild<Type> ?
+		// TODO GetChildAt(int index)
 
 		public void AddChild(GameObject child) {
 			child.Parent = this;

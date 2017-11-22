@@ -77,7 +77,9 @@
   <ItemGroup>
     <Compile Include="Algorithms\CollisionDetection\CollisionDetection.cs" />
     <Compile Include="Algorithms\CollisionDetection\SimpleBox2DCollisionDetection.cs" />
+    <Compile Include="Algorithms\FastVector2Transform.cs" />
     <Compile Include="Camera\CameraComponent.cs" />
+    <Compile Include="Camera\DefaultCameraGameObject.cs" />
     <Compile Include="Collision\BoxCollider.cs" />
     <Compile Include="Collision\CircleCollider.cs" />
     <Compile Include="Collision\ColliderComponent.cs" />
@@ -86,12 +88,8 @@
     <Compile Include="Component.cs" />
     <Compile Include="Debug\DrawGridComponent.cs" />
     <Compile Include="Debug\FrameworkDebugMode.cs" />
-    <Compile Include="Extensions\MatrixPrintExtension.cs" />
-    <Compile Include="Extensions\VectorConversionExtension.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameObject.cs" />
-    <Compile Include="Helper\FastVector2Transform.cs" />
-    <Compile Include="Helper\MatrixHelper.cs" />
     <Compile Include="Input\GamePadHandler.cs" />
     <Compile Include="Input\GamePad\GamePadButtonEventArgs.cs" />
     <Compile Include="Input\GamePad\GamePadButtonsHelper.cs" />
@@ -105,12 +103,18 @@
     <Compile Include="Object\Transform.cs" />
     <Compile Include="Object\UpdateComponent.cs" />
     <Compile Include="Object\VierportAnchor.cs" />
-    <Compile Include="Player\Player.cs" />
     <Compile Include="Render\AnimatedSprite.cs" />
     <Compile Include="Render\RenderBoxComponent.cs" />
     <Compile Include="Render\RenderLineComponent.cs" />
+    <Compile Include="Render\RenderTextComponent.cs" />
     <Compile Include="Render\RenderTextureComponent.cs" />
     <Compile Include="Scene.cs" />
+    <Compile Include="Utilities\DelayTimer.cs" />
+    <Compile Include="Utilities\LimitedRateTimer.cs" />
+    <Compile Include="Utilities\Matrix3x2DataExtension.cs" />
+    <Compile Include="Utilities\Matrix3x2Helper.cs" />
+    <Compile Include="Utilities\Matrix3x2PrintExtension.cs" />
+    <Compile Include="Utilities\VectorConversionExtension.cs" />
     <Compile Include="Widgets\Button.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -121,8 +125,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Camera\.gitkeep" />
-    <Content Include="Widgets\.gitkeep" />
+    <Content Include="TODO.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

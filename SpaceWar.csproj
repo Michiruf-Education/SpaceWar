@@ -90,15 +90,31 @@
     <Compile Include="Dummy\StaticGameObject.cs" />
     <Compile Include="Game\InputActions.cs" />
     <Compile Include="Game\Keymap.cs" />
-    <Compile Include="Game\Player\Player.cs" />
-    <Compile Include="Game\Player\PlayerFollowingCameraController.cs" />
-    <Compile Include="Game\Player\PlayerController.cs" />
+    <Compile Include="Game\Options.cs" />
+    <Compile Include="Game\Play\Enemy\Enemy.cs" />
+    <Compile Include="Game\Play\Enemy\EnemyCollisionController.cs" />
+    <Compile Include="Game\Play\Enemy\EnemyMovementController.cs" />
+    <Compile Include="Game\Play\Enemy\EnemySpawnBehaviour.cs" />
+    <Compile Include="Game\Play\Field\Background.cs" />
+    <Compile Include="Game\Play\Field\Border.cs" />
+    <Compile Include="Game\Play\Player\FollowingCameraController.cs" />
+    <Compile Include="Game\Play\Player\Player.cs" />
+    <Compile Include="Game\Play\Player\PlayerAttributes.cs" />
+    <Compile Include="Game\Play\Player\PlayerCollisionController.cs" />
+    <Compile Include="Game\Play\Player\PlayerMovementController.cs" />
+    <Compile Include="Game\Play\Player\PlayerShotController.cs" />
+    <Compile Include="Game\Play\PlayScene.cs" />
+    <Compile Include="Game\Play\Shot\Shot.cs" />
+    <Compile Include="Game\Play\Shot\ShotCollisionController.cs" />
+    <Compile Include="Game\Play\Shot\ShotMovementController.cs" />
+    <Compile Include="Game\Play\UI\HealthBar.cs" />
+    <Compile Include="Game\Play\UI\HealthBarItem.cs" />
+    <Compile Include="Game\Play\UI\PointDisplay.cs" />
     <Compile Include="Game\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Game\Scene\PlayScene.cs" />
     <Compile Include="Game\SpaceWar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -110,13 +126,14 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Texture\background.png" />
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="Game\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Texture\heart-128.png" />
+    <None Include="Resources\Texture\background.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
