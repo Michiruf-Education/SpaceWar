@@ -46,8 +46,11 @@
     <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <!-- Reference includes including framework project include -->
-    <ProjectReference Include="Framework\Framework.csproj" />
+    <!-- Reference includes including framework project includes -->
+    <ProjectReference Include="$(SolutionDir)\Framework\Framework.csproj">
+      <Project>{f5e379f5-eb50-4f16-b07c-3a574b1578c3}</Project>
+      <Name>Framework</Name>
+	</ProjectReference>
     <Reference Include="OpenTK, Version=3.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4">
       <HintPath>$(SolutionDir)\packages\OpenTK.3.0.0-pre\lib\net20\OpenTK.dll</HintPath>
     </Reference>

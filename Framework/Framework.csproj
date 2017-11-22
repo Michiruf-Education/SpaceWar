@@ -78,6 +78,7 @@
     <Compile Include="Algorithms\CollisionDetection\CollisionDetection.cs" />
     <Compile Include="Algorithms\CollisionDetection\SimpleBox2DCollisionDetection.cs" />
     <Compile Include="Algorithms\FastVector2Transform.cs" />
+    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Camera\CameraComponent.cs" />
     <Compile Include="Camera\DefaultCameraGameObject.cs" />
     <Compile Include="Collision\BoxCollider.cs" />
