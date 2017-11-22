@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Numerics;
 using Framework.Camera;
-using Framework.Extensions;
 using Framework.Utilities;
 using Zenseless.Geometry;
 using Vector2 = OpenTK.Vector2;
 
-namespace Framework.Object {
+namespace Framework {
 
 	public class Transform {
 
@@ -164,6 +163,11 @@ namespace Framework.Object {
 			transformationMatrixCacheWithCamera = Matrix3x2Helper.NUMERICS_ZERO;
 			transformationMatrixCache = Matrix3x2Helper.NUMERICS_ZERO;
 		}
+	}
+	
+	public enum Space {
+		
+		World, Local
 	}
 
 }
