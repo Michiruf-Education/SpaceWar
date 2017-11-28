@@ -28,6 +28,7 @@ namespace SpaceWar.Game.Play.Player {
 			var lerpRate = (b - a).Length * lerpPercentage;
 			if (lerpRate < minLerpRate) {
 				lerpRate = minLerpRate;
+				// TODO Minimum lerp rate does not take effect because were "overscrolling"?
 			}
 			var result = Vector2.Lerp(a, b, lerpRate);
 			return result;
