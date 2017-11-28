@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Reflection;
-using OpenTK;
-using OpenTK.Graphics.OpenGL;
-using OpenTK.Platform;
-using Framework.Camera;
 using Framework.Input;
 using Framework.Object;
+using OpenTK;
+using OpenTK.Graphics.OpenGL;
 using Zenseless.ShaderDebugging;
 
 namespace Framework {

@@ -42,6 +42,7 @@ namespace Framework {
 			get => GetTransformationMatrixCached(false).GetPosition();
 			set => Translate(value - WorldPosition, Space.World);
 		}
+		[Obsolete("May implemented in the future")]
 		public float WorldRotation {
 			get {
 				var m = GetTransformationMatrixCached(false);
@@ -49,6 +50,7 @@ namespace Framework {
 			}
 			set { } // TODO
 		}
+		[Obsolete("May implemented in the future")]
 		public Vector2 WorldScaling {
 			get {
 				var m = GetTransformationMatrixCached(false);
