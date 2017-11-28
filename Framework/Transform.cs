@@ -152,7 +152,7 @@ namespace Framework {
 		}
 
 		Matrix3x2 GetTransformationMatrix() {
-			if (GameObject.Parent != null) {
+			if (GameObject?.Parent != null) {
 				return GameObject.Parent.Transform.GetTransformationMatrix() * Transformation;
 			}
 
