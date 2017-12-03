@@ -1,11 +1,15 @@
-﻿using Framework.Object;
+﻿namespace Framework.Collision {
 
-namespace Framework.Collision {
+	public abstract class ColliderComponent : Component {
 
-	public class ColliderComponent : Component, UpdateComponent {
+		public abstract bool CollidesWith(ColliderComponent other);
 
-		public virtual void Update() {
+		// TODO Use this to upgrad the performance when clustering 
+		// -> make abstract and implement simple calculation of bounds where the element cannot exceed the size
+		public virtual void GetEstimatedBounds() {
 		}
+
+		public abstract void InvalidateCache();
 	}
 
 }

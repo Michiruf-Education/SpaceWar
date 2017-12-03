@@ -19,9 +19,10 @@ namespace SpaceWar.Game.Play.Shot {
 		public Shot(float direction, Vector2 position, Action onEnemyHit) {
 			AddComponent(new ShotMovementController(direction));
 			AddComponent(new ShotCollisionController(onEnemyHit));
-			AddComponent(new RenderBoxComponent(0.01f, 0.01f).Fill(Color.Brown));
-			AddComponent(new UnrotateableBoxCollider(new Box2D(-SHOT_SIZE / 2, -SHOT_SIZE / 2,
-				SHOT_SIZE, SHOT_SIZE)));
+			//AddComponent(new RenderBoxComponent(SHOT_SIZE, SHOT_SIZE).Fill(Color.Brown));
+			//AddComponent(new BoxCollider(SHOT_SIZE, SHOT_SIZE));
+			AddComponent(new RenderCircleComponent(SHOT_SIZE).Fill(Color.Brown));
+			AddComponent(new CircleCollider(SHOT_SIZE));
 			Transform.WorldPosition = position;
 		}
 	}

@@ -11,7 +11,7 @@ namespace SpaceWar.Game.Play.Field {
 
 		public Border(float x, float y, float width, float height) {
 			AddComponent(new RenderBoxComponent(width, height).Fill(Color.White));
-			AddComponent(new UnrotateableBoxCollider(new Box2D(-width / 2, -height / 2, width, height)));
+			AddComponent(new BoxCollider(width, height));
 			Transform.WorldPosition = new Vector2(x, y);
 		}
 	}

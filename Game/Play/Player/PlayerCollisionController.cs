@@ -16,9 +16,9 @@ namespace SpaceWar.Game.Play.Player {
 			switch (other) {
 				// Deny going threw borders
 				case Border border:
-					var previousBox = GetComponent<UnrotateableBoxCollider>().GetBounds();
+					var previousBox = GetComponent<BoxCollider>().GetTransformedRectCached();
 					var thisBox = new Box2D(previousBox);
-					var otherBox = border.GetComponent<UnrotateableBoxCollider>().GetBounds();
+					var otherBox = border.GetComponent<BoxCollider>().GetTransformedRectCached();
 
 					thisBox.UndoOverlap(otherBox);
 					var diffX = thisBox.MinX - previousBox.MinX;
