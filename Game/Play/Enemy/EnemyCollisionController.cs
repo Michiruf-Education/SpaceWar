@@ -12,9 +12,9 @@ namespace SpaceWar.Game.Play.Enemy {
 			}
 
 			// Enemies should not overlap
-			var previousBox = GetComponent<UnrotateableBoxCollider>().GetBounds();
+			var previousBox = GetComponent<BoxCollider>().GetTransformedRectCached();
 			var thisBox = new Box2D(previousBox);
-			var otherBox = otherEnemy.GetComponent<UnrotateableBoxCollider>().GetBounds();
+			var otherBox = otherEnemy.GetComponent<BoxCollider>().GetTransformedRectCached();
 
 			thisBox.UndoOverlap(otherBox);
 			var diffX = thisBox.MinX - previousBox.MinX;

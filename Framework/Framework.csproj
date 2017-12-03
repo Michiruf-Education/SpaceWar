@@ -75,8 +75,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\CollisionDetection\Calculation\BoxCircleCollisionCalculator.cs" />
+    <Compile Include="Algorithms\CollisionDetection\ClusteredCollisionDetection.cs" />
     <Compile Include="Algorithms\CollisionDetection\CollisionDetection.cs" />
-    <Compile Include="Algorithms\CollisionDetection\SimpleBox2DCollisionDetection.cs" />
+    <Compile Include="Algorithms\CollisionDetection\NonOptimizedCollisionDetection.cs" />
     <Compile Include="Algorithms\FastVector2Transform.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Camera\CameraComponent.cs" />
@@ -85,9 +87,8 @@
     <Compile Include="Collision\CircleCollider.cs" />
     <Compile Include="Collision\ColliderComponent.cs" />
     <Compile Include="Collision\CollisionComponent.cs" />
-    <Compile Include="Collision\UnrotateableBoxCollider.cs" />
+    <Compile Include="Collision\SimpleBox2DCollider.cs" />
     <Compile Include="Component.cs" />
-    <Compile Include="Debug\DrawGridComponent.cs" />
     <Compile Include="Debug\FrameworkDebugMode.cs" />
     <Compile Include="Engine\FrameworkEngineGameObject.cs" />
     <Compile Include="Game.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Object\VierportAnchor.cs" />
     <Compile Include="Render\AnimatedSprite.cs" />
     <Compile Include="Render\RenderBoxComponent.cs" />
+    <Compile Include="Render\RenderCircleComponent.cs" />
     <Compile Include="Render\RenderLineComponent.cs" />
     <Compile Include="Render\RenderTextComponent.cs" />
     <Compile Include="Render\RenderTextureComponent.cs" />

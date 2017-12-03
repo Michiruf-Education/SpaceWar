@@ -84,14 +84,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Dummy\CameraGameObject.cs" />
-    <Compile Include="Dummy\DummyColliderGameObject.cs" />
-    <Compile Include="Dummy\DummyCollisionPlayer.cs" />
-    <Compile Include="Dummy\DummyController.cs" />
-    <Compile Include="Dummy\DummyFieldGameObject.cs" />
-    <Compile Include="Dummy\DummyGameObject.cs" />
-    <Compile Include="Dummy\DummyScene.cs" />
-    <Compile Include="Dummy\StaticGameObject.cs" />
     <Compile Include="Game\InputActions.cs" />
     <Compile Include="Game\Keymap.cs" />
     <Compile Include="Game\Options.cs" />

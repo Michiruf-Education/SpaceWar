@@ -11,7 +11,6 @@ namespace SpaceWar.Game {
 			var game = new Framework.Game();
 			game.RegisterInputProvider(new Keymap());
 			game.CreatePrimitiveWindow("SpaceWar");
-			//game.ShowScene(new DummyScene());
 			game.ShowScene(new PlayScene());
 			game.Run();
 		}

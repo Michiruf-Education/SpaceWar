@@ -25,7 +25,7 @@ namespace SpaceWar.Game.Play.Player {
 		public PlayerCollisionController CollisionController { get; }
 		public FollowingCameraController FollowingCameraController { get; }
 		public RenderBoxComponent RenderBoxComponent { get; }
-		public UnrotateableBoxCollider UnrotateableBoxCollider { get; }
+		public BoxCollider BoxCollider { get; }
 
 		public Player() {
 			Attributes = new PlayerAttributes();
@@ -34,8 +34,7 @@ namespace SpaceWar.Game.Play.Player {
 			CollisionController = new PlayerCollisionController();
 			FollowingCameraController = new FollowingCameraController();
 			RenderBoxComponent = new RenderBoxComponent(PLAYER_SIZE, PLAYER_SIZE).Fill(Color.White);
-			UnrotateableBoxCollider = new UnrotateableBoxCollider(new Box2D(-PLAYER_SIZE / 2,
-				-PLAYER_SIZE / 2, PLAYER_SIZE, PLAYER_SIZE));
+			BoxCollider = new BoxCollider(PLAYER_SIZE, PLAYER_SIZE);
 
 			AddComponent(Attributes);
 			AddComponent(MovementController);
@@ -43,7 +42,7 @@ namespace SpaceWar.Game.Play.Player {
 			AddComponent(CollisionController);
 			AddComponent(FollowingCameraController);
 			AddComponent(RenderBoxComponent);
-			AddComponent(UnrotateableBoxCollider);
+			AddComponent(BoxCollider);
 		}
 	}
 

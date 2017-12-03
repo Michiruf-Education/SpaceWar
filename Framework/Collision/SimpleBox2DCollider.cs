@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using OpenTK.Graphics.OpenGL;
 using Framework.Debug;
 using Framework.Object;
@@ -7,11 +8,11 @@ using Zenseless.Geometry;
 
 namespace Framework.Collision {
 
-	public class UnrotateableBoxCollider : ColliderComponent, RenderComponent {
+	public class SimpleBox2DCollider : ColliderComponent, RenderComponent {
 
 		public readonly Box2D rect;
 
-		public UnrotateableBoxCollider(Box2D rect) {
+		public SimpleBox2DCollider(Box2D rect) {
 			this.rect = rect;
 		}
 
@@ -19,6 +20,18 @@ namespace Framework.Collision {
 			var boundsRect = new Box2D(rect);
 			boundsRect.TransformCenter(GameObject.Transform.GetTransformationMatrixCached(false));
 			return boundsRect;
+		}
+
+		public override bool CollidesWith(ColliderComponent other) {
+			if (!(other is SimpleBox2DCollider otherCollider)) {
+				throw new NotImplementedException("SimpleBox2D colliders only work with theirselves!");
+			}
+
+			return GetBounds().Intersects(otherCollider.GetBounds());
+		}
+
+		public override void InvalidateCache() {
+			// Nothing to do here
 		}
 
 		public void Render() {
