@@ -24,7 +24,7 @@ namespace Framework.Collision {
 
 		public override bool CollidesWith(ColliderComponent other) {
 			if (!(other is SimpleBox2DCollider otherCollider)) {
-				throw new NotImplementedException("SimpleBox2D colliders only work with theirselves!");
+				throw new ArgumentException("SimpleBox2D colliders only work with theirselves!");
 			}
 
 			return GetBounds().Intersects(otherCollider.GetBounds());

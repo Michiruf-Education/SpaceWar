@@ -1,4 +1,5 @@
-﻿using System.Numerics;
+﻿using System;
+using System.Numerics;
 using Vector2 = OpenTK.Vector2;
 
 namespace Framework.Utilities {
@@ -13,13 +14,13 @@ namespace Framework.Utilities {
 			};
 		}
 
+		[Obsolete("It is impossible to receive this data from the matrix")]
 		public static float GetRotation(this Matrix3x2 data) {
-			// TODO
 			return 0f;
 		}
 
+		[Obsolete("It is impossible to receive this data from the matrix")]
 		public static Vector2 GetScaling(this Matrix3x2 data) {
-			// TODO
 			return Vector2.Zero;
 		}
 	}

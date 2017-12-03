@@ -15,11 +15,13 @@ namespace Framework.Input {
 		}
 
 		void LoadSavedInputs(Dictionary<Enum, object> inputs) {
-			// TODO
+			// NOTE Implement this when the game is going to get final because we do not know
+			// if we need this and if there are any changes in the input mechanism
 		}
 
 		public void SaveInputs() {
-			// TODO
+			// NOTE Implement this when the game is going to get final because we do not know
+			// if we need this and if there are any changes in the input mechanism
 		}
 	}
 

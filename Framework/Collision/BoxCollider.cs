@@ -12,7 +12,7 @@ namespace Framework.Collision {
 	public class BoxCollider : ColliderComponent, RenderComponent {
 
 		public Box2D Rect { get; set; }
-		public float Rotation { get => 0; set => throw new NotImplementedException("Rotation not yet implemented"); }
+		public float Rotation { get => 0; set => throw new ToDevelopException("Rotation not yet implemented"); }
 
 		private bool transformedRectIsCached;
 		private Box2D transformedRectCached;

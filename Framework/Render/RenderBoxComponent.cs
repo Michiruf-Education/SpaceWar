@@ -67,8 +67,8 @@ namespace Framework.Render {
 
 			// Render stroke / outline
 			if (strokeColor != Color.Empty && Math.Abs(strokeWidth) > 0.001f) {
-				// TODO The stroke is not drawed "outside" of the rectangle, but directly on the edges
-				// TODO Is this good?
+				// NOTE The stroke is not drawed "outside" of the rectangle, but directly on the edges
+				// NOTE Is this good?
 				GL.LineWidth(strokeWidth);
 				GL.Color4(strokeColor);
 				GL.Begin(PrimitiveType.LineLoop);

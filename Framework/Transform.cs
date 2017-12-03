@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Numerics;
 using Framework.Camera;
+using Framework.Debug;
 using Framework.Utilities;
 using Zenseless.Geometry;
 using Vector2 = OpenTK.Vector2;
@@ -12,8 +13,8 @@ namespace Framework {
 		public GameObject GameObject { get; internal set; }
 
 		public Transformation2D Transformation { get; } = new Transformation2D();
-		// TODO Maybe split into local and global transformation
-		// TODO -> all global transformations are calculated before all local (?!)
+		// NOTE Maybe split into local and global transformation
+		// -> all global transformations are calculated before all local (?!)
 		// -> We would need this for interhitance of gameobjects
 		private Matrix3x2 transformationMatrixCacheWithCamera = Matrix3x2Helper.NUMERICS_ZERO;
 		private Matrix3x2 transformationMatrixCache = Matrix3x2Helper.NUMERICS_ZERO;
@@ -28,14 +29,14 @@ namespace Framework {
 				var m = (Matrix3x2) Transformation;
 				return m.GetRotation();
 			}
-			set { } // TODO
+			set { } // NOTE
 		}
 		public Vector2 LocalScaling {
 			get {
 				var m = (Matrix3x2) Transformation;
 				return m.GetScaling();
 			}
-			set { } // TODO
+			set { } // NOTE
 		}
 		public Vector2 WorldPosition {
 			// NoFormat
@@ -48,7 +49,7 @@ namespace Framework {
 				var m = GetTransformationMatrixCached(false);
 				return m.GetRotation();
 			}
-			set { } // TODO
+			set { } // NOTE
 		}
 		[Obsolete("May implemented in the future")]
 		public Vector2 WorldScaling {
@@ -56,7 +57,7 @@ namespace Framework {
 				var m = GetTransformationMatrixCached(false);
 				return m.GetScaling();
 			}
-			set { } // TODO
+			set { } // NOTE
 		}
 
 		public void Translate(Vector2 translation, Space space = Space.Local) {
@@ -101,7 +102,7 @@ namespace Framework {
 			Transformation.TransformGlobal(rotation);
 			Invalidate();
 
-			throw new NotImplementedException("Rotation in world space not implemented. Test current behaviour before!");
+			throw new ToDevelopException("Rotation in world space not implemented. Test current behaviour before!");
 		}
 
 		public void Scale(Vector2 scaling, Space space = Space.Local) {
@@ -135,7 +136,7 @@ namespace Framework {
 			Transformation.TransformGlobal(scaling);
 			Invalidate();
 
-			throw new NotImplementedException("Scaling in world space not implemented. Test current behaviour before!");
+			throw new ToDevelopException("Scaling in world space not implemented. Test current behaviour before!");
 		}
 
 		internal Matrix3x2 GetTransformationMatrixCached(bool includeCamera) {

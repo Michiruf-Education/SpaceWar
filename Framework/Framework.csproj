@@ -90,6 +90,7 @@
     <Compile Include="Collision\SimpleBox2DCollider.cs" />
     <Compile Include="Component.cs" />
     <Compile Include="Debug\FrameworkDebugMode.cs" />
+    <Compile Include="Debug\ToDevelopException.cs" />
     <Compile Include="Engine\FrameworkEngineGameObject.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameObject.cs" />
