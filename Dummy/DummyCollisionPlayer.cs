@@ -4,6 +4,7 @@ using Framework.Collision;
 using Framework.Input;
 using Framework.Object;
 using Framework.Render;
+using SpaceWar.Resources;
 using Zenseless.Geometry;
 
 namespace SpaceWar.Game {
@@ -12,7 +13,7 @@ namespace SpaceWar.Game {
 
 		public DummyCollisionPlayer() {
 			AddComponent(new DummyCollisionPlayerController());
-			AddComponent(new RenderTextureComponent(Resources.background, 0.4f, 0.4f));
+			AddComponent(new RenderTextureComponent(Resource.background, 0.4f, 0.4f));
 			AddComponent(new UnrotateableBoxCollider(new Box2D(-0.2f, -0.2f, 0.4f, 0.4f)));
 		}
 

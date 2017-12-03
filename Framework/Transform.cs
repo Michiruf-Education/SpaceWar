@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Numerics;
 using Framework.Camera;
-using Framework.Extensions;
 using Framework.Utilities;
 using Zenseless.Geometry;
 using Vector2 = OpenTK.Vector2;
 
-namespace Framework.Object {
+namespace Framework {
 
 	public class Transform {
 
@@ -43,6 +42,7 @@ namespace Framework.Object {
 			get => GetTransformationMatrixCached(false).GetPosition();
 			set => Translate(value - WorldPosition, Space.World);
 		}
+		[Obsolete("May implemented in the future")]
 		public float WorldRotation {
 			get {
 				var m = GetTransformationMatrixCached(false);
@@ -50,6 +50,7 @@ namespace Framework.Object {
 			}
 			set { } // TODO
 		}
+		[Obsolete("May implemented in the future")]
 		public Vector2 WorldScaling {
 			get {
 				var m = GetTransformationMatrixCached(false);
@@ -153,7 +154,7 @@ namespace Framework.Object {
 		}
 
 		Matrix3x2 GetTransformationMatrix() {
-			if (GameObject.Parent != null) {
+			if (GameObject?.Parent != null) {
 				return GameObject.Parent.Transform.GetTransformationMatrix() * Transformation;
 			}
 
@@ -164,6 +165,11 @@ namespace Framework.Object {
 			transformationMatrixCacheWithCamera = Matrix3x2Helper.NUMERICS_ZERO;
 			transformationMatrixCache = Matrix3x2Helper.NUMERICS_ZERO;
 		}
+	}
+	
+	public enum Space {
+		
+		World, Local
 	}
 
 }

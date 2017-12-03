@@ -14,6 +14,7 @@ namespace Framework {
 
 		public Lifecycle Lifecycle { get; } = new Lifecycle();
 
+		// TODO Daniel: 2 Transforms, worldToLocal and localToWorld. Both having values for rotation, position, scaling (in primitive types)
 		public Transform Transform { get; }
 
 		// General properties

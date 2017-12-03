@@ -1,8 +1,8 @@
 ﻿using Framework.Algorithms.CollisionDetection;
 
-namespace Framework.Object {
+namespace Framework.Engine {
 
-	public class FrameworkGameObject : GameObject {
+	public class FrameworkEngineGameObject : GameObject {
 
 		private readonly CollisionDetection collisionDetection = new SimpleBox2DCollisionDetection();
 

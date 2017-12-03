@@ -78,6 +78,7 @@
     <Compile Include="Algorithms\CollisionDetection\CollisionDetection.cs" />
     <Compile Include="Algorithms\CollisionDetection\SimpleBox2DCollisionDetection.cs" />
     <Compile Include="Algorithms\FastVector2Transform.cs" />
+    <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Camera\CameraComponent.cs" />
     <Compile Include="Camera\DefaultCameraGameObject.cs" />
     <Compile Include="Collision\BoxCollider.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Component.cs" />
     <Compile Include="Debug\DrawGridComponent.cs" />
     <Compile Include="Debug\FrameworkDebugMode.cs" />
+    <Compile Include="Engine\FrameworkEngineGameObject.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="Input\GamePadHandler.cs" />
@@ -95,12 +97,9 @@
     <Compile Include="Input\GamePad\GamePadButtonsHelper.cs" />
     <Compile Include="Input\InputHandler.cs" />
     <Compile Include="Input\InputProvider.cs" />
-    <Compile Include="Object\FrameworkGameObject.cs" />
     <Compile Include="Object\Lifecycle.cs" />
     <Compile Include="Object\RenderComponent.cs" />
-    <Compile Include="Object\Space.cs" />
     <Compile Include="Object\Time.cs" />
-    <Compile Include="Object\Transform.cs" />
     <Compile Include="Object\UpdateComponent.cs" />
     <Compile Include="Object\VierportAnchor.cs" />
     <Compile Include="Render\AnimatedSprite.cs" />
@@ -109,6 +108,7 @@
     <Compile Include="Render\RenderTextComponent.cs" />
     <Compile Include="Render\RenderTextureComponent.cs" />
     <Compile Include="Scene.cs" />
+    <Compile Include="Transform.cs" />
     <Compile Include="Utilities\DelayTimer.cs" />
     <Compile Include="Utilities\LimitedRateTimer.cs" />
     <Compile Include="Utilities\Matrix3x2DataExtension.cs" />

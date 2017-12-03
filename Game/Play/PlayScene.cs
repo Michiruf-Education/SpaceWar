@@ -1,5 +1,6 @@
 ﻿using Framework;
 using Framework.Camera;
+using Framework.Engine;
 using Framework.Object;
 using OpenTK;
 using SpaceWar.Game.Play.Enemy;
@@ -33,7 +34,7 @@ namespace SpaceWar.Game.Play {
 			Spawn(new EnemySpawnBehaviour());
 
 			// Engine
-			Spawn(new FrameworkGameObject());
+			Spawn(new FrameworkEngineGameObject());
 		}
 	}
 

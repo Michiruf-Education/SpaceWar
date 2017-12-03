@@ -4,8 +4,10 @@ using Matrix3x2 = System.Numerics.Matrix3x2;
 namespace Framework.Camera {
 
 	public class CameraComponent : Component {
-
-		public static CameraComponent Active { get; private set; }
+		
+		// TODO Is internal because we may need to reset it when the game gets deconstructed!
+		// TODO 2: Set this as part of the scene, then we need no singleton here? ------> Nice!
+		public static CameraComponent Active { get; internal set; }
 		public static Matrix3x2 ActiveCameraMatrix {
 			get {
 				Matrix3x2.Invert(Active.GameObject.Transform.Transformation, out var cameraMatrix);

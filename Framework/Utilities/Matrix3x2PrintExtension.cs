@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace Framework.Extensions {
+namespace Framework.Utilities {
 
 	// ReSharper disable once InconsistentNaming
 	public static class Matrix3x2PrintExtension {

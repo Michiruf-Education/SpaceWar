@@ -28,7 +28,9 @@ namespace SpaceWar.Game.Play.Player {
 			}
 
 			var direction = (float) Math.Atan2(axis.Y, axis.X);
-			Scene.Current.Spawn(new Shot.Shot(direction, GameObject.Transform.WorldPosition));
+			Scene.Current.Spawn(new Shot.Shot(direction, GameObject.Transform.WorldPosition, 
+				// TODO
+				() => (GameObject as Player).Attributes.OnEnemyKill()));
 
 
 			Temp:
@@ -48,7 +50,9 @@ namespace SpaceWar.Game.Play.Player {
 			}
 			if (simpleAxis != Vector2.Zero) {
 				var simpleDirection = (float) Math.Atan2(simpleAxis.Y, simpleAxis.X);
-				Scene.Current.Spawn(new Shot.Shot(simpleDirection, GameObject.Transform.WorldPosition));
+				Scene.Current.Spawn(new Shot.Shot(simpleDirection, GameObject.Transform.WorldPosition, 
+					// TODO
+					() => (GameObject as Player).Attributes.OnEnemyKill()));
 			}
 		}
 	}
