@@ -1,11 +1,15 @@
 ﻿using System;
+using System.Drawing;
 using Framework.Algorithms;
 using Framework.Algorithms.CollisionDetection.Calculation;
+using Framework.Debug;
+using Framework.Object;
+using OpenTK.Graphics.OpenGL;
 using Zenseless.Geometry;
 
 namespace Framework.Collision {
 
-	public class CircleCollider : ColliderComponent {
+	public class CircleCollider : ColliderComponent, RenderComponent {
 
 		public Circle Circle { get; set; }
 
@@ -56,7 +60,22 @@ namespace Framework.Collision {
 			transformedCircleCached = null;
 		}
 		
-		// TODO Debur Render
+		public void Render() {
+			if (FrameworkDebugMode.IsEnabled) {
+				var matrix = GameObject.Transform.GetTransformationMatrixCached(!GameObject.IsUiElement);
+				var centerT = FastVector2Transform.Transform(Circle.CenterX, Circle.CenterY, matrix);
+				var radiusT = Circle.Radius; // NOTE We need to transform this with scaling later
+
+				GL.Color4(Color.Red);
+				GL.Begin(PrimitiveType.LineStripAdjacency);
+				for (var angle = 0.0f; angle <= 360.0f; angle += 0.2f) {
+					GL.Vertex2(
+						centerT.X + Math.Sin(angle) * radiusT,
+						centerT.Y + Math.Cos(angle) * radiusT);
+				}
+				GL.End();
+			}
+		}
 	}
 
 }

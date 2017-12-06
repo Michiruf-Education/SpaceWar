@@ -79,7 +79,7 @@ namespace Framework.Render {
 				GL.End();
 			}
 
-			// TODO
+			// NOTE Maybe debug draw?
 			//if (FrameworkDebugMode.IsEnabled) {
 			//	GL.Color4(Color.Red);
 			//	GL.PointSize(lineWidth);

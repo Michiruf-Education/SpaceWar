@@ -58,9 +58,10 @@ namespace FrameworkUnitTests {
 			Assert.AreEqual(t.LocalScaling, testScaling);
 		}
 
-		// TODO Test modifying world would not be good yet, because it will be heavily changed due to the world and local
+		// NOTE Test modifying world would not be good yet, because it will be heavily changed due to the world and local
 		// spaces separation that is needed because of GameObject parent-child structure
 		// -> Not correct, because were only testing the transform unit itself. Can we do this without mocking?
+		// -> World positions are set to obsolete for now because without a huge refactoring those will not work
 	}
 
 }

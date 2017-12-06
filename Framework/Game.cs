@@ -30,11 +30,11 @@ namespace Framework {
 			InputHandler.RegisterInputs(inputs);
 		}
 
-		public void CreatePrimitiveWindow(string title = null) {
+		public void CreatePrimitiveWindow(VierportAnchor anchor, string title = null) {
 			Window = new GameWindow {Title = title};
 			SetupInputHandler();
 			LoadLayoutAndRegisterSaveHook();
-			InitializeResizeHandler();
+			InitializeResizeHandler(anchor);
 			RegisterWindowSceneIndirections();
 		}
 
@@ -65,12 +65,22 @@ namespace Framework {
 			};
 		}
 
-		void InitializeResizeHandler() {
+		void InitializeResizeHandler(VierportAnchor anchor) {
 			Window.Resize += (sender, args) => {
 				GL.Viewport(0, 0, Window.Width, Window.Height);
-				var aspect = Window.Width / (float) Window.Height;
 				GL.LoadIdentity();
-				GL.Scale(1, aspect, 1);
+				switch (anchor) {
+					case VierportAnchor.Horizontal:
+						var aspectH = Window.Width / (float) Window.Height;
+						GL.Scale(1, aspectH, 1);
+						break;
+					case VierportAnchor.Vertical:
+						var aspectV = Window.Height / (float) Window.Width;
+						GL.Scale(aspectV, 1, 1);
+						break;
+					default:
+						throw new ArgumentException("Invalid " + typeof(VierportAnchor).Name);
+				}
 			};
 		}
 

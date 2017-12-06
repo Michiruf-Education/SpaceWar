@@ -5,6 +5,7 @@ using OpenTK.Platform;
 
 namespace Framework.Input {
 
+	[Obsolete("Not completely implemented (playerId missing)")]
 	public static class InputHandler {
 
 		private static readonly Dictionary<Key, object> KEYBOARD_MAP = new Dictionary<Key, object>();
@@ -67,12 +68,12 @@ namespace Framework.Input {
 			}
 		}
 
-		// TODO Implement playerId check to have multiple players!
+		// NOTE Implement playerId check to have multiple players!
 		public static bool KeyDown(object action, int playerId = -1) {
 			return ACTIVE_ACTIONS.Contains(action);
 		}
 
-		// TODO Implement this to have controlls not only in 8 directions! (topleft, top, topright, ...)
+		// NOTE Implement this to have controlls not only in 8 directions! (topleft, top, topright, ...)
 		public static float GetAxis() {
 			return 1f;
 		}
