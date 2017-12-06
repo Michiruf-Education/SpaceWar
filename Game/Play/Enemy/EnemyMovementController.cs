@@ -8,11 +8,12 @@ namespace SpaceWar.Game.Play.Enemy {
 
 		private PlayerT player;
 
-		public void Update() {
-			// TODO Do this somewhere else
-			if (player == null)
-				player = Scene.Current.GetGameObject<PlayerT>();
+		public override void OnStart() {
+			base.OnStart();
+			player = Scene.Current.GetGameObject<PlayerT>();
+		}
 
+		public void Update() {
 			var targetDirection = player.Transform.WorldPosition - GameObject.Transform.WorldPosition;
 			targetDirection.Normalize();
 			GameObject.Transform.WorldPosition += targetDirection * Enemy.ENEMY_SPEED * Time.DeltaTime;

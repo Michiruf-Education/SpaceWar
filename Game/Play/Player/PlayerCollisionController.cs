@@ -10,6 +10,11 @@ namespace SpaceWar.Game.Play.Player {
 
 		private Player player;
 
+		public override void OnStart() {
+			base.OnStart();
+			player = GameObject as Player;
+		}
+
 		public void OnCollide(GameObject other) {
 			Console.WriteLine(DateTime.Now + ":" + DateTime.Now.Millisecond + " Player collision with " + other.GetType().Name);
 
@@ -31,10 +36,6 @@ namespace SpaceWar.Game.Play.Player {
 					break;
 				// Damage the player if it hits an enemy
 				case Enemy.Enemy enemy:
-					// TODO Do this somewhere else
-					if (player == null)
-						player = Scene.Current.GetGameObject<Player>();
-
 					Scene.Current.Destroy(enemy);
 					player.Attributes.Damage();
 					break;

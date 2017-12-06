@@ -14,6 +14,13 @@ namespace SpaceWar.Game.Play.Player {
 
 		public float ShotRate { get; private set; } = Player.INITIAL_SHOT_RATE;
 
+		private Player player;
+
+		public override void OnStart() {
+			base.OnStart();
+			player = GameObject as Player;
+		}
+
 		public void Update() {
 			shotTimer.DoOnlyEvery(ShotRate, Shoot);
 		}
@@ -24,13 +31,13 @@ namespace SpaceWar.Game.Play.Player {
 			// Skip if no inputs are given by using the correct float comparison
 			if (Math.Abs(axis.X) < Options.CONTROLLER_THRESHOLD && Math.Abs(axis.Y) < Options.CONTROLLER_THRESHOLD) {
 				//return;
+				// TODO Remove!!! and implement correctly
 				goto Temp;
 			}
 
 			var direction = (float) Math.Atan2(axis.Y, axis.X);
 			Scene.Current.Spawn(new Shot.Shot(direction, GameObject.Transform.WorldPosition, 
-				// TODO
-				() => (GameObject as Player).Attributes.OnEnemyKill()));
+				() => player.Attributes.OnEnemyKill()));
 
 
 			Temp:
@@ -51,8 +58,7 @@ namespace SpaceWar.Game.Play.Player {
 			if (simpleAxis != Vector2.Zero) {
 				var simpleDirection = (float) Math.Atan2(simpleAxis.Y, simpleAxis.X);
 				Scene.Current.Spawn(new Shot.Shot(simpleDirection, GameObject.Transform.WorldPosition, 
-					// TODO
-					() => (GameObject as Player).Attributes.OnEnemyKill()));
+					() => player.Attributes.OnEnemyKill()));
 			}
 		}
 	}

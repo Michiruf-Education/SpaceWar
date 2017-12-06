@@ -15,9 +15,8 @@ namespace SpaceWar.Game.Play.Player {
 				GameObject.Transform.WorldPosition,
 				Player.CAMERA_SPEED,
 				Player.CAMERA_MIN_SPEED);
-			//CameraComponent.Active.Position = GameObject.Transform.WorldPosition;
 
-			// @Marc
+			// NOTE @Marc
 			// Du kannst ja statt die Geschwindigkeit fest zu machen (also was wie DISTANZ² / 10 Pixel pro Sekunde) 
 			// die Geschwindigkeit erhöhen oder verringern um nen Betrag. Also wenn im Frame zuvor die Distanz größer
 			// war (also die Kamera nun näher ist) verringerst du und sonst erhöhst die Geschwindigkeit um nen

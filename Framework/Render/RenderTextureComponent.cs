@@ -22,8 +22,6 @@ namespace Framework.Render {
 			if (texture == null) {
 				throw new ArgumentException("Texture is not a 2dGL texture!");
 			}
-
-			Lifecycle.onDestroy += () => texture?.Dispose();
 		}
 
 		public RenderTextureComponent(Bitmap image, Box2D rect) : this(image) {
@@ -32,6 +30,11 @@ namespace Framework.Render {
 
 		public RenderTextureComponent(Bitmap image, float width, float height) :
 			this(image, new Box2D(-width / 2, -height / 2, width, height)) {
+		}
+
+		public override void OnDestroy() {
+			base.OnDestroy();
+			texture?.Dispose();
 		}
 
 		public void Render() {
@@ -72,7 +75,7 @@ namespace Framework.Render {
 
 			GL.End();
 			texture.Deactivate();
-			
+
 			GL.Disable(EnableCap.Texture2D);
 		}
 	}

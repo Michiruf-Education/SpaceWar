@@ -99,7 +99,6 @@
     <Compile Include="Input\GamePad\GamePadButtonsHelper.cs" />
     <Compile Include="Input\InputHandler.cs" />
     <Compile Include="Input\InputProvider.cs" />
-    <Compile Include="Object\Lifecycle.cs" />
     <Compile Include="Object\RenderComponent.cs" />
     <Compile Include="Object\Time.cs" />
     <Compile Include="Object\UpdateComponent.cs" />

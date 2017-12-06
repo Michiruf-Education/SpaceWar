@@ -11,7 +11,9 @@ namespace SpaceWar.Game.Play {
 
 	public class PlayScene : Scene {
 
-		public PlayScene() {
+		public override void OnStart() {
+			base.OnStart();
+			
 			// Camera
 			var camera = new DefaultCameraGameObject(new Vector2(1f, 1f));
 			camera.Component.ViewportScaling = new Vector2(1f, 1f);
@@ -26,9 +28,9 @@ namespace SpaceWar.Game.Play {
 			Spawn(new Border(0f, -0.5f, 2f, 0.02f));
 
 			// Player
-			Spawn(new PointDisplay());
-			Spawn(new HealthBar());
 			Spawn(new Player.Player());
+			Spawn(new HealthBar());
+			Spawn(new PointDisplay());
 
 			// Enemies
 			Spawn(new EnemySpawnBehaviour());

@@ -9,17 +9,14 @@ namespace SpaceWar.Game.Play.UI {
 		public const float SPACE_BETWEEN_ITEMS = 0.05f;
 		public const float ITEM_SIZE = 0.05f;
 
-		private readonly List<HealthBarItem> items;
+		private readonly List<HealthBarItem> items = new List<HealthBarItem>();
 		private PlayerT player;
 
-		public HealthBar() {
-			items = new List<HealthBarItem>();
-			Init();
+		public override void OnStart() {
+			base.OnStart();
+			player = Scene.Current.GetGameObject<PlayerT>();
 
-//			// TODO: This does not work yet. Implement a list of objects that were just attached and the call the onCreate
-//			Lifecycle.onCreate += () => {
-//				player = Scene.Current.GetGameObject<PlayerT>();
-//			};
+			Init();
 		}
 
 		private void Init() {
@@ -35,13 +32,6 @@ namespace SpaceWar.Game.Play.UI {
 
 		public override void Update() {
 			base.Update();
-
-			// TODO Do this in constructor when possible
-			// (currently not possible because we need better lifecycle integration)
-			// -> Scene.Current is still null in constructor
-			if (player == null)
-				player = Scene.Current.GetGameObject<PlayerT>();
-
 			for (var i = 0; i < PlayerT.MAX_LIFES; i++) {
 				items[i].IsEnabled = player.Attributes.Lifes >= i;
 			}

@@ -6,15 +6,13 @@ using Framework.Object;
 
 namespace Framework {
 
-	// TODO Add static caches in a list with specific types (collision components, ...)
-	// to improve performance
-	// To achieve this add a IsAlive property
-
 	public class GameObject {
 
-		public Lifecycle Lifecycle { get; } = new Lifecycle();
-
-		// TODO Daniel: 2 Transforms, worldToLocal and localToWorld. Both having values for rotation, position, scaling (in primitive types)
+		// NOTE Daniel: 
+		// 2 Transforms:
+		// * worldToLocal
+		// * localToWorld.
+		// Both having values for rotation, position, scaling (in primitive types)
 		public Transform Transform { get; }
 
 		// General properties
@@ -36,9 +34,13 @@ namespace Framework {
 			Children = new ReadOnlyCollection<GameObject>(children);
 			Components = new ReadOnlyCollection<Component>(components);
 			IsUiElement = isUiElement;
+		}
 
-			// Register lifecycle delegation for components
-			Lifecycle.onDestroy += () => components.ForEach(c => c.Lifecycle?.onDestroy?.Invoke());
+		public virtual void OnStart() {
+		}
+
+		public virtual void OnDestroy() {
+			components.ForEach(c => c?.OnDestroy());
 		}
 
 		// TODO GetChild<Type> ?
@@ -46,12 +48,12 @@ namespace Framework {
 
 		public void AddChild(GameObject child) {
 			child.Parent = this;
-			child.Lifecycle?.onCreate?.Invoke();
 			children.Add(child);
+			child.OnStart();
 		}
 
 		public void RemoveChild(GameObject child) {
-			child.Lifecycle?.onDestroy?.Invoke();
+			child.OnDestroy();
 			children.Remove(child);
 		}
 
@@ -76,16 +78,20 @@ namespace Framework {
 
 		public void AddComponent(Component component) {
 			component.GameObject = this;
-			component.Lifecycle?.onCreate?.Invoke();
 			components.Add(component);
+			component.OnStart();
 		}
 
 		public void RemoveComponent(Component component) {
-			component.Lifecycle?.onDestroy?.Invoke();
+			component.OnDestroy();
 			components.Remove(component);
 		}
 
 		public virtual void Update() {
+			// Invalidate the transforms caches to not draw the same stuff like the last frame
+			// and so be able to have a cache
+			Transform.Invalidate();
+			
 			children.ForEach(go => {
 				// Skip disabled gameobjects
 				if (!go.IsEnabled) {

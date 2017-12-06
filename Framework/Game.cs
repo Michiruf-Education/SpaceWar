@@ -40,10 +40,10 @@ namespace Framework {
 
 		public void ShowScene(Scene newScene) {
 			// Delegate destroying the old scene
-			ActiveScene?.Lifecycle?.onDestroy?.Invoke();
+			ActiveScene?.OnDestroy();
 
 			ActiveScene = newScene;
-			ActiveScene?.Lifecycle?.onCreate?.Invoke();
+			ActiveScene.OnStart();
 		}
 
 		public void Run() {
@@ -60,7 +60,7 @@ namespace Framework {
 			// -> The LoadLayout extension
 			Window.LoadLayout();
 			Window.Closing += (sender, args) => {
-				ActiveScene?.Lifecycle?.onDestroy?.Invoke();
+				ActiveScene?.OnDestroy();
 				Window.SaveLayout();
 			};
 		}
