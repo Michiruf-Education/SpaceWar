@@ -10,7 +10,8 @@ namespace Framework.Camera {
 		public static CameraComponent Active { get; internal set; }
 		public static Matrix3x2 ActiveCameraMatrix {
 			get {
-				Matrix3x2.Invert(Active.GameObject.Transform.Transformation, out var cameraMatrix);
+				Matrix3x2.Invert(Active.GameObject.Transform.GetTransformationMatrixCached(false), 
+					out var cameraMatrix);
 				return cameraMatrix;
 			}
 		}

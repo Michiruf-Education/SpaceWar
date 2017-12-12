@@ -1,5 +1,4 @@
-﻿using System;
-using System.Numerics;
+﻿using System.Numerics;
 using Framework.Camera;
 using Framework.Debug;
 using Framework.Utilities;
@@ -7,6 +6,8 @@ using Zenseless.Geometry;
 using Vector2 = OpenTK.Vector2;
 
 namespace Framework {
+
+	// TODO May invalidate cache only once every Update()-cycle, that could cause the "lag" agains borders!
 
 	public class Transform {
 
@@ -19,6 +20,7 @@ namespace Framework {
 		private Matrix3x2 transformationMatrixCacheWithCamera = Matrix3x2Helper.NUMERICS_ZERO;
 		private Matrix3x2 transformationMatrixCache = Matrix3x2Helper.NUMERICS_ZERO;
 
+		/*
 		public Vector2 LocalPosition {
 			// NoFormat
 			get => ((Matrix3x2) Transformation).GetPosition();
@@ -43,7 +45,7 @@ namespace Framework {
 			get => GetTransformationMatrixCached(false).GetPosition();
 			set => Translate(value - WorldPosition, Space.World);
 		}
-		[Obsolete("May implemented in the future")]
+		[System.Obsolete("May implemented in the future")]
 		public float WorldRotation {
 			get {
 				var m = GetTransformationMatrixCached(false);
@@ -51,7 +53,7 @@ namespace Framework {
 			}
 			set { } // NOTE
 		}
-		[Obsolete("May implemented in the future")]
+		[System.Obsolete("May implemented in the future")]
 		public Vector2 WorldScaling {
 			get {
 				var m = GetTransformationMatrixCached(false);
@@ -138,6 +140,7 @@ namespace Framework {
 
 			throw new ToDevelopException("Scaling in world space not implemented. Test current behaviour before!");
 		}
+		//*/
 
 		internal Matrix3x2 GetTransformationMatrixCached(bool includeCamera) {
 			if (includeCamera) {
@@ -149,7 +152,8 @@ namespace Framework {
 			}
 
 			if (transformationMatrixCache == Matrix3x2Helper.NUMERICS_ZERO) {
-				transformationMatrixCache = GetTransformationMatrix();
+				//transformationMatrixCache = GetTransformationMatrix();
+				transformationMatrixCache = GetSimpleTransformationMatrix();
 			}
 			return transformationMatrixCache;
 		}
@@ -162,15 +166,108 @@ namespace Framework {
 			return Transformation;
 		}
 
+		/*******************************************************
+		 * Simple matrix calculation
+		 *******************************************************/
+		//*
+		private Vector2 position;
+		private float rotation;
+		private Vector2 scaling = new Vector2(1f, 1f);
+
+		public Vector2 LocalPosition {
+			get => position;
+			set {
+				position = value;
+				Invalidate();
+			}
+		}
+		public float LocalRotation {
+			get => rotation;
+			set {
+				rotation = value;
+				Invalidate();
+			}
+		}
+		public Vector2 LocalScaling {
+			get => scaling;
+			set {
+				scaling = value;
+				Invalidate();
+			}
+		}
+		public Vector2 WorldPosition {
+			get => position;
+			set {
+				position = value;
+				Invalidate();
+			}
+		}
+		public float WorldRotation {
+			get => rotation;
+			set {
+				rotation = value;
+				Invalidate();
+			}
+		}
+		public Vector2 WorldScaling {
+			get => scaling;
+			set {
+				scaling = value;
+				Invalidate();
+			}
+		}
+
+		public void Translate(Vector2 translation, Space space = Space.Local) {
+			Translate(translation.X, translation.Y, space);
+		}
+
+		public void Translate(float x, float y, Space space = Space.Local) {
+			position = new Vector2(position.X + x, position.Y + y);
+			Invalidate();
+		}
+
+		public void Rotate(float angle, Space space = Space.Local) {
+			rotation += angle;
+			Invalidate();
+		}
+
+		public void Scale(Vector2 scaling, Space space = Space.Local) {
+			Scale(scaling.X, scaling.Y, space);
+			Invalidate();
+		}
+
+		public void Scale(float scaleX, float scaleY, Space space = Space.Local) {
+			scaling = new Vector2(scaling.X * scaleX, scaling.Y * scaleY);
+			Invalidate();
+		}
+
+		Matrix3x2 GetSimpleTransformationMatrix() {
+			var transform = new Transformation2D();
+			transform.ScaleLocal(scaling.ToNumericsVector2());
+			transform.RotateLocal(rotation);
+			transform.TranslateLocal(position.ToNumericsVector2());
+
+			if (GameObject?.Parent != null) {
+				return GameObject.Parent.Transform.GetSimpleTransformationMatrix() * transform;
+			}
+
+			return transform;
+		}
+		//*/
+		/*******************************************************
+		 * End simple matrix calculation
+		 *******************************************************/
+
 		internal void Invalidate() {
 			transformationMatrixCacheWithCamera = Matrix3x2Helper.NUMERICS_ZERO;
 			transformationMatrixCache = Matrix3x2Helper.NUMERICS_ZERO;
 		}
 	}
-	
+
 	public enum Space {
-		
-		World, Local
+
+		World,
+		Local
 	}
 
 }

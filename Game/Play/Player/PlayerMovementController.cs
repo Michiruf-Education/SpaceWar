@@ -1,6 +1,7 @@
 ﻿using System;
 using Framework;
 using Framework.Object;
+using OpenTK;
 using OpenTK.Input;
 
 namespace SpaceWar.Game.Play.Player {
@@ -17,35 +18,41 @@ namespace SpaceWar.Game.Play.Player {
 		public void Update() {
 			// Detect keyboard movements first only for the first player
 			if (player.PlayerIndex == 0) {
-				var keyboardInputDetected = false;
+				var keyboardAxis = Vector2.Zero;
 				if (Keyboard.GetState().IsKeyDown(Key.W)) {
-					GameObject.Transform.Translate(0, Player.INITIAL_SPEED * Time.DeltaTime, Space.World);
-					keyboardInputDetected = true;
+					keyboardAxis.Y++;
 				}
 				if (Keyboard.GetState().IsKeyDown(Key.S)) {
-					GameObject.Transform.Translate(0, -Player.INITIAL_SPEED * Time.DeltaTime, Space.World);
-					keyboardInputDetected = true;
+					keyboardAxis.Y--;
 				}
 				if (Keyboard.GetState().IsKeyDown(Key.A)) {
-					GameObject.Transform.Translate(-Player.INITIAL_SPEED * Time.DeltaTime, 0, Space.World);
-					keyboardInputDetected = true;
+					keyboardAxis.X--;
 				}
 				if (Keyboard.GetState().IsKeyDown(Key.D)) {
-					GameObject.Transform.Translate(Player.INITIAL_SPEED * Time.DeltaTime, 0, Space.World);
-					keyboardInputDetected = true;
+					keyboardAxis.X++;
 				}
-				if (keyboardInputDetected) {
+				if (keyboardAxis != Vector2.Zero) {
+					GameObject.Transform.Translate(
+						keyboardAxis.X * Player.INITIAL_SPEED * Time.DeltaTime,
+						keyboardAxis.Y * Player.INITIAL_SPEED * Time.DeltaTime,
+						Space.World);
+					var direction = (float) Math.Atan2(keyboardAxis.Y, keyboardAxis.X);
+					GameObject.Transform.LocalRotation = MathHelper.RadiansToDegrees(direction);
+					
+					// Do not detect controller if keyboard was pressed
 					return;
 				}
 			}
 
 			// Detect gamepad inputs
 			var gamepadAxis = GamePad.GetState(player.PlayerIndex).ThumbSticks.Left;
-			if (Math.Abs(gamepadAxis.X) > Options.CONTROLLER_THRESHOLD) {
-				GameObject.Transform.Translate(gamepadAxis.X * Player.INITIAL_SPEED * Time.DeltaTime, 0, Space.World);
-			}
-			if (Math.Abs(gamepadAxis.Y) > Options.CONTROLLER_THRESHOLD) {
-				GameObject.Transform.Translate(0, gamepadAxis.Y * Player.INITIAL_SPEED * Time.DeltaTime, Space.World);
+			if (Math.Abs(gamepadAxis.Length) > Options.CONTROLLER_THRESHOLD) {
+				GameObject.Transform.Translate(
+					gamepadAxis.X * Player.INITIAL_SPEED * Time.DeltaTime,
+					gamepadAxis.Y * Player.INITIAL_SPEED * Time.DeltaTime,
+					Space.World);
+				var direction = (float) Math.Atan2(gamepadAxis.Y, gamepadAxis.X);
+				GameObject.Transform.LocalRotation = MathHelper.RadiansToDegrees(direction);
 			}
 		}
 	}

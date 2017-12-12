@@ -41,8 +41,8 @@ namespace SpaceWar.Game.Play.Player {
 					keyboardAxis.X++;
 				}
 				if (keyboardAxis != Vector2.Zero) {
-					var simpleDirection = (float) Math.Atan2(keyboardAxis.Y, keyboardAxis.X);
-					Scene.Current.Spawn(new Shot.Shot(simpleDirection, GameObject.Transform.WorldPosition,
+					var direction = (float) Math.Atan2(keyboardAxis.Y, keyboardAxis.X);
+					Scene.Current.Spawn(new Shot.Shot(direction, GameObject.Transform.WorldPosition,
 						() => player.Attributes.OnEnemyKill()));
 					return;
 				}
@@ -50,8 +50,7 @@ namespace SpaceWar.Game.Play.Player {
 
 			// Detect gamepad and skip if no inputs are given by using the correct float comparison
 			var gamepadAxis = GamePad.GetState(player.PlayerIndex).ThumbSticks.Right;
-			if (Math.Abs(gamepadAxis.X) >= Options.CONTROLLER_THRESHOLD ||
-			    Math.Abs(gamepadAxis.Y) >= Options.CONTROLLER_THRESHOLD) {
+			if (gamepadAxis.Length >= Options.CONTROLLER_THRESHOLD) {
 				var direction = (float) Math.Atan2(gamepadAxis.Y, gamepadAxis.X);
 				Scene.Current.Spawn(new Shot.Shot(direction, GameObject.Transform.WorldPosition,
 					() => player.Attributes.OnEnemyKill()));
