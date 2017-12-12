@@ -118,6 +118,7 @@
     <Compile Include="Utilities\Matrix3x2PrintExtension.cs" />
     <Compile Include="Utilities\VectorConversionExtension.cs" />
     <Compile Include="Widgets\Button.cs" />
+    <Compile Include="Widgets\BoxClickComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

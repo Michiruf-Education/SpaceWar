@@ -2,7 +2,6 @@
 using Framework;
 using Framework.Collision;
 using Framework.Render;
-using Zenseless.Geometry;
 
 namespace SpaceWar.Game.Play.Player {
 
@@ -27,7 +26,10 @@ namespace SpaceWar.Game.Play.Player {
 		public RenderBoxComponent RenderBoxComponent { get; }
 		public BoxCollider BoxCollider { get; }
 
-		public Player() {
+		// Properties
+		public int PlayerIndex { get; }
+
+		public Player(int playerIndex) {
 			Attributes = new PlayerAttributes();
 			MovementController = new PlayerMovementController();
 			ShotController = new PlayerShotController();
@@ -43,6 +45,8 @@ namespace SpaceWar.Game.Play.Player {
 			AddComponent(FollowingCameraController);
 			AddComponent(RenderBoxComponent);
 			AddComponent(BoxCollider);
+
+			PlayerIndex = playerIndex;
 		}
 	}
 

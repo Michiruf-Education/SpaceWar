@@ -14,7 +14,7 @@ namespace SpaceWar.Game.Play.UI {
 		public PointDisplay() {
 			AddComponent(text = new RenderTextComponent(
 				"",
-				new Font(new FontFamily("Arial"), 10),
+				Options.DEFAULT_FONT,
 				new SolidBrush(Color.White),
 				new Box2D(0, -0.1f, 0.2f, 0.1f)
 			));

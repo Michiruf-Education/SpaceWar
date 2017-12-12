@@ -2,7 +2,6 @@
 using Framework;
 using Framework.Collision;
 using Framework.Render;
-using Zenseless.Geometry;
 
 namespace SpaceWar.Game.Play.Enemy {
 

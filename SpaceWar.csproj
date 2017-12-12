@@ -86,6 +86,7 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Game\InputActions.cs" />
     <Compile Include="Game\Keymap.cs" />
+    <Compile Include="Game\Menu\MenuScene.cs" />
     <Compile Include="Game\Options.cs" />
     <Compile Include="Game\Play\Enemy\Enemy.cs" />
     <Compile Include="Game\Play\Enemy\EnemyCollisionController.cs" />

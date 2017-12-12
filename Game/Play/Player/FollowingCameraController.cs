@@ -1,9 +1,7 @@
 ﻿using Framework;
 using Framework.Camera;
 using Framework.Object;
-using Framework.Utilities;
 using OpenTK;
-using NVector2 = System.Numerics.Vector2;
 
 namespace SpaceWar.Game.Play.Player {
 

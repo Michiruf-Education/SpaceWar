@@ -4,7 +4,6 @@ using Framework;
 using Framework.Collision;
 using Framework.Render;
 using OpenTK;
-using Zenseless.Geometry;
 
 namespace SpaceWar.Game.Play.Shot {
 

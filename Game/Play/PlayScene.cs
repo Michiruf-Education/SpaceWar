@@ -1,7 +1,6 @@
 ﻿using Framework;
 using Framework.Camera;
 using Framework.Engine;
-using Framework.Object;
 using OpenTK;
 using SpaceWar.Game.Play.Enemy;
 using SpaceWar.Game.Play.Field;
@@ -11,9 +10,15 @@ namespace SpaceWar.Game.Play {
 
 	public class PlayScene : Scene {
 
+		private readonly int playerCount;
+
+		public PlayScene(int playerCount = 1) {
+			this.playerCount = playerCount;
+		}
+
 		public override void OnStart() {
 			base.OnStart();
-			
+
 			// Camera
 			var camera = new DefaultCameraGameObject(new Vector2(1f, 1f));
 			camera.Component.ViewportScaling = new Vector2(1f, 1f);
@@ -28,7 +33,9 @@ namespace SpaceWar.Game.Play {
 			Spawn(new Border(0f, -0.5f, 2f, 0.02f));
 
 			// Player
-			Spawn(new Player.Player());
+			for (int i = 0; i < playerCount; i++) {
+				Spawn(new Player.Player(i));
+			}
 			Spawn(new HealthBar());
 			Spawn(new PointDisplay());
 
