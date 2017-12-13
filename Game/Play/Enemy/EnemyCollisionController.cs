@@ -21,7 +21,7 @@ namespace SpaceWar.Game.Play.Enemy {
 			var diffY = thisBox.MinY - previousBox.MinY;
 			// TODO See comment in PlayerCollisionController
 
-			GameObject.Transform.Translate(diffX, diffY);
+			GameObject.Transform.Translate(diffX, diffY, Space.World);
 		}
 	}
 

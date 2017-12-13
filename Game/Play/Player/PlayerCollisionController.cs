@@ -32,7 +32,7 @@ namespace SpaceWar.Game.Play.Player {
 					// borders. Why is currently unknown
 					// It also happens if the directions to
 
-					GameObject.Transform.Translate(diffX, diffY);
+					GameObject.Transform.Translate(diffX, diffY, Space.World);
 					break;
 				// Damage the player if it hits an enemy
 				case Enemy.Enemy enemy:

@@ -19,18 +19,18 @@ namespace Framework.Camera {
 		// TODO World or Local Stuff?!?!
 		public Vector2 Position {
 			// NoFormat
-			get => GameObject.Transform.LocalPosition;
-			set => GameObject.Transform.LocalPosition = value;
+			get => GameObject.Transform.WorldPosition;
+			set => GameObject.Transform.WorldPosition = value;
 		}
 		public float Rotation {
 			// NoFormat
-			get => GameObject.Transform.LocalRotation;
-			set => GameObject.Transform.LocalRotation = value;
+			get => GameObject.Transform.WorldRotation;
+			set => GameObject.Transform.WorldRotation = value;
 		}
 		public Vector2 ViewportScaling {
 			// NoFormat
-			get => GameObject.Transform.LocalScaling;
-			set => GameObject.Transform.LocalScaling = value;
+			get => GameObject.Transform.WorldScaling;
+			set => GameObject.Transform.WorldScaling = value;
 		}
 
 		public CameraComponent() :

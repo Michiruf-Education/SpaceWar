@@ -19,53 +19,49 @@ namespace Framework {
 
 		public GameObject GameObject { get; internal set; }
 
-		public TransformationUnit LocalToWorld { get; } = new TransformationUnit();
-		public TransformationUnit WorldToLocal { get; } = new TransformationUnit();
+		public Transformation2D LocalToWorld { get; set; } = new Transformation2D();
+		public Transformation2D WorldToLocal { get; set; } = new Transformation2D();
 
-		// Currently local data, could be world stuff?
-		private Vector2 position;
-		private float rotation;
-		private Vector2 scaling;
+		private Vector2 worldPosition;
+		private float worldRotation;
+		private Vector2 worldScaling;
 
 		private Matrix3x2 transformationMatrixCache = Matrix3x2Helper.NUMERICS_ZERO;
 		private Matrix3x2 transformationMatrixCacheWithCamera = Matrix3x2Helper.NUMERICS_ZERO;
 
 		public Vector2 LocalPosition {
-			get => position;
-			set {
-				var positionDifference = value - position;
-				Translate(positionDifference);
-			}
+			// NoFormat
+			get => TransformPoint(worldPosition, Space.Local);
+			set => WorldPosition = TransformPoint(value, Space.Local);
 		}
 		public float LocalRotation {
-			get => rotation;
-			set {
-				var rotationDifference = value - rotation;
-				Rotate(rotationDifference);
-			}
+			// NoFormat
+			get => TransformAngle(worldRotation, Space.Local);
+			set => WorldRotation = TransformAngle(value, Space.Local);
 		}
 		public Vector2 LocalScaling {
-			get => scaling;
-			set {
-				var scalingFactor = new Vector2(value.X / scaling.X, value.Y / scaling.Y);
-				Scale(scalingFactor);
-			}
+			// NoFormat
+			get => TransformPoint(worldScaling, Space.Local);
+			set => WorldScaling = TransformPoint(value, Space.Local);
 		}
 
 		public Vector2 WorldPosition {
 			// NoFormat
-			get => TransformPoint(position, Space.World);
-			set => LocalPosition = TransformPoint(value, Space.Local);
+			get => worldPosition;
+			set => Translate(value - WorldPosition);
 		}
 		public float WorldRotation {
 			// NoFormat
-			get => TransformAngle(rotation, Space.World);
-			set => LocalRotation = TransformAngle(value, Space.Local);
+			get => worldRotation;
+			set => Rotate(value - WorldRotation);
 		}
 		public Vector2 WorldScaling {
 			// NoFormat
-			get => TransformPoint(scaling, Space.World);
-			set => LocalScaling = TransformPoint(value, Space.Local);
+			get => worldScaling;
+			set {
+				var currentWorldScaling = WorldScaling;
+				Scale(new Vector2(value.X / currentWorldScaling.X, value.Y / currentWorldScaling.Y));
+			}
 		}
 
 		public void Translate(float x, float y, Space space = Space.Local) {
@@ -75,13 +71,14 @@ namespace Framework {
 		public void Translate(Vector2 translation, Space space = Space.Local) {
 			switch (space) {
 				case Space.Local:
-					WorldToLocal.Translate(translation);
-					LocalToWorld.Translate(translation);
-					position += translation;
-					break;
-				case Space.World:
-					Translate(TransformPoint(translation, Space.Local));
+					Translate(TransformPoint(translation, Space.World), Space.World);
 					return;
+				case Space.World:
+					// NOTE That worked before! (CalculateTransform did not exist)
+					LocalToWorld.TranslateLocal(-translation.ToNumericsVector2());
+					WorldToLocal.TranslateGlobal(translation.ToNumericsVector2());
+					worldPosition += translation;
+					break;
 				default:
 					throw new SpaceNotExistantException();
 			}
@@ -91,9 +88,11 @@ namespace Framework {
 		public void Rotate(float angle) {
 			// Note that rotation is the same for local and world space since were only
 			// having a float instead like in 3d having a vector3
-			WorldToLocal.Rotate(angle);
-			LocalToWorld.Rotate(-angle);
-			rotation += angle;
+			
+			// NOTE That worked before! (CalculateTransform did not exist)
+			LocalToWorld.RotateGlobal(-angle);
+			WorldToLocal.RotateLocal(angle);
+			worldRotation += angle;
 			Invalidate();
 		}
 
@@ -112,13 +111,14 @@ namespace Framework {
 		public void Scale(Vector2 scale, Space space = Space.Local) {
 			switch (space) {
 				case Space.Local:
-					LocalToWorld.Scale(scale);
-					WorldToLocal.Scale(new Vector2(1 / scale.X, 1 / scale.Y));
-					scaling *= scale;
-					break;
-				case Space.World:
-					Scale(TransformPoint(scale, Space.Local));
+					Scale(TransformPoint(scale, Space.World), Space.World);
 					return;
+				case Space.World:
+					worldScaling *= scale;
+					// NOTE That worked before! (CalculateTransform did not exist)
+					LocalToWorld.ScaleGlobal(new Vector2(1 / scale.X, 1 / scale.Y).ToNumericsVector2());
+					WorldToLocal.ScaleLocal(scale.ToNumericsVector2());
+					break;
 				default:
 					throw new SpaceNotExistantException();
 			}
@@ -126,7 +126,7 @@ namespace Framework {
 		}
 
 		public void Scale(float scaleX, float scaleY, float pivotX, float pivotY, Space space = Space.Local) {
-			Scale(new Vector2(scaling.X, scaling.Y), pivotX, pivotY, space);
+			Scale(new Vector2(worldScaling.X, worldScaling.Y), pivotX, pivotY, space);
 		}
 
 		public void Scale(Vector2 scaling, float pivotX, float pivotY, Space space = Space.Local) {
@@ -136,9 +136,9 @@ namespace Framework {
 		public Vector2 TransformPoint(Vector2 point, Space targetSpace, bool includeParens = false /* TODO */) {
 			switch (targetSpace) {
 				case Space.Local:
-					return FastVector2Transform.Transform(point.X, point.Y, WorldToLocal.Transformation);
+					return FastVector2Transform.Transform(point.X, point.Y, WorldToLocal);
 				case Space.World:
-					return FastVector2Transform.Transform(point.X, point.Y, LocalToWorld.Transformation);
+					return FastVector2Transform.Transform(point.X, point.Y, LocalToWorld);
 				default:
 					throw new SpaceNotExistantException();
 			}
@@ -148,10 +148,10 @@ namespace Framework {
 			Matrix3x2 spaceMatrix;
 			switch (space) {
 				case Space.Local:
-					spaceMatrix = LocalToWorld.Transformation;
+					spaceMatrix = LocalToWorld;
 					break;
 				case Space.World:
-					spaceMatrix = LocalToWorld.Transformation;
+					spaceMatrix = LocalToWorld;
 					break;
 				default:
 					throw new SpaceNotExistantException();
@@ -180,13 +180,27 @@ namespace Framework {
 
 		Matrix3x2 GetTransformationMatrix() {
 			if (GameObject?.Parent != null) {
-				return GameObject.Parent.Transform.GetTransformationMatrix() * WorldToLocal.Transformation;
+				return GameObject.Parent.Transform.GetTransformationMatrix() * WorldToLocal;
 			}
 
-			return WorldToLocal.Transformation;
+			return WorldToLocal;
 		}
 
+		/* TODO HERE I AM
+		internal void CalculateTransformations() {
+			WorldToLocal = new Transformation2D();
+			WorldToLocal.TranslateGlobal(worldPosition.ToNumericsVector2());
+			WorldToLocal.RotateLocal(worldRotation);
+			WorldToLocal.ScaleLocal(worldScaling.ToNumericsVector2());
+
+			Matrix3x2.Invert(WorldToLocal, out var newLocalToWorld);
+			LocalToWorld = new Transformation2D();
+			LocalToWorld.TransformLocal(newLocalToWorld);
+		}
+		*/
+
 		internal void Invalidate() {
+//			CalculateTransformations();
 			transformationMatrixCacheWithCamera = Matrix3x2Helper.NUMERICS_ZERO;
 			transformationMatrixCache = Matrix3x2Helper.NUMERICS_ZERO;
 		}
@@ -199,47 +213,6 @@ namespace Framework {
 	}
 
 	public class SpaceNotExistantException : Exception {
-	}
-
-	public class TransformationUnit {
-
-		public Transformation2D Transformation { get; } = new Transformation2D();
-
-		public void Translate(Vector2 translation) {
-			Translate(translation.X, translation.Y);
-		}
-
-		public void Translate(float x, float y) {
-			Transformation.TranslateLocal(x, y);
-		}
-
-		public void Rotate(float angle) {
-			Transformation.RotateLocal(angle);
-		}
-
-		public void Rotate(Vector2 pivot, float angle) {
-			Rotate(pivot.X, pivot.Y, angle);
-		}
-
-		public void Rotate(float pivotX, float pivotY, float angle) {
-			Transformation.TransformLocal(Transformation2D.CreateRotationAround(pivotX, pivotY, angle));
-		}
-
-		public void Scale(Vector2 scaling) {
-			Scale(scaling.X, scaling.Y);
-		}
-
-		public void Scale(float scaleX, float scaleY) {
-			Transformation.ScaleLocal(scaleX, scaleY);
-		}
-
-		public void Scale(Vector2 scaling, float pivotX, float pivotY) {
-			Scale(scaling.X, scaling.Y, pivotX, pivotY);
-		}
-
-		public void Scale(float scaleX, float scaleY, float pivotX, float pivotY) {
-			Transformation.TransformLocal(Transformation2D.CreateScaleAround(pivotX, pivotY, scaleX, scaleY));
-		}
 	}
 
 }

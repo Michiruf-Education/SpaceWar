@@ -48,7 +48,7 @@ namespace Framework.Render {
 		}
 
 		public void Render() {
-			var matrix = GameObject.Transform.GetTransformationMatrixCached(!GameObject.IsUiElement);
+			var matrix = GameObject.Transform.GetTransformationMatrixCached(false);
 			var p1Fill = FastVector2Transform.Transform(p1.X, p1.Y, matrix);
 			var p2Fill = FastVector2Transform.Transform(p2.X, p2.Y, matrix);
 			var p3Fill = FastVector2Transform.Transform(p3.X, p3.Y, matrix);

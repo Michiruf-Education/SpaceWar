@@ -16,8 +16,18 @@ namespace Framework {
 		public Transform Transform { get; }
 
 		// General properties
-		public bool IsEnabled { get; set; } = true;
-		public bool IsUiElement { get; set; }
+		private bool isEnabled = true;
+		public bool IsEnabled {
+			// NoFormat
+			get => isEnabled && (Parent == null || Parent.IsEnabled);
+			set => isEnabled = value;
+		}
+		private bool isUiElement;
+		public bool IsUiElement {
+			// NoFormat
+			get => isUiElement || Parent != null && Parent.IsUiElement;
+			set => isUiElement = value;
+		}
 
 		// Parent and children
 		public GameObject Parent { get; private set; }
@@ -47,6 +57,8 @@ namespace Framework {
 		// TODO GetChildAt(int index)
 
 		public void AddChild(GameObject child) {
+			// TODO Fail if the child has a gameobject already
+			
 			child.Parent = this;
 			children.Add(child);
 			child.OnStart();
@@ -91,7 +103,7 @@ namespace Framework {
 			// Invalidate the transforms caches to not draw the same stuff like the last frame
 			// and so be able to have a cache
 			Transform.Invalidate();
-			
+
 			children.ForEach(go => {
 				// Skip disabled gameobjects
 				if (!go.IsEnabled) {
