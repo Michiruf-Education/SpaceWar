@@ -113,7 +113,6 @@
     <Compile Include="Transform.cs" />
     <Compile Include="Utilities\DelayTimer.cs" />
     <Compile Include="Utilities\LimitedRateTimer.cs" />
-    <Compile Include="Utilities\Matrix3x2DataExtension.cs" />
     <Compile Include="Utilities\Matrix3x2Helper.cs" />
     <Compile Include="Utilities\Matrix3x2PrintExtension.cs" />
     <Compile Include="Utilities\VectorConversionExtension.cs" />
@@ -129,6 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="TODO.txt" />
+    <Content Include="Transform_old.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

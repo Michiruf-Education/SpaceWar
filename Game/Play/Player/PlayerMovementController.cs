@@ -35,9 +35,10 @@ namespace SpaceWar.Game.Play.Player {
 					GameObject.Transform.Translate(
 						keyboardAxis.X * Player.INITIAL_SPEED * Time.DeltaTime,
 						keyboardAxis.Y * Player.INITIAL_SPEED * Time.DeltaTime,
-						Space.World);
+						Space.Local);
 					var direction = (float) Math.Atan2(keyboardAxis.Y, keyboardAxis.X);
-					GameObject.Transform.LocalRotation = MathHelper.RadiansToDegrees(direction);
+					// TODO Reenable
+//					GameObject.Transform.LocalRotation = MathHelper.RadiansToDegrees(direction);
 					
 					// Do not detect controller if keyboard was pressed
 					return;

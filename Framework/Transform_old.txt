@@ -1,0 +1,30 @@
+
+
+		internal Matrix3x2 GetTransformationMatrixCached(bool includeCamera) {
+			if (includeCamera) {
+				if (transformationMatrixCacheWithCamera == Matrix3x2Helper.NUMERICS_ZERO) {
+					transformationMatrixCacheWithCamera = CameraComponent.ActiveCameraMatrix *
+					                                      GetTransformationMatrixCached(false);
+				}
+				return transformationMatrixCacheWithCamera;
+			}
+
+			if (transformationMatrixCache == Matrix3x2Helper.NUMERICS_ZERO) {
+				//transformationMatrixCache = GetTransformationMatrix();
+				transformationMatrixCache = GetSimpleTransformationMatrix();
+			}
+			return transformationMatrixCache;
+		}
+
+		Matrix3x2 GetTransformationMatrix() {
+			if (GameObject?.Parent != null) {
+				return GameObject.Parent.Transform.GetTransformationMatrix() * Transformation;
+			}
+
+			return Transformation;
+		}
+
+		internal void Invalidate() {
+			transformationMatrixCacheWithCamera = Matrix3x2Helper.NUMERICS_ZERO;
+			transformationMatrixCache = Matrix3x2Helper.NUMERICS_ZERO;
+		}
