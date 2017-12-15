@@ -16,13 +16,15 @@ namespace SpaceWar.Game.Play.Player {
 		}
 
 		public void Update() {
-			GameObject.Transform.Rotate(360f * Time.DeltaTime);
-			GameObject.Transform.Scale(1.001f, 1.001f, Space.World);
-			
-			
 			// Detect keyboard movements first only for the first player
 			if (player.PlayerIndex == 0) {
 				var keyboardAxis = Vector2.Zero;
+				if (Keyboard.GetState().IsKeyDown(Key.Space)) {
+					GameObject.Transform.Scale(1.01f, 1.01f, Space.World);
+				}
+				if (Keyboard.GetState().IsKeyDown(Key.C)) {
+					GameObject.Transform.Scale(0.99f, 0.99f, Space.World);
+				}
 				if (Keyboard.GetState().IsKeyDown(Key.W)) {
 					keyboardAxis.Y++;
 				}
@@ -40,9 +42,9 @@ namespace SpaceWar.Game.Play.Player {
 						keyboardAxis.X * Player.INITIAL_SPEED * Time.DeltaTime,
 						keyboardAxis.Y * Player.INITIAL_SPEED * Time.DeltaTime,
 						Space.World);
-					var direction = (float) Math.Atan2(keyboardAxis.Y, keyboardAxis.X);
-					//GameObject.Transform.WorldRotation = MathHelper.RadiansToDegrees(direction);
-					
+					GameObject.Transform.WorldRotation = MathHelper.RadiansToDegrees(
+						(float) Math.Atan2(keyboardAxis.Y, keyboardAxis.X));
+
 					// Do not detect controller if keyboard was pressed
 					return;
 				}
@@ -55,8 +57,8 @@ namespace SpaceWar.Game.Play.Player {
 					gamepadAxis.X * Player.INITIAL_SPEED * Time.DeltaTime,
 					gamepadAxis.Y * Player.INITIAL_SPEED * Time.DeltaTime,
 					Space.World);
-				var direction = (float) Math.Atan2(gamepadAxis.Y, gamepadAxis.X);
-				GameObject.Transform.LocalRotation = MathHelper.RadiansToDegrees(direction);
+				GameObject.Transform.WorldRotation = MathHelper.RadiansToDegrees(
+					(float) Math.Atan2(gamepadAxis.Y, gamepadAxis.X));
 			}
 		}
 	}

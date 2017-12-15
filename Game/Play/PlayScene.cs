@@ -20,9 +20,10 @@ namespace SpaceWar.Game.Play {
 			base.OnStart();
 
 			// Camera
-			var camera = new DefaultCameraGameObject(new Vector2(1f, 1f));
-			camera.Component.ViewportScaling = new Vector2(1f, 1f);
-			camera.Component.Position = new Vector2(0f, 0f);
+			var camera = new DefaultCameraGameObject();
+//			camera.Component.ViewportScaling = new Vector2(10f, 10f);
+//			camera.Component.Position = new Vector2(-1f, 1f);
+//			camera.Component.Rotation = 90;
 			Spawn(camera);
 
 			// World

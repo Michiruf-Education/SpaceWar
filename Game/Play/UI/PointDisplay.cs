@@ -11,7 +11,7 @@ namespace SpaceWar.Game.Play.UI {
 		private readonly RenderTextComponent text;
 		private PlayerT player;
 
-		public PointDisplay() {
+		public PointDisplay() : base(true) {
 			AddComponent(text = new RenderTextComponent(
 				"",
 				Options.DEFAULT_FONT,
@@ -23,7 +23,7 @@ namespace SpaceWar.Game.Play.UI {
 		public override void OnStart() {
 			base.OnStart();
 			player = Scene.Current.GetGameObject<PlayerT>();
-			Transform.Translate(-0.95f, 0.45f);
+			Transform.Translate(-0.95f, 0.45f, Space.World);
 		}
 
 		public override void Update() {

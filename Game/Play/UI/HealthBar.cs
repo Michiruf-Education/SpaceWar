@@ -12,19 +12,17 @@ namespace SpaceWar.Game.Play.UI {
 		private readonly List<HealthBarItem> items = new List<HealthBarItem>();
 		private PlayerT player;
 
+		public HealthBar() : base(true) {
+		}
+
 		public override void OnStart() {
 			base.OnStart();
 			player = Scene.Current.GetGameObject<PlayerT>();
-
-			Init();
-		}
-
-		private void Init() {
-			Transform.Translate(-0.95f, -0.45f);
+			Transform.Translate(-0.95f, -0.45f, Space.World);
 
 			for (var i = 0; i < PlayerT.MAX_LIFES; i++) {
 				var item = new HealthBarItem();
-				item.Transform.Translate(SPACE_BETWEEN_ITEMS * i, 0);
+				item.Transform.Translate(SPACE_BETWEEN_ITEMS * i, 0, Space.Local);
 				items.Add(item);
 				AddChild(item);
 			}

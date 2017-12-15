@@ -16,9 +16,8 @@ namespace SpaceWar.Game.Play.Enemy {
 		public void Update() {
 			var targetDirection = player.Transform.WorldPosition - GameObject.Transform.WorldPosition;
 			targetDirection.Normalize();
-			// TODO Test if transform works with this code
-			//GameObject.Transform.WorldPosition += targetDirection * Enemy.ENEMY_SPEED * Time.DeltaTime;
 			GameObject.Transform.Translate(targetDirection * Enemy.ENEMY_SPEED * Time.DeltaTime, Space.World);
+			GameObject.Transform.LookAt(player.Transform.WorldPosition);
 		}
 	}
 

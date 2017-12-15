@@ -13,8 +13,8 @@ namespace FrameworkUnitTests {
 		public void ConstructorTest() {
 			var t = new Transform();
 			Assert.IsNull(t.GameObject);
-			Assert.AreEqual((Matrix3x2) t.LocalToWorld, Matrix3x2.Identity);
-			Assert.AreEqual((Matrix3x2) t.WorldToLocal, Matrix3x2.Identity);
+			Assert.AreEqual(t.LocalToWorld, Matrix3x2.Identity);
+			Assert.AreEqual(t.WorldToLocal, Matrix3x2.Identity);
 		}
 
 		[TestMethod]
@@ -29,7 +29,7 @@ namespace FrameworkUnitTests {
 		[TestMethod]
 		public void TestTranslationInversableLocalAndWorldConversion() {
 			var t = new Transform();
-			t.Translate(new Vector2(1, 2));
+			t.Translate(new Vector2(1, 2), Space.Local);
 			var tpInput = new Vector2(1, 2);
 			var tpLocal = t.TransformPoint(tpInput, Space.Local);
 			var tpWorld = t.TransformPoint(tpLocal, Space.World);
@@ -49,7 +49,7 @@ namespace FrameworkUnitTests {
 		[TestMethod]
 		public void TestScalingInversableLocalAndWorldConversion() {
 			var t = new Transform();
-			t.Scale(0.2f, 1.5f);
+			t.Scale(0.2f, 1.5f, Space.Local);
 			var spInput = new Vector2(40, 20f);
 			var spLocal = t.TransformPoint(spInput, Space.Local);
 			var spWorld = t.TransformPoint(spLocal, Space.World);
@@ -60,7 +60,7 @@ namespace FrameworkUnitTests {
 		public void TestComplexInversableLocalAndWorldConversion_Local() {
 			var t = new Transform();
 
-			t.Translate(new Vector2(1, 2));
+			t.Translate(new Vector2(1, 2), Space.Local);
 			var tpInput = new Vector2(1, 2);
 			var tpLocal = t.TransformPoint(tpInput, Space.Local);
 			var tpWorld = t.TransformPoint(tpLocal, Space.World);
@@ -72,7 +72,7 @@ namespace FrameworkUnitTests {
 			var rpWorld = t.TransformPoint(rpLocal, Space.World);
 			Assert.AreEqual(rpInput, rpWorld);
 
-			t.Scale(3f, 2f);
+			t.Scale(3f, 2f, Space.Local);
 			var spInput = new Vector2(40, 20);
 			var spLocal = t.TransformPoint(spInput, Space.Local);
 			var spWorld = t.TransformPoint(spLocal, Space.World);
@@ -106,51 +106,51 @@ namespace FrameworkUnitTests {
 		public void TestWorldToLocalLocalToWorldMultiplication_TranslateLocal() {
 			var tt = new Transform();
 			tt.Translate(1f, 2f, Space.Local);
-			Assert.AreEqual(tt.WorldToLocal * (Matrix3x2) tt.LocalToWorld, Matrix3x2.Identity);
+			Assert.AreEqual(tt.WorldToLocal * tt.LocalToWorld, Matrix3x2.Identity);
 		}
 
 		[TestMethod]
 		public void TestWorldToLocalLocalToWorldMultiplication_RotateLocal() {
 			var tt = new Transform();
 			tt.Rotate(90);
-			Assert.AreEqual(tt.WorldToLocal * (Matrix3x2) tt.LocalToWorld, Matrix3x2.Identity);
+			Assert.AreEqual(tt.WorldToLocal * tt.LocalToWorld, Matrix3x2.Identity);
 		}
 
 		[TestMethod]
 		public void TestWorldToLocalLocalToWorldMultiplication_ScaleLocal() {
 			var tt = new Transform();
-			tt.Scale(2f, 3f);
-			Assert.AreEqual(tt.WorldToLocal * (Matrix3x2) tt.LocalToWorld, Matrix3x2.Identity);
+			tt.Scale(2f, 3f, Space.Local);
+			Assert.AreEqual(tt.WorldToLocal * tt.LocalToWorld, Matrix3x2.Identity);
 		}
 
 		[TestMethod]
 		public void TestWorldToLocalLocalToWorldMultiplication_TranslateWorld() {
 			var tt = new Transform();
 			tt.Translate(1f, 2f, Space.World);
-			Assert.AreEqual(tt.WorldToLocal * (Matrix3x2) tt.LocalToWorld, Matrix3x2.Identity);
+			Assert.AreEqual(tt.WorldToLocal * tt.LocalToWorld, Matrix3x2.Identity);
 		}
 
 		[TestMethod]
 		public void TestWorldToLocalLocalToWorldMultiplication_RotateWorld() {
 			var tt = new Transform();
 			tt.Rotate(90);
-			Assert.AreEqual(tt.WorldToLocal * (Matrix3x2) tt.LocalToWorld, Matrix3x2.Identity);
+			Assert.AreEqual(tt.WorldToLocal * tt.LocalToWorld, Matrix3x2.Identity);
 		}
 
 		[TestMethod]
 		public void TestWorldToLocalLocalToWorldMultiplication_ScaleWorld() {
 			var tt = new Transform();
-			tt.Scale(2f, 3f);
-			Assert.AreEqual(tt.WorldToLocal * (Matrix3x2) tt.LocalToWorld, Matrix3x2.Identity);
+			tt.Scale(2f, 3f, Space.Local);
+			Assert.AreEqual(tt.WorldToLocal * tt.LocalToWorld, Matrix3x2.Identity);
 		}
 
 		[TestMethod]
 		public void TranslateLocalTest() {
 			var t = new Transform();
 			t.Rotate(90);
-			t.Translate(1, 0); // (X, Y)
-			Assert.AreEqual(((Matrix3x2) t.WorldToLocal).M31, 0); // X
-			Assert.AreEqual(((Matrix3x2) t.WorldToLocal).M32, -1); // Y
+			t.Translate(1, 0, Space.Local); // (X, Y)
+			Assert.AreEqual(t.WorldToLocal.M31, 0); // X
+			Assert.AreEqual(t.WorldToLocal.M32, 1); // Y
 		}
 
 		[TestMethod]
@@ -158,8 +158,32 @@ namespace FrameworkUnitTests {
 			var t = new Transform();
 			t.Rotate(90);
 			t.Translate(1, 0, Space.World); // (X, Y)
-			Assert.AreEqual(((Matrix3x2) t.WorldToLocal).M31, 1); // X
-			Assert.AreEqual(((Matrix3x2) t.WorldToLocal).M32, 0); // Y
+			Assert.AreEqual(t.WorldToLocal.M31, 1); // X
+			Assert.AreEqual(t.WorldToLocal.M32, 0); // Y
+
+			t.Translate(1, 0, Space.World); // (X, Y)
+			Assert.AreEqual(t.WorldToLocal.M31, 2); // X
+			Assert.AreEqual(t.WorldToLocal.M32, 0); // Y
+
+			// World position
+			var t2 = new Transform();
+			t2.Translate(1, 0, Space.World);
+			t2.Translate(1, 0, Space.World);
+			Assert.AreEqual(t2.WorldPosition, new Vector2(2, 0));
+
+			// Local position
+			var t3 = new Transform();
+			t3.Translate(1, 0, Space.World);
+			t3.Translate(1, 0, Space.World);
+			Assert.AreEqual(t3.LocalPosition, new Vector2(2, 0));
+		}
+
+		[TestMethod]
+		public void TranslateGlobalCalculaltionWorldTest() {
+		}
+
+		[TestMethod]
+		public void TranslateGlobalCalculaltionLocalTest() {
 		}
 
 		[TestMethod]
@@ -167,13 +191,13 @@ namespace FrameworkUnitTests {
 			var t = new Transform();
 
 			// Assert the matrixes are the identity matrixes
-			Assert.AreEqual((Matrix3x2) t.LocalToWorld, Matrix3x2.Identity);
-			Assert.AreEqual((Matrix3x2) t.WorldToLocal, Matrix3x2.Identity);
+			Assert.AreEqual(t.LocalToWorld, Matrix3x2.Identity);
+			Assert.AreEqual(t.WorldToLocal, Matrix3x2.Identity);
 
 			// Test identity rotation
 			t.Rotate(90);
-			Assert.AreEqual((Matrix3x2) t.LocalToWorld, Matrix3x2.CreateRotation(MathHelper.DegreesToRadians(-90)));
-			Assert.AreEqual((Matrix3x2) t.WorldToLocal, Matrix3x2.CreateRotation(MathHelper.DegreesToRadians(90)));
+			Assert.AreEqual(t.LocalToWorld, Matrix3x2.CreateRotation(MathHelper.DegreesToRadians(-90)));
+			Assert.AreEqual(t.WorldToLocal, Matrix3x2.CreateRotation(MathHelper.DegreesToRadians(90)));
 		}
 
 		[TestMethod]
