@@ -6,13 +6,12 @@ using Framework.Object;
 
 namespace Framework {
 
+	// NOTE May needed:
+	// NOTE - GetChild<Type> ?
+	// NOTE - GetChildAt(int index)
+
 	public class GameObject {
 
-		// NOTE Daniel: 
-		// 2 Transforms:
-		// * worldToLocal
-		// * localToWorld.
-		// Both having values for rotation, position, scaling (in primitive types)
 		public Transform Transform { get; }
 
 		// General properties
@@ -53,12 +52,10 @@ namespace Framework {
 			components.ForEach(c => c?.OnDestroy());
 		}
 
-		// TODO GetChild<Type> ?
-		// TODO GetChildAt(int index)
-
 		public void AddChild(GameObject child) {
-			// TODO Fail if the child has a gameobject already
-			
+			if (child.Parent != null) {
+				throw new ArgumentException("The child already has a parent!");
+			}
 			child.Parent = this;
 			children.Add(child);
 			child.OnStart();

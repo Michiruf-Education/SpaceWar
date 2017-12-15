@@ -10,6 +10,12 @@ using MathHelper = OpenTK.MathHelper;
 using Matrix3x2 = System.Numerics.Matrix3x2;
 
 namespace Framework {
+	
+	// NOTE Daniel: 
+	// 2 Transforms:
+	// * worldToLocal
+	// * localToWorld.
+	// Both having values for rotation, position, scaling (in primitive types)
 
 	public class Transform {
 

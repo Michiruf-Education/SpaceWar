@@ -16,7 +16,6 @@ namespace Framework.Camera {
 			}
 		}
 
-		// TODO World or Local Stuff?!?!
 		public Vector2 Position {
 			// NoFormat
 			get => GameObject.Transform.WorldPosition;

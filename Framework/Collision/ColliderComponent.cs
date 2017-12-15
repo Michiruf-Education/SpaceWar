@@ -9,6 +9,10 @@
 		public virtual void GetEstimatedBounds() {
 		}
 
+		public void UndoOverlap() {
+			// TODO
+		}
+
 		public abstract void InvalidateCache();
 	}
 

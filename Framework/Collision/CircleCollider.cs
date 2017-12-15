@@ -13,8 +13,7 @@ namespace Framework.Collision {
 
 		public Circle Circle { get; set; }
 
-		private bool transformedCircleIsCached;
-		private Circle transformedCircleCached;
+		private CachedObject<Circle> transformedCircleCache;
 
 		public CircleCollider(Circle circle) {
 			SetCircle(circle);
@@ -26,20 +25,17 @@ namespace Framework.Collision {
 
 		public CircleCollider SetCircle(Circle circle) {
 			Circle = circle;
+			InvalidateCache();
 			return this;
 		}
 
 		public Circle GetTransformedCircleCached() {
-			// TODO If the "true ||" check is not present,
-			// we get the "flickering" effect when running agains a wall
-			if (true || !transformedCircleIsCached) {
+			if (!transformedCircleCache.HasData) {
 				var matrix = GameObject.Transform.GetTransformationMatrixCached(false);
 				var center = FastVector2Transform.Transform(Circle.CenterX, Circle.CenterY, matrix);
-				transformedCircleCached = new Circle(center.X, center.Y, Circle.Radius);
-				transformedCircleIsCached = true;
+				transformedCircleCache.Data = new Circle(center.X, center.Y, Circle.Radius);
 			}
-
-			return transformedCircleCached;
+			return transformedCircleCache.Data;
 		}
 
 		public override bool CollidesWith(ColliderComponent other) {
@@ -56,10 +52,9 @@ namespace Framework.Collision {
 		}
 
 		public override void InvalidateCache() {
-			transformedCircleIsCached = false;
-			transformedCircleCached = null;
+			transformedCircleCache.Invalidate();
 		}
-		
+
 		public void Render() {
 			if (FrameworkDebugMode.IsEnabled) {
 				var matrix = GameObject.Transform.GetTransformationMatrixCached(!GameObject.IsUiElement);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using Framework.Object;
 using OpenTK;
 using OpenTK.Input;
@@ -28,11 +29,14 @@ namespace Framework.Widget {
 		public void Update() {
 			var mouse = Mouse.GetState();
 			if (mouse.IsAnyButtonDown) {
-				var mousePosition = new Vector2(mouse.X, mouse.Y);
+				//var p = Game.Instance.Window.PointToScreen(new Point());
+				var p = new Vector2(mouse.X, mouse.Y);
+				Console.WriteLine(p);
+
 				// TODO Mouse position is not aligned to used grid
 				var bounds = GetTransformedRect();
-				if (mousePosition.X >= bounds.MinX && mousePosition.X <= bounds.MaxX &&
-				    mousePosition.Y >= bounds.MinY && mousePosition.X <= bounds.MaxY) {
+				if (p.X >= bounds.MinX && p.X <= bounds.MaxX &&
+				    p.Y >= bounds.MinY && p.X <= bounds.MaxY) {
 					OnClick?.Invoke();
 				}
 			}
