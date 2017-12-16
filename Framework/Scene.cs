@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Framework.Object;
 
 namespace Framework {
 
@@ -10,28 +9,30 @@ namespace Framework {
 
 		public static Scene Current => Game.Instance.ActiveScene;
 
-		public Lifecycle Lifecycle { get; } = new Lifecycle();
-
 		private readonly List<GameObject> gameObjects = new List<GameObject>();
 		public ReadOnlyCollection<GameObject> GameObjects { get; }
 
 		protected Scene() {
 			GameObjects = new ReadOnlyCollection<GameObject>(gameObjects);
+		}
 
-			// Register lifecycle delegation for gameobjects
-			Lifecycle.onDestroy += () => gameObjects.ForEach(go => go.Lifecycle?.onDestroy?.Invoke());
+		public virtual void OnStart() {
+		}
+
+		public virtual void OnDestroy() {
+			gameObjects.ForEach(go => go?.OnDestroy());
 		}
 
 		public void Spawn(GameObject gameObject) {
-			gameObject.Lifecycle?.onCreate?.Invoke();
 			gameObjects.Add(gameObject);
+			gameObject.OnStart();
 		}
 
 		public void Destroy(GameObject gameObject) {
 			if (!gameObjects.Contains(gameObject)) {
 				return;
 			}
-			gameObject.Lifecycle?.onDestroy?.Invoke();
+			gameObject.OnDestroy();
 			gameObjects.Remove(gameObject);
 		}
 
@@ -40,6 +41,9 @@ namespace Framework {
 			// not need to extend GameObject's in order to add components, but have
 			// a file that will descript those and we instantiate them by name and look
 			// them up also by name!
+			
+			// NOTE Methods currently not search for children
+			
 			try {
 				var gameObject = gameObjects.First(go => go is TGameObjectType);
 				return (TGameObjectType) (object) gameObject;
@@ -49,7 +53,7 @@ namespace Framework {
 		}
 
 		public List<TGameObjectType> GetGameObjects<TGameObjectType>() {
-			// NOTE See comment in GetGameObject!
+			// NOTE See comments in GetGameObject!
 			var castedGameObjects = new List<TGameObjectType>();
 			gameObjects.ForEach(c => {
 				if (c is TGameObjectType) {

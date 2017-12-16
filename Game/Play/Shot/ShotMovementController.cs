@@ -15,7 +15,7 @@ namespace SpaceWar.Game.Play.Shot {
 		}
 
 		public void Update() {
-			GameObject.Transform.Translate(x * Time.DeltaTime, y * Time.DeltaTime);
+			GameObject.Transform.Translate(x * Time.DeltaTime, y * Time.DeltaTime, Space.World);
 		}
 	}
 

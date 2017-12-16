@@ -1,6 +1,4 @@
-﻿using OpenTK;
-
-namespace Framework.Camera {
+﻿namespace Framework.Camera {
 
 	public class DefaultCameraGameObject : GameObject {
 
@@ -12,14 +10,6 @@ namespace Framework.Camera {
 
 		public DefaultCameraGameObject(bool activeCamera) {
 			AddComponent(Component = new CameraComponent(activeCamera));
-		}
-
-		public DefaultCameraGameObject(Vector2 viewport) {
-			AddComponent(Component = new CameraComponent(viewport));
-		}
-
-		public DefaultCameraGameObject(Vector2 viewport, bool activeCamera = false) {
-			AddComponent(Component = new CameraComponent(viewport, activeCamera));
 		}
 	}
 

@@ -1,14 +1,10 @@
-﻿using System;
+﻿namespace Framework.Object {
 
-namespace Framework.Object {
+	public interface Lifecycle {
 
-	public class Lifecycle {
+		void OnStart();
 
-		public Action onCreate; // TODO Maybe: onAttached?
-
-		public Action onDestroy;
-		
-		// TODO Integrate this into Component with OnAttached and OnDetached as a virtual method
+		void OnDestroy();
 	}
 
 }

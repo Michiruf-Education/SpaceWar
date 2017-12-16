@@ -1,5 +1,5 @@
 ﻿using Framework.Debug;
-using SpaceWar.Game.Play;
+using Framework.Object;
 
 namespace SpaceWar.Game {
 
@@ -10,8 +10,9 @@ namespace SpaceWar.Game {
 
 			var game = new Framework.Game();
 			game.RegisterInputProvider(new Keymap());
-			game.CreatePrimitiveWindow("SpaceWar");
-			game.ShowScene(new PlayScene());
+			game.CreatePrimitiveWindow(VierportAnchor.Horizontal, "SpaceWar");
+			game.ShowScene(new Menu.MenuScene());
+			game.ShowScene(new Play.PlayScene());
 			game.Run();
 		}
 	}

@@ -1,33 +1,67 @@
 ﻿using System;
 using Framework;
-using Framework.Input;
 using Framework.Object;
+using OpenTK;
 using OpenTK.Input;
 
 namespace SpaceWar.Game.Play.Player {
 
 	public class PlayerMovementController : Component, UpdateComponent {
 
+		private Player player;
+
+		public override void OnStart() {
+			base.OnStart();
+			player = GameObject as Player;
+		}
+
 		public void Update() {
-			var axis = GamePad.GetState(0).ThumbSticks.Left;
-			if (Math.Abs(axis.X) > Options.CONTROLLER_THRESHOLD) {
-				GameObject.Transform.Translate(axis.X * Player.INITIAL_SPEED * Time.DeltaTime, 0, Space.World);
-			}
-			if (Math.Abs(axis.Y) > Options.CONTROLLER_THRESHOLD) {
-				GameObject.Transform.Translate(0, axis.Y * Player.INITIAL_SPEED * Time.DeltaTime, Space.World);
+			// Detect keyboard movements first only for the first player
+			if (player.PlayerIndex == 0) {
+				var keyboardAxis = Vector2.Zero;
+				
+				// TODO Remove: !!!!!
+				if (Keyboard.GetState().IsKeyDown(Key.Space)) {
+					GameObject.Transform.Scale(1.01f, 1.01f, Space.World);
+				}
+				if (Keyboard.GetState().IsKeyDown(Key.C)) {
+					GameObject.Transform.Scale(0.99f, 0.99f, Space.World);
+				}
+				
+				if (Keyboard.GetState().IsKeyDown(Key.W)) {
+					keyboardAxis.Y++;
+				}
+				if (Keyboard.GetState().IsKeyDown(Key.S)) {
+					keyboardAxis.Y--;
+				}
+				if (Keyboard.GetState().IsKeyDown(Key.A)) {
+					keyboardAxis.X--;
+				}
+				if (Keyboard.GetState().IsKeyDown(Key.D)) {
+					keyboardAxis.X++;
+				}
+				if (keyboardAxis != Vector2.Zero) {
+					GameObject.Transform.Translate(
+						keyboardAxis.X * Player.INITIAL_SPEED * Time.DeltaTime,
+						keyboardAxis.Y * Player.INITIAL_SPEED * Time.DeltaTime,
+						Space.World);
+					GameObject.Transform.WorldRotation = MathHelper.RadiansToDegrees(
+						(float) Math.Atan2(keyboardAxis.Y, keyboardAxis.X));
+
+					// Do not detect controller if keyboard was pressed
+					return;
+				}
 			}
 
-			if (InputHandler.KeyDown(InputActions.MoveUp)) {
-				GameObject.Transform.Translate(0, Player.INITIAL_SPEED * Time.DeltaTime, Space.World);
-			}
-			if (InputHandler.KeyDown(InputActions.MoveDown)) {
-				GameObject.Transform.Translate(0, -Player.INITIAL_SPEED * Time.DeltaTime, Space.World);
-			}
-			if (InputHandler.KeyDown(InputActions.MoveLeft)) {
-				GameObject.Transform.Translate(-Player.INITIAL_SPEED * Time.DeltaTime, 0, Space.World);
-			}
-			if (InputHandler.KeyDown(InputActions.MoveRight)) {
-				GameObject.Transform.Translate(Player.INITIAL_SPEED * Time.DeltaTime, 0, Space.World);
+			// Detect gamepad inputs
+			var gamepadAxis = GamePad.GetState(player.PlayerIndex).ThumbSticks.Left;
+			if (Math.Abs(gamepadAxis.Length) > Options.CONTROLLER_THRESHOLD) {
+				GameObject.Transform.Translate(
+					gamepadAxis.X * Player.INITIAL_SPEED * Time.DeltaTime,
+					gamepadAxis.Y * Player.INITIAL_SPEED * Time.DeltaTime,
+					Space.World);
+				GameObject.Transform.WorldRotation = MathHelper.RadiansToDegrees(
+					(float) Math.Atan2(gamepadAxis.Y, gamepadAxis.X));
 			}
 		}
 	}

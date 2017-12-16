@@ -1,8 +1,7 @@
 ﻿namespace Framework.Object {
 
-	class VierportAnchor {
+	public enum VierportAnchor {
 		
-		// TODO Use on initializing the game
-		// Instead of hard coded calculation of the aspect ratio!
+		Horizontal, Vertical
 	}
 }

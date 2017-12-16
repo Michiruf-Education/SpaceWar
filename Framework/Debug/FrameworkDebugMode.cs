@@ -4,7 +4,7 @@
 
 		public static bool IsEnabled { get; set; }
 		
-		// TODO We might want to use #if DEBUG?
+		// NOTE We might want to use #if DEBUG?
 	}
 
 }

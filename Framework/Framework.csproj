@@ -75,21 +75,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Algorithms\CollisionDetection\Calculation\BoxCircleCollisionCalculator.cs" />
-    <Compile Include="Algorithms\CollisionDetection\ClusteredCollisionDetection.cs" />
-    <Compile Include="Algorithms\CollisionDetection\CollisionDetection.cs" />
-    <Compile Include="Algorithms\CollisionDetection\NonOptimizedCollisionDetection.cs" />
-    <Compile Include="Algorithms\FastVector2Transform.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Camera\CameraComponent.cs" />
     <Compile Include="Camera\DefaultCameraGameObject.cs" />
-    <Compile Include="Collision\BoxCollider.cs" />
-    <Compile Include="Collision\CircleCollider.cs" />
+    <Compile Include="Collision\Calculation\Collision\BoxBoxCollisionCalculator.cs" />
+    <Compile Include="Collision\Calculation\Collision\BoxCircleCollisionCalculator.cs" />
+    <Compile Include="Collision\Calculation\Collision\CircleCircleCollisionCalculator.cs" />
+    <Compile Include="Collision\Calculation\CollisionCalculator.cs" />
+    <Compile Include="Collision\Calculation\Overlaps\BoxBoxOverlapCalculator.cs" />
+    <Compile Include="Collision\Calculation\Overlaps\BoxCircleOverlapCalculator.cs" />
+    <Compile Include="Collision\Calculation\Overlaps\CircleCircleOverlapCalculator.cs" />
     <Compile Include="Collision\ColliderComponent.cs" />
+    <Compile Include="Collision\Collider\CircleCollider.cs" />
+    <Compile Include="Collision\ColliderShape.cs" />
+    <Compile Include="Collision\Collider\BoxCollider.cs" />
+    <Compile Include="Collision\Collider\BoxShape.cs" />
+    <Compile Include="Collision\Collider\CircleShape.cs" />
     <Compile Include="Collision\CollisionComponent.cs" />
-    <Compile Include="Collision\SimpleBox2DCollider.cs" />
+    <Compile Include="Collision\Detection\ClusteredCollisionDetection.cs" />
+    <Compile Include="Collision\Detection\CollisionDetection.cs" />
+    <Compile Include="Collision\Detection\NonOptimizedCollisionDetection.cs" />
     <Compile Include="Component.cs" />
     <Compile Include="Debug\FrameworkDebugMode.cs" />
+    <Compile Include="Debug\ToDevelopException.cs" />
     <Compile Include="Engine\FrameworkEngineGameObject.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameObject.cs" />
@@ -98,6 +106,8 @@
     <Compile Include="Input\GamePad\GamePadButtonsHelper.cs" />
     <Compile Include="Input\InputHandler.cs" />
     <Compile Include="Input\InputProvider.cs" />
+    <Compile Include="Object\CachedObject.cs" />
+    <Compile Include="Object\Invalidateable.cs" />
     <Compile Include="Object\Lifecycle.cs" />
     <Compile Include="Object\RenderComponent.cs" />
     <Compile Include="Object\Time.cs" />
@@ -112,12 +122,13 @@
     <Compile Include="Scene.cs" />
     <Compile Include="Transform.cs" />
     <Compile Include="Utilities\DelayTimer.cs" />
+    <Compile Include="Utilities\FastVector2Transform.cs" />
     <Compile Include="Utilities\LimitedRateTimer.cs" />
-    <Compile Include="Utilities\Matrix3x2DataExtension.cs" />
     <Compile Include="Utilities\Matrix3x2Helper.cs" />
     <Compile Include="Utilities\Matrix3x2PrintExtension.cs" />
-    <Compile Include="Utilities\VectorConversionExtension.cs" />
+    <Compile Include="Utilities\VectorConverterExtension.cs" />
     <Compile Include="Widgets\Button.cs" />
+    <Compile Include="Widgets\BoxClickComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
-using Framework.Algorithms;
 using Framework.Debug;
 using Framework.Object;
+using Framework.Utilities;
 using OpenTK.Graphics.OpenGL;
 
 namespace Framework.Render {

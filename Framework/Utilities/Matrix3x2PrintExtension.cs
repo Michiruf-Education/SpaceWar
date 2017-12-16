@@ -1,8 +1,10 @@
-﻿using System.Numerics;
+﻿using System;
+using System.Numerics;
 
 namespace Framework.Utilities {
 
 	// ReSharper disable once InconsistentNaming
+	[Obsolete]
 	public static class Matrix3x2PrintExtension {
 
 		public static string NumericsMatrixPrettyPrint(this Matrix3x2 matrix) {

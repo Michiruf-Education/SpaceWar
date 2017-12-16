@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using OpenTK.Input;
 using Framework.Input;
+using OpenTK.Input;
 
 namespace SpaceWar.Game {
 

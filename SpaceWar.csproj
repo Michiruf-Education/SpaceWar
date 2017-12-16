@@ -86,6 +86,7 @@
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Game\InputActions.cs" />
     <Compile Include="Game\Keymap.cs" />
+    <Compile Include="Game\Menu\MenuScene.cs" />
     <Compile Include="Game\Options.cs" />
     <Compile Include="Game\Play\Enemy\Enemy.cs" />
     <Compile Include="Game\Play\Enemy\EnemyCollisionController.cs" />
@@ -93,10 +94,11 @@
     <Compile Include="Game\Play\Enemy\EnemySpawnBehaviour.cs" />
     <Compile Include="Game\Play\Field\Background.cs" />
     <Compile Include="Game\Play\Field\Border.cs" />
-    <Compile Include="Game\Play\Player\FollowingCameraController.cs" />
+    <Compile Include="Game\Play\Player\FollowingCameraBehaviour.cs" />
     <Compile Include="Game\Play\Player\Player.cs" />
     <Compile Include="Game\Play\Player\PlayerAttributes.cs" />
     <Compile Include="Game\Play\Player\PlayerCollisionController.cs" />
+    <Compile Include="Game\Play\Player\PlayerHelper.cs" />
     <Compile Include="Game\Play\Player\PlayerMovementController.cs" />
     <Compile Include="Game\Play\Player\PlayerShotController.cs" />
     <Compile Include="Game\Play\PlayScene.cs" />

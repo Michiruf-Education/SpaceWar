@@ -10,8 +10,13 @@ namespace SpaceWar.Game.Play.Enemy {
 
 		private readonly LimitedRateTimer spawnTimer = new LimitedRateTimer();
 
-		private bool started;
 		private PlayerT player;
+		private bool started;
+
+		public override void OnStart() {
+			base.OnStart();
+			player = Scene.Current.GetGameObject<PlayerT>();
+		}
 
 		public override void Update() {
 			base.Update();
@@ -19,14 +24,12 @@ namespace SpaceWar.Game.Play.Enemy {
 		}
 
 		void SpawnEnemies() {
+			// Skip the first call to this method because we intially want to wait some time
+			// before the enemies are spawned
 			if (!started) {
 				started = true;
 				return;
 			}
-
-			// TODO
-			if (player == null)
-				player = Scene.Current.GetGameObject<PlayerT>();
 
 			var enemyCount = SpawnEnemyCountFunction(player.Attributes.Points);
 			var random = new Random();

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Drawing;
-using Framework.Algorithms;
-using OpenTK.Graphics.OpenGL;
 using Framework.Object;
+using Framework.Utilities;
+using OpenTK.Graphics.OpenGL;
 using Zenseless.Geometry;
 
 namespace Framework.Render {
@@ -37,13 +37,13 @@ namespace Framework.Render {
 		public void Render() {
 			var matrix = GameObject.Transform.GetTransformationMatrixCached(!GameObject.IsUiElement);
 			var centerT = FastVector2Transform.Transform(center.X, center.Y, matrix);
-			var radiusT = radius; // NOTE we need to transform this with scaling later
+			var radiusT = radius; // NOTE We need to transform this with scaling later
 
 			// Render filling
 			if (fillColor != Color.Empty) {
 				GL.Color4(fillColor);
 				GL.Begin(PrimitiveType.TriangleFan);
-				for (float angle = 1.0f; angle < 361.0f; angle += 0.2f) {
+				for (var angle = 0.0f; angle <= 360.0f; angle += 0.2f) {
 					GL.Vertex2(
 						centerT.X + Math.Sin(angle) * radiusT,
 						centerT.Y + Math.Cos(angle) * radiusT);
