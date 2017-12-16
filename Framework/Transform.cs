@@ -264,8 +264,10 @@ namespace Framework {
 			transformationMatrixCacheWithCamera.Invalidate();
 
 			// Also invalidate all childen, because they changed too!
-			foreach (var child in GameObject.Children) {
-				child.Transform?.Invalidate();
+			if (GameObject != null) {
+				foreach (var child in GameObject.Children) {
+					child.Transform?.Invalidate();
+				}
 			}
 		}
 	}
