@@ -34,6 +34,7 @@ namespace SpaceWar.Game.Play {
 			// Player
 			SpawnPlayer();
 			Spawn(new FollowingCameraBehaviour());
+			Spawn(new GameOverBehaviour());
 			Spawn(new HealthBar());
 			Spawn(new PointDisplay());
 

@@ -95,6 +95,7 @@
     <Compile Include="Game\Play\Field\Background.cs" />
     <Compile Include="Game\Play\Field\Border.cs" />
     <Compile Include="Game\Play\Player\FollowingCameraBehaviour.cs" />
+    <Compile Include="Game\Play\Player\GameOverBehaviour.cs" />
     <Compile Include="Game\Play\Player\Player.cs" />
     <Compile Include="Game\Play\Player\PlayerAttributes.cs" />
     <Compile Include="Game\Play\Player\PlayerCollisionController.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="Game\Play\Shot\Shot.cs" />
     <Compile Include="Game\Play\Shot\ShotCollisionController.cs" />
     <Compile Include="Game\Play\Shot\ShotMovementController.cs" />
+    <Compile Include="Game\Play\UI\GameOverOverlay.cs" />
     <Compile Include="Game\Play\UI\HealthBar.cs" />
     <Compile Include="Game\Play\UI\HealthBarItem.cs" />
     <Compile Include="Game\Play\UI\PointDisplay.cs" />
