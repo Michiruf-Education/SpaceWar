@@ -1,9 +1,8 @@
-﻿﻿using Framework.Object;
-using Zenseless.Geometry;
+﻿﻿using Zenseless.Geometry;
 
 namespace Framework.Collision.Collider {
 
-	public class BoxCollider : Collision.ColliderComponent {
+	public class BoxCollider : ColliderComponent {
 
 		public BoxCollider(Box2D rect) : base(new BoxShape(rect)) {
 		}

@@ -1,6 +1,6 @@
 ﻿using Zenseless.Geometry;
 
-namespace Framework.Collision.CollisionCalculation {
+namespace Framework.Collision.Calculation.Collision {
 
 	public static class BoxCircleCollisionCalculator {
 
