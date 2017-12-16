@@ -8,7 +8,7 @@ namespace SpaceWar.Game.Play.Player {
 		public override void Update() {
 			base.Update();
 			var gameRunning = false;
-			Scene.Current.GetGameObjects<Player>().ForEach(player => gameRunning |= player.Attributes.Lifes > 0);
+			Scene.Current.GetGameObjects<Player>().ForEach(player => gameRunning |= player.Attributes.IsAlive);
 			if (!gameRunning) {
 				Scene.Current.Spawn(new GameOverOverlay());
 				Scene.Current.Destroy(this);

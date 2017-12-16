@@ -16,6 +16,11 @@ namespace SpaceWar.Game.Play.Player {
 		}
 
 		public void Update() {
+			// Do nothing if dead
+			if (!player.Attributes.IsAlive) {
+				return;
+			}
+			
 			// Detect keyboard movements first only for the first player
 			if (player.PlayerIndex == 0) {
 				var keyboardAxis = Vector2.Zero;

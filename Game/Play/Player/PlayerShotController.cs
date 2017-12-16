@@ -21,6 +21,11 @@ namespace SpaceWar.Game.Play.Player {
 		}
 
 		public void Update() {
+			// Do nothing if dead
+			if (!player.Attributes.IsAlive) {
+				return;
+			}
+
 			shotTimer.DoOnlyEvery(ShotRate, Shoot);
 		}
 
@@ -42,7 +47,13 @@ namespace SpaceWar.Game.Play.Player {
 				}
 				if (keyboardAxis != Vector2.Zero) {
 					var direction = (float) Math.Atan2(keyboardAxis.Y, keyboardAxis.X);
-					Scene.Current.Spawn(new Shot.Shot(direction, GameObject.Transform.WorldPosition,
+					Scene.Current.Spawn(new Shot.Shot(
+						direction + MathHelper.DegreesToRadians(3), 
+						GameObject.Transform.WorldPosition,
+						() => player.Attributes.OnEnemyKill()));
+					Scene.Current.Spawn(new Shot.Shot(
+						direction + MathHelper.DegreesToRadians(-3), 
+						GameObject.Transform.WorldPosition,
 						() => player.Attributes.OnEnemyKill()));
 					return;
 				}
@@ -52,7 +63,13 @@ namespace SpaceWar.Game.Play.Player {
 			var gamepadAxis = GamePad.GetState(player.PlayerIndex).ThumbSticks.Right;
 			if (gamepadAxis.Length >= Options.CONTROLLER_THRESHOLD) {
 				var direction = (float) Math.Atan2(gamepadAxis.Y, gamepadAxis.X);
-				Scene.Current.Spawn(new Shot.Shot(direction, GameObject.Transform.WorldPosition,
+				Scene.Current.Spawn(new Shot.Shot(
+					direction + MathHelper.DegreesToRadians(3), 
+					GameObject.Transform.WorldPosition,
+					() => player.Attributes.OnEnemyKill()));
+				Scene.Current.Spawn(new Shot.Shot(
+					direction + MathHelper.DegreesToRadians(-3), 
+					GameObject.Transform.WorldPosition,
 					() => player.Attributes.OnEnemyKill()));
 			}
 		}
