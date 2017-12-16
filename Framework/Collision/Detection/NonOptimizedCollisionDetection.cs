@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Framework.Collision;
 
-namespace Framework.Algorithms.CollisionDetection {
+namespace Framework.Collision.Detection {
 
 	public class NonOptimizedCollisionDetection : CollisionDetection {
 
@@ -32,7 +31,7 @@ namespace Framework.Algorithms.CollisionDetection {
 		}
 
 		private void InvalidateCollisionCaches(List<ColliderComponent> colliders) {
-			colliders?.ForEach(component => component.InvalidateCache());
+			colliders?.ForEach(component => component.Invalidate());
 		}
 	}
 

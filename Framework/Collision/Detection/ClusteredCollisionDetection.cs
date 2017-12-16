@@ -1,4 +1,4 @@
-﻿namespace Framework.Algorithms.CollisionDetection {
+﻿namespace Framework.Collision.Detection {
 
 	public class ClusteredCollisionDetection {
 		

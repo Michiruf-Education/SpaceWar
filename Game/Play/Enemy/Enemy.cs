@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 using Framework;
-using Framework.Collision;
+using Framework.Collision.Collider;
 using Framework.Render;
 
 namespace SpaceWar.Game.Play.Enemy {

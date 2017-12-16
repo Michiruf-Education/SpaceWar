@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 using Framework;
-using Framework.Collision;
+using Framework.Collision.Collider;
 using Framework.Render;
 
 namespace SpaceWar.Game.Play.Player {
@@ -11,8 +11,6 @@ namespace SpaceWar.Game.Play.Player {
 		public const int MAX_LIFES = 5;
 		public const float INITIAL_SHOT_RATE = 0.15f;
 		public const float INITIAL_SPEED = 0.45f;
-		public const float CAMERA_SPEED = 0.5f;
-		public const float CAMERA_MIN_SPEED = 0.05f;
 
 		// Visual constants
 		public const float PLAYER_SIZE = 0.05f;
@@ -22,7 +20,6 @@ namespace SpaceWar.Game.Play.Player {
 		public PlayerMovementController MovementController { get; }
 		public PlayerShotController ShotController { get; }
 		public PlayerCollisionController CollisionController { get; }
-		public FollowingCameraController FollowingCameraController { get; }
 		public RenderBoxComponent RenderBoxComponent { get; }
 		public BoxCollider BoxCollider { get; }
 
@@ -34,7 +31,6 @@ namespace SpaceWar.Game.Play.Player {
 			MovementController = new PlayerMovementController();
 			ShotController = new PlayerShotController();
 			CollisionController = new PlayerCollisionController();
-			FollowingCameraController = new FollowingCameraController();
 			RenderBoxComponent = new RenderBoxComponent(PLAYER_SIZE, PLAYER_SIZE).Fill(Color.White);
 			BoxCollider = new BoxCollider(PLAYER_SIZE, PLAYER_SIZE);
 
@@ -42,7 +38,6 @@ namespace SpaceWar.Game.Play.Player {
 			AddComponent(MovementController);
 			AddComponent(ShotController);
 			AddComponent(CollisionController);
-			AddComponent(FollowingCameraController);
 			AddComponent(RenderBoxComponent);
 			AddComponent(BoxCollider);
 

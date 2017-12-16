@@ -1,4 +1,4 @@
-﻿using Framework.Algorithms.CollisionDetection;
+﻿using Framework.Collision.Detection;
 
 namespace Framework.Engine {
 

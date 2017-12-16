@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Drawing;
-using Framework.Algorithms;
-using OpenTK.Graphics.OpenGL;
 using Framework.Object;
+using Framework.Utilities;
+using OpenTK.Graphics.OpenGL;
 using Zenseless.Geometry;
 
 namespace Framework.Render {

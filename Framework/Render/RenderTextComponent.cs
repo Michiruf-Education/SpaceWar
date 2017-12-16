@@ -2,9 +2,9 @@
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Drawing.Text;
-using Framework.Algorithms;
 using Framework.Debug;
 using Framework.Object;
+using Framework.Utilities;
 using OpenTK.Graphics.OpenGL4;
 using Zenseless.Geometry;
 using Zenseless.HLGL;

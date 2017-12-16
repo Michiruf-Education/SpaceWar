@@ -5,14 +5,18 @@ using OpenTK;
 
 namespace SpaceWar.Game.Play.Player {
 
-	public class FollowingCameraController : Component, UpdateComponent {
+	public class FollowingCameraBehaviour : GameObject {
 
-		public void Update() {
+		public const float CAMERA_SPEED = 0.5f;
+		public const float CAMERA_MIN_SPEED = 0.05f;
+
+		public override void Update() {
+			base.Update();
 			CameraComponent.Active.Position = CameraLerp(
 				CameraComponent.Active.Position,
-				GameObject.Transform.WorldPosition,
-				Player.CAMERA_SPEED,
-				Player.CAMERA_MIN_SPEED);
+				PlayerHelper.GetPlayerPositionCentroid(),
+				CAMERA_SPEED,
+				CAMERA_MIN_SPEED);
 
 			// NOTE @Marc
 			// Du kannst ja statt die Geschwindigkeit fest zu machen (also was wie DISTANZ² / 10 Pixel pro Sekunde) 
@@ -20,6 +24,7 @@ namespace SpaceWar.Game.Play.Player {
 			// war (also die Kamera nun näher ist) verringerst du und sonst erhöhst die Geschwindigkeit um nen
 			// kleinen Betrag
 		}
+
 
 		private static Vector2 CameraLerp(Vector2 a, Vector2 b, float lerpPercentage, float minLerpRate) {
 			var lerpRate = (b - a).Length * lerpPercentage;

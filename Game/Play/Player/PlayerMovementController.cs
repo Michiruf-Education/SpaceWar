@@ -19,12 +19,15 @@ namespace SpaceWar.Game.Play.Player {
 			// Detect keyboard movements first only for the first player
 			if (player.PlayerIndex == 0) {
 				var keyboardAxis = Vector2.Zero;
+				
+				// TODO Remove: !!!!!
 				if (Keyboard.GetState().IsKeyDown(Key.Space)) {
 					GameObject.Transform.Scale(1.01f, 1.01f, Space.World);
 				}
 				if (Keyboard.GetState().IsKeyDown(Key.C)) {
 					GameObject.Transform.Scale(0.99f, 0.99f, Space.World);
 				}
+				
 				if (Keyboard.GetState().IsKeyDown(Key.W)) {
 					keyboardAxis.Y++;
 				}

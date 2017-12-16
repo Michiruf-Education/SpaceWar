@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using Framework;
-using Framework.Collision;
+using Framework.Collision.Collider;
 using Framework.Render;
 using OpenTK;
 
@@ -14,7 +14,7 @@ namespace SpaceWar.Game.Play.Shot {
 
 		// Visual constants
 		public const float SHOT_SIZE = 0.01f;
-		
+
 		private readonly Vector2 position;
 
 		public Shot(float direction, Vector2 position, Action onEnemyHit) {
@@ -23,7 +23,7 @@ namespace SpaceWar.Game.Play.Shot {
 			AddComponent(new ShotCollisionController(onEnemyHit));
 			//AddComponent(new RenderBoxComponent(SHOT_SIZE, SHOT_SIZE).Fill(Color.Brown));
 			//AddComponent(new BoxCollider(SHOT_SIZE, SHOT_SIZE));
-			AddComponent(new RenderCircleComponent(SHOT_SIZE).Fill(Color.Brown));
+			AddComponent(new RenderCircleComponent(SHOT_SIZE).Fill(Color.Blue)); // TODO Was Brown
 			AddComponent(new CircleCollider(SHOT_SIZE));
 		}
 

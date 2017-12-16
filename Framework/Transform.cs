@@ -1,5 +1,4 @@
 ﻿using System;
-using Framework.Algorithms;
 using Framework.Camera;
 using Framework.Debug;
 using Framework.Object;
@@ -10,7 +9,7 @@ using MathHelper = OpenTK.MathHelper;
 using Matrix3x2 = System.Numerics.Matrix3x2;
 
 namespace Framework {
-	
+
 	// NOTE Daniel: 
 	// 2 Transforms:
 	// * worldToLocal
@@ -41,6 +40,7 @@ namespace Framework {
 			}
 		}
 		private readonly CachedObject<Matrix3x2> parentToLocalCache = new CachedObject<Matrix3x2>();
+		internal bool HasChanged => !parentToLocalCache.HasData;
 		internal Matrix3x2 LocalToParent {
 			get {
 				// Cache hit?
@@ -99,10 +99,15 @@ namespace Framework {
 			get => localRotation;
 			set => Rotate(value - localRotation);
 		}
+		[Obsolete("Might not be working correctly yet (Scale() should be working at least in World space. " +
+		          "At least scaling camera with this does not apply")]
 		public Vector2 LocalScaling {
 			// NoFormat
 			get => localScaling;
-			set => Scale(value - localScaling, Space.Local);
+			set {
+				var currentLocalScaling = LocalScaling;
+				Scale(new Vector2(value.X / currentLocalScaling.X, value.Y / currentLocalScaling.Y), Space.Local);
+			}
 		}
 
 		public Vector2 WorldPosition {
@@ -115,6 +120,8 @@ namespace Framework {
 			get => TransformAngle(localRotation, Space.World);
 			set => Rotate(value - WorldRotation);
 		}
+		[Obsolete("Might not be working correctly yet (Scale() should be working at least in World space. " +
+		          "At least scaling camera with this does not apply")]
 		public Vector2 WorldScaling {
 			// NoFormat
 			get => TransformPoint(localScaling, Space.World);
@@ -235,13 +242,14 @@ namespace Framework {
 
 		internal Matrix3x2 GetTransformationMatrixCached(bool includeCamera) {
 			if (includeCamera) {
-				if (!transformationMatrixCacheWithCamera.HasData) {
+				if (true || !transformationMatrixCacheWithCamera.HasData || CameraComponent.ActiveCameraMatrixChanged) {
 					transformationMatrixCacheWithCamera.Data = WorldToLocal * CameraComponent.ActiveCameraMatrix;
 				}
 				return transformationMatrixCacheWithCamera.Data;
 			}
 
-			if (!transformationMatrixCache.HasData) {
+			// TODO For any reason if we cache this, the camera does not follow?!
+			if (true || !transformationMatrixCache.HasData) {
 				transformationMatrixCache.Data = WorldToLocal;
 			}
 			return transformationMatrixCache.Data;
@@ -254,6 +262,11 @@ namespace Framework {
 			localToWorldCache.Invalidate();
 			transformationMatrixCache.Invalidate();
 			transformationMatrixCacheWithCamera.Invalidate();
+
+			// Also invalidate all childen, because they changed too!
+			foreach (var child in GameObject.Children) {
+				child.Transform?.Invalidate();
+			}
 		}
 	}
 

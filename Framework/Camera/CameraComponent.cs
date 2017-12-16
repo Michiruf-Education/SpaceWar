@@ -15,6 +15,7 @@ namespace Framework.Camera {
 				return cameraMatrix;
 			}
 		}
+		public static bool ActiveCameraMatrixChanged => Active.GameObject.Transform.HasChanged;
 
 		public Vector2 Position {
 			// NoFormat
