@@ -1,99 +1,92 @@
 ﻿using System;
+using System.Linq;
+using System.Threading;
 using Framework;
-using Framework.Utilities;
-using OpenTK;
-using PlayerT = SpaceWar.Game.Play.Player.Player;
+using SpaceWar.Game.Play.Player;
 
 namespace SpaceWar.Game.Play.Enemy {
 
 	public class EnemySpawnBehaviour : GameObject {
 
-		private readonly LimitedRateTimer spawnTimer = new LimitedRateTimer();
+		private static readonly Random NON_DETERMINISTIC = new Random();
 
-		private PlayerT player;
-		private bool started;
+		public float FieldWidth { get; }
+		public float FieldHeight { get; }
+
+		public EnemySpawnBehaviour(float fieldWidth, float fieldHeight) {
+			FieldWidth = fieldWidth;
+			FieldHeight = fieldHeight;
+		}
 
 		public override void OnStart() {
 			base.OnStart();
-			player = Scene.Current.GetGameObject<PlayerT>();
+			Spawners.All.ForEach(AddComponent);
 		}
 
 		public override void Update() {
+			if (AllSpawnersFinishedWave()) {
+				Thread.Sleep(2000); // TODO
+				StartNewWave();
+			}
+
+			// We want to run the waves after starting a new one
 			base.Update();
-			spawnTimer.DoOnlyEvery(Enemy.ENEMY_SPAWN_INTERVAL, SpawnEnemies);
 		}
 
-		void SpawnEnemies() {
-			// Skip the first call to this method because we intially want to wait some time
-			// before the enemies are spawned
-			if (!started) {
-				started = true;
-				return;
-			}
-
-			var enemyCount = SpawnEnemyCountFunction(player.Attributes.Points);
-			var random = new Random();
-
-			for (var i = 0; i < enemyCount; i++) {
-				var enemy1 = new Enemy();
-				enemy1.Transform.WorldPosition = new Vector2(
-					1f - (float) random.NextDouble()/ 1.5f - 0.05f,
-					0.5f - (float) random.NextDouble()/ 1.5f - 0.05f
-				);
-				Scene.Current.Spawn(enemy1);
-
-				var enemy2 = new Enemy();
-				enemy2.Transform.WorldPosition = new Vector2(
-					1f - (float) random.NextDouble()/ 1.5f - 0.05f,
-					-0.5f + (float) random.NextDouble()/ 1.5f + 0.05f
-				);
-				Scene.Current.Spawn(enemy2);
-
-				var enemy3 = new Enemy();
-				enemy3.Transform.WorldPosition = new Vector2(
-					-1f + (float) random.NextDouble()/ 1.5f + 0.05f,
-					-0.5f + (float) random.NextDouble()/ 1.5f + 0.05f
-				);
-				Scene.Current.Spawn(enemy3);
-
-				var enemy4 = new Enemy();
-				enemy4.Transform.WorldPosition = new Vector2(
-					-1f + (float) random.NextDouble()/ 1.5f + 0.05f,
-					0.5f - (float) random.NextDouble()/ 1.5f - 0.05f
-				);
-				Scene.Current.Spawn(enemy4);
-			}
+		private bool AllSpawnersFinishedWave() {
+			return Spawners.All.Aggregate(true, (b, spawner) => b && spawner.IsWaveFinished);
 		}
 
-		static int SpawnEnemyCountFunction(int p) {
-			if (p > 1000) {
-				return 22;
+		private void StartNewWave() {
+			var playerPoints = PlayerHelper.GetPlayerPoints();
+			if (playerPoints < 4) {
+				playerPoints = 4;
 			}
-			if (p > 700) {
-				return 17;
-			}
-			if (p > 500) {
-				return 13;
-			}
-			if (p > 300) {
-				return 9;
-			}
-			if (p > 100) {
-				return 6;
-			}
-			if (p > 60) {
-				return 5;
-			}
-			if (p > 40) {
-				return 4;
-			}
-			if (p > 20) {
-				return 3;
-			}
-			if (p > 10) {
-				return 2;
-			}
-			return 1;
+
+			// Clone the list and reverse to go top down filling everything
+			var spawners = Spawners.All.ToList();
+			spawners.Sort((c1, c2) =>
+				c2.PointsRequiredForSpawning * c2.MinEnemyCount - c1.PointsRequiredForSpawning * c1.MinEnemyCount);
+
+			// Spawn maximum possible enemies per spawner, beginning with the most required points
+			spawners.ForEach(spawner => {
+				var enemiesToSpawn = (int) Math.Floor(playerPoints / (float) spawner.PointsRequiredForSpawning);
+
+				// Skip spawners where the minimum requirement is not met
+				if (enemiesToSpawn < spawner.MinEnemyCount) {
+					return;
+				}
+
+				// Take the maximum spawn count if that is exceeded
+				if (enemiesToSpawn > spawner.MaxEnemyCount) {
+					enemiesToSpawn = spawner.MaxEnemyCount;
+				}
+
+				// NOTE Random value added to be non-deterministic
+				if (enemiesToSpawn > 20) {
+					// Add/substract a random number of enemies to be not deterministic
+					// so the game feels different when played multiple times
+					// Do this only if the enemy count is high enough to have not too much heavy enemes
+					enemiesToSpawn += NON_DETERMINISTIC.Next(-2, 2);
+				}
+				spawner.StartWave(enemiesToSpawn);
+				playerPoints -= enemiesToSpawn * spawner.PointsRequiredForSpawning;
+			});
+
+			// NOTE
+			// A possibility to select spawners would be to add a property "OccurenceLevel" and calculate the 
+			// probability for each spawner and take those, where the probability fits a random value. If this
+			// constellation is not  working, try to increase the number of taken spawners and repeat
+
+			// NOTE
+			// Another possibility would be to use spawners like in binary addition
+			// 1st: Enemy1
+			// 2nd: Enemy2
+			// 3rd: Enemy2 + Enemy1
+			// 4th: Enemy3
+			// 5th: Enemy3 + Enemy1
+			// 6th: Enemy3 + Enemy2
+			// 7th: Enemy3 + Enemy2 + Enemy1
 		}
 	}
 

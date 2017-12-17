@@ -12,9 +12,13 @@ namespace SpaceWar.Game.Play {
 
 	public class PlayScene : Scene {
 
+		public const float FIELD_WIDTH = 2f;
+		public const float FIELD_HEIGHT = 1f;
+		public const float BORDER_WIDTH = 0.02f;
+
 		private readonly int playerCount;
 
-		public PlayScene(int playerCount = 3) {
+		public PlayScene(int playerCount = 1) {
 			this.playerCount = playerCount;
 		}
 
@@ -26,20 +30,20 @@ namespace SpaceWar.Game.Play {
 
 			// World
 			Spawn(new Background());
-			Spawn(new Border(-1f, 0f, 0.02f, 1f));
-			Spawn(new Border(1f, 0f, 0.02f, 1f));
-			Spawn(new Border(0f, 0.5f, 2f, 0.02f));
-			Spawn(new Border(0f, -0.5f, 2f, 0.02f));
+			Spawn(new Border(-FIELD_WIDTH / 2, 0f, BORDER_WIDTH, FIELD_HEIGHT));
+			Spawn(new Border(FIELD_WIDTH / 2, 0f, BORDER_WIDTH, FIELD_HEIGHT));
+			Spawn(new Border(0f, FIELD_HEIGHT / 2, FIELD_WIDTH, BORDER_WIDTH));
+			Spawn(new Border(0f, -FIELD_HEIGHT / 2, FIELD_WIDTH, BORDER_WIDTH));
 
 			// Player
 			SpawnPlayer();
 			Spawn(new FollowingCameraBehaviour());
-			Spawn(new GameOverBehaviour());
+			Spawn(new GameOverObservingBehaviour());
 			Spawn(new HealthBar());
 			Spawn(new PointDisplay());
 
 			// Enemies
-			Spawn(new EnemySpawnBehaviour());
+			Spawn(new EnemySpawnBehaviour(FIELD_WIDTH, FIELD_HEIGHT));
 
 			// Engine
 			Spawn(new FrameworkEngineGameObject());

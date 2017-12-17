@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using Framework;
 using Framework.Collision.Collider;
 using Framework.Render;
@@ -14,13 +13,16 @@ namespace SpaceWar.Game.Play.Shot {
 
 		// Visual constants
 		public const float SHOT_SIZE = 0.025f;
-
+		
+		public Player.Player OwningPlayer { get; }
 		private readonly Vector2 position;
 
-		public Shot(float direction, Vector2 position, Action onEnemyHit) {
+		public Shot(float direction, Vector2 position, Player.Player owningPlayer) {
+			OwningPlayer = owningPlayer;
 			this.position = position;
+			
 			AddComponent(new ShotMovementController(direction));
-			AddComponent(new ShotCollisionController(onEnemyHit));
+			AddComponent(new ShotCollisionController());
 			//AddComponent(new RenderBoxComponent(SHOT_SIZE, SHOT_SIZE).Fill(Color.Brown));
 			//AddComponent(new BoxCollider(SHOT_SIZE, SHOT_SIZE));
 			AddComponent(new RenderCircleComponent(SHOT_SIZE / 2).Fill(Color.Brown));

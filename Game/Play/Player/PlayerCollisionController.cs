@@ -1,6 +1,7 @@
 ﻿using System;
 using Framework;
 using Framework.Collision;
+using SpaceWar.Game.Play.Enemy.General;
 using SpaceWar.Game.Play.Field;
 
 namespace SpaceWar.Game.Play.Player {
@@ -34,7 +35,10 @@ namespace SpaceWar.Game.Play.Player {
 					}
 					break;
 				// Damage the player if it hits an enemy
-				case Enemy.Enemy enemy:
+				case AbstractEnemy enemy:
+					if (!enemy.IsAlive || !enemy.IsSpawned) {
+						break;
+					}
 					Scene.Current.Destroy(enemy);
 					player.Attributes.Damage();
 					break;

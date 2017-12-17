@@ -1,11 +1,14 @@
-﻿using Framework;
+﻿using System;
+using Framework;
 
 namespace SpaceWar.Game.Play.Player {
 
 	public class PlayerAttributes : Component {
 
 		public int Lifes { get; private set; } = Player.MAX_LIFES;
-		public bool IsAlive => Lifes > 0;
+		// TODO CURRENTLY DISABLED
+		//public bool IsAlive => Lifes > 0;
+		public bool IsAlive => true;
 
 		public int Points { get; private set; }
 
@@ -13,8 +16,11 @@ namespace SpaceWar.Game.Play.Player {
 			Lifes--;
 		}
 
-		public void OnEnemyKill() {
-			Points++;
+		public void OnEnemyKill(int points) {
+			if (points < 0) {
+				throw new ArgumentException("Points for an enemy must be positive");
+			}
+			Points += points;
 		}
 	}
 

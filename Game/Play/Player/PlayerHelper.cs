@@ -15,18 +15,19 @@ namespace SpaceWar.Game.Play.Player {
 			return players;
 		}
 
+		public static bool IsAPlayerAlive() {
+			return GetPlayers().Count > 0;
+		}
+
 		public static Vector2 GetPlayerPositionCentroid(bool includeDead = false) {
 			var result = new Vector2();
-
 			var players = GetPlayers(includeDead);
 			players.ForEach(player => result += player.Transform.WorldPosition);
-
 			return result / players.Count;
 		}
 
 		public static Player GetNearestPlayer(Vector2 position, bool includeDead = false) {
 			Player result = null;
-
 			GetPlayers(includeDead).ForEach(player => {
 				if (result == null ||
 				    (player.Transform.WorldPosition - position).Length <
@@ -34,9 +35,15 @@ namespace SpaceWar.Game.Play.Player {
 					result = player;
 				}
 			});
-
 			return result;
 		}
+
+		public static int GetPlayerPoints() {
+			var points = 0;
+			GetPlayers(true).ForEach(player => points += player.Attributes.Points);
+			return points;
+		}
+
 	}
 
 }

@@ -126,6 +126,7 @@
     <Compile Include="Utilities\LimitedRateTimer.cs" />
     <Compile Include="Utilities\Matrix3x2Helper.cs" />
     <Compile Include="Utilities\Matrix3x2PrintExtension.cs" />
+    <Compile Include="Utilities\RandomExtension.cs" />
     <Compile Include="Utilities\VectorConverterExtension.cs" />
     <Compile Include="Widgets\Button.cs" />
     <Compile Include="Widgets\BoxClickComponent.cs" />
@@ -138,7 +139,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TODO.txt" />
+    <Content Include="NOTES.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
