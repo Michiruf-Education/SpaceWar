@@ -53,6 +53,10 @@ namespace Framework.Render {
 			var p2Fill = FastVector2Transform.Transform(p2.X, p2.Y, matrix);
 			var p3Fill = FastVector2Transform.Transform(p3.X, p3.Y, matrix);
 			var p4Fill = FastVector2Transform.Transform(p4.X, p4.Y, matrix);
+
+			// Enable blending for transparency
+			GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
+			GL.Enable(EnableCap.Blend);
 			
 			// Render filling
 			if (fillColor != Color.Empty) {
@@ -78,6 +82,8 @@ namespace Framework.Render {
 				GL.Vertex2(p4Fill);
 				GL.End();
 			}
+			
+			GL.Disable(EnableCap.Blend);
 
 			// NOTE Maybe debug draw?
 			//if (FrameworkDebugMode.IsEnabled) {

@@ -24,6 +24,10 @@ namespace Framework.Render {
 		}
 
 		public void Render() {
+			// Enable blending for transparency
+			GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
+			GL.Enable(EnableCap.Blend);
+			
 			GL.Color4(color);
 			GL.LineWidth(lineWidth);
 			

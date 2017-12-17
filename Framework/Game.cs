@@ -51,6 +51,13 @@ namespace Framework {
 			Window.Run();
 		}
 
+		public void Close() {
+			// Delegate destroying the old scene
+			ActiveScene?.OnDestroy();
+			
+			Window?.Close();
+		}
+
 		void SetupInputHandler() {
 			InputHandler.RegisterWindow(Window);
 		}

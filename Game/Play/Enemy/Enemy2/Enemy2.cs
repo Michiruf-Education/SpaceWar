@@ -20,7 +20,7 @@ namespace SpaceWar.Game.Play.Enemy.Enemy2 {
 		public Enemy2(int pointsForKilling) : base(SPAWN_DELAY, pointsForKilling) {
 			AddComponent(new EnemyLinearFollowNearestPlayerMovementController(ENEMY_SPEED));
 			AddComponent(new EnemyNoOverlapCollisionController());
-			AddComponent(visual = new RenderBoxComponent(ENEMY_SIZE, ENEMY_SIZE).Fill(Color.Aquamarine));
+			AddComponent(visual = new RenderBoxComponent(ENEMY_SIZE, ENEMY_SIZE).Fill(Color.FromArgb(150, Color.Aqua)));
 			AddComponent(new BoxCollider(ENEMY_SIZE, ENEMY_SIZE));
 		}
 

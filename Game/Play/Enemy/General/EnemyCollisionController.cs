@@ -14,7 +14,14 @@ namespace SpaceWar.Game.Play.Enemy.General {
 		}
 
 		public void OnCollide(GameObject other) {
-			Console.WriteLine(DateTime.Now + ":" + DateTime.Now.Millisecond + " Enemy collision with " + other.GetType().Name);
+			// OVERKILL avoidance:
+			// Avoid duplicate shots hit the enemy and when the enemy is spawning it shell not get killed
+			if (!enemy.IsAlive || !enemy.IsSpawned) {
+				return;
+			}
+
+			Console.WriteLine(DateTime.Now + ":" + DateTime.Now.Millisecond + " Enemy collision with " +
+			                  other.GetType().Name);
 
 			switch (other) {
 				case Shot.Shot shot:
