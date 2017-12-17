@@ -22,7 +22,8 @@ namespace SpaceWar.Game.Play.Enemy {
 		private Spawners() {
 			spawners.Add(new Enemy1Spawner1());
 			spawners.Add(new Enemy1Spawner2());
-			spawners.Add(new Enemy2Spawner());
+			spawners.Add(new Enemy2Spawner1());
+			spawners.Add(new Enemy2Spawner2());
 		}
 	}
 

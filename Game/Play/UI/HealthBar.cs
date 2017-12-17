@@ -31,7 +31,7 @@ namespace SpaceWar.Game.Play.UI {
 		public override void Update() {
 			base.Update();
 			for (var i = 0; i < PlayerT.MAX_LIFES; i++) {
-				items[i].IsEnabled = player.Attributes.Lifes >= i;
+				items[i].IsEnabled = player.Attributes.Lifes > i;
 			}
 		}
 	}

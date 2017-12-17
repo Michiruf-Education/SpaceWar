@@ -24,6 +24,14 @@ namespace SpaceWar.Game.Play.Shot {
 
 		public void Update() {
 			GameObject.Transform.Translate(x * Time.DeltaTime, y * Time.DeltaTime, Space.World);
+
+			// For fail safety, remove the object if its too far away, because it may clip through the border
+			// if a lagg occurrs
+			var shotPosition = GameObject.Transform.WorldPosition;
+			if (shotPosition.X > PlayScene.FIELD_WIDTH * 2 || shotPosition.X < -PlayScene.FIELD_WIDTH * 2 ||
+			    shotPosition.Y > PlayScene.FIELD_HEIGHT * 2 || shotPosition.Y < -PlayScene.FIELD_HEIGHT * 2) {
+				Scene.Current.Destroy(GameObject);
+			}
 		}
 	}
 

@@ -6,9 +6,7 @@ namespace SpaceWar.Game.Play.Player {
 	public class PlayerAttributes : Component {
 
 		public int Lifes { get; private set; } = Player.MAX_LIFES;
-		// TODO CURRENTLY DISABLED
-		//public bool IsAlive => Lifes > 0;
-		public bool IsAlive => true;
+		public bool IsAlive => Lifes > 0;
 
 		public int Points { get; private set; }
 

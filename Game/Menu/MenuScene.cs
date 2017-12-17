@@ -1,5 +1,4 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using Framework;
 using Framework.Camera;
 using Framework.Widget;
@@ -21,7 +20,7 @@ namespace SpaceWar.Game.Menu {
 			Spawn(camera);
 
 			// Sinpleplayer button
-			var singleplayerButton = new AButton(
+			var singleplayerButton = new Button(
 				new Box2D(-0.2f, -0.05f, 0.4f, 0.1f),
 				"Singleplayer",
 				Options.DEFAULT_FONT,
@@ -32,7 +31,7 @@ namespace SpaceWar.Game.Menu {
 			Spawn(singleplayerButton);
 
 			// Coop button
-			var coopButton = new BButton(
+			var coopButton = new Button(
 				new Box2D(-0.2f, -0.05f, 0.4f, 0.1f),
 				"CO-OP",
 				Options.DEFAULT_FONT,
@@ -43,7 +42,7 @@ namespace SpaceWar.Game.Menu {
 			Spawn(coopButton);
 
 			// Quit button
-			var quitButton = new CButton(
+			var quitButton = new Button(
 				new Box2D(-0.2f, -0.05f, 0.4f, 0.1f),
 				"Quit",
 				Options.DEFAULT_FONT,
@@ -52,24 +51,6 @@ namespace SpaceWar.Game.Menu {
 				() => Framework.Game.Instance.Close());
 			quitButton.Transform.LocalPosition = new Vector2(0, -0.15f);
 			Spawn(quitButton);
-		}
-	}
-
-	class AButton : Button {
-
-		public AButton(Box2D size, string label, Font font, Brush brush, Color background, Action action) : base(size, label, font, brush, background, action) {
-		}
-	}
-
-	class BButton : Button {
-
-		public BButton(Box2D size, string label, Font font, Brush brush, Color background, Action action) : base(size, label, font, brush, background, action) {
-		}
-	}
-
-	class CButton : Button {
-
-		public CButton(Box2D size, string label, Font font, Brush brush, Color background, Action action) : base(size, label, font, brush, background, action) {
 		}
 	}
 
