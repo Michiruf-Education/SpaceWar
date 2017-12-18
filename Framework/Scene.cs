@@ -44,8 +44,12 @@ namespace Framework {
 			
 			// NOTE Methods currently not search for children
 			
+			// NOTE The ToList()-call is required to modify the list (by spawning or destroying) while updating, 
+			// because it clones the list.
+			// Else: System.InvalidOperationException: Collection was modified; enumeration operation may not execute.
+			// -> We might need to use Immutables?
 			try {
-				var gameObject = gameObjects.First(go => go is TGameObjectType);
+				var gameObject = gameObjects.ToList().First(go => go is TGameObjectType);
 				return (TGameObjectType) (object) gameObject;
 			} catch (InvalidOperationException) {
 				return default(TGameObjectType);
@@ -54,8 +58,13 @@ namespace Framework {
 
 		public List<TGameObjectType> GetGameObjects<TGameObjectType>() {
 			// NOTE See comments in GetGameObject!
+			
+			// NOTE The ToList()-call is required to modify the list (by spawning or destroying) while updating, 
+			// because it clones the list.
+			// Else: System.InvalidOperationException: Collection was modified; enumeration operation may not execute.
+			// -> We might need to use Immutables?
 			var castedGameObjects = new List<TGameObjectType>();
-			gameObjects.ForEach(c => {
+			gameObjects.ToList().ForEach(c => {
 				if (c is TGameObjectType) {
 					castedGameObjects.Add((TGameObjectType) (object) c);
 				}
@@ -64,8 +73,12 @@ namespace Framework {
 		}
 
 		public List<TComponentType> GetAllComponentsInScene<TComponentType>() {
+			// NOTE The ToList()-call is required to modify the list (by spawning or destroying) while updating, 
+			// because it clones the list.
+			// Else: System.InvalidOperationException: Collection was modified; enumeration operation may not execute.
+			// -> We might need to use Immutables?
 			var components = new List<TComponentType>();
-			gameObjects.ForEach(go => components.AddRange(go.GetComponents<TComponentType>()));
+			gameObjects.ToList().ForEach(go => components.AddRange(go.GetComponents<TComponentType>()));
 			return components;
 		}
 
@@ -73,7 +86,7 @@ namespace Framework {
 			// NOTE The ToList()-call is required to modify the list (by spawning or destroying) while updating, 
 			// because it clones the list.
 			// Else: System.InvalidOperationException: Collection was modified; enumeration operation may not execute.
-			// We might need to use Immutables?
+			// -> We might need to use Immutables?
 			gameObjects.ToList().ForEach(go => {
 				// Skip disabled gameobjects
 				if (!go.IsEnabled) {

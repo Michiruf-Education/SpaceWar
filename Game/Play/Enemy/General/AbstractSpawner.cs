@@ -29,7 +29,7 @@ namespace SpaceWar.Game.Play.Enemy.General {
 		public bool IsWaveFinished => EnemiesToSpawn == 0 &&
 		                              SpawnedEnemies.Aggregate(0, (i, enemy) => enemy.IsAlive ? i + 1 : i) == 0;
 
-		private readonly LimitedRateTimer spawnTimer = new LimitedRateTimer();
+		private readonly MyTimer spawnTimer = new MyTimer();
 
 		// Behaviour for parameter lookup
 		private EnemySpawnBehaviour Behaviour => GameObject as EnemySpawnBehaviour;
@@ -41,7 +41,7 @@ namespace SpaceWar.Game.Play.Enemy.General {
 		}
 
 		public void Update() {
-			spawnTimer.DoOnlyEvery(SpawnInterval, SpawnEnemy);
+			spawnTimer.DoEvery(SpawnInterval, SpawnEnemy, MyTimer.When.Start);
 		}
 
 		protected abstract AbstractEnemy CreateEnemyInstance();

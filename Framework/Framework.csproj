@@ -122,9 +122,8 @@
     <Compile Include="Render\RenderTextureComponent.cs" />
     <Compile Include="Scene.cs" />
     <Compile Include="Transform.cs" />
-    <Compile Include="Utilities\DelayTimer.cs" />
     <Compile Include="Utilities\FastVector2Transform.cs" />
-    <Compile Include="Utilities\LimitedRateTimer.cs" />
+    <Compile Include="Utilities\MyTimer.cs" />
     <Compile Include="Utilities\RandomExtension.cs" />
     <Compile Include="Utilities\VectorConverterExtension.cs" />
     <Compile Include="Widgets\Button.cs" />

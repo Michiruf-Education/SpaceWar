@@ -2,16 +2,23 @@
 using System.Linq;
 using System.Threading;
 using Framework;
+using Framework.Utilities;
 using SpaceWar.Game.Play.Player;
+using SpaceWar.Game.Play.UI;
 
 namespace SpaceWar.Game.Play.Enemy {
 
 	public class EnemySpawnBehaviour : GameObject {
 
+		public const float WAVE_PAUSE_DELAY = 2f;
+
 		private static readonly Random NON_DETERMINISTIC = new Random();
 
 		public float FieldWidth { get; }
 		public float FieldHeight { get; }
+
+		private MyTimer waveStartTimerOverlay = new MyTimer();
+		private MyTimer waveStartTimer = new MyTimer();
 
 		public EnemySpawnBehaviour(float fieldWidth, float fieldHeight) {
 			FieldWidth = fieldWidth;
@@ -26,8 +33,12 @@ namespace SpaceWar.Game.Play.Enemy {
 
 		public override void Update() {
 			if (AllSpawnersFinishedWave()) {
-				Thread.Sleep(2000); // TODO
-				StartNewWave();
+				// Show the overlay to the user once
+				waveStartTimerOverlay.DoEvery(WAVE_PAUSE_DELAY,
+					() => Scene.Current.Spawn(new NewWaveOverlay()), MyTimer.When.Start);
+
+				// Trigger the wave start delayed
+				waveStartTimer.DoEvery(WAVE_PAUSE_DELAY, StartNewWave, MyTimer.When.End);
 			}
 
 			// We want to run the waves after starting a new one

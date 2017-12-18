@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using SpaceWar.Game.Play.Enemy.Enemy1;
 using SpaceWar.Game.Play.Enemy.Enemy2;
+using SpaceWar.Game.Play.Enemy.Enemy3;
 using SpaceWar.Game.Play.Enemy.General;
 
 namespace SpaceWar.Game.Play.Enemy {
@@ -9,7 +10,7 @@ namespace SpaceWar.Game.Play.Enemy {
 
 		private static Spawners INSTANCE;
 		public static List<AbstractSpawner> All => INSTANCE.spawners;
-		
+
 		public static void Init() {
 			INSTANCE = new Spawners();
 		}
@@ -21,6 +22,7 @@ namespace SpaceWar.Game.Play.Enemy {
 			spawners.Add(new Enemy1Spawner2());
 			spawners.Add(new Enemy2Spawner1());
 			spawners.Add(new Enemy2Spawner2());
+//			spawners.Add(new Enemy3Spawner());
 		}
 	}
 

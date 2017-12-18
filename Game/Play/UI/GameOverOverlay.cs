@@ -1,26 +1,18 @@
-﻿using System.Drawing;
-using System.Threading;
-using Framework;
-using Framework.Render;
-using SpaceWar.Game.Menu;
-using Zenseless.Geometry;
+﻿using SpaceWar.Game.Menu;
+using SpaceWar.Game.Play.UI.General;
 
 namespace SpaceWar.Game.Play.UI {
 
-	public class GameOverOverlay : GameObject {
+	public class GameOverOverlay : TextOverlay {
 
-		public const float GAME_OVER_DISPLAY_TIME = 3f;
+		public const float OVERLAY_DURATION = 3f;
 
-		public GameOverOverlay() : base(true) {
-			AddComponent(new RenderTextComponent("Game Over!", Options.DEFAULT_FONT, Brushes.White,
-				new Box2D(-0.5f, -0.1f, 1f, 0.2f)));
+		public GameOverOverlay() :
+			base("Game Over!", OVERLAY_DURATION, overlay => Framework.Game.Instance.ShowScene(new MenuScene())) {
 		}
 
-		public override void Update() {
-			// Just use thread sleep because then there will be no action in this time
-			Thread.Sleep((int) (GAME_OVER_DISPLAY_TIME * 1000f));
-			Framework.Game.Instance.ShowScene(new MenuScene());
-		}
+		// Alternatively a Thead.Sleep(GAME_OVER_DISPLAY_TIME * 1000f) would be possible to deny every other
+		// action than look to the screen
 	}
 
 }

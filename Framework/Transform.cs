@@ -145,6 +145,7 @@ namespace Framework {
 			// Possible fix: Write a add method that performs calculation in double and get and prepare the data after
 			// or before to not lose fractions
 			// Note that there is a float.Epsilon constant that may be useful
+			// For this epsilon see https://msdn.microsoft.com/en-us/library/c151dt3s.aspx
 			
 			switch (space) {
 				case Space.Local:

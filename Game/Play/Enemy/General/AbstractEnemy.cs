@@ -10,7 +10,7 @@ namespace SpaceWar.Game.Play.Enemy.General {
 		public bool IsSpawned { get; private set; }
 
 		protected readonly float spawnDelay;
-		protected readonly LimitedRateTimer spawnDelayTimer = new LimitedRateTimer();
+		protected readonly MyTimer spawnDelayTimer = new MyTimer();
 
 		protected AbstractEnemy(float spawnDelay, int pointsForKilling) {
 			PointsForKilling = pointsForKilling;
@@ -18,20 +18,12 @@ namespace SpaceWar.Game.Play.Enemy.General {
 			AddComponent(new EnemyCollisionController());
 		}
 
-		private bool firstTime = true;
-		public override void Update() {
-			base.Update();
-			// TODO Better timers...
-			if (!IsSpawned) {
-				spawnDelayTimer.DoOnlyEvery(spawnDelay, () => {
-					if (firstTime) {
-						firstTime = false;
-						return;
-					}
-					IsSpawned = true;
-					OnSpawned();
-				});
-			}
+		public override void OnStart() {
+			base.OnStart();
+			spawnDelayTimer.DoOnce(spawnDelay, () => {
+				IsSpawned = true;
+				OnSpawned();
+			});
 		}
 
 		public virtual void OnSpawned() {
