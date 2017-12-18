@@ -17,6 +17,7 @@ namespace SpaceWar.Game.Play.Enemy.General {
 		public abstract int MaxEnemyCount { get; }
 		public abstract int PointsRequiredForSpawning { get; }
 		public abstract int PointsForKilling { get; }
+		public abstract float SpawnDelay { get; }
 		public abstract float SpawnInterval { get; }
 
 		// Current spawn wave properties

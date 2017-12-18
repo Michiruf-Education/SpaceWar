@@ -25,7 +25,7 @@ namespace SpaceWar.Game.Play.Enemy.General {
 
 			switch (other) {
 				case Shot.Shot shot:
-					shot.OwningPlayer.Attributes.OnEnemyKill(enemy.PointsForKilling);
+					shot.OwningPlayer.Attributes.OnEnemyKill(enemy);
 					Scene.Current.Destroy(GameObject); // For now, destroy it immediately
 					Scene.Current.Destroy(shot); // For now, destroy also the shot
 					break;

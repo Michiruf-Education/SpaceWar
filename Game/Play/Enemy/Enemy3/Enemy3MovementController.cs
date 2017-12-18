@@ -16,6 +16,7 @@ namespace SpaceWar.Game.Play.Enemy.Enemy3 {
 		private AbstractEnemy enemy;
 
 		private readonly MyTimer phaseTimer = new MyTimer();
+		private bool isFirstChase = true;
 		private Vector2 chaseDirection = Vector2.Zero;
 
 		public Enemy3MovementController(float speed, float restDuration, float chaseDuration) {
@@ -43,7 +44,9 @@ namespace SpaceWar.Game.Play.Enemy.Enemy3 {
 				}
 
 				// Set the chase direction after the perio
-				phaseTimer.DoEvery(restDuration, () => {
+				phaseTimer.DoEvery(isFirstChase ? 0.1f : restDuration, () => {
+					isFirstChase = false;
+
 					// This is executed later, so we need to get the data again
 					var playerNow = PlayerHelper.GetNearestPlayer(GameObject.Transform.WorldPosition);
 					if (playerNow == null) {

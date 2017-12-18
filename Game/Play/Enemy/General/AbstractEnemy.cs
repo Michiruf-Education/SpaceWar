@@ -5,22 +5,21 @@ namespace SpaceWar.Game.Play.Enemy.General {
 
 	public abstract class AbstractEnemy : GameObject {
 
-		public int PointsForKilling { get; }
 		public bool IsAlive { get; private set; } = true;
 		public bool IsSpawned { get; private set; }
+		public int PointsForKilling => spawner.PointsForKilling;
 
-		protected readonly float spawnDelay;
+		protected readonly AbstractSpawner spawner;
 		protected readonly MyTimer spawnDelayTimer = new MyTimer();
 
-		protected AbstractEnemy(float spawnDelay, int pointsForKilling) {
-			PointsForKilling = pointsForKilling;
-			this.spawnDelay = spawnDelay;
+		protected AbstractEnemy(AbstractSpawner spawner) {
+			this.spawner = spawner;
 			AddComponent(new EnemyCollisionController());
 		}
 
 		public override void OnStart() {
 			base.OnStart();
-			spawnDelayTimer.DoOnce(spawnDelay, () => {
+			spawnDelayTimer.DoOnce(spawner.SpawnDelay, () => {
 				IsSpawned = true;
 				OnSpawned();
 			});

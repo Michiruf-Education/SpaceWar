@@ -1,5 +1,6 @@
 ﻿using System;
 using Framework;
+using SpaceWar.Game.Play.Enemy.General;
 
 namespace SpaceWar.Game.Play.Player {
 
@@ -14,11 +15,11 @@ namespace SpaceWar.Game.Play.Player {
 			Lifes--;
 		}
 
-		public void OnEnemyKill(int points) {
-			if (points < 0) {
-				throw new ArgumentException("Points for an enemy must be positive");
+		public void OnEnemyKill(AbstractEnemy enemy) {
+			if (enemy == null) {
+				throw new ArgumentException("No enemy given");
 			}
-			Points += points;
+			Points += enemy.PointsForKilling;
 		}
 	}
 

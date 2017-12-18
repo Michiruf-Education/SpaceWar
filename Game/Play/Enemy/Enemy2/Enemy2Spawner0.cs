@@ -2,11 +2,11 @@
 
 namespace SpaceWar.Game.Play.Enemy.Enemy2 {
 
-	public class Enemy2Spawner1 : AbstractSpawner {
+	public class Enemy2Spawner0 : AbstractSpawner {
 
-		public override int MinEnemyCount => 4;
-		public override int MaxEnemyCount => 15;
-		public override int PointsRequiredForSpawning => 21;
+		public override int MinEnemyCount => 10;
+		public override int MaxEnemyCount => 10;
+		public override int PointsRequiredForSpawning => 5;
 		public override int PointsForKilling => 5;
 		public override float SpawnDelay => 1f;
 		public override float SpawnInterval => 2f;

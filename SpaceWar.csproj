@@ -92,6 +92,7 @@
     <Compile Include="Game\Play\Enemy\Enemy1\Enemy1Spawner1.cs" />
     <Compile Include="Game\Play\Enemy\Enemy1\Enemy1Spawner2.cs" />
     <Compile Include="Game\Play\Enemy\Enemy2\Enemy2.cs" />
+    <Compile Include="Game\Play\Enemy\Enemy2\Enemy2Spawner0.cs" />
     <Compile Include="Game\Play\Enemy\Enemy2\Enemy2Spawner1.cs" />
     <Compile Include="Game\Play\Enemy\Enemy2\Enemy2Spawner2.cs" />
     <Compile Include="Game\Play\Enemy\Enemy3\Enemy3MovementController.cs" />
