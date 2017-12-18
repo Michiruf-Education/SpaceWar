@@ -2,6 +2,7 @@
 using System.Linq;
 using Framework;
 using Framework.Utilities;
+using SpaceWar.Game.Play.Enemy.General;
 using SpaceWar.Game.Play.Player;
 using SpaceWar.Game.Play.UI;
 
@@ -45,7 +46,10 @@ namespace SpaceWar.Game.Play.Enemy {
 		}
 
 		private bool AllSpawnersFinishedWave() {
-			return Spawners.All.Aggregate(true, (b, spawner) => b && spawner.IsWaveFinished);
+			// TODO Second check was implemented as list in the spawners that just proved the "IsAlive" property
+			// howevery, not every enemy that existed got that callback...?!
+			return Spawners.All.Aggregate(true, (b, spawner) => b && spawner.IsWaveSpawnFinished) &&
+				Scene.Current.GetGameObjects<AbstractEnemy>().Count == 0;
 		}
 
 		private void StartNewWave() {

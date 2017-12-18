@@ -25,10 +25,9 @@ namespace SpaceWar.Game.Play.Enemy.General {
 		public int EnemiesToSpawn { get; private set; }
 		public float ApproximatedWaveSpawnTime => (EnemiesThisWave + 1) * SpawnInterval;
 		public float RemainingSpawnTime => (EnemiesToSpawn + 1) * SpawnInterval;
-		public List<AbstractEnemy> SpawnedEnemies { get; } = new List<AbstractEnemy>();
 
-		public bool IsWaveFinished => EnemiesToSpawn == 0 &&
-		                              SpawnedEnemies.Aggregate(0, (i, enemy) => enemy.IsAlive ? i + 1 : i) == 0;
+		public bool IsWaveSpawnFinished => EnemiesToSpawn == 0;
+		// TODO public bool IsWaveFinished => ...
 
 		private readonly MyTimer spawnTimer = new MyTimer();
 
@@ -42,7 +41,6 @@ namespace SpaceWar.Game.Play.Enemy.General {
 		}
 
 		public void StartWave(int enemyCount) {
-			SpawnedEnemies.Clear();
 			EnemiesThisWave = enemyCount;
 			EnemiesToSpawn = enemyCount;
 		}
@@ -63,7 +61,6 @@ namespace SpaceWar.Game.Play.Enemy.General {
 
 			var enemy = CreateEnemyInstance();
 			SetEnemyPosition(enemy);
-			SpawnedEnemies.Add(enemy);
 			Scene.Current.Spawn(enemy);
 		}
 	}
