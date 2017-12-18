@@ -1,5 +1,6 @@
 ﻿namespace SpaceWar.Game {
 
+	[System.Obsolete]
 	public enum InputActions {
 
 		MoveUp,
