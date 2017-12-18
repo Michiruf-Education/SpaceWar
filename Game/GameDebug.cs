@@ -4,6 +4,13 @@
 
 		public static bool Enabled { get; set; }
 
+		private static bool IMMEDIATELY_PLAY;
+		public static bool ImmediatelyPlay {
+			// NoFormat
+			get => Enabled && IMMEDIATELY_PLAY;
+			set => IMMEDIATELY_PLAY = value;
+		}
+
 		private static bool UN_DIEABLE;
 		public static bool UnDieable {
 			// NoFormat

@@ -12,16 +12,17 @@ namespace SpaceWar.Game {
 			// Configure debug mode
 			FrameworkDebug.Enabled = false;
 			FrameworkDebug.DrawColliders = false;
-			FrameworkDebug.PrintCollisionDetection = true;
+			FrameworkDebug.PrintCollisionDetection = false;
 			GameDebug.Enabled = false;
+			GameDebug.ImmediatelyPlay = true;
 			GameDebug.UnDieable = true;
-			GameDebug.InitialPoints = 501;
+			GameDebug.InitialPoints = 10000;
 
 			// Initialize the game
 			var game = new Framework.Game();
 			game.RegisterInputProvider(new Keymap());
 			game.CreatePrimitiveWindow(VierportAnchor.Horizontal, "SpaceWar");
-			game.ShowScene(GameDebug.Enabled ? (Scene) new PlayScene() : new MenuScene());
+			game.ShowScene(GameDebug.ImmediatelyPlay ? (Scene) new PlayScene() : new MenuScene());
 			game.Run();
 		}
 	}

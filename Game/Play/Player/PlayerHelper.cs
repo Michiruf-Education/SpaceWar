@@ -19,6 +19,20 @@ namespace SpaceWar.Game.Play.Player {
 			return GetPlayers().Count > 0;
 		}
 
+		public static int GetPlayerCount() {
+			return GetPlayers(true).Count;
+		}
+
+		public static int GetPlayerLifes() {
+			return GetPlayers().Aggregate(0, (i, player) => i + player.Attributes.Lifes);
+		}
+
+		public static int GetPlayerPoints() {
+			var points = 0;
+			GetPlayers(true).ForEach(player => points += player.Attributes.Points);
+			return points;
+		}
+
 		public static Vector2 GetPlayerPositionCentroid(bool includeDead = false) {
 			var result = new Vector2();
 			var players = GetPlayers(includeDead);
@@ -36,12 +50,6 @@ namespace SpaceWar.Game.Play.Player {
 				}
 			});
 			return result;
-		}
-
-		public static int GetPlayerPoints() {
-			var points = 0;
-			GetPlayers(true).ForEach(player => points += player.Attributes.Points);
-			return points;
 		}
 
 	}

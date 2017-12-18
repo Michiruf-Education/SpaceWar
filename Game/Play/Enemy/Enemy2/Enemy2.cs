@@ -11,7 +11,7 @@ namespace SpaceWar.Game.Play.Enemy.Enemy2 {
 		public const float ENEMY_SPEED = 0.35f;
 
 		// Visual constants
-		public const float ENEMY_SIZE = 0.05f;
+		public const float ENEMY_SIZE = 0.042f;
 
 		// Components for spawn changes
 		private readonly RenderBoxComponent visual;

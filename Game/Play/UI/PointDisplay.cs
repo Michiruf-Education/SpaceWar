@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using Framework;
 using Framework.Render;
+using SpaceWar.Game.Play.Player;
 using Zenseless.Geometry;
 using PlayerT = SpaceWar.Game.Play.Player.Player;
 
@@ -9,7 +10,6 @@ namespace SpaceWar.Game.Play.UI {
 	public class PointDisplay : GameObject {
 
 		private readonly RenderTextComponent text;
-		private PlayerT player;
 
 		public PointDisplay() : base(true) {
 			AddComponent(text = new RenderTextComponent(
@@ -22,13 +22,12 @@ namespace SpaceWar.Game.Play.UI {
 
 		public override void OnStart() {
 			base.OnStart();
-			player = Scene.Current.GetGameObject<PlayerT>();
 			Transform.Translate(-0.95f, 0.45f, Space.World);
 		}
 
 		public override void Update() {
 			base.Update();
-			text.Text = player.Attributes.Points.ToString();
+			text.Text = PlayerHelper.GetPlayerPoints().ToString();
 		}
 	}
 

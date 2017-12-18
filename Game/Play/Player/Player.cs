@@ -20,7 +20,7 @@ namespace SpaceWar.Game.Play.Player {
 		public PlayerMovementController MovementController { get; }
 		public PlayerShotController ShotController { get; }
 		public PlayerCollisionController CollisionController { get; }
-		public RenderBoxComponent RenderBoxComponent { get; }
+		public RenderBoxComponent RenderComponent { get; }
 		public CircleCollider Collider { get; }
 
 		// Properties
@@ -31,14 +31,27 @@ namespace SpaceWar.Game.Play.Player {
 			MovementController = new PlayerMovementController();
 			ShotController = new PlayerShotController();
 			CollisionController = new PlayerCollisionController();
-			RenderBoxComponent = new RenderBoxComponent(PLAYER_SIZE, PLAYER_SIZE).Fill(Color.White);
+			Color playerColor;
+			switch (playerIndex) {
+				case 1:
+					playerColor = Color.LightSalmon;
+					break;
+				case 2:
+					playerColor = Color.LightYellow;
+					break;
+				default:
+					playerColor = Color.GreenYellow;
+					break;
+			}
+			// TODO Should be not the same enemies and be asymetric (for rotation feedback and felt smoothness)
+			RenderComponent = new RenderBoxComponent(PLAYER_SIZE, PLAYER_SIZE).Fill(playerColor);
 			Collider = new CircleCollider(PLAYER_SIZE / 2);
 
 			AddComponent(Attributes);
 			AddComponent(MovementController);
 			AddComponent(ShotController);
 			AddComponent(CollisionController);
-			AddComponent(RenderBoxComponent);
+			AddComponent(RenderComponent);
 			AddComponent(Collider);
 
 			PlayerIndex = playerIndex;
