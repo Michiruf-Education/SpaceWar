@@ -16,6 +16,7 @@ namespace SpaceWar.Game.Play.Enemy {
 		public EnemySpawnBehaviour(float fieldWidth, float fieldHeight) {
 			FieldWidth = fieldWidth;
 			FieldHeight = fieldHeight;
+			Spawners.Init();
 		}
 
 		public override void OnStart() {

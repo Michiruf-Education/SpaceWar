@@ -8,13 +8,10 @@ namespace SpaceWar.Game.Play.Enemy {
 	public class Spawners {
 
 		private static Spawners INSTANCE;
-		public static List<AbstractSpawner> All {
-			get {
-				if (INSTANCE == null) {
-					INSTANCE = new Spawners();
-				}
-				return INSTANCE.spawners;
-			}
+		public static List<AbstractSpawner> All => INSTANCE.spawners;
+		
+		public static void Init() {
+			INSTANCE = new Spawners();
 		}
 
 		private readonly List<AbstractSpawner> spawners = new List<AbstractSpawner>();
