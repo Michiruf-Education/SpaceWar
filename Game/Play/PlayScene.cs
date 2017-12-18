@@ -15,6 +15,7 @@ namespace SpaceWar.Game.Play {
 		public const float FIELD_WIDTH = 2f;
 		public const float FIELD_HEIGHT = 1f;
 		public const float BORDER_WIDTH = 0.02f;
+		public const float PLAYER_SPAWN_DISTANCE = 0.1f;
 
 		private readonly int playerCount;
 
@@ -36,7 +37,7 @@ namespace SpaceWar.Game.Play {
 			Spawn(new Border(0f, -FIELD_HEIGHT / 2, FIELD_WIDTH, BORDER_WIDTH));
 
 			// Player
-			SpawnPlayer();
+			SpawnPlayers();
 			Spawn(new FollowingCameraBehaviour());
 			Spawn(new GameOverObservingBehaviour());
 			Spawn(new HealthBar());
@@ -49,15 +50,15 @@ namespace SpaceWar.Game.Play {
 			Spawn(new FrameworkEngineGameObject());
 		}
 
-		private void SpawnPlayer() {
+		private void SpawnPlayers() {
 			for (int i = 0; i < playerCount; i++) {
 				var player = new Player.Player(i);
 				Spawn(player);
 				if (playerCount > 1) {
 					var deg = i * 360 / playerCount + 180;
 					player.Transform.WorldPosition = new Vector2(
-						(float) Math.Cos(MathHelper.DegreesToRadians(deg)) * 0.1f,
-						(float) Math.Sin(MathHelper.DegreesToRadians(deg)) * 0.1f);
+						(float) Math.Cos(MathHelper.DegreesToRadians(deg)) * PLAYER_SPAWN_DISTANCE,
+						(float) Math.Sin(MathHelper.DegreesToRadians(deg)) * PLAYER_SPAWN_DISTANCE);
 				}
 			}
 		}

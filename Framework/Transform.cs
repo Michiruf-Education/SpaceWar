@@ -242,14 +242,13 @@ namespace Framework {
 
 		internal Matrix3x2 GetTransformationMatrixCached(bool includeCamera) {
 			if (includeCamera) {
-				if (true || !transformationMatrixCacheWithCamera.HasData || CameraComponent.ActiveCameraMatrixChanged) {
+				if (!transformationMatrixCacheWithCamera.HasData || CameraComponent.ActiveCameraMatrixChanged) {
 					transformationMatrixCacheWithCamera.Data = WorldToLocal * CameraComponent.ActiveCameraMatrix;
 				}
 				return transformationMatrixCacheWithCamera.Data;
 			}
 
-			// TODO For any reason if we cache this, the camera does not follow?!
-			if (true || !transformationMatrixCache.HasData) {
+			if (!transformationMatrixCache.HasData) {
 				transformationMatrixCache.Data = WorldToLocal;
 			}
 			return transformationMatrixCache.Data;

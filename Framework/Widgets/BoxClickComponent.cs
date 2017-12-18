@@ -36,10 +36,10 @@ namespace Framework.Widget {
 				mouseDevice.X / (float) Game.Instance.Window.Width,
 				mouseDevice.Y / (float) Game.Instance.Window.Height);
 
-			var p = (mousePositionRelativeToWindow - new Vector2(0.5f, 0.5f)) * new Vector2(2f, -1f); // TODO Translate to world correctly
+			// TODO Translate to world correctly:
+			var p = (mousePositionRelativeToWindow - new Vector2(0.5f, 0.5f)) * new Vector2(2f, -1f);
 			Console.WriteLine(p);
 
-			// TODO Mouse position is not aligned to used grid
 			var bounds = GetTransformedRect();
 			if (p.X >= bounds.MinX && p.X <= bounds.MaxX &&
 			    p.Y >= bounds.MinY && p.Y <= bounds.MaxY) {

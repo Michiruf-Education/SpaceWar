@@ -63,8 +63,6 @@ namespace Framework {
 		}
 
 		void LoadLayoutAndRegisterSaveHook() {
-			// TODO Inform Daniel Scherzer that this is able to do with IGameWindow instead of GameWindow
-			// -> The LoadLayout extension
 			Window.LoadLayout();
 			Window.Closing += (sender, args) => {
 				ActiveScene?.OnDestroy();

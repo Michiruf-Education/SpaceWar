@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using Framework.Debug;
 using Framework.Object;
 using Framework.Utilities;
@@ -6,6 +7,8 @@ using OpenTK.Graphics.OpenGL;
 
 namespace Framework.Render {
 
+	[Obsolete("Recommendation Daniel Scherzer: we should not use lines with a width because its hardware dependent" +
+	          "how they get rendered")]
 	public class RenderLineComponent : Component, RenderComponent {
 
 		private readonly PointF from;
@@ -18,9 +21,6 @@ namespace Framework.Render {
 			this.to = to;
 			this.color = color;
 			this.lineWidth = lineWidth;
-			// TODO Calculate the line width with the scaling?
-			// TODO Recommendation Daniel Scherzer: we should not use lines with a width because its hardware dependent
-			// how they get rendered
 		}
 
 		public void Render() {
