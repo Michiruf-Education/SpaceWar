@@ -3,6 +3,7 @@ using Framework.Object;
 
 namespace Framework.Utilities {
 
+	[Obsolete]
 	public class LimitedRateTimer {
 
 		private float lastCallTime = -1f;

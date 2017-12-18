@@ -3,6 +3,7 @@ using Framework.Object;
 
 namespace Framework.Utilities {
 
+	[Obsolete]
 	public class DelayTimer {
 
 		private float firstCallTime = -1f;

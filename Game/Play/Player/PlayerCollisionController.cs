@@ -31,7 +31,7 @@ namespace SpaceWar.Game.Play.Player {
 				// Deny going threw other players
 				case Player otherPlayer:
 					if (otherPlayer.Attributes.IsAlive) {
-						GetComponent<ColliderComponent>().UndoOverlap(other.GetComponent<ColliderComponent>());
+						GetComponent<ColliderComponent>().UndoOverlap(other.GetComponent<ColliderComponent>(), true);
 					}
 					break;
 				// Damage the player if it hits an enemy

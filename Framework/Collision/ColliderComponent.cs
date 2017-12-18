@@ -20,8 +20,7 @@ namespace Framework.Collision {
 		}
 
 		public void UndoOverlap(ColliderComponent other, bool forceDuplicateUndo = false) {
-			// TODO Duplicate undo should have avoided that players push themselves. Seem like it didn't
-			if (!forceDuplicateUndo && undoOverlapDone) {
+			if (!forceDuplicateUndo && (undoOverlapDone || other.undoOverlapDone)) {
 				return;
 			}
 			undoOverlapDone = true;

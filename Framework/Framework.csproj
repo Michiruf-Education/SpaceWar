@@ -97,6 +97,7 @@
     <Compile Include="Collision\Detection\NonOptimizedCollisionDetection.cs" />
     <Compile Include="Component.cs" />
     <Compile Include="Debug\FrameworkDebugMode.cs" />
+    <Compile Include="Debug\Matrix3x2PrintExtension.cs" />
     <Compile Include="Debug\ToDevelopException.cs" />
     <Compile Include="Engine\FrameworkEngineGameObject.cs" />
     <Compile Include="Game.cs" />
@@ -124,8 +125,6 @@
     <Compile Include="Utilities\DelayTimer.cs" />
     <Compile Include="Utilities\FastVector2Transform.cs" />
     <Compile Include="Utilities\LimitedRateTimer.cs" />
-    <Compile Include="Utilities\Matrix3x2Helper.cs" />
-    <Compile Include="Utilities\Matrix3x2PrintExtension.cs" />
     <Compile Include="Utilities\RandomExtension.cs" />
     <Compile Include="Utilities\VectorConverterExtension.cs" />
     <Compile Include="Widgets\Button.cs" />

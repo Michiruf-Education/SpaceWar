@@ -136,6 +136,16 @@ namespace Framework {
 		}
 
 		public void Translate(Vector2 translation, Space space) {
+			// NOTE Sometimes when moving just a very tiny distance, floating point operation may loose
+			// some data
+			// Evaluate expression to reproduce:
+			// (float)(0.965 -2.421439E-08)
+			// This causes the player to run agains the border, undo the overlap and still be "in" the border, but for 
+			// now we just can ignore this case!
+			// Possible fix: Write a add method that performs calculation in double and get and prepare the data after
+			// or before to not lose fractions
+			// Note that there is a float.Epsilon constant that may be useful
+			
 			switch (space) {
 				case Space.Local:
 					// Substract the current position after apply the transformation to only use scaling and
