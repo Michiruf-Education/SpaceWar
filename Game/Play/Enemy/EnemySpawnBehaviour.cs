@@ -24,6 +24,12 @@ namespace SpaceWar.Game.Play.Enemy {
 			Spawners.All.ForEach(AddComponent);
 		}
 
+		public override void OnDestroy() {
+			waveStartTimerOverlay.Cancel();
+			waveStartTimer.Cancel();
+			base.OnDestroy();
+		}
+
 		public override void Update() {
 			if (AllSpawnersFinishedWave()) {
 				// Show the overlay to the user once

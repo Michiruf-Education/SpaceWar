@@ -32,14 +32,19 @@ namespace SpaceWar.Game.Play.Enemy.General {
 
 		private readonly MyTimer spawnTimer = new MyTimer();
 
-		public void StartWave(int enemyCount) {
-			SpawnedEnemies.Clear();
-			EnemiesThisWave = enemyCount;
-			EnemiesToSpawn = enemyCount;
+		public override void OnDestroy() {
+			spawnTimer.Cancel();
+			base.OnDestroy();
 		}
 
 		public void Update() {
 			spawnTimer.DoEvery(SpawnInterval, SpawnEnemy, MyTimer.When.End);
+		}
+
+		public void StartWave(int enemyCount) {
+			SpawnedEnemies.Clear();
+			EnemiesThisWave = enemyCount;
+			EnemiesToSpawn = enemyCount;
 		}
 
 		protected abstract AbstractEnemy CreateEnemyInstance();

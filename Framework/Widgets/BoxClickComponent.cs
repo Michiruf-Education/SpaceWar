@@ -36,7 +36,7 @@ namespace Framework.Widget {
 
 			// TODO Translate to world correctly:
 			var p = (mousePositionRelativeToWindow - new Vector2(0.5f, 0.5f)) * new Vector2(2f, -1f);
-			Console.WriteLine(p);
+			//Console.WriteLine(p);
 
 			var bounds = GetTransformedRect();
 			if (p.X >= bounds.MinX && p.X <= bounds.MaxX &&

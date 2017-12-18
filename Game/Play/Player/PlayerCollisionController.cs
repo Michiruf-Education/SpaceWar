@@ -1,6 +1,7 @@
 ﻿using System;
 using Framework;
 using Framework.Collision;
+using Framework.Debug;
 using SpaceWar.Game.Play.Enemy.General;
 using SpaceWar.Game.Play.Field;
 
@@ -21,7 +22,8 @@ namespace SpaceWar.Game.Play.Player {
 				return;
 			}
 
-			Console.WriteLine(DateTime.Now + ":" + DateTime.Now.Millisecond + " Player collision with " + other.GetType().Name);
+			FrameworkDebug.LogCollision(DateTime.Now + ":" + DateTime.Now.Millisecond + " Player collision with " + 
+			                            other.GetType().Name);
 
 			switch (other) {
 				// Deny going threw borders

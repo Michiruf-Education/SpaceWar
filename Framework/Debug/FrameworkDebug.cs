@@ -6,18 +6,18 @@ namespace Framework.Debug {
 
 		public static bool Enabled { get; set; }
 
-		private static bool drawColliders = true;
+		private static bool DRAW_COLLIDERS = true;
 		public static bool DrawColliders {
 			// NoFormat
-			get => Enabled && drawColliders;
-			set => drawColliders = value;
+			get => Enabled && DRAW_COLLIDERS;
+			set => DRAW_COLLIDERS = value;
 		}
 
-		private static bool printCollisionDetection = true;
+		private static bool PRINT_COLLISION_DETECTION = true;
 		public static bool PrintCollisionDetection {
 			// NoFormat
-			get => Enabled && printCollisionDetection;
-			set => printCollisionDetection = value;
+			get => Enabled && PRINT_COLLISION_DETECTION;
+			set => PRINT_COLLISION_DETECTION = value;
 		}
 
 		public static void LogCollision(string text) {

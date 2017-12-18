@@ -23,7 +23,7 @@ namespace Framework.Utilities {
 			if (when == When.Start) {
 				action?.Invoke();
 			}
-			
+
 			// Create the callback
 			void TimerElapsed(object sender, ElapsedEventArgs args) {
 				// May perform the action on end
@@ -48,7 +48,7 @@ namespace Framework.Utilities {
 			if (Timer.Enabled || onceDone) {
 				return;
 			}
-			
+
 			// Create the callback
 			void TimerElapsed(object sender, ElapsedEventArgs args) {
 				onceDone = true;
@@ -67,6 +67,11 @@ namespace Framework.Utilities {
 			Timer.Interval = seconds * 1000f;
 			Timer.Elapsed += TimerElapsed;
 			Timer.Start();
+		}
+
+		public void Cancel() {
+			Timer.Stop();
+			Timer.Close();
 		}
 
 		public enum When {

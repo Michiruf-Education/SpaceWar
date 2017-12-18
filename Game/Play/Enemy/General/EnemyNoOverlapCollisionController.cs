@@ -1,5 +1,7 @@
-﻿using Framework;
+﻿using System;
+using Framework;
 using Framework.Collision;
+using Framework.Debug;
 
 namespace SpaceWar.Game.Play.Enemy.General {
 
@@ -17,6 +19,9 @@ namespace SpaceWar.Game.Play.Enemy.General {
 			if (!enemy.IsSpawned) {
 				return;
 			}
+
+			FrameworkDebug.LogCollision(DateTime.Now + ":" + DateTime.Now.Millisecond + " " + enemy.GetType().Name +
+			                            " collision with " + other.GetType().Name);
 
 			switch (other) {
 				case AbstractEnemy _:
