@@ -8,9 +8,9 @@ namespace SpaceWar.Game.Play.Enemy.Enemy3 {
 	public class Enemy3 : AbstractEnemy {
 
 		// Logic constants
-		public const float ENEMY_SPEED = 1f;
+		public const float ENEMY_SPEED = 1.2f;
 		public const float ENEMY_REST_DURATION = 0.5f;
-		public const float ENEMY_CHASE_DURATION = 1f;
+		public const float ENEMY_CHASE_DURATION = 0.8f;
 
 		// Visual constants
 		public const float ENEMY_SIZE = 0.05f;

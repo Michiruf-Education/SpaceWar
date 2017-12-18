@@ -89,6 +89,7 @@
     <Compile Include="Game\Keymap.cs" />
     <Compile Include="Game\Menu\MenuScene.cs" />
     <Compile Include="Game\Options.cs" />
+    <Compile Include="Game\Play\Enemy\Calculator\EdgeSpawnPositionCalculator.cs" />
     <Compile Include="Game\Play\Enemy\Enemy1\Enemy1.cs" />
     <Compile Include="Game\Play\Enemy\Enemy1\Enemy1Spawner1.cs" />
     <Compile Include="Game\Play\Enemy\Enemy1\Enemy1Spawner2.cs" />

@@ -25,12 +25,12 @@ namespace SpaceWar.Game.Play.Enemy.General {
 			});
 		}
 
-		public virtual void OnSpawned() {
-		}
-
 		public override void OnDestroy() {
 			IsAlive = false;
 			base.OnDestroy();
+		}
+
+		public virtual void OnSpawned() {
 		}
 	}
 

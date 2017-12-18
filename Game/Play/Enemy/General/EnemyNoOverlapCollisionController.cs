@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Framework;
 using Framework.Collision;
 using Framework.Debug;
@@ -25,8 +26,13 @@ namespace SpaceWar.Game.Play.Enemy.General {
 
 			switch (other) {
 				case AbstractEnemy _:
-					// Enemies should not overlap
-					GetComponent<ColliderComponent>().UndoOverlap(other.GetComponent<ColliderComponent>());
+					// Get if there is a no overlap component
+					var hasNoOverlap = other.GetComponents<CollisionComponent>().Aggregate(false, (b, component) =>
+						b || component is EnemyNoOverlapCollisionController);
+					// Enemies should not overlap if the component is present
+					if (hasNoOverlap) {
+						GetComponent<ColliderComponent>().UndoOverlap(other.GetComponent<ColliderComponent>());
+					}
 					break;
 			}
 		}

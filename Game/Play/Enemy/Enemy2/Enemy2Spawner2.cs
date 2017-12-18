@@ -1,4 +1,5 @@
-﻿using SpaceWar.Game.Play.Enemy.General;
+﻿using SpaceWar.Game.Play.Enemy.Calculator;
+using SpaceWar.Game.Play.Enemy.General;
 
 namespace SpaceWar.Game.Play.Enemy.Enemy2 {
 
@@ -13,6 +14,11 @@ namespace SpaceWar.Game.Play.Enemy.Enemy2 {
 
 		protected override AbstractEnemy CreateEnemyInstance() {
 			return new Enemy2(this);
+		}
+
+		protected override void SetEnemyPosition(AbstractEnemy enemy) {
+			enemy.Transform.WorldPosition = EdgeSpawnPositionCalculator.RandomEdgePosition(
+				PlayScene.FIELD_WIDTH, PlayScene.FIELD_HEIGHT);
 		}
 	}
 
