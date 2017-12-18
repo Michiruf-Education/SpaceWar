@@ -8,7 +8,7 @@ namespace Framework.Collision.Collider {
 
 	public class CircleShape : ColliderShape {
 
-		public Circle Circle { get; set; }
+		public Circle Circle { get; }
 
 		public CircleShape(Circle circle) {
 			Circle = circle;
@@ -18,10 +18,6 @@ namespace Framework.Collision.Collider {
 			var matrix = transform.GetTransformationMatrixCached(false);
 			var center = FastVector2Transform.Transform(Circle.CenterX, Circle.CenterY, matrix);
 			return new Circle(center.X, center.Y, Circle.Radius);
-		}
-
-		internal Circle GetTransformedCircle(Transform transform) {
-			return GetTransformedShape(transform) as Circle;
 		}
 
 		internal override void DebugRender(Transform transform, bool isUiElement) {

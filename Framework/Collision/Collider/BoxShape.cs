@@ -7,7 +7,7 @@ namespace Framework.Collision.Collider {
 
 	public class BoxShape : ColliderShape {
 
-		public Box2D Rect { get; set; }
+		public Box2D Rect { get; }
 
 		public BoxShape(Box2D rect) {
 			Rect = rect;
@@ -17,10 +17,6 @@ namespace Framework.Collision.Collider {
 			var transformedRect = new Box2D(Rect);
 			transformedRect.TransformCenter(transform.GetTransformationMatrixCached(false));
 			return transformedRect;
-		}
-
-		internal Circle GetTransformedRect(Transform transform) {
-			return GetTransformedShape(transform) as Circle;
 		}
 
 		internal override void DebugRender(Transform transform, bool isUiElement) {

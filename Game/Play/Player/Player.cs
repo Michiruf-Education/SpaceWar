@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 using Framework;
-using Framework.Collision;
 using Framework.Collision.Collider;
 using Framework.Render;
 
@@ -22,7 +21,7 @@ namespace SpaceWar.Game.Play.Player {
 		public PlayerShotController ShotController { get; }
 		public PlayerCollisionController CollisionController { get; }
 		public RenderBoxComponent RenderBoxComponent { get; }
-		public ColliderComponent BoxCollider { get; } // TODO Change type back later
+		public CircleCollider Collider { get; }
 
 		// Properties
 		public int PlayerIndex { get; }
@@ -33,14 +32,14 @@ namespace SpaceWar.Game.Play.Player {
 			ShotController = new PlayerShotController();
 			CollisionController = new PlayerCollisionController();
 			RenderBoxComponent = new RenderBoxComponent(PLAYER_SIZE, PLAYER_SIZE).Fill(Color.White);
-			BoxCollider = playerIndex % 2 == 1 ? (ColliderComponent) new BoxCollider(PLAYER_SIZE, PLAYER_SIZE) : new CircleCollider(PLAYER_SIZE / 2);
+			Collider = new CircleCollider(PLAYER_SIZE / 2);
 
 			AddComponent(Attributes);
 			AddComponent(MovementController);
 			AddComponent(ShotController);
 			AddComponent(CollisionController);
 			AddComponent(RenderBoxComponent);
-			AddComponent(BoxCollider);
+			AddComponent(Collider);
 
 			PlayerIndex = playerIndex;
 		}

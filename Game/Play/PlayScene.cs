@@ -15,6 +15,7 @@ namespace SpaceWar.Game.Play {
 		public const float FIELD_WIDTH = 2f;
 		public const float FIELD_HEIGHT = 1f;
 		public const float BORDER_WIDTH = 0.02f;
+		public const float BORDER_PADDING = 0.1f;
 		public const float PLAYER_SPAWN_DISTANCE = 0.1f;
 
 		private readonly int playerCount;
@@ -31,10 +32,10 @@ namespace SpaceWar.Game.Play {
 
 			// World
 			Spawn(new Background());
-			Spawn(new Border(-FIELD_WIDTH / 2, 0f, BORDER_WIDTH, FIELD_HEIGHT));
-			Spawn(new Border(FIELD_WIDTH / 2, 0f, BORDER_WIDTH, FIELD_HEIGHT));
-			Spawn(new Border(0f, FIELD_HEIGHT / 2, FIELD_WIDTH, BORDER_WIDTH));
-			Spawn(new Border(0f, -FIELD_HEIGHT / 2, FIELD_WIDTH, BORDER_WIDTH));
+			Spawn(new Border(FIELD_WIDTH, FIELD_HEIGHT, BORDER_WIDTH, BORDER_PADDING, Border.Position.Left));
+			Spawn(new Border(FIELD_WIDTH, FIELD_HEIGHT, BORDER_WIDTH, BORDER_PADDING, Border.Position.Top));
+			Spawn(new Border(FIELD_WIDTH, FIELD_HEIGHT, BORDER_WIDTH, BORDER_PADDING, Border.Position.Right));
+			Spawn(new Border(FIELD_WIDTH, FIELD_HEIGHT, BORDER_WIDTH, BORDER_PADDING, Border.Position.Bottom));
 
 			// Player
 			SpawnPlayers();

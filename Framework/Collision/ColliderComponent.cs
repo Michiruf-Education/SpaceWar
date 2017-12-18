@@ -20,6 +20,7 @@ namespace Framework.Collision {
 		}
 
 		public void UndoOverlap(ColliderComponent other, bool forceDuplicateUndo = false) {
+			// TODO Duplicate undo should have avoided that players push themselves. Seem like it didn't
 			if (!forceDuplicateUndo && undoOverlapDone) {
 				return;
 			}
@@ -34,7 +35,6 @@ namespace Framework.Collision {
 			}
 			return transformedShapeCached.Data;
 		}
-
 
 		// NOTE Use this to upgrad the performance when clustering 
 		// -> make abstract and implement simple calculation of bounds where the element cannot exceed the size
