@@ -41,9 +41,9 @@ namespace Framework {
 			// not need to extend GameObject's in order to add components, but have
 			// a file that will descript those and we instantiate them by name and look
 			// them up also by name!
-			
+
 			// NOTE Methods currently not search for children
-			
+
 			// NOTE The ToList()-call is required to modify the list (by spawning or destroying) while updating, 
 			// because it clones the list.
 			// Else: System.InvalidOperationException: Collection was modified; enumeration operation may not execute.
@@ -58,7 +58,7 @@ namespace Framework {
 
 		public List<TGameObjectType> GetGameObjects<TGameObjectType>() {
 			// NOTE See comments in GetGameObject!
-			
+
 			// NOTE The ToList()-call is required to modify the list (by spawning or destroying) while updating, 
 			// because it clones the list.
 			// Else: System.InvalidOperationException: Collection was modified; enumeration operation may not execute.
@@ -78,7 +78,11 @@ namespace Framework {
 			// Else: System.InvalidOperationException: Collection was modified; enumeration operation may not execute.
 			// -> We might need to use Immutables?
 			var components = new List<TComponentType>();
-			gameObjects.ToList().ForEach(go => components.AddRange(go.GetComponents<TComponentType>()));
+			gameObjects.ToList().ForEach(go => {
+				if (go != null) {
+					components.AddRange(go.GetComponents<TComponentType>());
+				}
+			});
 			return components;
 		}
 
@@ -89,7 +93,7 @@ namespace Framework {
 			// -> We might need to use Immutables?
 			gameObjects.ToList().ForEach(go => {
 				// Skip disabled gameobjects
-				if (!go.IsEnabled) {
+				if (go == null || !go.IsEnabled) {
 					return;
 				}
 				go.Update();
@@ -103,7 +107,7 @@ namespace Framework {
 			// We might need to use Immutables?
 			gameObjects.ToList().ForEach(go => {
 				// Skip disabled gameobjects
-				if (!go.IsEnabled) {
+				if (go == null || !go.IsEnabled) {
 					return;
 				}
 				go.Render();
