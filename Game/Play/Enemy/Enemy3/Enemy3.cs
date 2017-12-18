@@ -9,7 +9,9 @@ namespace SpaceWar.Game.Play.Enemy.Enemy3 {
 
 		// Logic constants
 		public const float SPAWN_DELAY = 1f;
-		public const float ENEMY_SPEED = 0.35f;
+		public const float ENEMY_SPEED = 1f;
+		public const float ENEMY_REST_DURATION = 0.5f;
+		public const float ENEMY_CHASE_DURATION = 1f;
 
 		// Visual constants
 		public const float ENEMY_SIZE = 0.05f;
@@ -18,7 +20,7 @@ namespace SpaceWar.Game.Play.Enemy.Enemy3 {
 		private readonly RenderBoxComponent visual;
 
 		public Enemy3(int pointsForKilling) : base(SPAWN_DELAY, pointsForKilling) {
-			AddComponent(new Enemy3MovementController(ENEMY_SPEED));
+			AddComponent(new Enemy3MovementController(ENEMY_SPEED, ENEMY_REST_DURATION, ENEMY_CHASE_DURATION));
 			AddComponent(visual = new RenderBoxComponent(ENEMY_SIZE, ENEMY_SIZE).Fill(Color.FromArgb(150, Color.Red)));
 			AddComponent(new BoxCollider(ENEMY_SIZE, ENEMY_SIZE));
 		}

@@ -6,7 +6,7 @@ namespace SpaceWar.Game.Play.Enemy.Enemy3 {
 
 		public override int MinEnemyCount => 1;
 		public override int MaxEnemyCount => 4;
-		public override int PointsRequiredForSpawning => 401;
+		public override int PointsRequiredForSpawning => 501;
 		public override int PointsForKilling => 20;
 		public override float SpawnInterval => 2f;
 

@@ -45,7 +45,7 @@ namespace SpaceWar.Game.Play {
 			Spawn(new PointDisplay());
 
 			// Enemies
-			Spawn(new EnemySpawnBehaviour(FIELD_WIDTH, FIELD_HEIGHT));
+			Spawn(new EnemySpawnBehaviour());
 
 			// Engine
 			Spawn(new FrameworkEngineGameObject());

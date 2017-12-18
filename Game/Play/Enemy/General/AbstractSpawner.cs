@@ -12,14 +12,14 @@ namespace SpaceWar.Game.Play.Enemy.General {
 
 		public static readonly Random POSITION_GENERATOR = new Random();
 
-		// Spawner configuration
+		// Abstract spawner configuration
 		public abstract int MinEnemyCount { get; }
 		public abstract int MaxEnemyCount { get; }
 		public abstract int PointsRequiredForSpawning { get; }
 		public abstract int PointsForKilling { get; }
 		public abstract float SpawnInterval { get; }
 
-		// Current spawn properties
+		// Current spawn wave properties
 		public int EnemiesThisWave { get; private set; }
 		public int EnemiesToSpawn { get; private set; }
 		public float ApproximatedWaveSpawnTime => (EnemiesThisWave + 1) * SpawnInterval;
@@ -31,9 +31,6 @@ namespace SpaceWar.Game.Play.Enemy.General {
 
 		private readonly MyTimer spawnTimer = new MyTimer();
 
-		// Behaviour for parameter lookup
-		private EnemySpawnBehaviour Behaviour => GameObject as EnemySpawnBehaviour;
-
 		public void StartWave(int enemyCount) {
 			SpawnedEnemies.Clear();
 			EnemiesThisWave = enemyCount;
@@ -41,15 +38,15 @@ namespace SpaceWar.Game.Play.Enemy.General {
 		}
 
 		public void Update() {
-			spawnTimer.DoEvery(SpawnInterval, SpawnEnemy, MyTimer.When.Start);
+			spawnTimer.DoEvery(SpawnInterval, SpawnEnemy, MyTimer.When.End);
 		}
 
 		protected abstract AbstractEnemy CreateEnemyInstance();
 
 		protected virtual void SetEnemyPosition(AbstractEnemy enemy) {
 			enemy.Transform.WorldPosition = new Vector2(
-				POSITION_GENERATOR.NextFloat(-Behaviour.FieldWidth / 2, Behaviour.FieldWidth / 2),
-				POSITION_GENERATOR.NextFloat(-Behaviour.FieldHeight / 2, Behaviour.FieldHeight / 2));
+				POSITION_GENERATOR.NextFloat(-PlayScene.FIELD_WIDTH / 2, PlayScene.FIELD_WIDTH / 2),
+				POSITION_GENERATOR.NextFloat(-PlayScene.FIELD_HEIGHT / 2, PlayScene.FIELD_HEIGHT / 2));
 		}
 
 		private void SpawnEnemy() {

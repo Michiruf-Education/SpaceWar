@@ -46,7 +46,7 @@ namespace Framework.Collision {
 		}
 
 		public void Render() {
-			if (FrameworkDebugMode.IsEnabled) {
+			if (FrameworkDebug.DrawColliders) {
 				Shape.DebugRender(GameObject.Transform, GameObject.IsUiElement);
 			}
 		}

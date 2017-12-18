@@ -96,7 +96,7 @@
     <Compile Include="Collision\Detection\CollisionDetection.cs" />
     <Compile Include="Collision\Detection\NonOptimizedCollisionDetection.cs" />
     <Compile Include="Component.cs" />
-    <Compile Include="Debug\FrameworkDebugMode.cs" />
+    <Compile Include="Debug\FrameworkDebug.cs" />
     <Compile Include="Debug\Matrix3x2PrintExtension.cs" />
     <Compile Include="Debug\ToDevelopException.cs" />
     <Compile Include="Engine\FrameworkEngineGameObject.cs" />

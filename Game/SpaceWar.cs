@@ -6,8 +6,12 @@ namespace SpaceWar.Game {
 	internal static class SpaceWar {
 
 		static void Main() {
-			FrameworkDebugMode.IsEnabled = true;
+			// Configure debug mode
+			FrameworkDebug.Enabled = true;
+			FrameworkDebug.DrawColliders = false;
+			FrameworkDebug.PrintCollisionDetection = true;
 
+			// Initialize the game
 			var game = new Framework.Game();
 			game.RegisterInputProvider(new Keymap());
 			game.CreatePrimitiveWindow(VierportAnchor.Horizontal, "SpaceWar");

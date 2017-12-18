@@ -40,7 +40,7 @@ namespace Framework.Render {
 			GL.Vertex2(toPoint);
 			GL.End();
 
-			if (FrameworkDebugMode.IsEnabled) {
+			if (FrameworkDebug.Enabled) {
 				GL.Color4(Color.Red);
 				GL.PointSize(lineWidth);
 				GL.Begin(PrimitiveType.Points);

@@ -207,7 +207,10 @@ namespace Framework {
 		}
 
 		public void LookAt(Vector2 position) {
-			var direction = position - WorldPosition;
+			LookAtDirection(position - WorldPosition);
+		}
+
+		public void LookAtDirection(Vector2 direction) {
 			WorldRotation = MathHelper.RadiansToDegrees((float) Math.Atan2(direction.Y, direction.X));
 		}
 

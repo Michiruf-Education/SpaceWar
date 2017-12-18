@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Framework.Debug;
 
 namespace Framework.Collision.Detection {
 
@@ -7,7 +7,7 @@ namespace Framework.Collision.Detection {
 
 		public void DetectCollisions() {
 			var colliders = Scene.Current.GetAllComponentsInScene<ColliderComponent>();
-			Console.WriteLine("Collsion detection objects: " + colliders.Count);
+			FrameworkDebug.LogCollision("Collsion detection objects: " + colliders.Count);
 			DetectCollisions(colliders);
 			InvalidateCollisionCaches(colliders);
 		}

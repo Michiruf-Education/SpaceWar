@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Threading;
 using Framework;
 using Framework.Utilities;
 using SpaceWar.Game.Play.Player;
@@ -11,18 +10,12 @@ namespace SpaceWar.Game.Play.Enemy {
 	public class EnemySpawnBehaviour : GameObject {
 
 		public const float WAVE_PAUSE_DELAY = 2f;
+		private static readonly Random NON_DETERMINISTIC_RNG = new Random();
 
-		private static readonly Random NON_DETERMINISTIC = new Random();
+		private readonly MyTimer waveStartTimerOverlay = new MyTimer();
+		private readonly MyTimer waveStartTimer = new MyTimer();
 
-		public float FieldWidth { get; }
-		public float FieldHeight { get; }
-
-		private MyTimer waveStartTimerOverlay = new MyTimer();
-		private MyTimer waveStartTimer = new MyTimer();
-
-		public EnemySpawnBehaviour(float fieldWidth, float fieldHeight) {
-			FieldWidth = fieldWidth;
-			FieldHeight = fieldHeight;
+		public EnemySpawnBehaviour() {
 			Spawners.Init();
 		}
 
@@ -75,11 +68,11 @@ namespace SpaceWar.Game.Play.Enemy {
 				}
 
 				// NOTE Random value added to be non-deterministic
-				if (enemiesToSpawn > 20) {
+				if (enemiesToSpawn > 10) {
 					// Add/substract a random number of enemies to be not deterministic
 					// so the game feels different when played multiple times
 					// Do this only if the enemy count is high enough to have not too much heavy enemes
-					enemiesToSpawn += NON_DETERMINISTIC.Next(-2, 2);
+					enemiesToSpawn += NON_DETERMINISTIC_RNG.Next(0, enemiesToSpawn / 10);
 				}
 				spawner.StartWave(enemiesToSpawn);
 				playerPoints -= enemiesToSpawn * spawner.PointsRequiredForSpawning;

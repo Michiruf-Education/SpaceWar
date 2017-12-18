@@ -42,8 +42,7 @@ namespace SpaceWar.Game.Play.Player {
 						keyboardAxis.X * Player.INITIAL_SPEED * Time.DeltaTime,
 						keyboardAxis.Y * Player.INITIAL_SPEED * Time.DeltaTime,
 						Space.World);
-					GameObject.Transform.WorldRotation = MathHelper.RadiansToDegrees(
-						(float) Math.Atan2(keyboardAxis.Y, keyboardAxis.X));
+					GameObject.Transform.LookAtDirection(keyboardAxis);
 
 					// Do not detect controller if keyboard was pressed
 					return;
@@ -57,8 +56,7 @@ namespace SpaceWar.Game.Play.Player {
 					gamepadAxis.X * Player.INITIAL_SPEED * Time.DeltaTime,
 					gamepadAxis.Y * Player.INITIAL_SPEED * Time.DeltaTime,
 					Space.World);
-				GameObject.Transform.WorldRotation = MathHelper.RadiansToDegrees(
-					(float) Math.Atan2(gamepadAxis.Y, gamepadAxis.X));
+				GameObject.Transform.LookAtDirection(gamepadAxis);
 			}
 		}
 	}
