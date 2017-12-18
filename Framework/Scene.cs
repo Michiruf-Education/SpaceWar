@@ -20,7 +20,7 @@ namespace Framework {
 		}
 
 		public virtual void OnDestroy() {
-			gameObjects.ForEach(go => go?.OnDestroy());
+			gameObjects.ToList().ForEach(Destroy);
 		}
 
 		public void Spawn(GameObject gameObject) {

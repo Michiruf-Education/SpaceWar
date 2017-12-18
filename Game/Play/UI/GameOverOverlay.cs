@@ -11,7 +11,7 @@ namespace SpaceWar.Game.Play.UI {
 
 		public const float GAME_OVER_DISPLAY_TIME = 3f;
 
-		public GameOverOverlay() {
+		public GameOverOverlay() : base(true) {
 			AddComponent(new RenderTextComponent("Game Over!", Options.DEFAULT_FONT, Brushes.White,
 				new Box2D(-0.5f, -0.1f, 1f, 0.2f)));
 		}

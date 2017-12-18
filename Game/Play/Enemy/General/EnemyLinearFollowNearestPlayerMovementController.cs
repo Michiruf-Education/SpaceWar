@@ -19,6 +19,8 @@ namespace SpaceWar.Game.Play.Enemy.General {
 			base.OnStart();
 			enemy = GameObject as AbstractEnemy;
 		}
+		
+		 // TODO Sometimes enemies get "thrown away heavily", check for position and may destroy and spawn new one?!
 
 		public void Update() {
 			var thisPosition = GameObject.Transform.WorldPosition;

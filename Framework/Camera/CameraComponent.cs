@@ -34,7 +34,7 @@ namespace Framework.Camera {
 		}
 
 		public CameraComponent() :
-			this(Active == null) {
+			this(true) {
 		}
 
 		public CameraComponent(bool activeCamera) {

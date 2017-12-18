@@ -14,10 +14,7 @@ namespace SpaceWar.Game.Menu {
 			base.OnStart();
 
 			// Camera
-			var camera = new DefaultCameraGameObject();
-			camera.Component.ViewportScaling = new Vector2(1f, 1f);
-			camera.Component.Position = new Vector2(0f, 0f);
-			Spawn(camera);
+			Spawn(new DefaultCameraGameObject());
 
 			// Sinpleplayer button
 			var singleplayerButton = new Button(
