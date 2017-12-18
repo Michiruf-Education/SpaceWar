@@ -32,7 +32,7 @@ namespace Framework {
 			if (!gameObjects.Contains(gameObject)) {
 				return;
 			}
-			gameObject.OnDestroy();
+			gameObject?.OnDestroy();
 			gameObjects.Remove(gameObject);
 		}
 
