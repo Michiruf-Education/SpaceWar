@@ -20,7 +20,7 @@ namespace Framework {
 		}
 
 		public virtual void OnDestroy() {
-			gameObjects.ToList().ForEach(Destroy);
+			GetLockedGameObjectsClone().ForEach(Destroy);
 		}
 
 		public void Spawn(GameObject gameObject) {
@@ -49,7 +49,7 @@ namespace Framework {
 			// Else: System.InvalidOperationException: Collection was modified; enumeration operation may not execute.
 			// -> We might need to use Immutables?
 			try {
-				var gameObject = gameObjects.ToList().First(go => go is TGameObjectType);
+				var gameObject = GetLockedGameObjectsClone().First(go => go is TGameObjectType);
 				return (TGameObjectType) (object) gameObject;
 			} catch (InvalidOperationException) {
 				return default(TGameObjectType);
@@ -64,7 +64,7 @@ namespace Framework {
 			// Else: System.InvalidOperationException: Collection was modified; enumeration operation may not execute.
 			// -> We might need to use Immutables?
 			var castedGameObjects = new List<TGameObjectType>();
-			gameObjects.ToList().ForEach(c => {
+			GetLockedGameObjectsClone().ForEach(c => {
 				if (c is TGameObjectType) {
 					castedGameObjects.Add((TGameObjectType) (object) c);
 				}
@@ -78,7 +78,7 @@ namespace Framework {
 			// Else: System.InvalidOperationException: Collection was modified; enumeration operation may not execute.
 			// -> We might need to use Immutables?
 			var components = new List<TComponentType>();
-			gameObjects.ToList().ForEach(go => {
+			GetLockedGameObjectsClone().ForEach(go => {
 				if (go != null) {
 					components.AddRange(go.GetComponents<TComponentType>());
 				}
@@ -86,12 +86,20 @@ namespace Framework {
 			return components;
 		}
 
+		private List<GameObject> GetLockedGameObjectsClone() {
+			List<GameObject> gameObjectsClone;
+			lock (gameObjects) {
+				gameObjectsClone = gameObjects.ToList();
+			}
+			return gameObjectsClone;
+		}
+
 		public virtual void Update() {
 			// NOTE The ToList()-call is required to modify the list (by spawning or destroying) while updating, 
 			// because it clones the list.
 			// Else: System.InvalidOperationException: Collection was modified; enumeration operation may not execute.
 			// -> We might need to use Immutables?
-			gameObjects.ToList().ForEach(go => {
+			GetLockedGameObjectsClone().ForEach(go => {
 				// Skip disabled gameobjects
 				if (go == null || !go.IsEnabled) {
 					return;
@@ -105,7 +113,7 @@ namespace Framework {
 			// because it clones the list.
 			// Else: System.InvalidOperationException: Collection was modified; enumeration operation may not execute.
 			// We might need to use Immutables?
-			gameObjects.ToList().ForEach(go => {
+			GetLockedGameObjectsClone().ForEach(go => {
 				// Skip disabled gameobjects
 				if (go == null || !go.IsEnabled) {
 					return;
