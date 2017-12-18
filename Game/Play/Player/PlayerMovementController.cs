@@ -37,6 +37,7 @@ namespace SpaceWar.Game.Play.Player {
 					keyboardAxis.X++;
 				}
 				if (keyboardAxis != Vector2.Zero) {
+					keyboardAxis.Normalize();
 					GameObject.Transform.Translate(
 						keyboardAxis.X * Player.INITIAL_SPEED * Time.DeltaTime,
 						keyboardAxis.Y * Player.INITIAL_SPEED * Time.DeltaTime,
