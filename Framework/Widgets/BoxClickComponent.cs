@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Drawing;
 using Framework.Object;
 using OpenTK;
-using OpenTK.Input;
 using Zenseless.Geometry;
 
 namespace Framework.Widget {
