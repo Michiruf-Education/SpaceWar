@@ -24,16 +24,20 @@ namespace Framework {
 		}
 
 		public void Spawn(GameObject gameObject) {
-			gameObjects.Add(gameObject);
-			gameObject.OnStart();
+			lock (gameObjects) {
+				gameObjects.Add(gameObject);
+				gameObject.OnStart();
+			}
 		}
 
 		public void Destroy(GameObject gameObject) {
-			if (!gameObjects.Contains(gameObject)) {
-				return;
+			lock (gameObjects) {
+				if (!gameObjects.Contains(gameObject)) {
+					return;
+				}
+				gameObject?.OnDestroy();
+				gameObjects.Remove(gameObject);
 			}
-			gameObject?.OnDestroy();
-			gameObjects.Remove(gameObject);
 		}
 
 		public TGameObjectType GetGameObject<TGameObjectType>() {

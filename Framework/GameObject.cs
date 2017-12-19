@@ -53,17 +53,21 @@ namespace Framework {
 		}
 
 		public void AddChild(GameObject child) {
-			if (child.Parent != null) {
-				throw new ArgumentException("The child already has a parent!");
+			lock (children) {
+				if (child.Parent != null) {
+					throw new ArgumentException("The child already has a parent!");
+				}
+				child.Parent = this;
+				children.Add(child);
+				child.OnStart();
 			}
-			child.Parent = this;
-			children.Add(child);
-			child.OnStart();
 		}
 
 		public void RemoveChild(GameObject child) {
-			child.OnDestroy();
-			children.Remove(child);
+			lock (children) {
+				child.OnDestroy();
+				children.Remove(child);
+			}
 		}
 
 		public TComponentType GetComponent<TComponentType>() {
@@ -86,14 +90,18 @@ namespace Framework {
 		}
 
 		public void AddComponent(Component component) {
-			component.GameObject = this;
-			components.Add(component);
-			component.OnStart();
+			lock (components) {
+				component.GameObject = this;
+				components.Add(component);
+				component.OnStart();
+			}
 		}
 
 		public void RemoveComponent(Component component) {
-			component.OnDestroy();
-			components.Remove(component);
+			lock (components) {
+				component.OnDestroy();
+				components.Remove(component);
+			}
 		}
 
 		private List<GameObject> GetLockedChildrenClone() {
