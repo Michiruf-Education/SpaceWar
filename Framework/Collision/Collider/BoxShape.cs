@@ -14,6 +14,7 @@ namespace Framework.Collision.Collider {
 		}
 
 		public override object GetTransformedShape(Transform transform) {
+			// TODO Does not respect the scaling
 			var transformedRect = new Box2D(Rect);
 			transformedRect.TransformCenter(transform.GetTransformationMatrixCached(false));
 			return transformedRect;
