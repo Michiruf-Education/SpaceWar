@@ -45,6 +45,7 @@ namespace SpaceWar.Game.Play.Player {
 					GameObject.Transform.LookAtDirection(keyboardAxis);
 
 					// Do not detect controller if keyboard was pressed
+					FixPlayerPosition();
 					return;
 				}
 			}
@@ -57,6 +58,36 @@ namespace SpaceWar.Game.Play.Player {
 					gamepadAxis.Y * Player.INITIAL_SPEED * Time.DeltaTime,
 					Space.World);
 				GameObject.Transform.LookAtDirection(gamepadAxis);
+			}
+
+			FixPlayerPosition();
+		}
+
+		private void FixPlayerPosition() {
+			// NOTE Would not be needed because of collision detection
+			// But for now disable clipping threw borders (bottom-left edge for example)
+			var worldPosition = GameObject.Transform.WorldPosition;
+			float maxWidth = (PlayScene.FIELD_WIDTH - Player.PLAYER_SIZE - PlayScene.BORDER_WIDTH) / 2;
+			if (worldPosition.X > maxWidth) {
+				GameObject.Transform.WorldPosition = new Vector2(
+					maxWidth,
+					worldPosition.Y);
+			}
+			if (worldPosition.X < -maxWidth) {
+				GameObject.Transform.WorldPosition = new Vector2(
+					-maxWidth,
+					worldPosition.Y);
+			}
+			float maxHeight = (PlayScene.FIELD_HEIGHT - Player.PLAYER_SIZE - PlayScene.BORDER_WIDTH) / 2;
+			if (worldPosition.Y > maxHeight) {
+				GameObject.Transform.WorldPosition = new Vector2(
+					worldPosition.X,
+					maxHeight);
+			}
+			if (worldPosition.Y < -maxHeight) {
+				GameObject.Transform.WorldPosition = new Vector2(
+					worldPosition.X,
+					-maxHeight);
 			}
 		}
 	}
