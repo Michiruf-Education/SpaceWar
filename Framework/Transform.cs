@@ -136,6 +136,17 @@ namespace Framework {
 		}
 
 		public void Translate(Vector2 translation, Space space) {
+			// NOTE Sometimes when moving just a very tiny distance, floating point operation may loose
+			// some data
+			// Evaluate expression to reproduce:
+			// (float)(0.965 -2.421439E-08)
+			// This causes the player to run agains the border, undo the overlap and still be "in" the border, but for 
+			// now we just can ignore this case!
+			// Possible fix: Write a add method that performs calculation in double and get and prepare the data after
+			// or before to not lose fractions
+			// Note that there is a float.Epsilon constant that may be useful
+			// For this epsilon see https://msdn.microsoft.com/en-us/library/c151dt3s.aspx
+			
 			switch (space) {
 				case Space.Local:
 					// Substract the current position after apply the transformation to only use scaling and
@@ -196,7 +207,10 @@ namespace Framework {
 		}
 
 		public void LookAt(Vector2 position) {
-			var direction = position - WorldPosition;
+			LookAtDirection(position - WorldPosition);
+		}
+
+		public void LookAtDirection(Vector2 direction) {
 			WorldRotation = MathHelper.RadiansToDegrees((float) Math.Atan2(direction.Y, direction.X));
 		}
 
@@ -242,14 +256,13 @@ namespace Framework {
 
 		internal Matrix3x2 GetTransformationMatrixCached(bool includeCamera) {
 			if (includeCamera) {
-				if (true || !transformationMatrixCacheWithCamera.HasData || CameraComponent.ActiveCameraMatrixChanged) {
+				if (!transformationMatrixCacheWithCamera.HasData || CameraComponent.ActiveCameraMatrixChanged) {
 					transformationMatrixCacheWithCamera.Data = WorldToLocal * CameraComponent.ActiveCameraMatrix;
 				}
 				return transformationMatrixCacheWithCamera.Data;
 			}
 
-			// TODO For any reason if we cache this, the camera does not follow?!
-			if (true || !transformationMatrixCache.HasData) {
+			if (!transformationMatrixCache.HasData) {
 				transformationMatrixCache.Data = WorldToLocal;
 			}
 			return transformationMatrixCache.Data;

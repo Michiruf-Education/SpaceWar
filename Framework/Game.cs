@@ -51,13 +51,18 @@ namespace Framework {
 			Window.Run();
 		}
 
+		public void Close() {
+			// Delegate destroying the old scene
+			ActiveScene?.OnDestroy();
+			
+			Window?.Close();
+		}
+
 		void SetupInputHandler() {
 			InputHandler.RegisterWindow(Window);
 		}
 
 		void LoadLayoutAndRegisterSaveHook() {
-			// TODO Inform Daniel Scherzer that this is able to do with IGameWindow instead of GameWindow
-			// -> The LoadLayout extension
 			Window.LoadLayout();
 			Window.Closing += (sender, args) => {
 				ActiveScene?.OnDestroy();

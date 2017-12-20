@@ -16,18 +16,14 @@ namespace SpaceWar.Game.Play.Player {
 		}
 
 		public void Update() {
+			// Do nothing if dead
+			if (!player.Attributes.IsAlive) {
+				return;
+			}
+
 			// Detect keyboard movements first only for the first player
 			if (player.PlayerIndex == 0) {
 				var keyboardAxis = Vector2.Zero;
-				
-				// TODO Remove: !!!!!
-				if (Keyboard.GetState().IsKeyDown(Key.Space)) {
-					GameObject.Transform.Scale(1.01f, 1.01f, Space.World);
-				}
-				if (Keyboard.GetState().IsKeyDown(Key.C)) {
-					GameObject.Transform.Scale(0.99f, 0.99f, Space.World);
-				}
-				
 				if (Keyboard.GetState().IsKeyDown(Key.W)) {
 					keyboardAxis.Y++;
 				}
@@ -41,14 +37,15 @@ namespace SpaceWar.Game.Play.Player {
 					keyboardAxis.X++;
 				}
 				if (keyboardAxis != Vector2.Zero) {
+					keyboardAxis.Normalize();
 					GameObject.Transform.Translate(
 						keyboardAxis.X * Player.INITIAL_SPEED * Time.DeltaTime,
 						keyboardAxis.Y * Player.INITIAL_SPEED * Time.DeltaTime,
 						Space.World);
-					GameObject.Transform.WorldRotation = MathHelper.RadiansToDegrees(
-						(float) Math.Atan2(keyboardAxis.Y, keyboardAxis.X));
+					GameObject.Transform.LookAtDirection(keyboardAxis);
 
 					// Do not detect controller if keyboard was pressed
+					FixPlayerPosition();
 					return;
 				}
 			}
@@ -60,8 +57,37 @@ namespace SpaceWar.Game.Play.Player {
 					gamepadAxis.X * Player.INITIAL_SPEED * Time.DeltaTime,
 					gamepadAxis.Y * Player.INITIAL_SPEED * Time.DeltaTime,
 					Space.World);
-				GameObject.Transform.WorldRotation = MathHelper.RadiansToDegrees(
-					(float) Math.Atan2(gamepadAxis.Y, gamepadAxis.X));
+				GameObject.Transform.LookAtDirection(gamepadAxis);
+			}
+
+			FixPlayerPosition();
+		}
+
+		private void FixPlayerPosition() {
+			// NOTE Would not be needed because of collision detection
+			// But for now disable clipping threw borders (bottom-left edge for example)
+			var worldPosition = GameObject.Transform.WorldPosition;
+			float maxWidth = (PlayScene.FIELD_WIDTH - Player.PLAYER_SIZE - PlayScene.BORDER_WIDTH) / 2;
+			if (worldPosition.X > maxWidth) {
+				GameObject.Transform.WorldPosition = new Vector2(
+					maxWidth,
+					worldPosition.Y);
+			}
+			if (worldPosition.X < -maxWidth) {
+				GameObject.Transform.WorldPosition = new Vector2(
+					-maxWidth,
+					worldPosition.Y);
+			}
+			float maxHeight = (PlayScene.FIELD_HEIGHT - Player.PLAYER_SIZE - PlayScene.BORDER_WIDTH) / 2;
+			if (worldPosition.Y > maxHeight) {
+				GameObject.Transform.WorldPosition = new Vector2(
+					worldPosition.X,
+					maxHeight);
+			}
+			if (worldPosition.Y < -maxHeight) {
+				GameObject.Transform.WorldPosition = new Vector2(
+					worldPosition.X,
+					-maxHeight);
 			}
 		}
 	}

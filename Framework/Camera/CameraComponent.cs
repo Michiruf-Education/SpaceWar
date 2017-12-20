@@ -1,5 +1,5 @@
-﻿using OpenTK;
-using Matrix3x2 = System.Numerics.Matrix3x2;
+﻿using System.Numerics;
+using Vector2 = OpenTK.Vector2;
 
 namespace Framework.Camera {
 
@@ -34,7 +34,7 @@ namespace Framework.Camera {
 		}
 
 		public CameraComponent() :
-			this(Active == null) {
+			this(true) {
 		}
 
 		public CameraComponent(bool activeCamera) {

@@ -9,7 +9,7 @@ namespace SpaceWar.Game.Play.Player {
 
 	public class PlayerShotController : Component, UpdateComponent {
 
-		private readonly LimitedRateTimer shotTimer = new LimitedRateTimer();
+		private readonly MyTimer shotTimer = new MyTimer();
 
 		public float ShotRate { get; private set; } = Player.INITIAL_SHOT_RATE;
 
@@ -21,10 +21,15 @@ namespace SpaceWar.Game.Play.Player {
 		}
 
 		public void Update() {
-			shotTimer.DoOnlyEvery(ShotRate, Shoot);
+			// Do nothing if dead
+			if (!player.Attributes.IsAlive) {
+				return;
+			}
+
+			DetectShooting();
 		}
 
-		void Shoot() {
+		void DetectShooting() {
 			// Detect keyboard first only for the first player
 			if (player.PlayerIndex == 0) {
 				var keyboardAxis = Vector2.Zero;
@@ -41,20 +46,31 @@ namespace SpaceWar.Game.Play.Player {
 					keyboardAxis.X++;
 				}
 				if (keyboardAxis != Vector2.Zero) {
-					var direction = (float) Math.Atan2(keyboardAxis.Y, keyboardAxis.X);
-					Scene.Current.Spawn(new Shot.Shot(direction, GameObject.Transform.WorldPosition,
-						() => player.Attributes.OnEnemyKill()));
-					return;
+					MaySpawnShot(keyboardAxis);
 				}
 			}
 
 			// Detect gamepad and skip if no inputs are given by using the correct float comparison
 			var gamepadAxis = GamePad.GetState(player.PlayerIndex).ThumbSticks.Right;
 			if (gamepadAxis.Length >= Options.CONTROLLER_THRESHOLD) {
-				var direction = (float) Math.Atan2(gamepadAxis.Y, gamepadAxis.X);
-				Scene.Current.Spawn(new Shot.Shot(direction, GameObject.Transform.WorldPosition,
-					() => player.Attributes.OnEnemyKill()));
+				MaySpawnShot(gamepadAxis);
 			}
+		}
+
+		void MaySpawnShot(Vector2 axis) {
+			shotTimer.DoEvery(ShotRate, () => SpawnShot(axis), MyTimer.When.Start);
+		}
+
+		void SpawnShot(Vector2 axis) {
+			var direction = (float) Math.Atan2(axis.Y, axis.X);
+			Scene.Current.Spawn(new Shot.Shot(
+				direction + MathHelper.DegreesToRadians(3),
+				GameObject.Transform.WorldPosition,
+				player));
+			Scene.Current.Spawn(new Shot.Shot(
+				direction + MathHelper.DegreesToRadians(-3),
+				GameObject.Transform.WorldPosition,
+				player));
 		}
 	}
 

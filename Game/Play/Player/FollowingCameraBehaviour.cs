@@ -1,6 +1,5 @@
 ﻿using Framework;
 using Framework.Camera;
-using Framework.Object;
 using OpenTK;
 
 namespace SpaceWar.Game.Play.Player {
@@ -12,6 +11,12 @@ namespace SpaceWar.Game.Play.Player {
 
 		public override void Update() {
 			base.Update();
+			
+			// Do not move the camera if there is no player left
+			if (!PlayerHelper.IsAPlayerAlive()) {
+				return;
+			}
+			
 			CameraComponent.Active.Position = CameraLerp(
 				CameraComponent.Active.Position,
 				PlayerHelper.GetPlayerPositionCentroid(),

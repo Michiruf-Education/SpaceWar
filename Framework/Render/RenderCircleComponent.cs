@@ -38,6 +38,10 @@ namespace Framework.Render {
 			var matrix = GameObject.Transform.GetTransformationMatrixCached(!GameObject.IsUiElement);
 			var centerT = FastVector2Transform.Transform(center.X, center.Y, matrix);
 			var radiusT = radius; // NOTE We need to transform this with scaling later
+			
+			// Enable blending for transparency
+			GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
+			GL.Enable(EnableCap.Blend);
 
 			// Render filling
 			if (fillColor != Color.Empty) {

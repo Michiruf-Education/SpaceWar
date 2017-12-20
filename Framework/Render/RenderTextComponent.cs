@@ -9,6 +9,8 @@ using OpenTK.Graphics.OpenGL4;
 using Zenseless.Geometry;
 using Zenseless.HLGL;
 using Zenseless.OpenGL;
+using BlendingFactorDest = OpenTK.Graphics.OpenGL.BlendingFactorDest;
+using BlendingFactorSrc = OpenTK.Graphics.OpenGL.BlendingFactorSrc;
 using EnableCap = OpenTK.Graphics.OpenGL.EnableCap;
 using GL = OpenTK.Graphics.OpenGL.GL;
 using PixelFormat = System.Drawing.Imaging.PixelFormat;
@@ -77,8 +79,8 @@ namespace Framework.Render {
 			}
 
 			using (var bmp = new Bitmap(
-				(int) Math.Ceiling(size.Width),
-				(int) Math.Ceiling(size.Height),
+				(int) Math.Ceiling(Math.Abs(size.Width) < 0.001f ? 1 : size.Width),
+				(int) Math.Ceiling(Math.Abs(size.Height) < 0.001f ? 1 : size.Height),
 				PixelFormat.Format32bppArgb)) {
 				// Create graphics to draw on bitmap
 				using (var gfx = Graphics.FromImage(bmp)) {
@@ -112,16 +114,20 @@ namespace Framework.Render {
 
 		public void Render() {
 			MayInitialize();
-
+			
+			// Relevant for non shader pipelines
+			// Got from: https://github.com/danielscherzer/Framework/blob/72fec5c85e6f21b868c41141ed1c8105f5252e5e/CG/
+			// ... Examples/TextureExample/TextureExample.cs
 			GL.Enable(EnableCap.Texture2D);
 
-			texture.Activate();
-			GL.Begin(PrimitiveType.Quads);
+			// Enable blending for transparency
+			GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
+			GL.Enable(EnableCap.Blend);
 
 			// Color is multiplied with the texture color
 			// White means no color change in the texture will be applied
 			GL.Color3(Color.White);
-			if (FrameworkDebugMode.IsEnabled) {
+			if (FrameworkDebug.Enabled) {
 				GL.Color3(Color.LightGray);
 			}
 
@@ -132,6 +138,8 @@ namespace Framework.Render {
 			var maxXminY = FastVector2Transform.Transform(Rect.MaxX, Rect.MaxY, matrix);
 			var minXminY = FastVector2Transform.Transform(Rect.MinX, Rect.MaxY, matrix);
 
+			texture.Activate();
+			GL.Begin(PrimitiveType.Quads);
 			GL.TexCoord2(0.0f, 0.0f);
 			GL.Vertex2(minXminY);
 			GL.TexCoord2(1.0f, 0.0f);
@@ -140,10 +148,10 @@ namespace Framework.Render {
 			GL.Vertex2(maxXmaxY);
 			GL.TexCoord2(0.0f, 1.0f);
 			GL.Vertex2(minXmaxY);
-
 			GL.End();
 			texture.Deactivate();
 
+			GL.Disable(EnableCap.Blend);
 			GL.Disable(EnableCap.Texture2D);
 		}
 

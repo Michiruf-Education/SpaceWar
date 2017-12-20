@@ -49,26 +49,30 @@ namespace Framework {
 		}
 
 		public virtual void OnDestroy() {
-			components.ForEach(c => c?.OnDestroy());
+			GetLockedComponentsClone().ForEach(c => c?.OnDestroy());
 		}
 
 		public void AddChild(GameObject child) {
-			if (child.Parent != null) {
-				throw new ArgumentException("The child already has a parent!");
+			lock (children) {
+				if (child.Parent != null) {
+					throw new ArgumentException("The child already has a parent!");
+				}
+				child.Parent = this;
+				children.Add(child);
+				child.OnStart();
 			}
-			child.Parent = this;
-			children.Add(child);
-			child.OnStart();
 		}
 
 		public void RemoveChild(GameObject child) {
-			child.OnDestroy();
-			children.Remove(child);
+			lock (children) {
+				child.OnDestroy();
+				children.Remove(child);
+			}
 		}
 
 		public TComponentType GetComponent<TComponentType>() {
 			try {
-				var component = components.First(c => c is TComponentType);
+				var component = GetLockedComponentsClone().First(c => c is TComponentType);
 				return (TComponentType) (object) component;
 			} catch (InvalidOperationException) {
 				return default(TComponentType);
@@ -77,7 +81,7 @@ namespace Framework {
 
 		public List<TComponentType> GetComponents<TComponentType>() {
 			var castedComponents = new List<TComponentType>();
-			components.ForEach(c => {
+			GetLockedComponentsClone().ForEach(c => {
 				if (c is TComponentType) {
 					castedComponents.Add((TComponentType) (object) c);
 				}
@@ -86,14 +90,34 @@ namespace Framework {
 		}
 
 		public void AddComponent(Component component) {
-			component.GameObject = this;
-			components.Add(component);
-			component.OnStart();
+			lock (components) {
+				component.GameObject = this;
+				components.Add(component);
+				component.OnStart();
+			}
 		}
 
 		public void RemoveComponent(Component component) {
-			component.OnDestroy();
-			components.Remove(component);
+			lock (components) {
+				component.OnDestroy();
+				components.Remove(component);
+			}
+		}
+
+		private List<GameObject> GetLockedChildrenClone() {
+			List<GameObject> childrenClone;
+			lock (children) {
+				childrenClone = children.ToList();
+			}
+			return childrenClone;
+		}
+
+		private List<Component> GetLockedComponentsClone() {
+			List<Component> componentsClone;
+			lock (components) {
+				componentsClone = components.ToList();
+			}
+			return componentsClone;
 		}
 
 		public virtual void Update() {
@@ -101,14 +125,14 @@ namespace Framework {
 			// and so be able to have a cache
 			Transform.Invalidate();
 
-			children.ForEach(go => {
+			GetLockedChildrenClone().ForEach(go => {
 				// Skip disabled gameobjects
 				if (!go.IsEnabled) {
 					return;
 				}
 				go.Update();
 			});
-			components.ForEach(c => {
+			GetLockedComponentsClone().ForEach(c => {
 				// Skip disabled components
 				if (!c.IsEnabled) {
 					return;
@@ -124,14 +148,14 @@ namespace Framework {
 			// and so be able to have a cache
 			Transform.Invalidate();
 
-			children.ForEach(go => {
+			GetLockedChildrenClone().ForEach(go => {
 				// Skip disabled gameobjects
 				if (!go.IsEnabled) {
 					return;
 				}
 				go.Render();
 			});
-			components.ForEach(c => {
+			GetLockedComponentsClone().ForEach(c => {
 				// Skip disabled components
 				if (!c.IsEnabled) {
 					return;

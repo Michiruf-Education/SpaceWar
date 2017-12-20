@@ -20,7 +20,7 @@ namespace Framework.Collision {
 		}
 
 		public void UndoOverlap(ColliderComponent other, bool forceDuplicateUndo = false) {
-			if (!forceDuplicateUndo && undoOverlapDone) {
+			if (!forceDuplicateUndo && (undoOverlapDone || other.undoOverlapDone)) {
 				return;
 			}
 			undoOverlapDone = true;
@@ -35,7 +35,6 @@ namespace Framework.Collision {
 			return transformedShapeCached.Data;
 		}
 
-
 		// NOTE Use this to upgrad the performance when clustering 
 		// -> make abstract and implement simple calculation of bounds where the element cannot exceed the size
 		public virtual void GetEstimatedShapeBounds() {
@@ -47,7 +46,7 @@ namespace Framework.Collision {
 		}
 
 		public void Render() {
-			if (FrameworkDebugMode.IsEnabled) {
+			if (FrameworkDebug.DrawColliders) {
 				Shape.DebugRender(GameObject.Transform, GameObject.IsUiElement);
 			}
 		}

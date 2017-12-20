@@ -1,7 +1,6 @@
 ﻿using System;
 using Framework.Object;
 using OpenTK;
-using OpenTK.Input;
 using Zenseless.Geometry;
 
 namespace Framework.Widget {
@@ -26,18 +25,23 @@ namespace Framework.Widget {
 		}
 
 		public void Update() {
-			var mouse = Mouse.GetState();
-			if (mouse.IsAnyButtonDown) {
-				//var p = Game.Instance.Window.PointToScreen(new Point());
-				var p = new Vector2(mouse.X, mouse.Y);
-				Console.WriteLine(p);
+			var mouseDevice = Game.Instance.Window.Mouse;
+			if (!mouseDevice.GetState().IsAnyButtonDown) {
+				return;
+			}
 
-				// TODO Mouse position is not aligned to used grid
-				var bounds = GetTransformedRect();
-				if (p.X >= bounds.MinX && p.X <= bounds.MaxX &&
-				    p.Y >= bounds.MinY && p.X <= bounds.MaxY) {
-					OnClick?.Invoke();
-				}
+			var mousePositionRelativeToWindow = new Vector2(
+				mouseDevice.X / (float) Game.Instance.Window.Width,
+				mouseDevice.Y / (float) Game.Instance.Window.Height);
+
+			// TODO Translate to world correctly:
+			var p = (mousePositionRelativeToWindow - new Vector2(0.5f, 0.5f)) * new Vector2(2f, -1f);
+			//Console.WriteLine(p);
+
+			var bounds = GetTransformedRect();
+			if (p.X >= bounds.MinX && p.X <= bounds.MaxX &&
+			    p.Y >= bounds.MinY && p.Y <= bounds.MaxY) {
+				OnClick?.Invoke();
 			}
 		}
 	}

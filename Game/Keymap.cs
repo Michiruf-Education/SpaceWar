@@ -5,6 +5,7 @@ using OpenTK.Input;
 
 namespace SpaceWar.Game {
 
+	[Obsolete]
 	public class Keymap : InputProvider {
 
 		protected override void GetDefaultInputs(Dictionary<Enum, object> inputs) {
