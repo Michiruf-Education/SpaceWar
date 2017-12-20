@@ -13,7 +13,8 @@
 *.userprefs
 
 # Build results
-[Dd]ebug/
+### Ignore only top level debug directory because we have an own package named Debug
+/[Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/

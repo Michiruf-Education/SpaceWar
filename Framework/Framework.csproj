@@ -4,13 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{ACF16C8A-0699-49F6-8FCE-1C844690080E}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>SpaceWar</RootNamespace>
-    <AssemblyName>SpaceWar</AssemblyName>
+    <ProjectGuid>{F5E379F5-EB50-4F16-B07C-3A574B1578C3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Framework</RootNamespace>
+    <AssemblyName>Framework</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -22,7 +21,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>Framework\Framework.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>Framework.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,10 +32,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <RunCodeAnalysis>true</RunCodeAnalysis>
-    <CodeAnalysisRuleSet>Framework\Framework.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
+    <CodeAnalysisRuleSet>Framework.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
@@ -50,11 +46,7 @@
     <Reference Include="System.Numerics" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <!-- Reference includes including framework project includes -->
-    <ProjectReference Include="$(SolutionDir)\Framework\Framework.csproj">
-      <Project>{f5e379f5-eb50-4f16-b07c-3a574b1578c3}</Project>
-      <Name>Framework</Name>
-    </ProjectReference>
+    <!-- Reference includes -->
     <Reference Include="OpenTK, Version=3.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4">
       <HintPath>$(SolutionDir)\packages\OpenTK.3.0.0-pre\lib\net20\OpenTK.dll</HintPath>
     </Reference>
@@ -88,82 +80,69 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Game\GameDebug.cs" />
-    <Compile Include="Game\InputActions.cs" />
-    <Compile Include="Game\Keymap.cs" />
-    <Compile Include="Game\Menu\MenuScene.cs" />
-    <Compile Include="Game\Options.cs" />
-    <Compile Include="Game\Play\Enemy\Calculator\EdgeSpawnPositionCalculator.cs" />
-    <Compile Include="Game\Play\Enemy\Enemy1\Enemy1.cs" />
-    <Compile Include="Game\Play\Enemy\Enemy1\Enemy1Spawner1.cs" />
-    <Compile Include="Game\Play\Enemy\Enemy1\Enemy1Spawner2.cs" />
-    <Compile Include="Game\Play\Enemy\Enemy2\Enemy2.cs" />
-    <Compile Include="Game\Play\Enemy\Enemy2\Enemy2Spawner0.cs" />
-    <Compile Include="Game\Play\Enemy\Enemy2\Enemy2Spawner1.cs" />
-    <Compile Include="Game\Play\Enemy\Enemy2\Enemy2Spawner2.cs" />
-    <Compile Include="Game\Play\Enemy\Enemy3\Enemy3MovementController.cs" />
-    <Compile Include="Game\Play\Enemy\Enemy3\Enemy3Spawner.cs" />
-    <Compile Include="Game\Play\Enemy\Enemy3\Enemy3.cs" />
-    <Compile Include="Game\Play\Enemy\EnemySpawnBehaviour.cs" />
-    <Compile Include="Game\Play\Enemy\General\AbstractEnemy.cs" />
-    <Compile Include="Game\Play\Enemy\General\AbstractSpawner.cs" />
-    <Compile Include="Game\Play\Enemy\General\EnemyCollisionController.cs" />
-    <Compile Include="Game\Play\Enemy\General\EnemyLinearFollowNearestPlayerMovementController.cs" />
-    <Compile Include="Game\Play\Enemy\General\EnemyNoOverlapCollisionController.cs" />
-    <Compile Include="Game\Play\Enemy\Spawners.cs" />
-    <Compile Include="Game\Play\Field\Background.cs" />
-    <Compile Include="Game\Play\Field\Border.cs" />
-    <Compile Include="Game\Play\Player\FollowingCameraBehaviour.cs" />
-    <Compile Include="Game\Play\Player\GameOverObservingBehaviour.cs" />
-    <Compile Include="Game\Play\Player\Player.cs" />
-    <Compile Include="Game\Play\Player\PlayerAttributes.cs" />
-    <Compile Include="Game\Play\Player\PlayerCollisionController.cs" />
-    <Compile Include="Game\Play\Player\PlayerHelper.cs" />
-    <Compile Include="Game\Play\Player\PlayerMovementController.cs" />
-    <Compile Include="Game\Play\Player\PlayerShotController.cs" />
-    <Compile Include="Game\Play\PlayScene.cs" />
-    <Compile Include="Game\Play\Shot\Shot.cs" />
-    <Compile Include="Game\Play\Shot\ShotCollisionController.cs" />
-    <Compile Include="Game\Play\Shot\ShotMovementController.cs" />
-    <Compile Include="Game\Play\UI\GameOverOverlay.cs" />
-    <Compile Include="Game\Play\UI\General\TextOverlay.cs" />
-    <Compile Include="Game\Play\UI\HealthBar.cs" />
-    <Compile Include="Game\Play\UI\HealthBarItem.cs" />
-    <Compile Include="Game\Play\UI\NewWaveOverlay.cs" />
-    <Compile Include="Game\Play\UI\PointDisplay.cs" />
-    <Compile Include="Game\SpaceWar.cs" />
-    <Compile Include="Resources\Resource.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource.resx</DependentUpon>
-    </Compile>
+    <Compile Include="Camera\CameraComponent.cs" />
+    <Compile Include="Camera\DefaultCameraGameObject.cs" />
+    <Compile Include="Collision\Calculation\Collision\BoxBoxCollisionCalculator.cs" />
+    <Compile Include="Collision\Calculation\Collision\BoxCircleCollisionCalculator.cs" />
+    <Compile Include="Collision\Calculation\Collision\CircleCircleCollisionCalculator.cs" />
+    <Compile Include="Collision\Calculation\CollisionCalculator.cs" />
+    <Compile Include="Collision\Calculation\Overlaps\BoxBoxOverlapCalculator.cs" />
+    <Compile Include="Collision\Calculation\Overlaps\BoxCircleOverlapCalculator.cs" />
+    <Compile Include="Collision\Calculation\Overlaps\CircleCircleOverlapCalculator.cs" />
+    <Compile Include="Collision\ColliderComponent.cs" />
+    <Compile Include="Collision\Collider\CircleCollider.cs" />
+    <Compile Include="Collision\ColliderShape.cs" />
+    <Compile Include="Collision\Collider\BoxCollider.cs" />
+    <Compile Include="Collision\Collider\BoxShape.cs" />
+    <Compile Include="Collision\Collider\CircleShape.cs" />
+    <Compile Include="Collision\CollisionComponent.cs" />
+    <Compile Include="Collision\Detection\ClusteredCollisionDetection.cs" />
+    <Compile Include="Collision\Detection\CollisionDetection.cs" />
+    <Compile Include="Collision\Detection\NonOptimizedCollisionDetection.cs" />
+    <Compile Include="Component.cs" />
+    <Compile Include="Debug\FrameworkDebug.cs" />
+    <Compile Include="Debug\Matrix3x2PrintExtension.cs" />
+    <Compile Include="Debug\ToDevelopException.cs" />
+    <Compile Include="Engine\FrameworkEngineGameObject.cs" />
+    <Compile Include="Game.cs" />
+    <Compile Include="GameObject.cs" />
+    <Compile Include="Input\GamePadHandler.cs" />
+    <Compile Include="Input\GamePad\GamePadButtonEventArgs.cs" />
+    <Compile Include="Input\GamePad\GamePadButtonsHelper.cs" />
+    <Compile Include="Input\InputHandler.cs" />
+    <Compile Include="Input\InputProvider.cs" />
+    <Compile Include="Object\CachedObject.cs" />
+    <Compile Include="Object\Invalidateable.cs" />
+    <Compile Include="Object\Lifecycle.cs" />
+    <Compile Include="Object\RenderComponent.cs" />
+    <Compile Include="Object\Time.cs" />
+    <Compile Include="Object\UpdateComponent.cs" />
+    <Compile Include="Object\VierportAnchor.cs" />
+    <Compile Include="Render\AnimatedSprite.cs" />
+    <Compile Include="Render\RenderBoxComponent.cs" />
+    <Compile Include="Render\RenderCircleComponent.cs" />
+    <Compile Include="Render\RenderLineComponent.cs" />
+    <Compile Include="Render\RenderTextComponent.cs" />
+    <Compile Include="Render\RenderTextureComponent.cs" />
+    <Compile Include="Scene.cs" />
+    <Compile Include="Transform.cs" />
+    <Compile Include="Utilities\FastVector2Transform.cs" />
+    <Compile Include="Utilities\MyTimer.cs" />
+    <Compile Include="Utilities\RandomExtension.cs" />
+    <Compile Include="Utilities\VectorConverterExtension.cs" />
+    <Compile Include="Widgets\Button.cs" />
+    <Compile Include="Widgets\BoxClickComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Framework.ruleset" />
     <!-- Dependencies config file -->
     <None Include="Packages.config">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Texture\heart-128.png" />
-    <None Include="Resources\Texture\background.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Resource.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\Image-Sources.txt" />
+    <Content Include="NOTES.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

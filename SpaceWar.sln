@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.26730.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceWar", "SpaceWar.csproj", "{ACF16C8A-0699-49F6-8FCE-1C844690080E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework", "Framework\Framework.csproj", "{F5E379F5-EB50-4F16-B07C-3A574B1578C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrameworkUnitTests", "FrameworkUnitTests\FrameworkUnitTests.csproj", "{A245E14F-1F8F-4DF2-ACF8-32F32829BB16}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{ACF16C8A-0699-49F6-8FCE-1C844690080E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACF16C8A-0699-49F6-8FCE-1C844690080E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACF16C8A-0699-49F6-8FCE-1C844690080E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5E379F5-EB50-4F16-B07C-3A574B1578C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5E379F5-EB50-4F16-B07C-3A574B1578C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5E379F5-EB50-4F16-B07C-3A574B1578C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5E379F5-EB50-4F16-B07C-3A574B1578C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A245E14F-1F8F-4DF2-ACF8-32F32829BB16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A245E14F-1F8F-4DF2-ACF8-32F32829BB16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A245E14F-1F8F-4DF2-ACF8-32F32829BB16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A245E14F-1F8F-4DF2-ACF8-32F32829BB16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
