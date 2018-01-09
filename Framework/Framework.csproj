@@ -118,6 +118,13 @@
     <Compile Include="Object\Time.cs" />
     <Compile Include="Object\UpdateComponent.cs" />
     <Compile Include="Object\VierportAnchor.cs" />
+    <Compile Include="ParticleSystem\Components\ParticleLifetimeComponent.cs" />
+    <Compile Include="ParticleSystem\Components\ParticlePositionComponent.cs" />
+    <Compile Include="ParticleSystem\Interpolation\LinearInterpolation.cs" />
+    <Compile Include="ParticleSystem\Particle.cs" />
+    <Compile Include="ParticleSystem\ParticleComponent.cs" />
+    <Compile Include="ParticleSystem\ParticleEmitter.cs" />
+    <Compile Include="ParticleSystem\ParticleSystemComponent.cs" />
     <Compile Include="Render\AnimatedSprite.cs" />
     <Compile Include="Render\RenderBoxComponent.cs" />
     <Compile Include="Render\RenderCircleComponent.cs" />

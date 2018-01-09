@@ -1,6 +1,7 @@
 ﻿using System.Drawing;
 using Framework;
 using Framework.Collision.Collider;
+using Framework.ParticleSystem;
 using Framework.Render;
 
 namespace SpaceWar.Game.Play.Player {
@@ -21,30 +22,34 @@ namespace SpaceWar.Game.Play.Player {
 		public PlayerShotController ShotController { get; }
 		public PlayerCollisionController CollisionController { get; }
 		public RenderBoxComponent RenderComponent { get; }
+		public ParticleSystemComponent ParticleSystemComponent { get; }
 		public CircleCollider Collider { get; }
 
 		// Properties
 		public int PlayerIndex { get; }
+		private Color PlayerColor {
+			get {
+				switch (PlayerIndex) {
+					case 1:
+						return Color.LightSalmon;
+					case 2:
+						return Color.LightYellow;
+					default:
+						return Color.GreenYellow;
+				}
+			}
+		}
 
 		public Player(int playerIndex) {
+			PlayerIndex = playerIndex;
+
 			Attributes = new PlayerAttributes();
 			MovementController = new PlayerMovementController();
 			ShotController = new PlayerShotController();
 			CollisionController = new PlayerCollisionController();
-			Color playerColor;
-			switch (playerIndex) {
-				case 1:
-					playerColor = Color.LightSalmon;
-					break;
-				case 2:
-					playerColor = Color.LightYellow;
-					break;
-				default:
-					playerColor = Color.GreenYellow;
-					break;
-			}
 			// TODO Should be not the same enemies and be asymetric (for rotation feedback and felt smoothness)
-			RenderComponent = new RenderBoxComponent(PLAYER_SIZE, PLAYER_SIZE).Fill(playerColor);
+			RenderComponent = new RenderBoxComponent(PLAYER_SIZE, PLAYER_SIZE).Fill(PlayerColor);
+			ParticleSystemComponent = new ParticleSystemComponent(new PlayerParticleEmitter());
 			Collider = new CircleCollider(PLAYER_SIZE / 2);
 
 			AddComponent(Attributes);
@@ -52,9 +57,8 @@ namespace SpaceWar.Game.Play.Player {
 			AddComponent(ShotController);
 			AddComponent(CollisionController);
 			AddComponent(RenderComponent);
+			AddComponent(ParticleSystemComponent);
 			AddComponent(Collider);
-
-			PlayerIndex = playerIndex;
 		}
 	}
 
