@@ -7,9 +7,13 @@ namespace Framework.ParticleSystem.Components {
 		public void Update() {
 			Particle.Lifetime -= Time.DeltaTime;
 
+			Particle.LifetimeCallback?.Invoke(Particle, Particle.Lifetime);
+
 			// If the object is not alive anymore, destroy it
 			if (!Particle.IsAlive) {
-				Scene.Current.Destroy(GameObject);
+				// NOTE For now we need to tell the parent that this game object shell get removed
+				GameObject.Parent.RemoveChild(GameObject);
+				//Scene.Current.Destroy(GameObject);
 			}
 		}
 	}

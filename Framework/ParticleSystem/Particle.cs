@@ -7,8 +7,18 @@ namespace Framework.ParticleSystem {
 
 	public class Particle : GameObject {
 
+		public static Particle FromEmitter(ParticleEmitter emitter) {
+			return new Particle(emitter.InitializeVisualComponent) {
+				Lifetime = emitter.Lifetime,
+				LifetimeCallback = emitter.LifetimeCallback,
+				Acceleration = emitter.Acceleration,
+				Velocity = emitter.Velocity
+			};
+		}
+
 		// Duration
 		public float Lifetime { get; internal set; }
+		public Action<Particle, float> LifetimeCallback { get; internal set; }
 		public bool IsAlive => Lifetime > 0;
 
 		// Position
@@ -17,8 +27,8 @@ namespace Framework.ParticleSystem {
 
 		// Visual
 		public Component VisualComponent { get; }
-		
-		public Particle(Func<RenderComponent> emitterInitializeVisualComponent) {
+
+		private Particle(Func<RenderComponent> emitterInitializeVisualComponent) {
 			if (!(emitterInitializeVisualComponent?.Invoke() is Component visualComponentObject)) {
 				throw new ArgumentException("Visual component must be a render component!");
 			}
@@ -28,8 +38,8 @@ namespace Framework.ParticleSystem {
 		public override void OnStart() {
 			base.OnStart();
 
-//			AddComponent(new ParticlePositionComponent());
-//			AddComponent(new ParticleLifetimeComponent());
+			AddComponent(new ParticleLifetimeComponent());
+			AddComponent(new ParticlePositionComponent());
 			AddComponent(VisualComponent);
 		}
 	}

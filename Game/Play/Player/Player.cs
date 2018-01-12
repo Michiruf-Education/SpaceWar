@@ -27,7 +27,7 @@ namespace SpaceWar.Game.Play.Player {
 
 		// Properties
 		public int PlayerIndex { get; }
-		private Color PlayerColor {
+		public Color PlayerColor {
 			get {
 				switch (PlayerIndex) {
 					case 1:
@@ -49,7 +49,7 @@ namespace SpaceWar.Game.Play.Player {
 			CollisionController = new PlayerCollisionController();
 			// TODO Should be not the same enemies and be asymetric (for rotation feedback and felt smoothness)
 			RenderComponent = new RenderBoxComponent(PLAYER_SIZE, PLAYER_SIZE).Fill(PlayerColor);
-			ParticleSystemComponent = new ParticleSystemComponent(new PlayerParticleEmitter());
+			ParticleSystemComponent = new ParticleSystemComponent(new PlayerParticleEmitter(this));
 			Collider = new CircleCollider(PLAYER_SIZE / 2);
 
 			AddComponent(Attributes);

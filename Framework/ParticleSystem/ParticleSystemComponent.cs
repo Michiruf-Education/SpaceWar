@@ -35,11 +35,7 @@ namespace Framework.ParticleSystem {
 		private void MaySpawn() {
 			// TODO "MAY"Spawn
 
-			var p = new Particle(Emitter.InitializeVisualComponent) {
-				Lifetime = Emitter.Lifetime,
-				Acceleration = Emitter.Acceleration,
-				Velocity = Emitter.Velocity
-			};
+			var p = Particle.FromEmitter(Emitter);
 			p.Transform.WorldPosition = GameObject.Transform.WorldPosition;
 			particleSystemGameObject.AddChild(p);
 		}
