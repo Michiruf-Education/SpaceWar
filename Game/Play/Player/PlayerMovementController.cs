@@ -21,6 +21,10 @@ namespace SpaceWar.Game.Play.Player {
 				return;
 			}
 
+			// NOTE For any reason, we could still clip through the border in top-right corner
+			// when moving top right. This should be fixed better in future improvements!
+			FixPlayerPosition();
+
 			// Detect keyboard movements first only for the first player
 			if (player.PlayerIndex == 0) {
 				var keyboardAxis = Vector2.Zero;
