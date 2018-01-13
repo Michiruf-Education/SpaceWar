@@ -113,6 +113,7 @@
     <Compile Include="Game\Play\Enemy\Spawners.cs" />
     <Compile Include="Game\Play\Field\Background.cs" />
     <Compile Include="Game\Play\Field\Border.cs" />
+    <Compile Include="Game\Play\Field\BorderShader.cs" />
     <Compile Include="Game\Play\Player\FollowingCameraBehaviour.cs" />
     <Compile Include="Game\Play\Player\GameOverObservingBehaviour.cs" />
     <Compile Include="Game\Play\Player\Player.cs" />
@@ -158,6 +159,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\Image-Sources.txt" />
+    <Content Include="Resources\Shader\Border.frag" />
+    <Content Include="Resources\Shader\Border.vert" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

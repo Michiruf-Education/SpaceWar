@@ -1,8 +1,8 @@
-﻿using System.Drawing;
-using Framework;
+﻿using Framework;
 using Framework.Collision.Collider;
 using Framework.Render;
 using OpenTK;
+using SpaceWar.Resources;
 using Zenseless.Geometry;
 
 namespace SpaceWar.Game.Play.Field {
@@ -57,7 +57,8 @@ namespace SpaceWar.Game.Play.Field {
 						borderWidth + padding);
 					break;
 			}
-			AddComponent(new RenderBoxComponent(renderBox).Fill(Color.White));
+			//AddComponent(new RenderBoxComponent(renderBox).Fill(Color.White));
+			AddComponent(new BorderShader(Resource.Border_vert, Resource.Border_frag, renderBox));
 			AddComponent(new BoxCollider(collisionBox));
 		}
 

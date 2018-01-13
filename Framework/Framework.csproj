@@ -129,6 +129,7 @@
     <Compile Include="Render\RenderBoxComponent.cs" />
     <Compile Include="Render\RenderCircleComponent.cs" />
     <Compile Include="Render\RenderLineComponent.cs" />
+    <Compile Include="Render\RenderShaderComponent.cs" />
     <Compile Include="Render\RenderTextComponent.cs" />
     <Compile Include="Render\RenderTextureComponent.cs" />
     <Compile Include="Scene.cs" />
