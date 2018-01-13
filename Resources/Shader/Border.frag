@@ -1,4 +1,4 @@
-precision highp float;
+precision mediump float;
 
 uniform float InShowDistance;
 uniform vec3 InShowColor;
@@ -7,11 +7,10 @@ uniform vec2 EaseEnd = vec2(1.0, 1.0);
 uniform vec2 EaseP1 = vec2(0.335, 0.000);
 uniform vec2 EaseP2 = vec2(0.125, 1.000);
 
-varying vec2 VertexPosition;
-varying vec2 PlayerPosition;
+varying in vec2 VertexPosition;
+varying in vec2 PlayerPosition;
 
-vec2 toBezier(in float x, in vec2 P0, in vec2 P1, in vec2 P2, in vec2 P3)
-{
+vec2 toBezier(in float x, in vec2 P0, in vec2 P1, in vec2 P2, in vec2 P3) {
     // @see https://vicrucann.github.io/tutorials/bezier-shader/
     // Modified for 2d by using just vec2 instead of vec4
     float x2 = x * x;

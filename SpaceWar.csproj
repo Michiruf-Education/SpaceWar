@@ -127,6 +127,7 @@
     <Compile Include="Game\Play\Shot\Shot.cs" />
     <Compile Include="Game\Play\Shot\ShotCollisionController.cs" />
     <Compile Include="Game\Play\Shot\ShotMovementController.cs" />
+    <Compile Include="Game\Play\Shot\ShotParticleEmitter.cs" />
     <Compile Include="Game\Play\UI\GameOverOverlay.cs" />
     <Compile Include="Game\Play\UI\General\TextOverlay.cs" />
     <Compile Include="Game\Play\UI\HealthBar.cs" />
