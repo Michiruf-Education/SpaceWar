@@ -16,7 +16,7 @@ namespace SpaceWar.Game.Play.Field {
 		public const string SHOW_DISTANCE_UNIFORM_NAME = "InShowDistance";
 		public const string SHOW_COLOR_UNIFORM_NAME = "InShowColor";
 
-		public const float SHOW_DISTANCE = 0.25f;
+		public const float SHOW_DISTANCE = 0.3f;
 		public static readonly Color SHOW_COLOR = Color.White;
 
 		public BorderShader(Box2D rect) :

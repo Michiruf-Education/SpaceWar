@@ -3,6 +3,13 @@
 	public static class GameDebug {
 
 		public static bool Enabled { get; set; }
+		
+		private static bool SHADER_DISABLED;
+		public static bool ShaderDisabled {
+			// NoFormat
+			get => Enabled && SHADER_DISABLED;
+			set => SHADER_DISABLED = value;
+		}
 
 		private static bool IMMEDIATELY_PLAY;
 		public static bool ImmediatelyPlay {
