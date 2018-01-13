@@ -137,7 +137,7 @@
     <Compile Include="Utilities\FastVector2Transform.cs" />
     <Compile Include="Utilities\MyTimer.cs" />
     <Compile Include="Utilities\RandomExtension.cs" />
-    <Compile Include="Utilities\VectorConverterExtension.cs" />
+    <Compile Include="Utilities\NumericsOpenTkConverterExtension.cs" />
     <Compile Include="Widgets\Button.cs" />
     <Compile Include="Widgets\BoxClickComponent.cs" />
   </ItemGroup>
