@@ -129,6 +129,7 @@
     <Compile Include="Render\RenderBoxComponent.cs" />
     <Compile Include="Render\RenderCircleComponent.cs" />
     <Compile Include="Render\RenderLineComponent.cs" />
+    <Compile Include="Render\RenderShaderComponent.cs" />
     <Compile Include="Render\RenderTextComponent.cs" />
     <Compile Include="Render\RenderTextureComponent.cs" />
     <Compile Include="Scene.cs" />
@@ -136,7 +137,7 @@
     <Compile Include="Utilities\FastVector2Transform.cs" />
     <Compile Include="Utilities\MyTimer.cs" />
     <Compile Include="Utilities\RandomExtension.cs" />
-    <Compile Include="Utilities\VectorConverterExtension.cs" />
+    <Compile Include="Utilities\NumericsOpenTkConverterExtension.cs" />
     <Compile Include="Widgets\Button.cs" />
     <Compile Include="Widgets\BoxClickComponent.cs" />
   </ItemGroup>

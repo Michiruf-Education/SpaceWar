@@ -57,7 +57,13 @@ namespace SpaceWar.Game.Play.Field {
 						borderWidth + padding);
 					break;
 			}
-			AddComponent(new RenderBoxComponent(renderBox).Fill(Color.White));
+
+			if (GameDebug.ShaderDisabled) {
+				AddComponent(new RenderBoxComponent(renderBox).Fill(Color.White));
+			} else {
+				AddComponent(new BorderShader(renderBox));
+			}
+
 			AddComponent(new BoxCollider(collisionBox));
 		}
 

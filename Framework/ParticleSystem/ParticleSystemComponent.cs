@@ -35,9 +35,12 @@ namespace Framework.ParticleSystem {
 		private void MaySpawn() {
 			// TODO "MAY"Spawn
 
-			var p = Particle.FromEmitter(Emitter);
-			p.Transform.WorldPosition = GameObject.Transform.WorldPosition;
-			particleSystemGameObject.AddChild(p);
+			for (var i = 0; i < 20; i++) {
+				var p = Particle.FromEmitter(Emitter);
+				p.Transform.WorldPosition = GameObject.Transform.WorldPosition;
+				particleSystemGameObject.AddChild(p);
+				Emitter.OnStart?.Invoke(p);
+			}
 		}
 
 		private class ParticleSystemContainer : GameObject {

@@ -10,6 +10,7 @@ namespace Framework.ParticleSystem {
 		// Duration
 		float SpawnRate { get; }
 		int TotalCount { get; }
+		Action<Particle> OnStart { get; }
 		float Lifetime { get; }
 		void LifetimeCallback(Particle particle, float duration);
 

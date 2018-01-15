@@ -14,6 +14,7 @@ namespace SpaceWar.Game {
 			FrameworkDebug.DrawColliders = false;
 			FrameworkDebug.PrintCollisionDetection = false;
 			GameDebug.Enabled = true;
+			GameDebug.ShaderDisabled = false;
 			GameDebug.ImmediatelyPlay = true;
 			GameDebug.UnDieable = true;
 			GameDebug.InitialPoints = 0;
