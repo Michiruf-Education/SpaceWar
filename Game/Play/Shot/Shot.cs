@@ -1,9 +1,9 @@
 ﻿using System.Drawing;
 using Framework;
 using Framework.Collision.Collider;
-using Framework.ParticleSystem;
 using Framework.Render;
 using OpenTK;
+using SpaceWar.Resources;
 
 namespace SpaceWar.Game.Play.Shot {
 
@@ -18,22 +18,24 @@ namespace SpaceWar.Game.Play.Shot {
 
 		public Player.Player OwningPlayer { get; }
 
+		private readonly float rotation;
 		private readonly Vector2 initialPosition;
 
 		public Shot(float direction, Vector2 position, Player.Player owningPlayer) {
 			OwningPlayer = owningPlayer;
 			initialPosition = position;
+			rotation = MathHelper.RadiansToDegrees(direction);
 
 			AddComponent(new ShotMovementController(direction));
 			AddComponent(new ShotCollisionController());
-			AddComponent(new RenderCircleComponent(SHOT_SIZE / 2).Fill(SHOT_COLOR));
-			AddComponent(new ParticleSystemComponent(new ShotParticleEmitter()));
+			AddComponent(new RenderTextureComponent(Resource.Shot, SHOT_SIZE * 2, SHOT_SIZE * 2));
 			AddComponent(new CircleCollider(SHOT_SIZE / 1.5f));
 		}
 
 		public override void OnStart() {
 			base.OnStart();
 			Transform.WorldPosition = initialPosition;
+			Transform.WorldRotation = rotation;
 		}
 	}
 

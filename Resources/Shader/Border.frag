@@ -2,6 +2,7 @@ precision mediump float;
 
 uniform float InShowDistance;
 uniform vec3 InShowColor;
+// TODO
 uniform vec2 EaseStart = vec2(0.0, 0.0);
 uniform vec2 EaseEnd = vec2(1.0, 1.0);
 uniform vec2 EaseP1 = vec2(0.335, 0.000);
@@ -35,3 +36,5 @@ void main (void) {
         gl_FragColor = vec4(InShowColor, ease(showPercentace));
     }
 }
+
+// TODO: When a shot hits the border, a small light blink would be nice in the border!

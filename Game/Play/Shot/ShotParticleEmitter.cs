@@ -10,15 +10,9 @@ namespace SpaceWar.Game.Play.Shot {
 
 	public class ShotParticleEmitter : ParticleEmitter {
 
-		private static readonly Random POSITION_RANDOM = new Random();
-
 		public float SpawnRate => 0.001f;
 		public int TotalCount => 100;
-		public Action<Particle> OnStart => particle => {
-			particle.Transform.WorldPosition += new Vector2(
-				POSITION_RANDOM.NextFloat(-Shot.SHOT_SIZE * 0.3f, Shot.SHOT_SIZE * 0.3f),
-				POSITION_RANDOM.NextFloat(-Shot.SHOT_SIZE * 0.3f, Shot.SHOT_SIZE * 0.3f));
-		};
+		public Action<Particle> OnStart => null;
 		public float Lifetime => 0.1f;
 		public Vector2 Acceleration => Vector2.Zero;
 		public Func<Vector2, float> AccelerationOverTimeFunc => null;
@@ -30,11 +24,18 @@ namespace SpaceWar.Game.Play.Shot {
 
 		public void LifetimeCallback(Particle particle, float duration) {
 			// Color the visual component by the remaining time
-			var v = (RenderBoxComponent) particle.VisualComponent;
-			var alpha = (int) (duration / Lifetime * 30f);
+			var visual = (RenderBoxComponent) particle.VisualComponent;
+			var factor = duration / Lifetime;
+
+			// Set the alpha
+			var alpha = (int) (factor * 10f);
 			if (alpha > 0) {
-				v.Fill(Color.FromArgb(alpha, Shot.SHOT_COLOR));
+				visual.Fill(Color.FromArgb(alpha, Shot.SHOT_COLOR));
 			}
+
+			// Set the size // TODO TODO TODO
+			var size = (1 - factor) * Shot.SHOT_SIZE;
+			particle.Transform.LocalScaling = new Vector2(size);
 		}
 	}
 
