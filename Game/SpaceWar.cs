@@ -10,14 +10,14 @@ namespace SpaceWar.Game {
 
 		static void Main() {
 			// Configure debug mode
-			FrameworkDebug.Enabled = true;
+			FrameworkDebug.Enabled = false;
 			FrameworkDebug.DrawColliders = true;
 			FrameworkDebug.PrintCollisionDetection = false;
 			GameDebug.Enabled = true;
 			GameDebug.ShaderDisabled = false;
 			GameDebug.ImmediatelyPlay = true;
 			GameDebug.UnDieable = true;
-			GameDebug.InitialPoints = 0;
+			GameDebug.InitialPoints = 1000;
 
 			// Initialize the game
 			var game = new Framework.Game();

@@ -4,6 +4,7 @@ using Framework.Camera;
 using Framework.Engine;
 using OpenTK;
 using SpaceWar.Game.Play.Enemy;
+using SpaceWar.Game.Play.Enemy.Enemy1;
 using SpaceWar.Game.Play.Field;
 using SpaceWar.Game.Play.Player;
 using SpaceWar.Game.Play.UI;

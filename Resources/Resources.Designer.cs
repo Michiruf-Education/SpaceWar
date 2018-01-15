@@ -93,6 +93,26 @@ namespace SpaceWar.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Enemy1 {
+            get {
+                object obj = ResourceManager.GetObject("Enemy1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Enemy3 {
+            get {
+                object obj = ResourceManager.GetObject("Enemy3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap heart {
             get {
                 object obj = ResourceManager.GetObject("heart", resourceCulture);

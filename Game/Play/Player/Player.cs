@@ -49,8 +49,8 @@ namespace SpaceWar.Game.Play.Player {
 			MovementController = new PlayerMovementController();
 			ShotController = new PlayerShotController();
 			CollisionController = new PlayerCollisionController();
-			// TODO Should be not the same enemies and be asymetric (for rotation feedback and felt smoothness)
-			RenderComponent = new RenderTextureComponent(Resource.PlayerV2, PLAYER_SIZE, PLAYER_SIZE).SetColorFilter(PlayerColor);
+			RenderComponent = new RenderTextureComponent(Resource.PlayerV2, PLAYER_SIZE, PLAYER_SIZE)
+				.SetColorFilter(PlayerColor);
 			ParticleSystemComponent = new ParticleSystemComponent(new PlayerParticleEmitter(this));
 			Collider = new CircleCollider(COLLIDER_SIZE / 2);
 
