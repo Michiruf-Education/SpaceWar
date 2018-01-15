@@ -28,7 +28,7 @@ namespace SpaceWar.Game.Play.Shot {
 			AddComponent(new ShotCollisionController());
 			AddComponent(new RenderCircleComponent(SHOT_SIZE / 2).Fill(SHOT_COLOR));
 			AddComponent(new ParticleSystemComponent(new ShotParticleEmitter()));
-			AddComponent(new CircleCollider(SHOT_SIZE / 2));
+			AddComponent(new CircleCollider(SHOT_SIZE / 1.5f));
 		}
 
 		public override void OnStart() {

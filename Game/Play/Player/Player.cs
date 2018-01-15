@@ -52,7 +52,7 @@ namespace SpaceWar.Game.Play.Player {
 			RenderComponent = new RenderTextureComponent(Resource.PlayerV2, PLAYER_SIZE, PLAYER_SIZE)
 				.SetColorFilter(PlayerColor);
 			ParticleSystemComponent = new ParticleSystemComponent(new PlayerParticleEmitter(this));
-			Collider = new CircleCollider(COLLIDER_SIZE / 2);
+			Collider = new CircleCollider(COLLIDER_SIZE / 2.2f);
 
 			AddComponent(Attributes);
 			AddComponent(MovementController);

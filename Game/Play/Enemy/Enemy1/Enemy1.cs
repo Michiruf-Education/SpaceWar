@@ -23,7 +23,7 @@ namespace SpaceWar.Game.Play.Enemy.Enemy1 {
 			AddComponent(new EnemyNoOverlapCollisionController());
 			AddComponent(visual = new RenderTextureComponent(Resource.Enemy1, ENEMY_SIZE, ENEMY_SIZE)
 				.SetColorFilter(Color.FromArgb(150, Color.DarkOrange)));
-			AddComponent(new BoxCollider(ENEMY_SIZE, ENEMY_SIZE));
+			AddComponent(new CircleCollider(ENEMY_SIZE / 4));
 		}
 
 		public override void OnSpawned() {

@@ -14,7 +14,7 @@ namespace Framework.Utilities {
 			Timer = new Timer();
 		}
 
-		public void DoEvery(float seconds, Action action, When when) {
+		public void DoEvery(float seconds, Action action, When when, bool threadSafeForInitialization = false) {
 			// If the timer is running, there is no need to do something
 			if (Timer.Enabled) {
 				return;
@@ -29,13 +29,17 @@ namespace Framework.Utilities {
 			void TimerElapsed(object sender, ElapsedEventArgs args) {
 				// May perform the action on end
 				if (when == When.End) {
-					// Note that we need to perform the action on the next Update() call
+					// If we need to be thread safe, note that we need to perform the action on the next Update() call
 					// because may created game object would not be initialized correctly!
-					void UpdateAction(object o, FrameEventArgs eventArgs) {
-						Game.Instance.Window.UpdateFrame -= UpdateAction;
+					if (threadSafeForInitialization) {
+						void UpdateAction(object o, FrameEventArgs eventArgs) {
+							Game.Instance.Window.UpdateFrame -= UpdateAction;
+							action?.Invoke();
+						}
+						Game.Instance.Window.UpdateFrame += UpdateAction;
+					} else {
 						action?.Invoke();
 					}
-					Game.Instance.Window.UpdateFrame += UpdateAction;
 				}
 
 				// Remove the callback, because else it would still get called everytime and

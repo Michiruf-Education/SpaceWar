@@ -37,7 +37,7 @@ namespace SpaceWar.Game.Play.Enemy.General {
 		}
 
 		public void Update() {
-			spawnTimer.DoEvery(SpawnInterval, SpawnEnemy, MyTimer.When.End);
+			spawnTimer.DoEvery(SpawnInterval, MaySpawnEnemy, MyTimer.When.End, true);
 		}
 
 		public void StartWave(int enemyCount) {
@@ -53,7 +53,7 @@ namespace SpaceWar.Game.Play.Enemy.General {
 				POSITION_GENERATOR.NextFloat(-PlayScene.FIELD_HEIGHT / 2, PlayScene.FIELD_HEIGHT / 2));
 		}
 
-		private void SpawnEnemy() {
+		private void MaySpawnEnemy() {
 			if (EnemiesToSpawn <= 0) {
 				return;
 			}
