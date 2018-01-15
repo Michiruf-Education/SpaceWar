@@ -10,8 +10,8 @@ namespace SpaceWar.Game {
 
 		static void Main() {
 			// Configure debug mode
-			FrameworkDebug.Enabled = false;
-			FrameworkDebug.DrawColliders = false;
+			FrameworkDebug.Enabled = true;
+			FrameworkDebug.DrawColliders = true;
 			FrameworkDebug.PrintCollisionDetection = false;
 			GameDebug.Enabled = true;
 			GameDebug.ShaderDisabled = false;

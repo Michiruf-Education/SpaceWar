@@ -135,7 +135,7 @@
     <Compile Include="Game\Play\UI\NewWaveOverlay.cs" />
     <Compile Include="Game\Play\UI\PointDisplay.cs" />
     <Compile Include="Game\SpaceWar.cs" />
-    <Compile Include="Resources\Resource.Designer.cs">
+    <Compile Include="Resources\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
@@ -162,6 +162,12 @@
     <Content Include="Resources\Image-Sources.txt" />
     <Content Include="Resources\Shader\Border.frag" />
     <Content Include="Resources\Shader\Border.vert" />
+    <Content Include="Resources\Texture\Player\Variant 2.png" />
+    <Content Include="Resources\Texture\Player\Variant1\1.png" />
+    <Content Include="Resources\Texture\Player\Variant1\2.png" />
+    <Content Include="Resources\Texture\Player\Variant1\3.png" />
+    <Content Include="Resources\Texture\Player\Variant1\4.png" />
+    <Content Include="Resources\Texture\Player\Variant1\5.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

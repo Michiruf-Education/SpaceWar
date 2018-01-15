@@ -71,7 +71,7 @@ namespace SpaceWar.Game.Play.Player {
 			// NOTE Would not be needed because of collision detection
 			// But for now disable clipping threw borders (bottom-left edge for example)
 			var worldPosition = GameObject.Transform.WorldPosition;
-			float maxWidth = (PlayScene.FIELD_WIDTH - Player.PLAYER_SIZE - PlayScene.BORDER_WIDTH) / 2;
+			float maxWidth = (PlayScene.FIELD_WIDTH - Player.COLLIDER_SIZE - PlayScene.BORDER_WIDTH) / 2;
 			if (worldPosition.X > maxWidth) {
 				GameObject.Transform.WorldPosition = new Vector2(
 					maxWidth,
@@ -82,7 +82,7 @@ namespace SpaceWar.Game.Play.Player {
 					-maxWidth,
 					worldPosition.Y);
 			}
-			float maxHeight = (PlayScene.FIELD_HEIGHT - Player.PLAYER_SIZE - PlayScene.BORDER_WIDTH) / 2;
+			float maxHeight = (PlayScene.FIELD_HEIGHT - Player.COLLIDER_SIZE - PlayScene.BORDER_WIDTH) / 2;
 			if (worldPosition.Y > maxHeight) {
 				GameObject.Transform.WorldPosition = new Vector2(
 					worldPosition.X,

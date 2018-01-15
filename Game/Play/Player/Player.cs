@@ -3,6 +3,7 @@ using Framework;
 using Framework.Collision.Collider;
 using Framework.ParticleSystem;
 using Framework.Render;
+using SpaceWar.Resources;
 
 namespace SpaceWar.Game.Play.Player {
 
@@ -15,13 +16,14 @@ namespace SpaceWar.Game.Play.Player {
 
 		// Visual constants
 		public const float PLAYER_SIZE = 0.05f;
+		public const float COLLIDER_SIZE = PLAYER_SIZE * 0.8f;
 
 		// Containers
 		public PlayerAttributes Attributes { get; }
 		public PlayerMovementController MovementController { get; }
 		public PlayerShotController ShotController { get; }
 		public PlayerCollisionController CollisionController { get; }
-		public RenderBoxComponent RenderComponent { get; }
+		public RenderTextureComponent RenderComponent { get; }
 		public ParticleSystemComponent ParticleSystemComponent { get; }
 		public CircleCollider Collider { get; }
 
@@ -48,9 +50,9 @@ namespace SpaceWar.Game.Play.Player {
 			ShotController = new PlayerShotController();
 			CollisionController = new PlayerCollisionController();
 			// TODO Should be not the same enemies and be asymetric (for rotation feedback and felt smoothness)
-			RenderComponent = new RenderBoxComponent(PLAYER_SIZE, PLAYER_SIZE).Fill(PlayerColor);
+			RenderComponent = new RenderTextureComponent(Resource.PlayerV2, PLAYER_SIZE, PLAYER_SIZE).SetColorFilter(PlayerColor);
 			ParticleSystemComponent = new ParticleSystemComponent(new PlayerParticleEmitter(this));
-			Collider = new CircleCollider(PLAYER_SIZE / 2);
+			Collider = new CircleCollider(COLLIDER_SIZE / 2);
 
 			AddComponent(Attributes);
 			AddComponent(MovementController);

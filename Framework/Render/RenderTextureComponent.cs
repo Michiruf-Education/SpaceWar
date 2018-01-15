@@ -14,21 +14,23 @@ namespace Framework.Render {
 		private readonly ITexture texture;
 
 		public Box2D Rect { get; set; }
+		public Color ColorFilter { get; set; } = Color.White;
 
-		[Obsolete("May be obsolete because we always need bounds (rect)?")]
-		private RenderTextureComponent(Bitmap image) {
+		public RenderTextureComponent(Bitmap image, Box2D rect) {
 			texture = TextureLoader.FromBitmap(image);
 			if (texture == null) {
 				throw new ArgumentException("Texture is not a 2dGL texture!");
 			}
-		}
-
-		public RenderTextureComponent(Bitmap image, Box2D rect) : this(image) {
 			Rect = rect;
 		}
 
 		public RenderTextureComponent(Bitmap image, float width, float height) :
 			this(image, new Box2D(-width / 2, -height / 2, width, height)) {
+		}
+
+		public RenderTextureComponent SetColorFilter(Color color) {
+			ColorFilter = color;
+			return this;
 		}
 
 		public override void OnDestroy() {
@@ -45,11 +47,11 @@ namespace Framework.Render {
 			// Enable blending for transparency in textures
 			GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
 			GL.Enable(EnableCap.Blend);
-			
+
 			// Color is multiplied with the texture color
 			// White means no color change in the texture will be applied
-			GL.Color3(Color.White);
-			
+			GL.Color3(ColorFilter);
+
 			var matrix = GameObject.Transform.GetTransformationMatrixCached(!GameObject.IsUiElement);
 			var minXminY = FastVector2Transform.Transform(Rect.MinX, Rect.MinY, matrix);
 			var maxXminY = FastVector2Transform.Transform(Rect.MaxX, Rect.MinY, matrix);
