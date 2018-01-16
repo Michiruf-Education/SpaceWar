@@ -7,7 +7,10 @@ uniform vec2 EaseEnd;
 uniform vec2 EaseP1;
 uniform vec2 EaseP2;
 
-uniform vec2 InPlayerPosition;
+uniform vec2 InPlayerPosition0;
+uniform vec2 InPlayerPosition1;
+uniform vec2 InPlayerPosition2;
+uniform vec2 InPlayerPosition3;
 varying vec2 VertexPosition;
 
 vec2 toBezier(in float x, in vec2 P0, in vec2 P1, in vec2 P2, in vec2 P3) {
@@ -28,14 +31,30 @@ float ease(in float value) {
     return(toBezier(value, EaseStart, EaseP1, EaseP2, EaseEnd).y);
 }
 
+vec2 getPlayerPosition(in int i) {
+    if(i == 0) {
+        return InPlayerPosition0;
+    }
+    if(i == 1) {
+        return InPlayerPosition1;
+    }
+    if(i == 2) {
+        return InPlayerPosition2;
+    }
+    if(i == 3) {
+        return InPlayerPosition3;
+    }
+
+    return vec2(0);
+}
+
 float alpha() {
     float result = 0;
-    // TODO Loop disabled because arrays do not work yet
-    //for(int i = 0; i < 4; i++) {
-        float distance = length(VertexPosition - InPlayerPosition);
+    for(int i = 0; i < 4; i++) {
+        float distance = length(VertexPosition - getPlayerPosition(i));
         float showPercentace = 1.0 - distance / InShowDistance;
         result = max(result, showPercentace);
-    //}
+    }
     return ease(result);
 }
 

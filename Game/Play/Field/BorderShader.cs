@@ -43,6 +43,8 @@ namespace SpaceWar.Game.Play.Field {
 		}
 
 		public void Update() {
+			var offscreenVector = new Vector2(100f, 100f);
+
 			var cameraPosition = CameraComponent.Active.Position;
 			var positions = PlayerHelper.GetPlayers()
 				.Select((player, i) =>
@@ -51,10 +53,13 @@ namespace SpaceWar.Game.Play.Field {
 					// The camera data is inverted, so there is not a "+", but a "-"!
 						player.Transform.WorldPosition - cameraPosition
 				)
-				//.Concat(new[] {Vector2.Zero, Vector2.Zero, Vector2.Zero, Vector2.Zero})
+				.Concat(new[] {offscreenVector, offscreenVector, offscreenVector, offscreenVector})
 				//.Take(4)
 				.ToArray();
-			SetUniform(PLAYER_POSITION_ATTRIBUTE_NAME, positions[0]);
+			SetUniform(PLAYER_POSITION_ATTRIBUTE_NAME + "0", positions[0]);
+			SetUniform(PLAYER_POSITION_ATTRIBUTE_NAME + "1", positions[1]);
+			SetUniform(PLAYER_POSITION_ATTRIBUTE_NAME + "2", positions[2]);
+			SetUniform(PLAYER_POSITION_ATTRIBUTE_NAME + "3", positions[3]);
 		}
 	}
 
