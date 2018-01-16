@@ -1,15 +1,14 @@
-precision mediump float;
+#version 120
 
 uniform float InShowDistance;
 uniform vec3 InShowColor;
-// TODO
-uniform vec2 EaseStart = vec2(0.0, 0.0);
-uniform vec2 EaseEnd = vec2(1.0, 1.0);
-uniform vec2 EaseP1 = vec2(0.335, 0.000);
-uniform vec2 EaseP2 = vec2(0.125, 1.000);
+uniform vec2 EaseStart;
+uniform vec2 EaseEnd;
+uniform vec2 EaseP1;
+uniform vec2 EaseP2;
 
-varying in vec2 VertexPosition;
-varying in vec2 PlayerPosition;
+uniform vec2 InPlayerPosition;
+varying vec2 VertexPosition;
 
 vec2 toBezier(in float x, in vec2 P0, in vec2 P1, in vec2 P2, in vec2 P3) {
     // @see https://vicrucann.github.io/tutorials/bezier-shader/
@@ -30,7 +29,7 @@ float ease(in float value) {
 }
 
 void main (void) {
-    float distance = length(VertexPosition - PlayerPosition);
+    float distance = length(VertexPosition - InPlayerPosition);
     float showPercentace = 1.0 - distance / InShowDistance;
     if(showPercentace > 0.0) {
         gl_FragColor = vec4(InShowColor, ease(showPercentace));

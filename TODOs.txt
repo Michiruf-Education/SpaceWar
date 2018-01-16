@@ -1,5 +1,5 @@
 Enemy explision
 Shot on Border gives a "blink" on that spot (like an absorb of the shot by the border)
 Player tail
-ATI crash
+ATI crash testen
 Gegner 3: Spitze vorne abstufen

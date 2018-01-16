@@ -12,20 +12,23 @@ using Zenseless.OpenGL;
 
 namespace Framework.Render {
 
-	public class RenderShaderComponent : Component, RenderComponent, UpdateComponent {
+	// TODO: GLSL Lang Compiler benutzen um den Shader zu kompilieren -> generiert am meisten Warnings/Errors
 
-		public const string CAMERA_POSITION_ATTRIBUTE = "InCameraPosition";
-		public const string CAMERA_MATRIX_ATTRIBUTE = "InCameraMatrix";
-		public const string CAMERA_MATRIX_INVERTED_ATTRIBUTE = "InCameraMatrixInverted";
+	public class RenderShaderComponent : Component, RenderComponent {
 
 		private readonly IShader shader;
 
 		public Box2D Rect { get; set; }
 
 		public RenderShaderComponent(byte[] vertString, byte[] fragString, Box2D rect) {
-			shader = ShaderLoader.FromStrings(
-				Encoding.Default.GetString(vertString),
-				Encoding.Default.GetString(fragString));
+			try {
+				shader = ShaderLoader.FromStrings(
+					Encoding.Default.GetString(vertString),
+					Encoding.Default.GetString(fragString));
+			} catch (ShaderCompileException e) {
+				Console.WriteLine(e.Message);
+				Console.WriteLine(e.ShaderLog);
+			}
 			Rect = rect;
 		}
 
@@ -63,6 +66,10 @@ namespace Framework.Render {
 
 		public RenderShaderComponent SetUniform(string name, float value) {
 			return SetUniform(name, position => GL.Uniform1(position, value));
+		}
+
+		public RenderShaderComponent SetUniform(string name, Vector2 value) {
+			return SetUniform(name, position => GL.Uniform2(position, value));
 		}
 
 		public RenderShaderComponent SetUniform(string name, Vector3 value) {
@@ -103,24 +110,6 @@ namespace Framework.Render {
 			shader.Deactivate();
 
 			GL.Disable(EnableCap.Blend);
-		}
-
-		public virtual void Update() {
-			// Assign the camera position for easy access
-			SetAttribute(CAMERA_POSITION_ATTRIBUTE, position => {
-				GL.VertexAttrib2(position, CameraComponent.Active.Position);
-			});
-
-			// NOTE Do this whenever needed because it did not work immediately
-			// Assign the camera matrix for full access
-			//SetAttribute(CAMERA_MATRIX_ATTRIBUTE, position => {
-			//	var m = CameraComponent.ActiveCameraMatrixInverted.ToOpenTKMatrix();
-			//	GL.VertexAttrib2(position, m.Row0);
-			//	GL.VertexAttrib2(position + 2, m.Row1);
-			//	GL.VertexAttrib2(position + 4, m.Row2);
-			//});
-			//SetAttribute(CAMERA_MATRIX_INVERTED_ATTRIBUTE, position => {
-			//});
 		}
 	}
 
