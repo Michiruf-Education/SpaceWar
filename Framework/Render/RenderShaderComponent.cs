@@ -36,8 +36,7 @@ namespace Framework.Render {
 			this(vertString, fragString, new Box2D(-width / 2, -height / 2, width, height)) {
 		}
 
-		// NOTE Maybe extract the methods into a Binder-class?
-
+		[Obsolete]
 		public RenderShaderComponent SetAttribute(string name, Action<int> setAction) {
 			shader.Activate();
 			var position = shader.GetResourceLocation(ShaderResourceType.Attribute, name);
@@ -49,9 +48,12 @@ namespace Framework.Render {
 			return this;
 		}
 
+		[Obsolete]
 		public RenderShaderComponent SetAttribute(string name, Vector2 value) {
 			return SetAttribute(name, position => GL.VertexAttrib2(position, value));
 		}
+
+		// NOTE Maybe extract the methods into a Binder-class?
 
 		public RenderShaderComponent SetUniform(string name, Action<int> setAction) {
 			shader.Activate();
@@ -70,6 +72,18 @@ namespace Framework.Render {
 
 		public RenderShaderComponent SetUniform(string name, Vector2 value) {
 			return SetUniform(name, position => GL.Uniform2(position, value));
+		}
+
+		public RenderShaderComponent SetUniform(string name, Vector2[] value) {
+			return SetUniform(name, position => {
+				// TODO This does not work yet
+				var values = new float[value.Length * 2];
+				for (var i = 0; i < value.Length; i++) {
+					values[2 * i] = value[i].X;
+					values[2 * i + 1] = value[i].Y;
+				}
+				GL.Uniform2(position, value.Length, values);
+			});
 		}
 
 		public RenderShaderComponent SetUniform(string name, Vector3 value) {

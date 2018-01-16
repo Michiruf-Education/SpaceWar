@@ -51,6 +51,8 @@ namespace SpaceWar.Game.Play.Field {
 					// The camera data is inverted, so there is not a "+", but a "-"!
 						player.Transform.WorldPosition - cameraPosition
 				)
+				//.Concat(new[] {Vector2.Zero, Vector2.Zero, Vector2.Zero, Vector2.Zero})
+				//.Take(4)
 				.ToArray();
 			SetUniform(PLAYER_POSITION_ATTRIBUTE_NAME, positions[0]);
 		}

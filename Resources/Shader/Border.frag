@@ -1,4 +1,4 @@
-#version 120
+#version 130
 
 uniform float InShowDistance;
 uniform vec3 InShowColor;
@@ -28,12 +28,19 @@ float ease(in float value) {
     return(toBezier(value, EaseStart, EaseP1, EaseP2, EaseEnd).y);
 }
 
-void main (void) {
-    float distance = length(VertexPosition - InPlayerPosition);
-    float showPercentace = 1.0 - distance / InShowDistance;
-    if(showPercentace > 0.0) {
-        gl_FragColor = vec4(InShowColor, ease(showPercentace));
-    }
+float alpha() {
+    float result = 0;
+    // TODO Loop disabled because arrays do not work yet
+    //for(int i = 0; i < 4; i++) {
+        float distance = length(VertexPosition - InPlayerPosition);
+        float showPercentace = 1.0 - distance / InShowDistance;
+        result = max(result, showPercentace);
+    //}
+    return ease(result);
+}
+
+void main(void) {
+    gl_FragColor = vec4(InShowColor, alpha());
 }
 
 // TODO: When a shot hits the border, a small light blink would be nice in the border!
