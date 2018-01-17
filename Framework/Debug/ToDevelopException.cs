@@ -2,6 +2,7 @@
 
 namespace Framework.Debug {
 
+	[Serializable]
 	public class ToDevelopException : SystemException {
 
 		public ToDevelopException() {

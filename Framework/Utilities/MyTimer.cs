@@ -4,7 +4,7 @@ using OpenTK;
 
 namespace Framework.Utilities {
 
-	public class MyTimer {
+	public class MyTimer : IDisposable{
 
 		public Timer Timer { get; }
 
@@ -83,6 +83,10 @@ namespace Framework.Utilities {
 		public void Cancel() {
 			Timer.Stop();
 			Timer.Close();
+		}
+
+		public void Dispose() {
+			Timer?.Dispose();
 		}
 
 		public enum When {

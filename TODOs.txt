@@ -1,5 +1,12 @@
 Enemy explision
 Shot on Border gives a "blink" on that spot (like an absorb of the shot by the border)
 Player tail
-ATI crash testen
-Gegner 3: Spitze vorne abstufen
+Abstoßungskräfte für Gegner
+
+Vortrag:
+- Orga und Projektmanagement (evtl. Sprint Burndown, flow charts)
+- Architekturanalyse (Schriftlich ins git und auch in Vortrag) + Codemap
+- Wie waren die Tests (Unit & Eigene)
+- Projektergebnis
+* Irgendwo anders mit einbinden: Retrospektive (auch in git packen)
+* Klassendiagramme evtl., Metriken berechnen lassen (=Zyklische Berechnungszahl)
