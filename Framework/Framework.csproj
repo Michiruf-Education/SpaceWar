@@ -112,8 +112,6 @@
     <Compile Include="Input\InputHandler.cs" />
     <Compile Include="Input\InputProvider.cs" />
     <Compile Include="Object\CachedObject.cs" />
-    <Compile Include="Object\Invalidateable.cs" />
-    <Compile Include="Object\Lifecycle.cs" />
     <Compile Include="Object\RenderComponent.cs" />
     <Compile Include="Object\Time.cs" />
     <Compile Include="Object\UpdateComponent.cs" />
