@@ -108,6 +108,8 @@
     <Compile Include="Game\Play\Enemy\General\AbstractEnemy.cs" />
     <Compile Include="Game\Play\Enemy\General\AbstractSpawner.cs" />
     <Compile Include="Game\Play\Enemy\General\EnemyCollisionController.cs" />
+    <Compile Include="Game\Play\Enemy\General\EnemyExplosionParticleEmitterObject.cs" />
+    <Compile Include="Game\Play\Enemy\General\EnemyExplosionParticleEmitterObject_BloodBackup.cs" />
     <Compile Include="Game\Play\Enemy\General\EnemyLinearFollowNearestPlayerMovementController.cs" />
     <Compile Include="Game\Play\Enemy\General\EnemyNoOverlapCollisionController.cs" />
     <Compile Include="Game\Play\Enemy\Spawners.cs" />

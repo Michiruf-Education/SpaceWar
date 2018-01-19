@@ -15,6 +15,7 @@ namespace SpaceWar.Game.Play.Enemy.Enemy3 {
 
 		// Visual constants
 		public const float ENEMY_SIZE = 0.05f;
+		public override Color ExplosionColor => Color.Red;
 
 		// Components for spawn changes
 		private readonly RenderTextureComponent visual;

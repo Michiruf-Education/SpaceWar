@@ -41,7 +41,6 @@ namespace SpaceWar.Game.Play.Player {
 		};
 		public float Lifetime => 0.4f;
 		public Vector2 Acceleration => Vector2.Zero;
-		public Func<Vector2, float> AccelerationOverTimeFunc => null;
 		public Vector2 Velocity {
 			get {
 				var angle = VELOCITY_RANDOM.NextDouble(0, 360);
@@ -49,9 +48,7 @@ namespace SpaceWar.Game.Play.Player {
 				       VELOCITY_RANDOM.NextFloat(0.0001f, 0.0005f);
 			}
 		}
-		public Func<Vector2, float> VelocityOverTimeFuncOverride => null;
 		public Func<RenderComponent> InitializeVisualComponent => () => new RenderBoxComponent(0.02f, 0.02f).Fill(Color.Red);
-		public Func<Color, float> ColorOverTimeFunc => null;
 
 
 		public void LifetimeCallback(Particle particle, float duration) {

@@ -132,6 +132,7 @@
     <Compile Include="Render\RenderTextureComponent.cs" />
     <Compile Include="Scene.cs" />
     <Compile Include="Transform.cs" />
+    <Compile Include="Utilities\ColorBlendExtension.cs" />
     <Compile Include="Utilities\FastVector2Transform.cs" />
     <Compile Include="Utilities\MyTimer.cs" />
     <Compile Include="Utilities\RandomExtension.cs" />

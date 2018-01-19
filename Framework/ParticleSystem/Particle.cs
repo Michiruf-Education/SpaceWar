@@ -17,13 +17,13 @@ namespace Framework.ParticleSystem {
 		}
 
 		// Duration
-		public float Lifetime { get; internal set; }
-		public Action<Particle, float> LifetimeCallback { get; internal set; }
+		public float Lifetime { get; set; }
+		public Action<Particle, float> LifetimeCallback { get; set; }
 		public bool IsAlive => Lifetime > 0;
 
 		// Position
-		public Vector2 Acceleration { get; internal set; }
-		public Vector2 Velocity { get; internal set; }
+		public Vector2 Acceleration { get; set; }
+		public Vector2 Velocity { get; set; }
 
 		// Visual
 		public Component VisualComponent { get; }
