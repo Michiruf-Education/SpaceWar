@@ -28,6 +28,15 @@ namespace Framework.Render {
 			this(image, new Box2D(-width / 2, -height / 2, width, height)) {
 		}
 
+		public RenderTextureComponent(ITexture texture, Box2D rect) {
+			this.texture = texture;
+			Rect = rect;
+		}
+
+		public RenderTextureComponent(ITexture texture, float width, float height) :
+			this(texture, new Box2D(-width / 2, -height / 2, width, height)) {
+		}
+
 		public RenderTextureComponent SetColorFilter(Color color) {
 			ColorFilter = color;
 			return this;
@@ -52,7 +61,8 @@ namespace Framework.Render {
 			// White means no color change in the texture will be applied
 			GL.Color3(ColorFilter);
 
-			var matrix = GameObject.Transform.GetTransformationMatrixCached(!GameObject.IsUiElement);
+			var matrix = GameObject?.Transform?.GetTransformationMatrixCached(!GameObject.IsUiElement) ?? 
+			             System.Numerics.Matrix3x2.Identity;
 			var minXminY = FastVector2Transform.Transform(Rect.MinX, Rect.MinY, matrix);
 			var maxXminY = FastVector2Transform.Transform(Rect.MaxX, Rect.MinY, matrix);
 			var maxXmaxY = FastVector2Transform.Transform(Rect.MaxX, Rect.MaxY, matrix);

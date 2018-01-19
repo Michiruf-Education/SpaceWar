@@ -125,6 +125,7 @@
     <Compile Include="Game\Play\Player\PlayerMovementController.cs" />
     <Compile Include="Game\Play\Player\PlayerParticleEmitter.cs" />
     <Compile Include="Game\Play\Player\PlayerShotController.cs" />
+    <Compile Include="Game\Play\Player\PlayerTrail.cs" />
     <Compile Include="Game\Play\PlayScene.cs" />
     <Compile Include="Game\Play\Shot\Shot.cs" />
     <Compile Include="Game\Play\Shot\ShotCollisionController.cs" />

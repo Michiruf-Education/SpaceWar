@@ -104,7 +104,8 @@ namespace Framework.Render {
 			// White means no color change in the texture will be applied
 			GL.Color3(Color.White);
 
-			var matrix = GameObject.Transform.GetTransformationMatrixCached(!GameObject.IsUiElement);
+			var matrix = GameObject?.Transform?.GetTransformationMatrixCached(!GameObject.IsUiElement) ?? 
+			             System.Numerics.Matrix3x2.Identity;
 			var minXminY = FastVector2Transform.Transform(Rect.MinX, Rect.MinY, matrix);
 			var maxXminY = FastVector2Transform.Transform(Rect.MaxX, Rect.MinY, matrix);
 			var maxXmaxY = FastVector2Transform.Transform(Rect.MaxX, Rect.MaxY, matrix);

@@ -132,7 +132,8 @@ namespace Framework.Render {
 			}
 
 			// Note that max and min Y is inverted
-			var matrix = GameObject.Transform.GetTransformationMatrixCached(!GameObject.IsUiElement);
+			var matrix = GameObject?.Transform?.GetTransformationMatrixCached(!GameObject.IsUiElement) ?? 
+			             System.Numerics.Matrix3x2.Identity;
 			var minXmaxY = FastVector2Transform.Transform(Rect.MinX, Rect.MinY, matrix);
 			var maxXmaxY = FastVector2Transform.Transform(Rect.MaxX, Rect.MinY, matrix);
 			var maxXminY = FastVector2Transform.Transform(Rect.MaxX, Rect.MaxY, matrix);
