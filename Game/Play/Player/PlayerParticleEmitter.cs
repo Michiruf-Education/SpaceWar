@@ -48,7 +48,7 @@ namespace SpaceWar.Game.Play.Player {
 				       VELOCITY_RANDOM.NextFloat(0.0001f, 0.0005f);
 			}
 		}
-		public Func<RenderComponent> InitializeVisualComponent => () => new RenderBoxComponent(0.02f, 0.02f).Fill(Color.Red);
+		public Func<RenderComponent> InitializeVisualComponent => () => new RenderBoxComponent(0.02f, 0.02f);
 
 
 		public void LifetimeCallback(Particle particle, float duration) {
