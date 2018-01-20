@@ -151,7 +151,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Texture\heart-128.png" />
     <None Include="Resources\Texture\background.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -167,14 +166,10 @@
     <Content Include="Resources\Texture\Enemy\Enemy1.png" />
     <Content Include="Resources\Texture\Enemy\Enemy2.png" />
     <Content Include="Resources\Texture\Enemy\Enemy3.png" />
+    <Content Include="Resources\Texture\Player\Player.png" />
     <Content Include="Resources\Texture\Player\PlayerParticle.png" />
-    <Content Include="Resources\Texture\Player\Variant 2.png" />
-    <Content Include="Resources\Texture\Player\Variant1\1.png" />
-    <Content Include="Resources\Texture\Player\Variant1\2.png" />
-    <Content Include="Resources\Texture\Player\Variant1\3.png" />
-    <Content Include="Resources\Texture\Player\Variant1\4.png" />
-    <Content Include="Resources\Texture\Player\Variant1\5.png" />
     <Content Include="Resources\Texture\Shot.png" />
+    <Content Include="Resources\Texture\UI\Heart.png" />
     <Content Include="TODOs.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
