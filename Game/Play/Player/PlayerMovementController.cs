@@ -9,6 +9,8 @@ namespace SpaceWar.Game.Play.Player {
 	public class PlayerMovementController : Component, UpdateComponent {
 
 		private Player player;
+		
+		public bool IsMoving { get; private set; }
 
 		public override void OnStart() {
 			base.OnStart();
@@ -16,6 +18,8 @@ namespace SpaceWar.Game.Play.Player {
 		}
 
 		public void Update() {
+			IsMoving = false;
+			
 			// Do nothing if dead
 			if (!player.Attributes.IsAlive) {
 				return;
@@ -47,6 +51,7 @@ namespace SpaceWar.Game.Play.Player {
 						keyboardAxis.Y * Player.INITIAL_SPEED * Time.DeltaTime,
 						Space.World);
 					GameObject.Transform.LookAtDirection(keyboardAxis);
+					IsMoving = true;
 
 					// Do not detect controller if keyboard was pressed
 					FixPlayerPosition();
@@ -62,6 +67,7 @@ namespace SpaceWar.Game.Play.Player {
 					gamepadAxis.Y * Player.INITIAL_SPEED * Time.DeltaTime,
 					Space.World);
 				GameObject.Transform.LookAtDirection(gamepadAxis);
+				IsMoving = true;
 			}
 
 			FixPlayerPosition();

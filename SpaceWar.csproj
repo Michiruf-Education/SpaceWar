@@ -167,6 +167,7 @@
     <Content Include="Resources\Texture\Enemy\Enemy1.png" />
     <Content Include="Resources\Texture\Enemy\Enemy2.png" />
     <Content Include="Resources\Texture\Enemy\Enemy3.png" />
+    <Content Include="Resources\Texture\Player\PlayerParticle.png" />
     <Content Include="Resources\Texture\Player\Variant 2.png" />
     <Content Include="Resources\Texture\Player\Variant1\1.png" />
     <Content Include="Resources\Texture\Player\Variant1\2.png" />
