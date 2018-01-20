@@ -62,7 +62,7 @@ namespace SpaceWar.Game.Play.Player {
 			AddComponent(ParticleSystemComponent);
 			AddComponent(Collider);
 			
-			AddComponent(new PlayerTrail());
+			//AddComponent(new PlayerTrail());
 		}
 	}
 

@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-using System.Windows.Forms;
 using Framework.Collision.Collider;
 using Framework.Render;
 using SpaceWar.Game.Play.Enemy.General;
@@ -15,15 +14,15 @@ namespace SpaceWar.Game.Play.Enemy.Enemy1 {
 		// Visual constants
 		public const float ENEMY_SIZE = 0.035f;
 		public override Color ExplosionColor => Color.DarkOrange;
-		
+
 		// Components for spawn changes
 		private readonly RenderTextureComponent visual;
 
 		public Enemy1(AbstractSpawner spawner) : base(spawner) {
 			AddComponent(new EnemyLinearFollowNearestPlayerMovementController(ENEMY_SPEED));
 			AddComponent(new EnemyNoOverlapCollisionController());
-			AddComponent(visual = new RenderTextureComponent(Resource.Enemy1, ENEMY_SIZE, ENEMY_SIZE)
-				.SetColorFilter(Color.FromArgb(150, Color.DarkOrange)));
+			AddComponent(visual = new RenderTextureComponent("Enemy1", () => Resource.Enemy1,
+				ENEMY_SIZE, ENEMY_SIZE).SetColorFilter(Color.FromArgb(150, Color.DarkOrange)));
 			AddComponent(new CircleCollider(ENEMY_SIZE / 4));
 		}
 

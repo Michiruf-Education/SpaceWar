@@ -21,8 +21,8 @@ namespace SpaceWar.Game.Play.Enemy.Enemy2 {
 		public Enemy2(AbstractSpawner spawner) : base(spawner) {
 			AddComponent(new EnemyLinearFollowNearestPlayerMovementController(ENEMY_SPEED));
 			AddComponent(new EnemyNoOverlapCollisionController());
-			AddComponent(visual = new RenderTextureComponent(Resource.Enemy2, ENEMY_SIZE, ENEMY_SIZE)
-				.SetColorFilter(Color.FromArgb(150, Color.DeepPink)));
+			AddComponent(visual = new RenderTextureComponent("Enemy2", () => Resource.Enemy2,
+				ENEMY_SIZE, ENEMY_SIZE).SetColorFilter(Color.FromArgb(150, Color.DeepPink)));
 			AddComponent(new CircleCollider(ENEMY_SIZE / 3f));
 		}
 

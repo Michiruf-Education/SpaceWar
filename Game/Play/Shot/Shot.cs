@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-using Framework;
+﻿using Framework;
 using Framework.Collision.Collider;
 using Framework.Render;
 using OpenTK;
@@ -14,7 +13,6 @@ namespace SpaceWar.Game.Play.Shot {
 
 		// Visual constants
 		public const float SHOT_SIZE = 0.025f;
-		public static readonly Color SHOT_COLOR = Color.Brown;
 
 		public Player.Player OwningPlayer { get; }
 
@@ -28,7 +26,8 @@ namespace SpaceWar.Game.Play.Shot {
 
 			AddComponent(new ShotMovementController(direction));
 			AddComponent(new ShotCollisionController());
-			AddComponent(new RenderTextureComponent(Resource.Shot, SHOT_SIZE * 2, SHOT_SIZE * 2));
+			AddComponent(new RenderTextureComponent("Shot", () => Resource.Shot,
+				SHOT_SIZE * 2, SHOT_SIZE * 2));
 			AddComponent(new CircleCollider(SHOT_SIZE / 1.5f));
 		}
 

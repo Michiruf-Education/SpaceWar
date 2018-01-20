@@ -22,8 +22,8 @@ namespace SpaceWar.Game.Play.Enemy.Enemy3 {
 
 		public Enemy3(AbstractSpawner spawner) : base(spawner) {
 			AddComponent(new Enemy3MovementController(ENEMY_SPEED, ENEMY_REST_DURATION, ENEMY_CHASE_DURATION));
-			AddComponent(visual = new RenderTextureComponent(Resource.Enemy3, ENEMY_SIZE, ENEMY_SIZE)
-				.SetColorFilter(Color.FromArgb(150, Color.Red)));
+			AddComponent(visual = new RenderTextureComponent("Enemy3", () => Resource.Enemy3,
+				ENEMY_SIZE, ENEMY_SIZE).SetColorFilter(Color.FromArgb(150, Color.Red)));
 			AddComponent(new CircleCollider(ENEMY_SIZE / 2.8f));
 		}
 
