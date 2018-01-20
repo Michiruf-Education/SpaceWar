@@ -126,10 +126,7 @@ namespace Framework.Render {
 
 			// Color is multiplied with the texture color
 			// White means no color change in the texture will be applied
-			GL.Color3(Color.White);
-			if (FrameworkDebug.Enabled) {
-				GL.Color3(Color.LightGray);
-			}
+			GL.Color4(Color.White);
 
 			// Note that max and min Y is inverted
 			var matrix = GameObject?.Transform?.GetTransformationMatrixCached(!GameObject.IsUiElement) ?? 

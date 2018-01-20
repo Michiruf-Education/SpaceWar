@@ -68,7 +68,7 @@ namespace Framework.Render {
 
 			// Color is multiplied with the texture color
 			// White means no color change in the texture will be applied
-			GL.Color3(ColorFilter);
+			GL.Color4(ColorFilter);
 
 			var matrix = GameObject?.Transform?.GetTransformationMatrixCached(!GameObject.IsUiElement) ??
 			             System.Numerics.Matrix3x2.Identity;
