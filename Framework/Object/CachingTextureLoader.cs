@@ -19,6 +19,7 @@ namespace Framework.Object {
 			throw new ToDevelopException();
 		}
 
+		// NOTE Could also be integrated into RenderTextureComponent? -> With audio this is done
 		public static ITexture FromBitmap(string cacheName, Func<Bitmap> bitmapCreator, bool invalidateCache = false) {
 			// Cleanup old resources if were invalidating and the resource exists
 			if (invalidateCache && TEXTURE_CACHE.ContainsKey(cacheName)) {

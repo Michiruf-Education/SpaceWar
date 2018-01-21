@@ -20,11 +20,9 @@ namespace Framework.Render {
 
 		public Box2D Rect { get; set; }
 
-		public RenderShaderComponent(byte[] vertString, byte[] fragString, Box2D rect) {
+		public RenderShaderComponent(string vertex, string fragment, Box2D rect) {
 			try {
-				shader = ShaderLoader.FromStrings(
-					Encoding.Default.GetString(vertString),
-					Encoding.Default.GetString(fragString));
+				shader = ShaderLoader.FromStrings(vertex, fragment);
 			} catch (ShaderCompileException e) {
 				Console.WriteLine(e.Message);
 				Console.WriteLine(e.ShaderLog);
@@ -32,8 +30,8 @@ namespace Framework.Render {
 			Rect = rect;
 		}
 
-		public RenderShaderComponent(byte[] vertString, byte[] fragString, float width, float height) :
-			this(vertString, fragString, new Box2D(-width / 2, -height / 2, width, height)) {
+		public RenderShaderComponent(string vertex, string fragment, float width, float height) :
+			this(vertex, fragment, new Box2D(-width / 2, -height / 2, width, height)) {
 		}
 
 		[Obsolete]
@@ -104,7 +102,7 @@ namespace Framework.Render {
 			// White means no color change in the texture will be applied
 			GL.Color4(Color.White);
 
-			var matrix = GameObject?.Transform?.GetTransformationMatrixCached(!GameObject.IsUiElement) ?? 
+			var matrix = GameObject?.Transform?.GetTransformationMatrixCached(!GameObject.IsUiElement) ??
 			             System.Numerics.Matrix3x2.Identity;
 			var minXminY = FastVector2Transform.Transform(Rect.MinX, Rect.MinY, matrix);
 			var maxXminY = FastVector2Transform.Transform(Rect.MaxX, Rect.MinY, matrix);

@@ -19,7 +19,7 @@ namespace SpaceWar.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resource {
@@ -63,30 +63,55 @@ namespace SpaceWar.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap background {
+        internal static System.Drawing.Bitmap Background {
             get {
-                object obj = ResourceManager.GetObject("background", resourceCulture);
+                object obj = ResourceManager.GetObject("Background", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized string similar to #version 130
+        ///
+        ///uniform float InShowDistance;
+        ///uniform vec3 InShowColor;
+        ///uniform vec2 EaseStart;
+        ///uniform vec2 EaseEnd;
+        ///uniform vec2 EaseP1;
+        ///uniform vec2 EaseP2;
+        ///
+        ///uniform vec2 InPlayerPosition0;
+        ///uniform vec2 InPlayerPosition1;
+        ///uniform vec2 InPlayerPosition2;
+        ///uniform vec2 InPlayerPosition3;
+        ///varying vec2 VertexPosition;
+        ///
+        ///vec2 toBezier(in float x, in vec2 P0, in vec2 P1, in vec2 P2, in vec2 P3) {
+        ///    // @see https://vicrucann.github.io/tutorials/bezier-shader/
+        ///    // Modified for 2d by using just  [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static byte[] Border_frag {
+        internal static string Border_frag {
             get {
-                object obj = ResourceManager.GetObject("Border_frag", resourceCulture);
-                return ((byte[])(obj));
+                return ResourceManager.GetString("Border_frag", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized string similar to #version 130
+        ///
+        ///varying vec2 VertexPosition;
+        ///
+        ///void main() {
+        ///	gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
+        ///	
+        ///	// Pass through varyings
+        ///	VertexPosition = gl_Vertex.xy;
+        ///}
+        ///.
         /// </summary>
-        internal static byte[] Border_vert {
+        internal static string Border_vert {
             get {
-                object obj = ResourceManager.GetObject("Border_vert", resourceCulture);
-                return ((byte[])(obj));
+                return ResourceManager.GetString("Border_vert", resourceCulture);
             }
         }
         
@@ -123,10 +148,19 @@ namespace SpaceWar.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap heart {
+        internal static System.Drawing.Bitmap Heart {
             get {
-                object obj = ResourceManager.GetObject("heart", resourceCulture);
+                object obj = ResourceManager.GetObject("Heart", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream MenuSound {
+            get {
+                return ResourceManager.GetStream("MenuSound", resourceCulture);
             }
         }
         
@@ -151,12 +185,39 @@ namespace SpaceWar.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream PlaySound0 {
+            get {
+                return ResourceManager.GetStream("PlaySound0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream PlaySound1 {
+            get {
+                return ResourceManager.GetStream("PlaySound1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Shot {
             get {
                 object obj = ResourceManager.GetObject("Shot", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream ShotSound {
+            get {
+                return ResourceManager.GetStream("ShotSound", resourceCulture);
             }
         }
     }

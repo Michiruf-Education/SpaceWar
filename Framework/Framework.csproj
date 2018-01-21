@@ -132,6 +132,8 @@
     <Compile Include="Render\RenderTextComponent.cs" />
     <Compile Include="Render\RenderTextureComponent.cs" />
     <Compile Include="Scene.cs" />
+    <Compile Include="Sound\AudioPlayer.cs" />
+    <Compile Include="Sound\Sound.cs" />
     <Compile Include="Transform.cs" />
     <Compile Include="Utilities\ColorBlendExtension.cs" />
     <Compile Include="Utilities\DictionaryExtension.cs" />

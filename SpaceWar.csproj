@@ -137,7 +137,12 @@
     <Compile Include="Game\Play\UI\NewWaveOverlay.cs" />
     <Compile Include="Game\Play\UI\PointDisplay.cs" />
     <Compile Include="Game\SpaceWar.cs" />
-    <Compile Include="Resources\Resources.Designer.cs">
+    <Compile Include="Resources\String.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>String.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource.resx</DependentUpon>
@@ -156,13 +161,20 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\String.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>String.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Image-Sources.txt" />
+    <Content Include="Resources\Forms\LicenseDialog.TODO" />
     <Content Include="Resources\Shader\Border.frag" />
     <Content Include="Resources\Shader\Border.vert" />
+    <Content Include="Resources\Sound\04 Delicious Keys.mp3" />
+    <Content Include="Resources\Sound\Tones\NFF-laser-gun.wav" />
+    <Content Include="Resources\Sound\Tones\NFF-scrape.wav" />
     <Content Include="Resources\Texture\Enemy\Enemy1.png" />
     <Content Include="Resources\Texture\Enemy\Enemy2.png" />
     <Content Include="Resources\Texture\Enemy\Enemy3.png" />
@@ -171,6 +183,9 @@
     <Content Include="Resources\Texture\Shot.png" />
     <Content Include="Resources\Texture\UI\Heart.png" />
     <Content Include="TODOs.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\Sound\PlaySound\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
