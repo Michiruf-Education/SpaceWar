@@ -79,12 +79,15 @@ namespace Framework.Sound {
 		}
 
 		public void StopAll() {
+			// TODO Disposing clearning the stuff makes a second round crashing the game
+			// TODO But like now, the sound is not stopped correctly
 			foreach (var c in currentPlayers) {
 				c.Value.Stop();
-				c.Value.Dispose();
-				c.Key.ReaderStream.Dispose();
+//				c.Value.Dispose();
+//				c.Key.ReaderStream.Dispose();
 			}
-			currentPlayers.Clear();
+//			soundCache.Clear();
+//			currentPlayers.Clear();
 		}
 	}
 

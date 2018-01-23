@@ -4,7 +4,7 @@ using OpenTK;
 
 namespace Framework.Utilities {
 
-	public class MyTimer : IDisposable{
+	public class MyTimer : IDisposable {
 
 		public Timer Timer { get; }
 
@@ -32,6 +32,7 @@ namespace Framework.Utilities {
 					// If we need to be thread safe, note that we need to perform the action on the next Update() call
 					// because may created game object would not be initialized correctly!
 					if (threadSafeForInitialization) {
+						// TODO Remove this action also when cancelling
 						void UpdateAction(object o, FrameEventArgs eventArgs) {
 							Game.Instance.Window.UpdateFrame -= UpdateAction;
 							action?.Invoke();
