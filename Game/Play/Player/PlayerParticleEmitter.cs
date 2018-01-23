@@ -6,13 +6,15 @@ using Framework.ParticleSystem;
 using Framework.Render;
 using Framework.Utilities;
 using OpenTK;
+using SpaceWar.Resources;
 
 namespace SpaceWar.Game.Play.Player {
 
 	public class PlayerParticleEmitter : ParticleEmitter {
 
-		private static readonly Random POSITION_RANDOM = new Random();
-		private static readonly Random VELOCITY_RANDOM = new Random();
+		private static readonly Random RANDOM = new Random();
+		private const float WIDTH_FACTOR = 0.35f * Player.PLAYER_SIZE;
+		private const float BEHIND_FACTOR = 0.35f * Player.PLAYER_SIZE;
 
 		private readonly Player player;
 
@@ -23,31 +25,40 @@ namespace SpaceWar.Game.Play.Player {
 		public float SpawnRate => 0.001f;
 		public int TotalCount => 100;
 		public Action<Particle> OnStart => particle => {
-			particle.Transform.WorldPosition += new Vector2(
-				POSITION_RANDOM.NextFloat(-Player.PLAYER_SIZE * 0.3f, Player.PLAYER_SIZE * 0.3f),
-				POSITION_RANDOM.NextFloat(-Player.PLAYER_SIZE * 0.3f, Player.PLAYER_SIZE * 0.3f));
-		};
-		public float Lifetime => 0.4f;
-		public Vector2 Acceleration => Vector2.Zero;
-		public Func<Vector2, float> AccelerationOverTimeFunc => null;
-		public Vector2 Velocity {
-			get {
-				var angle = VELOCITY_RANDOM.NextDouble(0, 360);
-				return new Vector2((float) Math.Cos(angle), (float) Math.Sin(angle)) *
-				       VELOCITY_RANDOM.NextFloat(0.0001f, 0.0005f);
+			// Do no draw particles if not moving
+			if (!player.MovementController.IsMoving) {
+				particle.Parent.RemoveChild(particle);
+				return;
 			}
-		}
-		public Func<Vector2, float> VelocityOverTimeFuncOverride => null;
-		public Func<RenderComponent> InitializeVisualComponent => () => new RenderBoxComponent(0.02f, 0.02f).Fill(Color.Red);
-		public Func<Color, float> ColorOverTimeFunc => null;
+
+			var random = RANDOM.NextFloat(-1f, 1f);
+			var positionRandom = random * WIDTH_FACTOR;
+			var lifetimeRandom = Math.Abs(random);
+
+			// Get the direction. Instead of adding + 90 degress, we assign x to a and y to b!
+			var direction = MathHelper.DegreesToRadians(player.Transform.WorldRotation);
+			var a = Math.Cos(direction);
+			var b = Math.Sin(direction);
+			particle.Transform.WorldPosition += new Vector2(
+				(float) (positionRandom * b - a * BEHIND_FACTOR),
+				(float) (positionRandom * -a - b * BEHIND_FACTOR));
+
+			// Change the lifetime depending on the position
+			particle.Lifetime *= lifetimeRandom;
+		};
+		public float Lifetime => 0.2f;
+		public Vector2 Acceleration => Vector2.Zero;
+		public Vector2 Velocity => Vector2.Zero;
+		public Func<RenderComponent> InitializeVisualComponent => () => new RenderTextureComponent("PlayerParticle",
+			() => Resource.PlayerParticle, 0.02f, 0.02f);
 
 
 		public void LifetimeCallback(Particle particle, float duration) {
 			// Color the visual component by the remaining time
-			var v = (RenderBoxComponent) particle.VisualComponent;
-			var alpha = (int) (duration / Lifetime * 10f);
+			var v = (RenderTextureComponent) particle.VisualComponent;
+			var alpha = (int) (duration / particle.Lifetime * 100f);
 			if (alpha > 0) {
-				v.Fill(Color.FromArgb(alpha, player.PlayerColor));
+				v.SetColorFilter(Color.FromArgb(alpha, player.PlayerColor));
 			}
 		}
 	}

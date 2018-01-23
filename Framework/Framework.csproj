@@ -112,8 +112,7 @@
     <Compile Include="Input\InputHandler.cs" />
     <Compile Include="Input\InputProvider.cs" />
     <Compile Include="Object\CachedObject.cs" />
-    <Compile Include="Object\Invalidateable.cs" />
-    <Compile Include="Object\Lifecycle.cs" />
+    <Compile Include="Object\CachingTextureLoader.cs" />
     <Compile Include="Object\RenderComponent.cs" />
     <Compile Include="Object\Time.cs" />
     <Compile Include="Object\UpdateComponent.cs" />
@@ -133,7 +132,11 @@
     <Compile Include="Render\RenderTextComponent.cs" />
     <Compile Include="Render\RenderTextureComponent.cs" />
     <Compile Include="Scene.cs" />
+    <Compile Include="Sound\AudioPlayer.cs" />
+    <Compile Include="Sound\Sound.cs" />
     <Compile Include="Transform.cs" />
+    <Compile Include="Utilities\ColorBlendExtension.cs" />
+    <Compile Include="Utilities\DictionaryExtension.cs" />
     <Compile Include="Utilities\FastVector2Transform.cs" />
     <Compile Include="Utilities\MyTimer.cs" />
     <Compile Include="Utilities\RandomExtension.cs" />

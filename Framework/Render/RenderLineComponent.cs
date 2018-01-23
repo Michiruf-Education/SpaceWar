@@ -31,7 +31,8 @@ namespace Framework.Render {
 			GL.Color4(color);
 			GL.LineWidth(lineWidth);
 			
-			var matrix = GameObject.Transform.GetTransformationMatrixCached(!GameObject.IsUiElement);
+			var matrix = GameObject?.Transform?.GetTransformationMatrixCached(!GameObject.IsUiElement) ?? 
+			             System.Numerics.Matrix3x2.Identity;
 			var fromPoint = FastVector2Transform.Transform(from.X, from.Y, matrix);
 			var toPoint = FastVector2Transform.Transform(to.X, to.Y, matrix);
 

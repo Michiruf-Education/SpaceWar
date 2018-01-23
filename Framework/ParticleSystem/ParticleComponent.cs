@@ -1,4 +1,4 @@
-﻿namespace Framework.ParticleSystem.Components {
+﻿namespace Framework.ParticleSystem {
 
 	public class ParticleComponent : Component {
 

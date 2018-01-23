@@ -13,7 +13,7 @@ namespace Framework.Render {
 		private readonly PointF p2;
 		private readonly PointF p3;
 		private readonly PointF p4;
-		
+
 		private Color fillColor = Color.Empty;
 		private Color strokeColor = Color.Empty;
 		private float strokeWidth;
@@ -48,16 +48,17 @@ namespace Framework.Render {
 		}
 
 		public void Render() {
-			var matrix = GameObject.Transform.GetTransformationMatrixCached(!GameObject.IsUiElement);
+			// Enable blending for transparency
+			GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
+			GL.Enable(EnableCap.Blend);
+
+			var matrix = GameObject?.Transform?.GetTransformationMatrixCached(!GameObject.IsUiElement) ??
+			             System.Numerics.Matrix3x2.Identity;
 			var p1Fill = FastVector2Transform.Transform(p1.X, p1.Y, matrix);
 			var p2Fill = FastVector2Transform.Transform(p2.X, p2.Y, matrix);
 			var p3Fill = FastVector2Transform.Transform(p3.X, p3.Y, matrix);
 			var p4Fill = FastVector2Transform.Transform(p4.X, p4.Y, matrix);
 
-			// Enable blending for transparency
-			GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
-			GL.Enable(EnableCap.Blend);
-			
 			// Render filling
 			if (fillColor != Color.Empty) {
 				GL.Color4(fillColor);
@@ -82,7 +83,7 @@ namespace Framework.Render {
 				GL.Vertex2(p4Fill);
 				GL.End();
 			}
-			
+
 			GL.Disable(EnableCap.Blend);
 
 			// NOTE Maybe debug draw?

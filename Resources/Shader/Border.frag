@@ -1,14 +1,17 @@
-precision mediump float;
+#version 130
 
 uniform float InShowDistance;
 uniform vec3 InShowColor;
-uniform vec2 EaseStart = vec2(0.0, 0.0);
-uniform vec2 EaseEnd = vec2(1.0, 1.0);
-uniform vec2 EaseP1 = vec2(0.335, 0.000);
-uniform vec2 EaseP2 = vec2(0.125, 1.000);
+uniform vec2 EaseStart;
+uniform vec2 EaseEnd;
+uniform vec2 EaseP1;
+uniform vec2 EaseP2;
 
-varying in vec2 VertexPosition;
-varying in vec2 PlayerPosition;
+uniform vec2 InPlayerPosition0;
+uniform vec2 InPlayerPosition1;
+uniform vec2 InPlayerPosition2;
+uniform vec2 InPlayerPosition3;
+varying vec2 VertexPosition;
 
 vec2 toBezier(in float x, in vec2 P0, in vec2 P1, in vec2 P2, in vec2 P3) {
     // @see https://vicrucann.github.io/tutorials/bezier-shader/
@@ -28,10 +31,35 @@ float ease(in float value) {
     return(toBezier(value, EaseStart, EaseP1, EaseP2, EaseEnd).y);
 }
 
-void main (void) {
-    float distance = length(VertexPosition - PlayerPosition);
-    float showPercentace = 1.0 - distance / InShowDistance;
-    if(showPercentace > 0.0) {
-        gl_FragColor = vec4(InShowColor, ease(showPercentace));
+vec2 getPlayerPosition(in int i) {
+    if(i == 0) {
+        return InPlayerPosition0;
     }
+    if(i == 1) {
+        return InPlayerPosition1;
+    }
+    if(i == 2) {
+        return InPlayerPosition2;
+    }
+    if(i == 3) {
+        return InPlayerPosition3;
+    }
+
+    return vec2(0);
 }
+
+float alpha() {
+    float result = 0;
+    for(int i = 0; i < 4; i++) {
+        float distance = length(VertexPosition - getPlayerPosition(i));
+        float showPercentace = 1.0 - distance / InShowDistance;
+        result = max(result, showPercentace);
+    }
+    return ease(result);
+}
+
+void main(void) {
+    gl_FragColor = vec4(InShowColor, alpha());
+}
+
+// TODO: When a shot hits the border, a small light blink would be nice in the border!

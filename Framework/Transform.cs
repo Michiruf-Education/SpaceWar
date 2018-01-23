@@ -291,6 +291,7 @@ namespace Framework {
 		Local
 	}
 
+	[Serializable]
 	public class SpaceNotExistantException : Exception {
 	}
 

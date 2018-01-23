@@ -1,4 +1,5 @@
-﻿using Framework;
+﻿using System.Drawing;
+using Framework;
 using Framework.Utilities;
 
 namespace SpaceWar.Game.Play.Enemy.General {
@@ -8,6 +9,8 @@ namespace SpaceWar.Game.Play.Enemy.General {
 		public bool IsAlive { get; private set; } = true;
 		public bool IsSpawned { get; private set; }
 		public int PointsForKilling => spawner.PointsForKilling;
+
+		public abstract Color ExplosionColor { get; }
 
 		protected readonly AbstractSpawner spawner;
 		protected readonly MyTimer spawnDelayTimer = new MyTimer();

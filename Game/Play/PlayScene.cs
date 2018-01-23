@@ -1,16 +1,22 @@
 ﻿using System;
+using System.IO;
 using Framework;
 using Framework.Camera;
 using Framework.Engine;
+using Framework.Sound;
 using OpenTK;
 using SpaceWar.Game.Play.Enemy;
+using SpaceWar.Game.Play.Enemy.Enemy1;
 using SpaceWar.Game.Play.Field;
 using SpaceWar.Game.Play.Player;
 using SpaceWar.Game.Play.UI;
+using SpaceWar.Resources;
 
 namespace SpaceWar.Game.Play {
 
 	public class PlayScene : Scene {
+
+		private static Random SOUND_RANDOM = new Random();
 
 		public const float FIELD_WIDTH = 2f;
 		public const float FIELD_HEIGHT = 1f;
@@ -49,6 +55,9 @@ namespace SpaceWar.Game.Play {
 
 			// Engine
 			Spawn(new FrameworkEngineGameObject());
+
+			// Sound
+			PlayRandomPlaySound();
 		}
 
 		private void SpawnPlayers() {
@@ -62,6 +71,23 @@ namespace SpaceWar.Game.Play {
 						(float) Math.Sin(MathHelper.DegreesToRadians(deg)) * PLAYER_SPAWN_DISTANCE);
 				}
 			}
+		}
+
+		private void PlayRandomPlaySound() {
+			UnmanagedMemoryStream s;
+			switch (SOUND_RANDOM.Next(0, 0)) { // TODO Embed more Sounds
+				case 0:
+					s = Resource.PlaySound0;
+					break;
+				default:
+					throw new InvalidOperationException("No sound for random value defined");
+			}
+
+			// Play the menu sound
+			AudioPlayer.Get().Play(new Sound(s, SoundFormat.Mp3)
+				.Volume(0.5f)
+				.Repeat(true)
+				.StartSeek(2));
 		}
 	}
 

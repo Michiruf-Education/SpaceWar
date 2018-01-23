@@ -9,6 +9,8 @@ namespace SpaceWar.Game.Play.Player {
 	public class PlayerMovementController : Component, UpdateComponent {
 
 		private Player player;
+		
+		public bool IsMoving { get; private set; }
 
 		public override void OnStart() {
 			base.OnStart();
@@ -16,6 +18,8 @@ namespace SpaceWar.Game.Play.Player {
 		}
 
 		public void Update() {
+			IsMoving = false;
+			
 			// Do nothing if dead
 			if (!player.Attributes.IsAlive) {
 				return;
@@ -47,6 +51,7 @@ namespace SpaceWar.Game.Play.Player {
 						keyboardAxis.Y * Player.INITIAL_SPEED * Time.DeltaTime,
 						Space.World);
 					GameObject.Transform.LookAtDirection(keyboardAxis);
+					IsMoving = true;
 
 					// Do not detect controller if keyboard was pressed
 					FixPlayerPosition();
@@ -62,6 +67,7 @@ namespace SpaceWar.Game.Play.Player {
 					gamepadAxis.Y * Player.INITIAL_SPEED * Time.DeltaTime,
 					Space.World);
 				GameObject.Transform.LookAtDirection(gamepadAxis);
+				IsMoving = true;
 			}
 
 			FixPlayerPosition();
@@ -71,7 +77,7 @@ namespace SpaceWar.Game.Play.Player {
 			// NOTE Would not be needed because of collision detection
 			// But for now disable clipping threw borders (bottom-left edge for example)
 			var worldPosition = GameObject.Transform.WorldPosition;
-			float maxWidth = (PlayScene.FIELD_WIDTH - Player.PLAYER_SIZE - PlayScene.BORDER_WIDTH) / 2;
+			float maxWidth = (PlayScene.FIELD_WIDTH - Player.COLLIDER_SIZE - PlayScene.BORDER_WIDTH) / 2;
 			if (worldPosition.X > maxWidth) {
 				GameObject.Transform.WorldPosition = new Vector2(
 					maxWidth,
@@ -82,7 +88,7 @@ namespace SpaceWar.Game.Play.Player {
 					-maxWidth,
 					worldPosition.Y);
 			}
-			float maxHeight = (PlayScene.FIELD_HEIGHT - Player.PLAYER_SIZE - PlayScene.BORDER_WIDTH) / 2;
+			float maxHeight = (PlayScene.FIELD_HEIGHT - Player.COLLIDER_SIZE - PlayScene.BORDER_WIDTH) / 2;
 			if (worldPosition.Y > maxHeight) {
 				GameObject.Transform.WorldPosition = new Vector2(
 					worldPosition.X,

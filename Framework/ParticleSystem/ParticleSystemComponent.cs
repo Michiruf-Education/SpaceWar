@@ -1,17 +1,18 @@
-﻿using System.Drawing;
-using System.Windows.Forms;
-using Framework.Object;
-using Framework.Render;
+﻿using Framework.Object;
+using Framework.Utilities;
 
 namespace Framework.ParticleSystem {
 
 	public class ParticleSystemComponent : Component, UpdateComponent {
 
 		public ParticleEmitter Emitter { get; set; }
+		public readonly float containerDestroyDelay;
 
 		private GameObject particleSystemGameObject;
+		private readonly MyTimer destroyTimer = new MyTimer();
 
-		public ParticleSystemComponent(ParticleEmitter emitter) {
+		public ParticleSystemComponent(ParticleEmitter emitter, float containerDestroyDelay = 0.0f) {
+			this.containerDestroyDelay = containerDestroyDelay;
 			Emitter = emitter;
 		}
 
@@ -19,7 +20,11 @@ namespace Framework.ParticleSystem {
 			base.OnDestroy();
 			// Remove the particle system container
 			if (particleSystemGameObject != null) {
-				Scene.Current.Destroy(particleSystemGameObject);
+				if (containerDestroyDelay > 0.0f) {
+					destroyTimer.DoOnce(containerDestroyDelay, () => Scene.Current.Destroy(particleSystemGameObject));
+				} else {
+					Scene.Current.Destroy(particleSystemGameObject);
+				}
 			}
 		}
 

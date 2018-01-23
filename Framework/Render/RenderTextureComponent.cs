@@ -12,28 +12,48 @@ namespace Framework.Render {
 	public class RenderTextureComponent : Component, RenderComponent {
 
 		private readonly ITexture texture;
+		private readonly bool isCached;
 
 		public Box2D Rect { get; set; }
+		public Color ColorFilter { get; set; } = Color.White;
 
-		[Obsolete("May be obsolete because we always need bounds (rect)?")]
-		private RenderTextureComponent(Bitmap image) {
-			texture = TextureLoader.FromBitmap(image);
-			if (texture == null) {
-				throw new ArgumentException("Texture is not a 2dGL texture!");
-			}
+		public RenderTextureComponent(ITexture texture, Box2D rect) {
+			this.texture = texture ??
+			               throw new ArgumentException("Texture is null! (May not a 2dGL texture?)");
+			Rect = rect;
 		}
 
-		public RenderTextureComponent(Bitmap image, Box2D rect) : this(image) {
-			Rect = rect;
+		public RenderTextureComponent(ITexture texture, float width, float height) :
+			this(texture, new Box2D(-width / 2, -height / 2, width, height)) {
+		}
+
+		public RenderTextureComponent(Bitmap image, Box2D rect) :
+			this(TextureLoader.FromBitmap(image), rect) {
 		}
 
 		public RenderTextureComponent(Bitmap image, float width, float height) :
 			this(image, new Box2D(-width / 2, -height / 2, width, height)) {
 		}
 
+		public RenderTextureComponent(string cacheName, Func<Bitmap> bitmapCreator, Box2D rect) :
+			this(CachingTextureLoader.FromBitmap(cacheName, bitmapCreator), rect) {
+			isCached = true;
+		}
+
+		public RenderTextureComponent(string cacheName, Func<Bitmap> bitmapCreator, float width, float height) :
+			this(cacheName, bitmapCreator, new Box2D(-width / 2, -height / 2, width, height)) {
+		}
+
+		public RenderTextureComponent SetColorFilter(Color color) {
+			ColorFilter = color;
+			return this;
+		}
+
 		public override void OnDestroy() {
 			base.OnDestroy();
-			texture?.Dispose();
+			if (!isCached) {
+				texture?.Dispose();
+			}
 		}
 
 		public void Render() {
@@ -45,12 +65,13 @@ namespace Framework.Render {
 			// Enable blending for transparency in textures
 			GL.BlendFunc(BlendingFactorSrc.SrcAlpha, BlendingFactorDest.OneMinusSrcAlpha);
 			GL.Enable(EnableCap.Blend);
-			
+
 			// Color is multiplied with the texture color
 			// White means no color change in the texture will be applied
-			GL.Color3(Color.White);
-			
-			var matrix = GameObject.Transform.GetTransformationMatrixCached(!GameObject.IsUiElement);
+			GL.Color4(ColorFilter);
+
+			var matrix = GameObject?.Transform?.GetTransformationMatrixCached(!GameObject.IsUiElement) ??
+			             System.Numerics.Matrix3x2.Identity;
 			var minXminY = FastVector2Transform.Transform(Rect.MinX, Rect.MinY, matrix);
 			var maxXminY = FastVector2Transform.Transform(Rect.MaxX, Rect.MinY, matrix);
 			var maxXmaxY = FastVector2Transform.Transform(Rect.MaxX, Rect.MaxY, matrix);
