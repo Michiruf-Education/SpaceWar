@@ -18,6 +18,7 @@ namespace Framework.Sound {
 			GLOBAL_VOLUME = volume;
 		}
 
+		// TODO Convert to Singleton Property
 		public static AudioPlayer Get() {
 			return INSTANCE;
 		}
@@ -42,6 +43,7 @@ namespace Framework.Sound {
 			}
 
 			// Play the sound
+//			soundPlayer.Stop(); // TODO Test -> Alle Sounds richtig abgespielt, kein Lag zwischendrin
 			sound.ReaderStream.CurrentTime = TimeSpan.FromSeconds(sound.StartSeekP);
 			soundPlayer.Play();
 		}
