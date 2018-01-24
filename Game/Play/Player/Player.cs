@@ -1,7 +1,9 @@
 ﻿using System.Drawing;
 using Framework;
 using Framework.Collision.Collider;
+using Framework.ParticleSystem;
 using Framework.Render;
+using SpaceWar.Resources;
 
 namespace SpaceWar.Game.Play.Player {
 
@@ -14,47 +16,53 @@ namespace SpaceWar.Game.Play.Player {
 
 		// Visual constants
 		public const float PLAYER_SIZE = 0.05f;
+		public const float COLLIDER_SIZE = PLAYER_SIZE * 0.8f;
 
 		// Containers
 		public PlayerAttributes Attributes { get; }
 		public PlayerMovementController MovementController { get; }
 		public PlayerShotController ShotController { get; }
 		public PlayerCollisionController CollisionController { get; }
-		public RenderBoxComponent RenderComponent { get; }
+		public RenderTextureComponent RenderComponent { get; }
+		public ParticleSystemComponent ParticleSystemComponent { get; }
 		public CircleCollider Collider { get; }
 
 		// Properties
 		public int PlayerIndex { get; }
+		public Color PlayerColor {
+			get {
+				switch (PlayerIndex) {
+					case 1:
+						return Color.LightSalmon;
+					case 2:
+						return Color.LightYellow;
+					default:
+						return Color.GreenYellow;
+				}
+			}
+		}
 
 		public Player(int playerIndex) {
+			PlayerIndex = playerIndex;
+
 			Attributes = new PlayerAttributes();
 			MovementController = new PlayerMovementController();
 			ShotController = new PlayerShotController();
 			CollisionController = new PlayerCollisionController();
-			Color playerColor;
-			switch (playerIndex) {
-				case 1:
-					playerColor = Color.LightSalmon;
-					break;
-				case 2:
-					playerColor = Color.LightYellow;
-					break;
-				default:
-					playerColor = Color.GreenYellow;
-					break;
-			}
-			// TODO Should be not the same enemies and be asymetric (for rotation feedback and felt smoothness)
-			RenderComponent = new RenderBoxComponent(PLAYER_SIZE, PLAYER_SIZE).Fill(playerColor);
-			Collider = new CircleCollider(PLAYER_SIZE / 2);
+			RenderComponent = new RenderTextureComponent(Resource.Player, PLAYER_SIZE, PLAYER_SIZE)
+				.SetColorFilter(PlayerColor);
+			ParticleSystemComponent = new ParticleSystemComponent(new PlayerParticleEmitter(this));
+			Collider = new CircleCollider(COLLIDER_SIZE / 2.2f);
 
 			AddComponent(Attributes);
 			AddComponent(MovementController);
 			AddComponent(ShotController);
 			AddComponent(CollisionController);
 			AddComponent(RenderComponent);
+			AddComponent(ParticleSystemComponent);
 			AddComponent(Collider);
-
-			PlayerIndex = playerIndex;
+			
+			//AddComponent(new PlayerTrail());
 		}
 	}
 

@@ -63,9 +63,64 @@ namespace SpaceWar.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap background {
+        internal static System.Drawing.Bitmap Background {
             get {
-                object obj = ResourceManager.GetObject("background", resourceCulture);
+                object obj = ResourceManager.GetObject("Background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to #version 130
+        ///
+        ///uniform float InShowDistance;
+        ///uniform vec3 InShowColor;
+        ///uniform vec2 EaseStart;
+        ///uniform vec2 EaseEnd;
+        ///uniform vec2 EaseP1;
+        ///uniform vec2 EaseP2;
+        ///
+        ///uniform vec2 InPlayerPosition0;
+        ///uniform vec2 InPlayerPosition1;
+        ///uniform vec2 InPlayerPosition2;
+        ///uniform vec2 InPlayerPosition3;
+        ///varying vec2 VertexPosition;
+        ///
+        ///vec2 toBezier(in float x, in vec2 P0, in vec2 P1, in vec2 P2, in vec2 P3) {
+        ///    // @see https://vicrucann.github.io/tutorials/bezier-shader/
+        ///    // Modified for 2d by using just  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Border_frag {
+            get {
+                return ResourceManager.GetString("Border_frag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to #version 130
+        ///
+        ///varying vec2 VertexPosition;
+        ///
+        ///void main() {
+        ///	gl_Position = gl_ModelViewProjectionMatrix * gl_Vertex;
+        ///	
+        ///	// Pass through varyings
+        ///	VertexPosition = gl_Vertex.xy;
+        ///}
+        ///.
+        /// </summary>
+        internal static string Border_vert {
+            get {
+                return ResourceManager.GetString("Border_vert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Enemy1 {
+            get {
+                object obj = ResourceManager.GetObject("Enemy1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,10 +128,96 @@ namespace SpaceWar.Resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap heart {
+        internal static System.Drawing.Bitmap Enemy2 {
             get {
-                object obj = ResourceManager.GetObject("heart", resourceCulture);
+                object obj = ResourceManager.GetObject("Enemy2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Enemy3 {
+            get {
+                object obj = ResourceManager.GetObject("Enemy3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Heart {
+            get {
+                object obj = ResourceManager.GetObject("Heart", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream MenuSound {
+            get {
+                return ResourceManager.GetStream("MenuSound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Player {
+            get {
+                object obj = ResourceManager.GetObject("Player", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap PlayerParticle {
+            get {
+                object obj = ResourceManager.GetObject("PlayerParticle", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream PlaySound0 {
+            get {
+                return ResourceManager.GetStream("PlaySound0", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream PlaySound1 {
+            get {
+                return ResourceManager.GetStream("PlaySound1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Shot {
+            get {
+                object obj = ResourceManager.GetObject("Shot", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream ShotSound {
+            get {
+                return ResourceManager.GetStream("ShotSound", resourceCulture);
             }
         }
     }

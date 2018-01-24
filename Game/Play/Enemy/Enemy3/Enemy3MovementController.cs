@@ -1,4 +1,5 @@
-﻿using Framework;
+﻿using System;
+using Framework;
 using Framework.Object;
 using Framework.Utilities;
 using OpenTK;
@@ -43,8 +44,8 @@ namespace SpaceWar.Game.Play.Enemy.Enemy3 {
 					return;
 				}
 
-				// Set the chase direction after the perio
-				phaseTimer.DoEvery(isFirstChase ? 0.1f : restDuration, () => {
+				// Set the chase direction after the period
+				Action chaseStartAction = () => {
 					isFirstChase = false;
 
 					// This is executed later, so we need to get the data again
@@ -54,7 +55,12 @@ namespace SpaceWar.Game.Play.Enemy.Enemy3 {
 					}
 					chaseDirection = playerNow.Transform.WorldPosition - GameObject.Transform.WorldPosition;
 					chaseDirection.Normalize();
-				}, MyTimer.When.End);
+				};
+				if (isFirstChase) {
+					chaseStartAction.Invoke();
+				} else {
+					phaseTimer.DoEvery(restDuration, chaseStartAction, MyTimer.When.End);
+				}
 			}
 
 			// Look to the player if spawning or resting

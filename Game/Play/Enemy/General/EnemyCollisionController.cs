@@ -27,8 +27,13 @@ namespace SpaceWar.Game.Play.Enemy.General {
 			switch (other) {
 				case Shot.Shot shot:
 					shot.OwningPlayer.Attributes.OnEnemyKill(enemy);
-					Scene.Current.Destroy(GameObject); // For now, destroy it immediately
-					Scene.Current.Destroy(shot); // For now, destroy also the shot
+					
+					// Destroy the shot and spawn the explosion
+					Scene.Current.Spawn(new EnemyExplosionParticleEmitterObject(GameObject as AbstractEnemy));
+					Scene.Current.Destroy(GameObject);
+					
+					// For now, destroy also the shot (could also have an explosion like effect)
+					Scene.Current.Destroy(shot);
 					break;
 			}
 		}

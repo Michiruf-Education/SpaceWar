@@ -1,9 +1,11 @@
 ﻿using System;
 using Framework;
 using Framework.Object;
+using Framework.Sound;
 using Framework.Utilities;
 using OpenTK;
 using OpenTK.Input;
+using SpaceWar.Resources;
 
 namespace SpaceWar.Game.Play.Player {
 
@@ -71,6 +73,8 @@ namespace SpaceWar.Game.Play.Player {
 				direction + MathHelper.DegreesToRadians(-3),
 				GameObject.Transform.WorldPosition,
 				player));
+			AudioPlayer.Get().Play("ShotSound", () => new Sound(Resource.ShotSound, SoundFormat.Wav)
+				.Volume(Options.SOUND_SHOT_VOLUME));
 		}
 	}
 

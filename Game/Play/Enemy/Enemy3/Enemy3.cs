@@ -2,6 +2,7 @@
 using Framework.Collision.Collider;
 using Framework.Render;
 using SpaceWar.Game.Play.Enemy.General;
+using SpaceWar.Resources;
 
 namespace SpaceWar.Game.Play.Enemy.Enemy3 {
 
@@ -14,19 +15,21 @@ namespace SpaceWar.Game.Play.Enemy.Enemy3 {
 
 		// Visual constants
 		public const float ENEMY_SIZE = 0.05f;
+		public override Color ExplosionColor => Color.Red;
 
 		// Components for spawn changes
-		private readonly RenderBoxComponent visual;
+		private readonly RenderTextureComponent visual;
 
 		public Enemy3(AbstractSpawner spawner) : base(spawner) {
 			AddComponent(new Enemy3MovementController(ENEMY_SPEED, ENEMY_REST_DURATION, ENEMY_CHASE_DURATION));
-			AddComponent(visual = new RenderBoxComponent(ENEMY_SIZE, ENEMY_SIZE).Fill(Color.FromArgb(150, Color.Red)));
-			AddComponent(new BoxCollider(ENEMY_SIZE, ENEMY_SIZE));
+			AddComponent(visual = new RenderTextureComponent("Enemy3", () => Resource.Enemy3,
+				ENEMY_SIZE, ENEMY_SIZE).SetColorFilter(Color.FromArgb(150, Color.Red)));
+			AddComponent(new CircleCollider(ENEMY_SIZE / 2.8f));
 		}
 
 		public override void OnSpawned() {
 			base.OnSpawned();
-			visual.Fill(Color.Red);
+			visual.SetColorFilter(Color.Red);
 		}
 	}
 

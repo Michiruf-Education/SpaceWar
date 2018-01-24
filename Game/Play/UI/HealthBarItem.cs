@@ -7,7 +7,7 @@ namespace SpaceWar.Game.Play.UI {
 	public class HealthBarItem : GameObject {
 
 		public HealthBarItem() {
-			AddComponent(new RenderTextureComponent(Resource.heart, HealthBar.ITEM_SIZE, HealthBar.ITEM_SIZE));
+			AddComponent(new RenderTextureComponent(Resource.Heart, HealthBar.ITEM_SIZE, HealthBar.ITEM_SIZE));
 		}
 	}
 
