@@ -1,7 +1,9 @@
-﻿using Framework;
+﻿using System.Drawing;
+using Framework;
 using Framework.Collision.Collider;
 using Framework.Render;
 using Framework.Sound;
+using Framework.Utilities;
 using OpenTK;
 using SpaceWar.Resources;
 
@@ -28,7 +30,7 @@ namespace SpaceWar.Game.Play.Shot {
 			AddComponent(new ShotMovementController(direction));
 			AddComponent(new ShotCollisionController());
 			AddComponent(new RenderTextureComponent("Shot", () => Resource.Shot,
-				SHOT_SIZE * 2, SHOT_SIZE * 2));
+				SHOT_SIZE * 2, SHOT_SIZE * 2).SetColorFilter(owningPlayer.PlayerColor.Blend(Color.White, 0.4f)));
 			AddComponent(new CircleCollider(SHOT_SIZE / 1.5f));
 		}
 
